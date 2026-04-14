@@ -1,0 +1,225 @@
+{
+  "main": {
+    "id": "9fac0f36db285b36",
+    "type": "split",
+    "children": [
+      {
+        "id": "9df39ba3848a1472",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fb7b766a60c2bcc5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "raw/clippings/2026-04-14 仿真平台的新战场：OpenClaw × Simulation × RL，把“会做事”的能力自主训练出来.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2026-04-14 仿真平台的新战场：OpenClaw × Simulation × RL，把“会做事”的能力自主训练出来"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "35822d93ffbdb5af",
+    "type": "split",
+    "children": [
+      {
+        "id": "c8d137121fa778d9",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "456f1c3aafb4e86c",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "e86f9c39deec277a",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "8481bf02196aac16",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 222.5
+  },
+  "right": {
+    "id": "fe355a5c926db48d",
+    "type": "split",
+    "children": [
+      {
+        "id": "67be97e9dc7f5afc",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7cecd0b4b8e097e1",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "raw/clippings/2026-04-13-‍​﻿​‬‍​​⁢​​‍‌‍​‬​⁣‍⁣⁣​‌‌⁢⁤‍​​⁢‬​⁤​​‍⁤‬‍‬‌​⁡⁢﻿⁤‌‬⁣⁤平台软件管理会-2026 - 飞书云文档.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for 2026-04-13-‍​﻿​‬‍​​⁢​​‍‌‍​‬​⁣‍⁣⁣​‌‌⁢⁤‍​​⁢‬​⁤​​‍⁤‬‍‬‌​⁡⁢﻿⁤‌‬⁣⁤平台软件管理会-2026 - 飞书云文档"
+            }
+          },
+          {
+            "id": "e8bb7041c79e2a57",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "raw/clippings/2026-04-13-‍​﻿​‬‍​​⁢​​‍‌‍​‬​⁣‍⁣⁣​‌‌⁢⁤‍​​⁢‬​⁤​​‍⁤‬‍‬‌​⁡⁢﻿⁤‌‬⁣⁤平台软件管理会-2026 - 飞书云文档.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from 2026-04-13-‍​﻿​‬‍​​⁢​​‍‌‍​‬​⁣‍⁣⁣​‌‌⁢⁤‍​​⁢‬​⁤​​‍⁤‬‍‬‌​⁡⁢﻿⁤‌‬⁣⁤平台软件管理会-2026 - 飞书云文档"
+            }
+          },
+          {
+            "id": "c2e007b39eb96d3f",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "28f453e65de53c83",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "c27a2a22c935de9f",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "raw/clippings/2026-04-13-‍​﻿​‬‍​​⁢​​‍‌‍​‬​⁣‍⁣⁣​‌‌⁢⁤‍​​⁢‬​⁤​​‍⁤‬‍‬‌​⁡⁢﻿⁤‌‬⁣⁤平台软件管理会-2026 - 飞书云文档.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of 2026-04-13-‍​﻿​‬‍​​⁢​​‍‌‍​‬​⁣‍⁣⁣​‌‌⁢⁤‍​​⁢‬​⁤​​‍⁤‬‍‬‌​⁡⁢﻿⁤‌‬⁣⁤平台软件管理会-2026 - 飞书云文档"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false
+    }
+  },
+  "active": "fb7b766a60c2bcc5",
+  "lastOpenFiles": [
+    "raw/clippings/2026-04-13-接口概览 - MiniMax 开放平台文档中心.md",
+    "raw/clippings/2026-04-14机器人学习模拟框架 robosuite 支持强化学习和模仿学习 (1) 快速入门.md",
+    "raw/clippings/2026-04-14 仿真平台的新战场：OpenClaw × Simulation × RL，把“会做事”的能力自主训练出来.md",
+    "61e06b0a-93c2-4931-b8d8-4befc6a0f095_markship_config",
+    "61e06b0a-93c2-4931-b8d8-4befc6a0f095",
+    "未确认 950361.crdownload",
+    "raw/clippings/机器人学习模拟框架 robosuite 支持强化学习和模仿学习 (1) 快速入门-CSDN博客.md",
+    "raw/clippings/2026-04-13-‍​﻿​‬‍​​⁢​​‍‌‍​‬​⁣‍⁣⁣​‌‌⁢⁤‍​​⁢‬​⁤​​‍⁤‬‍‬‌​⁡⁢﻿⁤‌‬⁣⁤平台软件管理会-2026 - 飞书云文档.md",
+    "2026-04-13.md",
+    "raw/clippings/2026-04-13-‌⁢‍⁤﻿﻿⁡﻿⁢‍‍‬‬⁤⁤⁤‌⁣‍​‬‬‬​​⁤‌‬⁤‌⁤⁤‍⁤﻿⁣‌‌﻿‌⁣​​﻿⁡⁢‍​‬​智能诊断分享 - 飞书云文档.md",
+    "wiki/entities/minimax.md",
+    "wiki/concepts/model-context-protocol.md",
+    "wiki/concepts/video-generation.md",
+    "wiki/concepts/voice-cloning.md",
+    "wiki/concepts/text-to-speech.md",
+    "wiki/concepts/multimodal-api.md",
+    "wiki/sources/minimax-api-overview.md",
+    "raw/clippings/2026-04-13-‌﻿⁣⁡﻿‌‌‍​​⁡⁡‌⁣‍⁣​﻿‌﻿​﻿⁣‍‬‍⁡⁢﻿⁤​​⁤‬​‌﻿⁢​﻿​​﻿​﻿⁢⁣⁡⁢​强化学习完整学习指导手册 - 飞书云文档.md",
+    "wiki/outputs/lint-2026-04-13.md",
+    "raw/clippings/2026-04-13-Docs.md",
+    "jiaruo/raw/clippings/2026-04-13-‍​﻿​‬‍​​⁢​​‍‌‍​‬​⁣‍⁣⁣​‌‌⁢⁤‍​​⁢‬​⁤​​‍⁤‬‍‬‌​⁡⁢﻿⁤‌‬⁣⁤平台软件管理会-2026 - 飞书云文档.md",
+    "jiaruo/raw/clippings",
+    "jiaruo/raw",
+    "jiaruo",
+    "jiaruo/raw/clippings/2026-04-13-效能平台2.0.md",
+    "Clippings/2026-04-13-效能平台2.0.md",
+    "Clippings",
+    "CLAUDE.md",
+    "未命名 1.base",
+    "未命名.base",
+    "scripts/lint.py",
+    "wiki/templates/synthesis-template.md",
+    "wiki/templates/entity-template.md",
+    "wiki/templates/concept-template.md",
+    "wiki/templates/personal-writing-template.md"
+  ]
+}
