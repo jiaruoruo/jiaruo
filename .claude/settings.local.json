@@ -2,7 +2,6 @@
   "permissions": {
     "allow": [
       "Bash(dir:*)",
-      "Bash(Rename-Item \"D:\\\\AI\\\\LLM-WIKI\\\\FuncationSafety\" \"jiaruo\")",
       "Bash(qmd --version:*)",
       "Bash(qmd add:*)",
       "Bash(qmd --help:*)",
@@ -10,7 +9,13 @@
       "Bash(qmd status:*)",
       "Bash(python:*)",
       "Bash(python scripts/lint.py:*)",
-      "Bash(qmd update:*)"
+      "Bash(qmd update:*)",
+      "Bash(cd:*)",
+      "Bash(qmd query:*)",
+      "Bash(qmd search:*)",
+      "Bash(qmd ls:*)",
+      "Bash(qmd embed)",
+      "Bash(qmd embed:*)"
     ]
   }
 }

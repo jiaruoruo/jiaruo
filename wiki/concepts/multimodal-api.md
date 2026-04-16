@@ -2,7 +2,7 @@
 type: concept
 title: "多模态 API"
 date: 2026-04-13
-updated: 2026-04-13
+updated: 2026-04-15
 tags:
   - api
   - multimodal
@@ -10,7 +10,7 @@ tags:
 source_count: 1
 confidence: low
 domain_volatility: high
-last_reviewed: 2026-04-13
+last_reviewed: 2026-04-15
 aliases:
   - "多模态 API"
   - "multimodal API"
@@ -28,6 +28,7 @@ aliases:
 
 - 核心特征：统一认证（单一 API Key）、多模态覆盖、兼容主流 SDK（如 OpenAI/Anthropic SDK 格式）
 - MiniMax 平台涵盖模态：文本生成、语音合成（TTS）、音色克隆、视频生成、图像生成、音乐生成
+- 文本模型：M2.7 / M2.7-highspeed / M2.5 / M2.5-highspeed / M2.1 / M2.1-highspeed / M2，均支持最大 204,800 token；M2.7 为当前旗舰
 - 接入方式通常分为：HTTP 直接请求、官方 SDK、兼容第三方 SDK（OpenAI/Anthropic 格式）
 - 生成类任务分同步（实时返回）和异步（task_id 轮询）两种模式，长内容生成通常为异步
 
@@ -42,3 +43,4 @@ aliases:
 ## Evolution Log
 
 - 2026-04-13（1 sources）：概念初建，来源为 MiniMax 开放平台接口概览文档
+- 2026-04-15（1 sources）：修正：来源文件更新（SHA-256 变更），补充 M2.7 / M2.7-highspeed 为当前旗舰文本模型

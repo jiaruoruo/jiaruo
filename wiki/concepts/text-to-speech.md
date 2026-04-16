@@ -2,7 +2,7 @@
 type: concept
 title: "文字转语音"
 date: 2026-04-13
-updated: 2026-04-13
+updated: 2026-04-15
 tags:
   - tts
   - speech
@@ -11,7 +11,7 @@ tags:
 source_count: 1
 confidence: low
 domain_volatility: high
-last_reviewed: 2026-04-13
+last_reviewed: 2026-04-15
 aliases:
   - "文字转语音"
   - "语音合成"
@@ -48,3 +48,4 @@ aliases:
 ## Evolution Log
 
 - 2026-04-13（1 sources）：概念初建，来源为 MiniMax 开放平台接口概览文档
+- 2026-04-15（1 sources）：强化——来源文件更新（SHA-256 变更），speech-2.8 系列已在现有定义中正确记录，内容一致

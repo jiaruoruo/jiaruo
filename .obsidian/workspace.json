@@ -11,14 +11,12 @@
             "id": "fb7b766a60c2bcc5",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "pdf",
               "state": {
-                "file": "raw/clippings/2026-04-14 仿真平台的新战场：OpenClaw × Simulation × RL，把“会做事”的能力自主训练出来.md",
-                "mode": "source",
-                "source": false
+                "file": "raw/pdfs/RA8T2 MCU 产品介绍 202508 1.pdf"
               },
-              "icon": "lucide-file",
-              "title": "2026-04-14 仿真平台的新战场：OpenClaw × Simulation × RL，把“会做事”的能力自主训练出来"
+              "icon": "lucide-file-text",
+              "title": "RA8T2 MCU 产品介绍 202508 1"
             }
           }
         ]
@@ -78,7 +76,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 222.5
+    "width": 255.5
   },
   "right": {
     "id": "fe355a5c926db48d",
@@ -186,40 +184,41 @@
   },
   "active": "fb7b766a60c2bcc5",
   "lastOpenFiles": [
-    "raw/clippings/2026-04-13-接口概览 - MiniMax 开放平台文档中心.md",
-    "raw/clippings/2026-04-14机器人学习模拟框架 robosuite 支持强化学习和模仿学习 (1) 快速入门.md",
-    "raw/clippings/2026-04-14 仿真平台的新战场：OpenClaw × Simulation × RL，把“会做事”的能力自主训练出来.md",
-    "61e06b0a-93c2-4931-b8d8-4befc6a0f095_markship_config",
-    "61e06b0a-93c2-4931-b8d8-4befc6a0f095",
-    "未确认 950361.crdownload",
-    "raw/clippings/机器人学习模拟框架 robosuite 支持强化学习和模仿学习 (1) 快速入门-CSDN博客.md",
-    "raw/clippings/2026-04-13-‍​﻿​‬‍​​⁢​​‍‌‍​‬​⁣‍⁣⁣​‌‌⁢⁤‍​​⁢‬​⁤​​‍⁤‬‍‬‌​⁡⁢﻿⁤‌‬⁣⁤平台软件管理会-2026 - 飞书云文档.md",
-    "2026-04-13.md",
-    "raw/clippings/2026-04-13-‌⁢‍⁤﻿﻿⁡﻿⁢‍‍‬‬⁤⁤⁤‌⁣‍​‬‬‬​​⁤‌‬⁤‌⁤⁤‍⁤﻿⁣‌‌﻿‌⁣​​﻿⁡⁢‍​‬​智能诊断分享 - 飞书云文档.md",
-    "wiki/entities/minimax.md",
-    "wiki/concepts/model-context-protocol.md",
-    "wiki/concepts/video-generation.md",
-    "wiki/concepts/voice-cloning.md",
-    "wiki/concepts/text-to-speech.md",
-    "wiki/concepts/multimodal-api.md",
-    "wiki/sources/minimax-api-overview.md",
-    "raw/clippings/2026-04-13-‌﻿⁣⁡﻿‌‌‍​​⁡⁡‌⁣‍⁣​﻿‌﻿​﻿⁣‍‬‍⁡⁢﻿⁤​​⁤‬​‌﻿⁢​﻿​​﻿​﻿⁢⁣⁡⁢​强化学习完整学习指导手册 - 飞书云文档.md",
-    "wiki/outputs/lint-2026-04-13.md",
-    "raw/clippings/2026-04-13-Docs.md",
-    "jiaruo/raw/clippings/2026-04-13-‍​﻿​‬‍​​⁢​​‍‌‍​‬​⁣‍⁣⁣​‌‌⁢⁤‍​​⁢‬​⁤​​‍⁤‬‍‬‌​⁡⁢﻿⁤‌‬⁣⁤平台软件管理会-2026 - 飞书云文档.md",
-    "jiaruo/raw/clippings",
-    "jiaruo/raw",
-    "jiaruo",
-    "jiaruo/raw/clippings/2026-04-13-效能平台2.0.md",
-    "Clippings/2026-04-13-效能平台2.0.md",
-    "Clippings",
-    "CLAUDE.md",
-    "未命名 1.base",
-    "未命名.base",
-    "scripts/lint.py",
-    "wiki/templates/synthesis-template.md",
-    "wiki/templates/entity-template.md",
-    "wiki/templates/concept-template.md",
-    "wiki/templates/personal-writing-template.md"
+    "wiki/entities/robosuite.md",
+    "wiki/entities/openclaw.md",
+    "wiki/entities/robocasa.md",
+    "wiki/concepts/gpan-communication.md",
+    "wiki/concepts/robot-simulation-framework.md",
+    "wiki/sources/robot-sensor-actuator-communication.md",
+    "wiki/sources/gpan-mculess-validation.md",
+    "wiki/sources/ethercat-gpan-servo-validation.md",
+    "wiki/sources/robosuite-quickstart.md",
+    "wiki/sources/openclaw-simulation-rl-agent.md",
+    "wiki/entities/renesas-electronics.md",
+    "wiki/sources/renesas-robot-servo-ethercat-application.md",
+    "wiki/entities/octo-robot-policy.md",
+    "wiki/entities/isaac-gym.md",
+    "wiki/entities/lerobot.md",
+    "wiki/entities/tesla-optimus.md",
+    "wiki/entities/unitree-robotics.md",
+    "wiki/concepts/humanoid-robot.md",
+    "wiki/concepts/ethercat-realtime-communication.md",
+    "wiki/concepts/dexterous-hand.md",
+    "wiki/concepts/quasi-direct-drive-motor.md",
+    "wiki/concepts/sim-to-real-transfer.md",
+    "wiki/concepts/reinforcement-learning-locomotion.md",
+    "wiki/concepts/embodied-ai.md",
+    "wiki/sources/humanoid-robot-research-rapid-prototyping.md",
+    "wiki/outputs/system-audit-2026-04-15-v2.md",
+    "raw/pdfs/Humanoid Robot solution_Feb_2026.pdf",
+    "raw/pdfs/GC Robotics sharing_Jun 2025.pdf",
+    "raw/pdfs/瑞萨电子在机器人伺服控制与EtherCAT 实时通信中的应用_20250722.pdf",
+    "raw/pdfs/机器人应用推广指南202504.pdf",
+    "raw/pdfs/2026年具身智能操作系统技术白皮书.pdf",
+    "raw/pdfs/ST Smart Industry Robotics solution full202603 V9.pdf",
+    "raw/pdfs/Robotic platform promotion material v1.pdf",
+    "raw/pdfs/RA8T2 MCU 产品介绍 202508 1.pdf",
+    "raw/pdfs/RZT2N Product Introduction.pdf",
+    "raw/pdfs/RZT2H_N2H_Introduction.pdf"
   ]
 }

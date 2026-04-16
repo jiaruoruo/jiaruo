@@ -45,7 +45,25 @@ scripts/      ← 工具脚本
 
 ## 二、INGEST 操作规范
 
-**触发词**：`ingest`、`摄入`、`处理这个`
+**触发词**：`ingest`、`摄入`、`处理这个`、URL 直接输入
+
+### URL 直接输入处理规则
+
+当用户直接提供一个 URL（而非 `raw/` 下的文件路径）时：
+
+1. 调用 `defuddle <URL>` 抓取并清洗网页正文
+2. 将抓取结果保存为 `raw/clippings/YYYY-MM-DD<标题slug>.md`（**只写入 raw/，不跳过**）
+3. 在文件顶部写入标准 frontmatter：
+   ```yaml
+   ---
+   source_url: "<原始 URL>"
+   title: "<页面标题>"
+   date: YYYY-MM-DD
+   ---
+   ```
+4. 随后按**外部来源标准流程**继续执行（从 Step 1 读取刚保存的文件开始）
+
+若 `defuddle` 不可用或抓取失败：提示用户手动将内容保存到 `raw/clippings/`，不得跳过 raw 层直接写入 wiki/。
 
 ### 来源类型判断（优先级由高到低）
 
@@ -63,7 +81,7 @@ scripts/      ← 工具脚本
 
 ---
 
-### 外部来源标准流程（11 步）
+### 外部来源标准流程（12 步）
 
 **Step 1：读取原始来源**
 读取 `raw/` 中的目标文件（只读，绝不修改）。
@@ -88,7 +106,15 @@ def sha256_file(path):
 规则：英文小写，用连字符，简洁且具辨识度。
 示例：`attention-is-all-you-need`、`poor-charlies-almanack`、`value-investing-principles`
 
-**Step 5：创建 wiki/sources/<slug>.md**
+**Step 5：来源去重检测**（创建 source 页之前必须执行）
+
+1. 读取目标来源的 `source_url`
+2. 遍历 `wiki/sources/*.md`，检查已有页面的 `source_url` 和 `canonical_source` 字段：
+   - `source_url` 规范化后完全相同 → **重复来源，停止 INGEST，提示用户**
+   - `canonical_source` 与当前 `source_url` 相同 → **译文重复**，提示：「已有该来源的译文页 `[[sources/slug]]`，是否仍要摄入当前语言版本？」等待用户确认后继续
+3. 若未发现重复：继续创建 source 页
+
+**Step 6：创建 wiki/sources/<slug>.md**
 使用 `wiki/templates/source-template.md`，frontmatter 必须填写：
 - `raw_file`: 相对路径（如 `raw/articles/filename.md`）
 - `raw_sha256`: 步骤 2 计算的哈希值
@@ -96,7 +122,7 @@ def sha256_file(path):
 - 若来源发表日期超过 2 年前：设置 `possibly_outdated: true`，并在 Summary 末尾添加：
   > ⚠ 此来源发表于 2 年以上前（{date}），部分内容可能已过时。
 
-**Step 6：概念名称对齐检查**（提取概念之前必须执行）
+**Step 7：概念名称对齐检查**（提取概念之前必须执行）
 
 1. 将每个提取到的概念名称统一映射为英文小写连字符 slug
    - 示例：「第一性原理」→ `first-principles-thinking`
@@ -108,7 +134,7 @@ def sha256_file(path):
 4. 若通过 slug 匹配**或**通过 aliases 匹配到已有页面：**更新已有页面，不创建新页面**
 5. 若找不到任何匹配：才创建新页面，并在 frontmatter 的 `aliases` 中同时填入中文名和英文名
 
-**Step 7：处理每个提取到的概念**
+**Step 8：处理每个提取到的概念**
 
 **若 `wiki/concepts/<concept>.md` 已存在**：
 - 追加新来源 wikilink 到 Sources 节
@@ -130,19 +156,23 @@ def sha256_file(path):
 | 有修正 | `- YYYY-MM-DD（N sources）：修正：[具体变化描述]` |
 | 相互矛盾 | `- YYYY-MM-DD（N sources）：新增分歧：[分歧内容概述]，见 Contradictions 节` |
 
-**Step 8：处理每个提取到的实体**
-逻辑同 Step 6-7，使用 `wiki/templates/entity-template.md`，存放于 `wiki/entities/<slug>.md`。
+**Step 9：处理每个提取到的实体**
+逻辑同 Step 7-8，使用 `wiki/templates/entity-template.md`，存放于 `wiki/entities/<slug>.md`。
 
-**Step 9：更新 wiki/index.md**
+**Step 10：更新 wiki/index.md**
 将来源从 Unprocessed 移动到 Processed（按日期倒序排列）。
 
-**Step 10：检查 QUESTIONS.md**
+**Step 11：检查 QUESTIONS.md**
 读取 `wiki/QUESTIONS.md`，检查本次来源是否能回答任何开放问题：
 - 若能：提示用户：「此来源可能回答了开放问题：[问题描述]，是否立即执行 QUERY？」
 - 用户确认后，执行 QUERY 并将结果写入 `wiki/synthesis/`
 - 将该问题从 Open Questions 移入 Resolved Questions，标注解答日期和 synthesis 链接
 
-**Step 11：追加操作日志**
+**Step 12：更新 qmd 索引并追加操作日志**
+```bash
+qmd update
+```
+随后追加日志：
 ```
 YYYY-MM-DD HH:MM | ingest | [来源标题]（slug: [slug]，提取 N 个概念，M 个实体）
 ```
@@ -413,4 +443,4 @@ qmd multi-get "wiki/synthesis/*.md" -l 60
 
 ---
 
-_最后更新：2026-04-13_
+_最后更新：2026-04-15_

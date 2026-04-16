@@ -2,6 +2,7 @@
 type: entity
 title: "{{entity_name}}"
 date: {{YYYY-MM-DD}}
+updated: {{YYYY-MM-DD}}
 tags: []
 entity_type: person
 aliases:
@@ -29,3 +30,13 @@ aliases:
 
 <!-- 提及此实体的来源页，使用 wikilinks -->
 - [[sources/slug]]
+
+## Evolution Log
+
+<!-- 每次更新追加一条，禁止修改已有记录
+格式：- YYYY-MM-DD（N sources）：[本次认知变化的一句话描述]
+示例：
+- 2026-04-13（1 sources）：实体页初建，来源为 [[sources/example]]
+- 2026-05-01（2 sources）：强化——补充新来源，描述信息已扩充
+-->
+- {{YYYY-MM-DD}}（0 sources）：实体页初始化
