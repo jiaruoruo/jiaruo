@@ -8,7 +8,7 @@ tags:
   - real-time-communication
   - robotics
   - fieldbus
-source_count: 4
+source_count: 9
 confidence: low
 domain_volatility: low
 last_reviewed: 2026-04-15
@@ -48,6 +48,11 @@ EtherCAT（Ethernet for Control Automation Technology）是一种基于以太网
 
 ## Sources
 
+- [[sources/renesas-ra8t2-mcu-introduction]]
+- [[sources/renesas-rzt2h-n2h-introduction]]
+- [[sources/renesas-rzt2n-introduction]]
+- [[sources/renesas-robotic-platform-2025]]
+- [[sources/renesas-robot-application-guide-2025]]
 - [[sources/renesas-robot-servo-ethercat-application]]
 - [[sources/humanoid-robot-research-rapid-prototyping]]
 - [[sources/ethercat-gpan-servo-validation]]
@@ -58,3 +63,4 @@ EtherCAT（Ethernet for Control Automation Technology）是一种基于以太网
 - 2026-04-15（1 sources）：概念初建，来源为人形机器人技术研究及快速原型建设报告
 - 2026-04-15（2 sources）：修正：分布式时钟精度从「<1μs」更新为「<100ns（IEEE 1588增强版）」，依据瑞萨官方技术文档；补充市场份额数据（35%，2024年）、芯片级实现细节及最小周期（0.5ms/2kHz）
 - 2026-04-15（4 sources）：强化——EtherCAT & GPAN 验证方案与传感器沙盘与现有定义一致；新增 GPAN 对比数据（时钟同步目标≤2μs、最小周期31.25μs）及状态估计延迟需求背景
+- 2026-04-15（9 sources）：强化——瑞萨多款产品（RA8T2/RZT2H/RZT2N/RobotPlatform/Guide）一致印证 EtherCAT 在机器人伺服中的核心地位；补充最低电机控制周期0.8μs（瑞萨 robotic platform）

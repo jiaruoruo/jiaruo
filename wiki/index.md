@@ -9,6 +9,18 @@ graph-excluded: true
 
 ### Processed
 
+- 2026-04-16 [[sources/distributed-gateway-communication-tdt]]
+- 2026-04-15 [[sources/embodied-ai-os-whitepaper-2026]]
+- 2026-04-15 [[sources/infineon-gc-humanoid-robot-jun2025]]
+- 2026-04-15 [[sources/infineon-humanoid-robot-feb2026]]
+- 2026-04-15 [[sources/renesas-ra8t2-mcu-introduction]]
+- 2026-04-15 [[sources/renesas-automotive-ai-audio-detection]]
+- 2026-04-15 [[sources/renesas-rh850-u2b-introduction]]
+- 2026-04-15 [[sources/renesas-rzt2h-n2h-introduction]]
+- 2026-04-15 [[sources/renesas-rzt2n-introduction]]
+- 2026-04-15 [[sources/renesas-robotic-platform-2025]]
+- 2026-04-15 [[sources/st-smart-industry-robotics-v9]]
+- 2026-04-15 [[sources/renesas-robot-application-guide-2025]]
 - 2026-04-15 [[sources/openclaw-simulation-rl-agent]]
 - 2026-04-15 [[sources/robosuite-quickstart]]
 - 2026-04-15 [[sources/ethercat-gpan-servo-validation]]
@@ -39,6 +51,10 @@ graph-excluded: true
 - [[concepts/text-to-speech]]
 - [[concepts/video-generation]]
 - [[concepts/voice-cloning]]
+- [[concepts/can-eth-protocol-conversion]]
+- [[concepts/zonal-gateway]]
+- [[concepts/eea-architecture]]
+- [[concepts/time-sensitive-networking]]
 
 ---
 
@@ -60,9 +76,12 @@ graph-excluded: true
 ### Institutions
 
 - [[entities/renesas-electronics]]
+- [[entities/infineon-technologies]]
+- [[entities/st-microelectronics]]
 - [[entities/unitree-robotics]]
 - [[entities/tesla-optimus]]
 - [[entities/minimax]]
+- [[entities/li-auto]]
 
 ### Papers
 
@@ -79,5 +98,6 @@ graph-excluded: true
 <!-- 所有输出文件列表，格式：- YYYY-MM-DD [[outputs/filename]] -->
 - 2026-04-13 wiki/outputs/lint-2026-04-13.md
 - 2026-04-15 wiki/outputs/system-audit-2026-04-15.md
+- 2026-04-16 wiki/outputs/2026-04-16-distributed-gateway-value.md
 - 2026-04-15 wiki/outputs/lint-2026-04-15.md
 - 2026-04-15 wiki/outputs/system-audit-2026-04-15-v2.md

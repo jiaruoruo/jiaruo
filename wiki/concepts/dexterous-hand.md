@@ -8,7 +8,7 @@ tags:
   - manipulation
   - tactile-sensor
   - robotics
-source_count: 2
+source_count: 5
 confidence: low
 domain_volatility: high
 last_reviewed: 2026-04-15
@@ -44,6 +44,9 @@ aliases:
 
 ## Sources
 
+- [[sources/infineon-gc-humanoid-robot-jun2025]]
+- [[sources/infineon-humanoid-robot-feb2026]]
+- [[sources/st-smart-industry-robotics-v9]]
 - [[sources/renesas-robot-servo-ethercat-application]]
 - [[sources/humanoid-robot-research-rapid-prototyping]]
 
@@ -51,3 +54,4 @@ aliases:
 
 - 2026-04-15（1 sources）：概念初建，来源为人形机器人技术研究及快速原型建设报告
 - 2026-04-15（2 sources）：强化——瑞萨官方文档与现有定义一致；补充芯片级实现细节：RA8T2 主控（手掌）+ RA6/RA4 从站（手指微电机），CAN-FD/SPI 内部通信，EtherCAT 对外，支持 micro-ROS
+- 2026-04-15（5 sources）：强化——英飞凌/ST 多份文档补充：手掌5-15伺服电机/滚珠丝杠/触觉传感器/扭矩传感器；ST 整机 BOM 估算（灵巧手触觉000，扭矩50，电机200）

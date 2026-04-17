@@ -7,7 +7,7 @@ tags:
   - humanoid-robot
   - robotics
   - embodied-ai
-source_count: 3
+source_count: 9
 confidence: low
 domain_volatility: high
 last_reviewed: 2026-04-15
@@ -45,6 +45,12 @@ aliases:
 
 ## Sources
 
+- [[sources/embodied-ai-os-whitepaper-2026]]
+- [[sources/infineon-gc-humanoid-robot-jun2025]]
+- [[sources/infineon-humanoid-robot-feb2026]]
+- [[sources/st-smart-industry-robotics-v9]]
+- [[sources/renesas-robotic-platform-2025]]
+- [[sources/renesas-robot-application-guide-2025]]
 - [[sources/robot-sensor-actuator-communication]]
 - [[sources/renesas-robot-servo-ethercat-application]]
 - [[sources/humanoid-robot-research-rapid-prototyping]]
@@ -54,3 +60,4 @@ aliases:
 - 2026-04-15（1 sources）：概念初建，来源为人形机器人技术研究及快速原型建设报告
 - 2026-04-15（2 sources）：强化——瑞萨官方文档与现有定义一致；补充芯片级方案视角：RA8T2/RZ/T2L 关节驱动（FOC+EtherCAT），RZ/V2H 作为 AI 控制器实现大脑+小脑架构
 - 2026-04-15（3 sources）：强化——传感器沙盘补充状态感知融合需求（状态估计延迟<5ms、频率>500Hz）与现有定义一致
+- 2026-04-15（9 sources）：强化——英飞凌/ST/瑞萨多份文档一致印证市场规模、整机结构（44轴/BOM构成）、半导体方案架构，与现有定义高度一致；英飞凌更新中国市场预测至2025年15K台、全球70%份额

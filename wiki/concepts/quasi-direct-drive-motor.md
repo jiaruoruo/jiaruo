@@ -8,7 +8,7 @@ tags:
   - actuator
   - robotics
   - hardware
-source_count: 2
+source_count: 3
 confidence: low
 domain_volatility: medium
 last_reviewed: 2026-04-15
@@ -45,6 +45,7 @@ aliases:
 
 ## Sources
 
+- [[sources/infineon-gc-humanoid-robot-jun2025]]
 - [[sources/robot-sensor-actuator-communication]]
 - [[sources/humanoid-robot-research-rapid-prototyping]]
 
@@ -52,3 +53,4 @@ aliases:
 
 - 2026-04-15（1 sources）：概念初建，来源为人形机器人技术研究及快速原型建设报告
 - 2026-04-15（2 sources）：强化——传感器沙盘补充伺服驱动视角：FOC 控制频率数十kHz、相位延迟极低、自适应/前馈补偿等与现有准直驱内容一致
+- 2026-04-15（3 sources）：强化——英飞凌文档补充关节模块细节：空心轴电机+圆形驱动板、双编码器、手臂谐波减速器(100:1)/腿部行星减速器(10:1)，峰值功率3倍额定值

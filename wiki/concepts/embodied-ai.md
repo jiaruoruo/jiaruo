@@ -8,7 +8,7 @@ tags:
   - robotics
   - llm
   - end-to-end
-source_count: 1
+source_count: 2
 confidence: low
 domain_volatility: high
 last_reviewed: 2026-04-15
@@ -41,8 +41,10 @@ aliases:
 
 ## Sources
 
+- [[sources/embodied-ai-os-whitepaper-2026]]
 - [[sources/humanoid-robot-research-rapid-prototyping]]
 
 ## Evolution Log
 
 - 2026-04-15（1 sources）：概念初建，来源为人形机器人技术研究及快速原型建设报告
+- 2026-04-15（2 sources）：强化——具身智能OS白皮书补充 EAIOS 四层架构（任务/技能/服务/原语层）视角，VLA→H-VLA→世界模型演进路线与现有定义一致

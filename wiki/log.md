@@ -18,3 +18,7 @@ graph-excluded: true
 2026-04-15 00:05 | ingest | 人形机器人技术研究及快速原型建设（slug: humanoid-robot-research-rapid-prototyping，提取 7 个概念，5 个实体）
 2026-04-15 00:06 | ingest | 瑞萨电子在机器人伺服控制与EtherCAT实时通信中的应用（slug: renesas-robot-servo-ethercat-application，PDF 37页，提取 0 个新概念/3个已有概念更新，1 个新实体；修正：EtherCAT 分布式时钟精度 <1μs→<100ns）
 2026-04-15 00:07 | ingest | 批量处理 raw/clippings/ 5个文件（slugs: openclaw-simulation-rl-agent / robosuite-quickstart / ethercat-gpan-servo-validation / gpan-mculess-validation / robot-sensor-actuator-communication；新增 2 个概念：robot-simulation-framework / gpan-communication；新增 3 个实体：robocasa / openclaw / robosuite；更新 4 个已有概念页）
+2026-04-16 17:15 | warn | 来源文件 raw/clippings/分布式网关通信TDT.md 缺少标准 frontmatter，source_url 留空，date 取摄入日期 2026-04-16
+2026-04-16 17:15 | ingest | 分布式网关通信TDT（slug: distributed-gateway-communication-tdt，提取 4 个概念，1 个实体）
+2026-04-16 18:36 | query | 分布式网关的价值点（输出写入 wiki/outputs/2026-04-16-distributed-gateway-value.md）
+2026-04-15 00:08 | ingest | 批量处理 raw/pdfs/ 11个文件（新增 11 个 source 页：embodied-ai-os-whitepaper-2026 / infineon-gc-humanoid-robot-jun2025 / infineon-humanoid-robot-feb2026 / renesas-ra8t2-mcu-introduction / renesas-automotive-ai-audio-detection / renesas-rh850-u2b-introduction / renesas-rzt2h-n2h-introduction / renesas-rzt2n-introduction / renesas-robotic-platform-2025 / st-smart-industry-robotics-v9 / renesas-robot-application-guide-2025；新增 2 个实体：infineon-technologies / st-microelectronics；更新 5 个已有概念页）
