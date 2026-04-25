@@ -52,6 +52,9 @@ JACCARD_THRESHOLD = 0.7
 def load_frontmatter(filepath: Path) -> tuple[Optional[dict], str]:
     """Parse YAML frontmatter and body from a Markdown file.
     Returns (frontmatter_dict_or_None, body_text).
+
+    Uses line-anchored regex so that '---' inside YAML values (e.g. filenames)
+    does not prematurely terminate the frontmatter block.
     """
     try:
         text = filepath.read_text(encoding="utf-8")
@@ -61,18 +64,21 @@ def load_frontmatter(filepath: Path) -> tuple[Optional[dict], str]:
     if not text.startswith("---"):
         return None, text
 
-    parts = text.split("---", 2)
-    if len(parts) < 3:
+    # Match closing --- only when it appears at the start of a line
+    match = re.search(r'(?m)^\-\-\-\s*$', text[3:])
+    if not match:
         return None, text
 
+    yaml_content = text[3: match.start() + 3]  # +3 accounts for the skipped opening ---
+    body = text[match.end() + 3:]              # skip past the closing ---
+
     try:
-        fm = yaml.safe_load(parts[1])
+        fm = yaml.safe_load(yaml_content)
         if not isinstance(fm, dict):
             fm = None
     except yaml.YAMLError:
         fm = None
 
-    body = parts[2]
     return fm, body
 
 

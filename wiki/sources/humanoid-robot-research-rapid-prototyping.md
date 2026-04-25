@@ -55,7 +55,7 @@ canonical_source: ""
 - [[unitree-robotics]]
 - [[tesla-optimus]]
 - [[lerobot]]
-- [[isaac-gym]]
+- [[entities/isaac-gym]]
 - [[octo-robot-policy]]
 
 ## Contradictions

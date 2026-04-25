@@ -1,0 +1,26 @@
+{
+  "dataview:dataview-force-refresh-views": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "2"
+    }
+  ],
+  "dataview:dataview-rebuild-current-view": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "3"
+    }
+  ],
+  "dataview:dataview-drop-cache": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "1"
+    }
+  ]
+}

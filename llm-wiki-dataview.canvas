@@ -1,0 +1,10 @@
+{
+	"nodes":[
+		{"id":"511263a19bae0856","type":"text","text":"````Plain\n```dataview\nTABLE date, source_count, confidence, domain_volatility\nFROM \"wiki/concepts\"\nSORT source_count DESC\nLIMIT 20\n```\n````","x":-360,"y":-1240,"width":680,"height":200,"color":"5"},
+		{"id":"521c8aa15da2692b","type":"text","text":"````Plain\n```dataview\nLIST\nFROM \"wiki/sources\"\nWHERE processed = false\nSORT date DESC\n```\n````","x":-360,"y":-1020,"width":680,"height":180,"color":"6"},
+		{"id":"87fcef9baaaae972","type":"text","text":"````Plain\n```dataview\nTABLE date, last_reviewed, source_count, confidence\nFROM \"wiki/concepts\"\nWHERE domain_volatility = \"high\"\nSORT last_reviewed ASC\n```\n````","x":-360,"y":-800,"width":680,"height":180,"color":"3"},
+		{"id":"decbe00caa1cf7e4","type":"text","text":"````Plain\n```dataview\nTABLE date\nFROM \"wiki/QUESTIONS.md\"\nWHERE file.type = \"questions\"\nFLATTEN file.lists AS list\nWHERE list.checked = false\n```\n````","x":-360,"y":-361,"width":680,"height":201,"color":"4"},
+		{"id":"508309d8e03ab470","type":"text","text":"````Plain\n```dataview\nTABLE date, status, confidence_at_writing\nFROM \"wiki/sources\"\nWHERE type = \"personal-writing\"\nSORT date DESC\n```\n````","x":-360,"y":-580,"width":680,"height":180,"color":"1"}
+	],
+	"edges":[]
+}

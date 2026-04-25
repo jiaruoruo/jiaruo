@@ -2,7 +2,7 @@
 type: entity
 title: "英飞凌科技"
 date: 2026-04-15
-updated: 2026-04-15
+updated: 2026-04-20
 tags:
   - company
   - semiconductor
@@ -41,7 +41,22 @@ aliases:
 
 - [[sources/infineon-gc-humanoid-robot-jun2025]]
 - [[sources/infineon-humanoid-robot-feb2026]]
+- [[sources/infineon-sensing-empowers-robotics-shenzhen-2025]]
+- [[sources/infineon-psoc-gan-motor-drive-shenzhen-2025]]
+- [[sources/infineon-complete-solution-robotics-shenzhen-2025]]
+- [[sources/infineon-gan-solution-robotics-shenzhen-2025]]
+- [[sources/infineon-aiot-sensing-computing-connectivity-shenzhen-2025]]
+- [[sources/infineon-ai-data-security-protection-shenzhen-2025]]
+- [[sources/infineon-xensiv-radar-edge-ai-shenzhen-2025]]
+- [[sources/infineon-airoc-wireless-ai-future-shenzhen-2025]]
+- [[sources/infineon-wifi-sensing-6g-aiot-beijing-2025]]
+- [[sources/ai-datacenter-hvdc-bus-evolution-solutions-shenzhen-2025]]
+- [[sources/infineon-coolgant-ai-datacenter-shenzhen-2025]]
+- [[sources/infineon-ai-server-power-solution-shenzhen-2025]]
+- [[sources/infineon-2025-key-products-shenzhen-forum]]
+- [[sources/gan-power-devices-tech-applications-outlook-shenzhen-2025]]
 
 ## Evolution Log
 
 - 2026-04-15（2 sources）：实体页初建，来源为英飞凌人形机器人市场分析报告（Jun 2025 + Feb 2026 两版）
+- 2026-04-20（16 sources）：批量新增 14 个深圳/北京技术论坛演讲（We Accelerate Robotics / We Enable AI / We Power AI / 主论坛）；涵盖 XENSIV 传感、CoolGaN™ 功率器件、PSOC C3 MCU、AIROC 无线、OPTIGA 安全、AI 数据中心供电等完整产品线

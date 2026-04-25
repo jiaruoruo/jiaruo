@@ -2,13 +2,13 @@
 type: concept
 title: "GPAN 通信协议"
 date: 2026-04-15
-updated: 2026-04-15
+updated: 2026-04-20
 tags:
   - gpan
   - industrial-network
   - real-time-communication
   - robotics
-source_count: 2
+source_count: 3
 confidence: low
 domain_volatility: medium
 last_reviewed: 2026-04-15
@@ -53,7 +53,9 @@ GPAN（通用精密自动化网络，General Precision Automation Network）是�
 
 - [[sources/ethercat-gpan-servo-validation]]
 - [[sources/gpan-mculess-validation]]
+- [[sources/gpan-robot-application-introduction]]
 
 ## Evolution Log
 
 - 2026-04-15（2 sources）：概念初建，来源为 EtherCAT & GPAN 技术验证方案和 GPAN MCULess 验证报告
+- 2026-04-20（3 sources）：新增《GPAN 机器人应用介绍》PDF 来源，补充 100Base-T1 环形拓扑、>80% 带宽利用率、20μs 控制周期、≤40ns 时钟同步、MCULess 远程外设控制、<100μA 低功耗等机器人场景核心指标

@@ -16,8 +16,6 @@ aliases:
   - "音色克隆"
   - "音色复刻"
   - "声音克隆"
-  - "voice cloning"
-  - "voice-cloning"
   - "Voice Cloning"
 ---
 

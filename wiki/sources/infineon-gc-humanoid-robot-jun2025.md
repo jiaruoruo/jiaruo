@@ -42,7 +42,7 @@ canonical_source: ""
 
 ## Entities Extracted
 
-- [[infineon-technologies]]
+- [[entities/infineon-technologies]]
 
 ## Contradictions
 

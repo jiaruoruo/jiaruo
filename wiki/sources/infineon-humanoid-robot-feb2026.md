@@ -41,7 +41,7 @@ canonical_source: "raw/pdfs/GC Robotics sharing_Jun 2025.pdf"
 
 ## Entities Extracted
 
-- [[infineon-technologies]]
+- [[entities/infineon-technologies]]
 
 ## Contradictions
 
