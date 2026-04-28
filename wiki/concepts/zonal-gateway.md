@@ -2,17 +2,17 @@
 type: concept
 title: "区域网关"
 date: 2026-04-16
-updated: 2026-04-16
+updated: 2026-04-28
 tags:
   - automotive
   - eea
   - gateway
   - zcu
   - distributed-control
-source_count: 1
-confidence: low
+source_count: 3
+confidence: medium
 domain_volatility: medium
-last_reviewed: 2026-04-16
+last_reviewed: 2026-04-28
 aliases:
   - "区域网关"
   - "分布式网关"
@@ -38,6 +38,13 @@ aliases:
 - **性能要求**：路由表初始化 <200ms（早于 CCU 启动完成）；故障确认到路由切换 <5ms；非法 ID 拦截成功率 100%；触发式报文路由延时 <1ms；CPU 占用：3 路 CANFD 50% 总线负载下 <20%
 - **冗余策略**：ETH-CAN 双通道热备份；主路故障时自动修改路由表切换备用路径（例：BMS→RZCU→ETH→CCU 切换为 BMS→RZCU→CAN→CCU）；支持负载均衡（ETH 负载 >70% 时触发分流）
 - **趋势**：网关从「通信路由」向「通信+计算」融合演进；ZCU 偏向执行驱动，CCU 承载上层算法，形成分层解耦架构
+- **中国市场数据（2024 年，佐思汽研）**：
+  - ZCU 渗透率：**8.83%**（中国乘用车）
+  - ZCU 搭载量：**> 200 万辆**
+  - ZCU 市场规模：39.3 亿元；BCM/BDC/ZCU 全市场 156.2 亿元
+  - 六大技术趋势：MCU Less / 边缘 AI / SmartFET / 实时性安全冗余 / Plug&Play 模块化 / 10BASE-T1S
+- **代表 OEM 方案**：小米 YU7（减少 75% 控制器，线束减少 40%）；小鹏 XEEA3.5（减少 50% 硬件，300+ 原子化服务）；宝马（ADI E2B 量产）；Tesla、比亚迪、大众 E3 架构均已布局
+- **ZCU 向"MCU-less"演进**：ZCU 内置 RCP 客户端，直接通过 10BASE-T1S 控制边缘无 MCU 节点（见 [[mculess-architecture]]，[[rcp-remote-control-protocol]]）
 
 ## My Position
 
@@ -46,7 +53,10 @@ aliases:
 ## Sources
 
 - [[sources/distributed-gateway-communication-tdt]]
+- [[sources/zcu-market-research-2025]]
+- [[sources/zcu-mculess-next-gen-architecture]]
 
 ## Evolution Log
 
 - 2026-04-16（1 sources）：概念初建，来源为分布式网关通信TDT内部预研立项文档
+- 2026-04-28（3 sources）：新增佐思汽研市场报告和架构分析文章，补充中国市场 ZCU 渗透率（8.83%）、搭载量（>200 万辆）、六大技术趋势、主要 OEM/Tier1 方案对比；补充 ZCU 向 MCU-less 演进趋势

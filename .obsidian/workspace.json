@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "raw/clippings/2026-04-25DeepSeek V4封神了！.md",
+                "file": "raw/clippings/2026-04-28车灯技术迎来新变革？MCU-Less方案正在重新定义智能车灯.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-04-25DeepSeek V4封神了！"
+              "title": "2026-04-28车灯技术迎来新变革？MCU-Less方案正在重新定义智能车灯"
             }
           }
         ]
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "raw/clippings/2026-04-25DeepSeek V4封神了！.md",
+                "file": "raw/clippings/2026-04-28车灯技术迎来新变革？MCU-Less方案正在重新定义智能车灯.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "2026-04-25DeepSeek V4封神了！ 的出链列表"
+              "title": "2026-04-28车灯技术迎来新变革？MCU-Less方案正在重新定义智能车灯 的出链列表"
             }
           },
           {
@@ -183,44 +183,44 @@
       "bases:新建数据库": false
     }
   },
-  "active": "4093cf096ceb5135",
+  "active": "456f1c3aafb4e86c",
   "lastOpenFiles": [
-    "wiki/outputs/gap-report-2026-04-25.md",
-    "wiki/synthesis/agent-architecture-landscape-synthesis.md",
-    "wiki/synthesis/robot-semiconductor-competitive-synthesis.md",
-    "wiki/outputs/lint-2026-04-25.md",
-    "wiki/entities/deepseek.md",
-    "wiki/entities/superagent.md",
-    "wiki/concepts/agent-security-governance.md",
-    "wiki/concepts/automotive-ai-chip.md",
-    "wiki/concepts/llm-knowledge-management.md",
-    "wiki/concepts/robot-software-architecture.md",
-    "wiki/concepts/mixture-of-experts.md",
-    "wiki/sources/mixture-of-experts-explained.md",
-    "wiki/sources/deepseek-v4-technical-analysis.md",
-    "wiki/sources/li-auto-m100-paper-translation.md",
-    "wiki/sources/robot-software-architecture-intro.md",
-    "wiki/sources/karpathy-llm-knowledge-management.md",
-    "wiki/sources/li-auto-mach-m100-deep-dive.md",
-    "wiki/sources/agent-route-comparison-2026.md",
-    "raw/clippings/2026-04-25一文看懂混合专家模型 (MoE) 到底是什么？.md",
-    "raw/clippings/2026-04-25DeepSeek V4封神了！.md",
-    "raw/clippings/2026-04-24机器人软件架构介绍——具身智能研发基础.md",
-    "raw/clippings/2026-04-24Karpathy大神的LLM驱动知识库管理方法论.md",
-    "raw/clippings/2026-04-24理想M100芯片论文全文翻译也可用于座舱.md",
-    "raw/clippings/2026-04-23OpenClaw、Hermes、Superagent：Agent 时代的三条路线，该怎么选？.md",
-    "raw/clippings/2026-04-23理想自研芯片马赫M100深度剖析，AI算力数字可以忽略不看.md",
-    "raw/clippings/2026-04-19OpenClaw vs Hermes：一文深入理解两大通用 Agent.md",
-    "_tmp_76320_9265917920570f9593a022f5d175f67b",
-    "extract_pdf4.py",
-    "pdf4_output.txt",
-    "test.txt",
-    "scripts/sha_output2.txt",
-    "scripts/calc_sha2.py",
-    "scripts/sha_output.txt",
-    "scripts/calc_sha.py",
-    "fl.txt",
-    "hashes_out.txt",
+    "wiki/concepts/rcp-remote-control-protocol.md",
+    "wiki/sources/sdv-architecture-revolution.md",
+    "wiki/sources/zcu-market-research-2025.md",
+    "wiki/sources/mculess-smart-lighting-innovation.md",
+    "wiki/sources/mculess-10baset1s-rcp-discussion.md",
+    "wiki/sources/mculess-hardware-simplification-revolution.md",
+    "wiki/sources/mculess-ecu-central-computing-path.md",
+    "wiki/sources/mculess-edge-node-tech-evolution.md",
+    "wiki/sources/zcu-mculess-next-gen-architecture.md",
+    "wiki/sources/mculess-eea-implementation-deep-dive.md",
+    "scripts/new_clippings_combined.txt",
+    "scripts/read_new_clippings.py",
+    "temp_sdv.md",
+    "temp_zcu.md",
+    "scripts/sha_clippings.txt",
+    "raw/clippings/2026-04-28聊一聊MCULess, 10BASE-T1S以及RCP.md",
+    "raw/clippings/2026-04-28车灯技术迎来新变革？MCU-Less方案正在重新定义智能车灯.md",
+    "raw/clippings/2026-04-28车身(区域)研究：ZCU搭载量超200万辆，向“即插即用”模块化平台演进.md",
+    "raw/clippings/2026-04-28软件定义汽车的背后：一场架构的“深层次革命”.md",
+    "raw/clippings/2026-04-28下一代汽车电子架构革命：MCU Less技术如何重塑区域控制器设计？.md",
+    "raw/clippings/2026-04-28MCU-less架构在汽车电子中的实现路径深度解析.md",
+    "raw/clippings/2026-04-28硬件极简化革命：从传统ECU到MCU-less边缘节点的设计变革.md",
+    "raw/clippings/2026-04-28从分布式ECU到MCU-less边缘节点的技术演进之路.md",
+    "raw/clippings/2026-04-28汽车ECU的MCU-less变革：从分布式走向中央计算的关键路径.md",
+    "wiki/concepts/tensor-mathematics.md",
+    "wiki/sources/scalar-vector-tensor-concepts.md",
+    "wiki/sources/mculess-vendor-research-report.md",
+    "wiki/sources/gpan-bom-cost-analysis.md",
+    "wiki/sources/gpan-seat-project-discussion.md",
+    "scripts/binary_extract/xlsx_cost.txt",
+    "scripts/binary_extract/vsdx_scenarios.txt",
+    "scripts/binary_extract/pptx_seat.txt",
+    "scripts/binary_extract/pptx_comm_06.txt",
+    "scripts/binary_extract/pptx_comm_08.txt",
+    "scripts/binary_extract/pptx_mculess_audio.txt",
+    "scripts/binary_extract",
     "llm-wiki-dataview.canvas"
   ]
 }

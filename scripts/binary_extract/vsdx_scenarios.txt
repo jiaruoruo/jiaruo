@@ -1,0 +1,6 @@
+# VSDX Contents: 17 XML files
+# Page files: ['visio/pages/pages.xml', 'visio/pages/page1.xml']
+
+## visio/pages/page1.xml
+
+## visio/pages/pages.xml

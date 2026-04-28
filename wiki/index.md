@@ -9,6 +9,38 @@ graph-excluded: true
 
 ### Processed
 
+- 2026-04-28 [[sources/mculess-eea-implementation-deep-dive]]
+- 2026-04-28 [[sources/zcu-mculess-next-gen-architecture]]
+- 2026-04-28 [[sources/mculess-edge-node-tech-evolution]]
+- 2026-04-28 [[sources/mculess-ecu-central-computing-path]]
+- 2026-04-28 [[sources/mculess-hardware-simplification-revolution]]
+- 2026-04-28 [[sources/mculess-10baset1s-rcp-discussion]]
+- 2026-04-28 [[sources/mculess-smart-lighting-innovation]]
+- 2026-04-28 [[sources/zcu-market-research-2025]]
+- 2026-04-28 [[sources/sdv-architecture-revolution]]
+- 2026-04-28 [[sources/mculess-vendor-research-report]]
+- 2026-04-25 [[sources/scalar-vector-tensor-concepts]]
+- 2026-04-27 [[sources/mculess-bzcu-hardware-design]]
+- 2026-04-27 [[sources/gpan-seat-controller-presales]]
+- 2026-04-27 [[sources/mculess-validation-report]]
+- 2026-04-27 [[sources/mculess-validation-scope]]
+- 2026-04-27 [[sources/mculess-based-zcu-validation]]
+- 2026-04-27 [[sources/mculess-solution-progress]]
+- 2026-04-27 [[sources/mculess-solution-research]]
+- 2026-04-27 [[sources/goodix-gpan-automotive-presentation]]
+- 2026-04-27 [[sources/goodix-ge1101-user-manual]]
+- 2026-04-27 [[sources/goodix-ge1101-app-intro]]
+- 2026-04-27 [[sources/gpan-bom-cost-analysis]]
+- 2026-04-27 [[sources/gpan-seat-project-discussion]]
+- 2026-04-27 [[sources/gpan-mculess-audio-intro]]
+- 2026-04-27 [[sources/gpan-automotive-comm-app-v08]]
+- 2026-04-27 [[sources/gpan-automotive-comm-app-v06]]
+- 2026-04-27 [[sources/gpan-functional-clarification-v41]]
+- 2026-04-27 [[sources/gpan-chip-spec-v02]]
+- 2026-04-27 [[sources/gpan-mculess-validation-full-report]]
+- 2026-04-27 [[sources/ethercat-gpan-servo-validation-design]]
+- 2026-04-27 [[sources/mculess-tech-comparison-analysis]]
+- 2026-04-27 [[sources/llm-benchmark-comparison-2026]]
 - 2026-04-25 [[sources/deepseek-v4-technical-analysis]]
 - 2026-04-25 [[sources/mixture-of-experts-explained]]
 - 2026-04-24 [[sources/robot-software-architecture-intro]]
@@ -88,6 +120,10 @@ graph-excluded: true
 - [[concepts/llm-knowledge-management]]
 - [[concepts/automotive-ai-chip]]
 - [[concepts/agent-security-governance]]
+- [[concepts/llm-benchmark-evaluation]]
+- [[concepts/mculess-architecture]]
+- [[concepts/tensor-mathematics]]
+- [[concepts/rcp-remote-control-protocol]]
 
 ---
 
@@ -118,6 +154,9 @@ graph-excluded: true
 - [[entities/minimax]]
 - [[entities/li-auto]]
 - [[entities/deepseek]]
+- [[entities/goodix-technology]]
+- [[entities/kimi-k2]]
+- [[entities/zhipu-ai]]
 
 ### Papers
 
