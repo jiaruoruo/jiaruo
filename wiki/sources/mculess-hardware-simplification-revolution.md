@@ -1,6 +1,8 @@
 ---
+type: source
 title: 硬件极简化革命：从传统ECU到MCU-less边缘节点的设计变革
 slug: mculess-hardware-simplification-revolution
+date: 2026-04-28
 source_url: https://mp.weixin.qq.com/s/zEl1EF_5e21-igpDJ5hkvg
 author: 汽车电子老登
 published: 2026-04-28

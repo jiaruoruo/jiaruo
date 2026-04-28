@@ -1,6 +1,8 @@
 ---
+type: source
 title: 汽车ECU的MCU-less变革：从分布式走向中央计算的关键路径
 slug: mculess-ecu-central-computing-path
+date: 2026-04-28
 source_url: https://mp.weixin.qq.com/s/hr61klU7pMRb7TIZyrMY8w
 author: 汽车电子工程笔记
 published: 2026-04-28

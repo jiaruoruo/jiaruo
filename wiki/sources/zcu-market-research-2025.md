@@ -1,6 +1,8 @@
 ---
+type: source
 title: 车身(区域)研究：ZCU搭载量超200万辆，向"即插即用"模块化平台演进
 slug: zcu-market-research-2025
+date: 2026-04-28
 source_url: https://mp.weixin.qq.com/s/G79bzQzry9pSq2v2iRNiBA
 author: 佐思汽研
 published: 2026-04-28

@@ -1,6 +1,8 @@
 ---
+type: source
 title: 聊一聊MCULess, 10BASE-T1S以及RCP
 slug: mculess-10baset1s-rcp-discussion
+date: 2026-04-28
 source_url: https://mp.weixin.qq.com/s/onQ1uh9YFboECVcYTmbWFA
 author: AlvinY
 published: 2026-04-28

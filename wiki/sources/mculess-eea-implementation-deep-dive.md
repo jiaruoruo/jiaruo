@@ -1,6 +1,8 @@
 ---
+type: source
 title: MCU-less架构在汽车电子中的实现路径深度解析
 slug: mculess-eea-implementation-deep-dive
+date: 2026-04-28
 source_url: https://mp.weixin.qq.com/s/RFORh-e07XIsKbvZS8_7dg
 author: 汽车电子老登
 published: 2026-04-28

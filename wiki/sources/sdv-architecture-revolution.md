@@ -1,6 +1,8 @@
 ---
+type: source
 title: 软件定义汽车的背后：一场架构的"深层次革命"
 slug: sdv-architecture-revolution
+date: 2026-04-28
 source_url: https://mp.weixin.qq.com/s/t977V2t9r-iibn6Yb7HhnA
 author: 经纬恒润
 published: 2026-04-28

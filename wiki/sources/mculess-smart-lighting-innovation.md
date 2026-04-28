@@ -1,6 +1,8 @@
 ---
+type: source
 title: 车灯技术迎来新变革？MCU-Less方案正在重新定义智能车灯
 slug: mculess-smart-lighting-innovation
+date: 2026-04-28
 source_url: https://mp.weixin.qq.com/s/WGUfaNgrwpW3HlrgquOGGQ
 author: 易冲半导体
 published: 2026-04-28

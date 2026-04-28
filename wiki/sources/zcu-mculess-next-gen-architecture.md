@@ -1,6 +1,8 @@
 ---
+type: source
 title: 下一代汽车电子架构革命：MCU Less技术如何重塑区域控制器设计？
 slug: zcu-mculess-next-gen-architecture
+date: 2026-04-28
 source_url: https://mp.weixin.qq.com/s/9zGF6DsvKbQ2lS0woBb6tA
 author: 奔宙
 published: 2026-04-28

@@ -1,6 +1,8 @@
 ---
+type: source
 title: 从分布式ECU到MCU-less边缘节点的技术演进之路
 slug: mculess-edge-node-tech-evolution
+date: 2026-04-28
 source_url: https://mp.weixin.qq.com/s/EmmY1DMTEcXes9tdcH79AA
 author: 汽车电子老登
 published: 2026-04-28

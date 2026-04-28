@@ -185,6 +185,7 @@
   },
   "active": "456f1c3aafb4e86c",
   "lastOpenFiles": [
+    "wiki/outputs/lint-2026-04-28.md",
     "wiki/concepts/rcp-remote-control-protocol.md",
     "wiki/sources/sdv-architecture-revolution.md",
     "wiki/sources/zcu-market-research-2025.md",
@@ -213,7 +214,6 @@
     "wiki/sources/scalar-vector-tensor-concepts.md",
     "wiki/sources/mculess-vendor-research-report.md",
     "wiki/sources/gpan-bom-cost-analysis.md",
-    "wiki/sources/gpan-seat-project-discussion.md",
     "scripts/binary_extract/xlsx_cost.txt",
     "scripts/binary_extract/vsdx_scenarios.txt",
     "scripts/binary_extract/pptx_seat.txt",
