@@ -11,14 +11,10 @@
             "id": "4093cf096ceb5135",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "raw/clippings/2026-04-28车灯技术迎来新变革？MCU-Less方案正在重新定义智能车灯.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "2026-04-28车灯技术迎来新变革？MCU-Less方案正在重新定义智能车灯"
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "关系图谱"
             }
           }
         ]
@@ -78,7 +74,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 381.5
+    "width": 453.5
   },
   "right": {
     "id": "fe355a5c926db48d",
@@ -113,12 +109,11 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "raw/clippings/2026-04-28车灯技术迎来新变革？MCU-Less方案正在重新定义智能车灯.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "2026-04-28车灯技术迎来新变革？MCU-Less方案正在重新定义智能车灯 的出链列表"
+              "title": "出链"
             }
           },
           {
@@ -183,44 +178,44 @@
       "bases:新建数据库": false
     }
   },
-  "active": "456f1c3aafb4e86c",
+  "active": "e8bb7041c79e2a57",
   "lastOpenFiles": [
-    "wiki/outputs/lint-2026-04-28.md",
-    "wiki/concepts/rcp-remote-control-protocol.md",
-    "wiki/sources/sdv-architecture-revolution.md",
-    "wiki/sources/zcu-market-research-2025.md",
-    "wiki/sources/mculess-smart-lighting-innovation.md",
-    "wiki/sources/mculess-10baset1s-rcp-discussion.md",
-    "wiki/sources/mculess-hardware-simplification-revolution.md",
-    "wiki/sources/mculess-ecu-central-computing-path.md",
-    "wiki/sources/mculess-edge-node-tech-evolution.md",
-    "wiki/sources/zcu-mculess-next-gen-architecture.md",
-    "wiki/sources/mculess-eea-implementation-deep-dive.md",
-    "scripts/new_clippings_combined.txt",
-    "scripts/read_new_clippings.py",
-    "temp_sdv.md",
-    "temp_zcu.md",
-    "scripts/sha_clippings.txt",
-    "raw/clippings/2026-04-28聊一聊MCULess, 10BASE-T1S以及RCP.md",
-    "raw/clippings/2026-04-28车灯技术迎来新变革？MCU-Less方案正在重新定义智能车灯.md",
+    "scripts/fix_source_frontmatter.py",
+    "scripts/all_shas.txt",
+    "scripts/gen_all_shas.py",
+    "scripts/shas_result.txt",
+    "scripts/gen_shas.py",
+    "scripts/clippings_status.txt",
+    "scripts/check_clippings2.py",
+    "scripts/check_clippings.py",
+    "scripts/sha_check_output.txt",
+    "raw/clippings/2026-05-05PoDL技术在汽车以太网供电的创新应用.md",
+    "wiki/sources/10baset1s-automotive-ethernet-technical-analysis.md",
+    "wiki/sources/10baset1s-deep-dive-automotive-architecture-revolution.md",
+    "wiki/sources/sdv-rce-edge-node-zone-architecture.md",
+    "wiki/sources/automotive-ethernet-evolution-10baset1s-to-1gbase.md",
+    "wiki/sources/rcp-protocol-automotive-architecture-paradigm-shift.md",
+    "wiki/sources/rcp-protocol-mculess-hardware-control-deep-dive.md",
+    "wiki/sources/podl-automotive-ethernet-power-delivery.md",
+    "raw/clippings/2026-05-0510BASE-T1S汽车以太网技术深度解析.md",
+    "raw/clippings/2026-05-0510BASE-T1S技术深度解析与汽车电子架构革命.md",
+    "raw/clippings/2026-05-05软件定义汽车时代：RCE边缘节点与区域架构的深度变革.md",
+    "raw/clippings/2026-05-05汽车以太网技术深度解析：从10BASE-T1S到1000BASE-T1的全面演进.md",
+    "raw/clippings/2026-05-05RCP协议深度解析：MCU-less架构下如何实现远程硬件控制.md",
+    "raw/clippings/2026-05-05RCP远程控制协议的革命性创新：汽车电子架构的范式转移.md",
     "raw/clippings/2026-04-28车身(区域)研究：ZCU搭载量超200万辆，向“即插即用”模块化平台演进.md",
+    "raw/clippings/2026-04-28从分布式ECU到MCU-less边缘节点的技术演进之路.md",
+    "raw/clippings/2026-04-28聊一聊MCULess, 10BASE-T1S以及RCP.md",
+    "raw/clippings/2026-04-28汽车ECU的MCU-less变革：从分布式走向中央计算的关键路径.md",
     "raw/clippings/2026-04-28软件定义汽车的背后：一场架构的“深层次革命”.md",
     "raw/clippings/2026-04-28下一代汽车电子架构革命：MCU Less技术如何重塑区域控制器设计？.md",
-    "raw/clippings/2026-04-28MCU-less架构在汽车电子中的实现路径深度解析.md",
     "raw/clippings/2026-04-28硬件极简化革命：从传统ECU到MCU-less边缘节点的设计变革.md",
-    "raw/clippings/2026-04-28从分布式ECU到MCU-less边缘节点的技术演进之路.md",
-    "raw/clippings/2026-04-28汽车ECU的MCU-less变革：从分布式走向中央计算的关键路径.md",
-    "wiki/concepts/tensor-mathematics.md",
-    "wiki/sources/scalar-vector-tensor-concepts.md",
-    "wiki/sources/mculess-vendor-research-report.md",
-    "wiki/sources/gpan-bom-cost-analysis.md",
-    "scripts/binary_extract/xlsx_cost.txt",
-    "scripts/binary_extract/vsdx_scenarios.txt",
-    "scripts/binary_extract/pptx_seat.txt",
-    "scripts/binary_extract/pptx_comm_06.txt",
-    "scripts/binary_extract/pptx_comm_08.txt",
-    "scripts/binary_extract/pptx_mculess_audio.txt",
-    "scripts/binary_extract",
+    "raw/clippings/2026-04-28MCU-less架构在汽车电子中的实现路径深度解析.md",
+    "raw/clippings/2026-04-28车灯技术迎来新变革？MCU-Less方案正在重新定义智能车灯.md",
+    "raw/clippings/2026-04-19OpenClaw vs Hermes：一文深入理解两大通用 Agent.md",
+    "raw/clippings/2026-04-18最新！万字综述Harness革命！.md",
+    "raw/clippings/_tesla_content.txt",
+    "wiki/outputs/2026-05-02-mculess-technology-insight-full.html",
     "llm-wiki-dataview.canvas"
   ]
 }

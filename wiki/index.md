@@ -9,6 +9,16 @@ graph-excluded: true
 
 ### Processed
 
+- 2026-05-05 [[sources/10baset1s-automotive-ethernet-technical-analysis]]
+- 2026-05-05 [[sources/10baset1s-deep-dive-automotive-architecture-revolution]]
+- 2026-05-05 [[sources/sdv-rce-edge-node-zone-architecture]]
+- 2026-05-05 [[sources/automotive-ethernet-evolution-10baset1s-to-1gbase]]
+- 2026-05-05 [[sources/rcp-protocol-automotive-architecture-paradigm-shift]]
+- 2026-05-05 [[sources/rcp-protocol-mculess-hardware-control-deep-dive]]
+- 2026-05-05 [[sources/podl-automotive-ethernet-power-delivery]]
+- 2026-05-04 [[sources/beijing-auto-show-2026-eea-analysis]]
+- 2026-05-02 [[sources/honor-robot-china-suppliers-2026]]
+- 2026-05-02 [[sources/tesla-optimus-dexterous-hand-patents-2026]]
 - 2026-04-28 [[sources/mculess-eea-implementation-deep-dive]]
 - 2026-04-28 [[sources/zcu-mculess-next-gen-architecture]]
 - 2026-04-28 [[sources/mculess-edge-node-tech-evolution]]
@@ -173,6 +183,8 @@ graph-excluded: true
 ## Outputs
 
 <!-- 所有输出文件列表，格式：- YYYY-MM-DD [[outputs/filename]] -->
+- 2026-04-28 wiki/outputs/2026-04-28-mculess-technology-trend-analysis.md
+- 2026-04-28 wiki/outputs/lint-2026-04-28.md
 - 2026-04-25 wiki/outputs/lint-2026-04-25.md
 - 2026-04-25 wiki/outputs/gap-report-2026-04-25.md
 - 2026-04-23 wiki/outputs/2026-04-23-new-business-cocreation-workshop.md

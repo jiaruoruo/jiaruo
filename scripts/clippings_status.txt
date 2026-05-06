@@ -1,0 +1,55 @@
+Sources含raw_file字段: 63
+Sources无raw_file字段: 26
+Clipping文件总数: 41
+
+没有source声明的clipping文件: 22
+  2026-04-14 仿真平台的新战场：OpenClaw × Simulation × RL，把“会做事”的能力自主训练出来.md
+  2026-04-25标量、矢量(向量)、张量（tensors）的理解.md
+  2026-04-28MCU-less架构在汽车电子中的实现路径深度解析.md
+  2026-04-28下一代汽车电子架构革命：MCU Less技术如何重塑区域控制器设计？.md
+  2026-04-28从分布式ECU到MCU-less边缘节点的技术演进之路.md
+  2026-04-28汽车ECU的MCU-less变革：从分布式走向中央计算的关键路径.md
+  2026-04-28硬件极简化革命：从传统ECU到MCU-less边缘节点的设计变革.md
+  2026-04-28聊一聊MCULess, 10BASE-T1S以及RCP.md
+  2026-04-28车灯技术迎来新变革？MCU-Less方案正在重新定义智能车灯.md
+  2026-04-28车身(区域)研究：ZCU搭载量超200万辆，向“即插即用”模块化平台演进.md
+  2026-04-28软件定义汽车的背后：一场架构的“深层次革命”.md
+  2026-05-022026北京车展新能源汽车电子电器架构总结、技术对标及应用解析.md
+  2026-05-02特斯拉公开五份灵巧手专利，“最难部分”难在哪里？.md
+  2026-05-02荣耀机器人背后，7家中国供应商！.md
+  2026-05-0510BASE-T1S技术深度解析与汽车电子架构革命.md
+  2026-05-0510BASE-T1S汽车以太网技术深度解析.md
+  2026-05-05PoDL技术在汽车以太网供电的创新应用.md
+  2026-05-05RCP协议深度解析：MCU-less架构下如何实现远程硬件控制.md
+  2026-05-05RCP远程控制协议的革命性创新：汽车电子架构的范式转移.md
+  2026-05-05汽车以太网技术深度解析：从10BASE-T1S到1000BASE-T1的全面演进.md
+  2026-05-05软件定义汽车时代：RCE边缘节点与区域架构的深度变革.md
+  MCULess调研报告.md
+
+=== Sources无raw_file字段（可能是新格式或缺字段）===
+  10baset1s-automotive-ethernet-technical-analysis.md
+  10baset1s-deep-dive-automotive-architecture-revolution.md
+  automotive-ethernet-evolution-10baset1s-to-1gbase.md
+  beijing-auto-show-2026-eea-analysis.md
+  gpan-automotive-comm-app-v06.md
+  gpan-automotive-comm-app-v08.md
+  gpan-bom-cost-analysis.md
+  gpan-mculess-audio-intro.md
+  gpan-seat-project-discussion.md
+  honor-robot-china-suppliers-2026.md
+  mculess-10baset1s-rcp-discussion.md
+  mculess-ecu-central-computing-path.md
+  mculess-edge-node-tech-evolution.md
+  mculess-eea-implementation-deep-dive.md
+  mculess-hardware-simplification-revolution.md
+  mculess-smart-lighting-innovation.md
+  mculess-vendor-research-report.md
+  podl-automotive-ethernet-power-delivery.md
+  rcp-protocol-automotive-architecture-paradigm-shift.md
+  rcp-protocol-mculess-hardware-control-deep-dive.md
+  scalar-vector-tensor-concepts.md
+  sdv-architecture-revolution.md
+  sdv-rce-edge-node-zone-architecture.md
+  tesla-optimus-dexterous-hand-patents-2026.md
+  zcu-market-research-2025.md
+  zcu-mculess-next-gen-architecture.md

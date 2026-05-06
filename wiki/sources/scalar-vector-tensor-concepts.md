@@ -2,8 +2,8 @@
 type: source
 title: "标量、矢量(向量)、张量（tensors）的理解"
 date: 2026-04-25
-raw: raw/clippings/2026-04-25标量、矢量(向量)、张量（tensors）的理解.md
-raw_sha256: 4d21f655
+raw_file: raw/clippings/2026-04-25标量、矢量(向量)、张量（tensors）的理解.md
+raw_sha256: 4d21f655708af7456075c654064b473a7061fc302cbf4e0e5255dceffe5ee0b1
 source_url: https://www.cnblogs.com/duoba/p/15273401.html
 author: "耀扬"
 tags:
@@ -15,6 +15,7 @@ tags:
 concepts:
   - "[[concepts/tensor-mathematics]]"
 entities: []
+last_verified: 2026-04-25
 ---
 
 # 标量、矢量(向量)、张量（tensors）的理解

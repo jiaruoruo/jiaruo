@@ -7,10 +7,12 @@ source_url: https://mp.weixin.qq.com/s/EmmY1DMTEcXes9tdcH79AA
 author: 汽车电子老登
 published: 2026-04-28
 ingested: 2026-04-28
-sha256: e3960997
+raw_sha256: e396099781d6268f1de134012c4a8279e9bf333af6430d4e05839293d3396f65
+raw_file: "raw/clippings/2026-04-28从分布式ECU到MCU-less边缘节点的技术演进之路.md"
 tags: [mculess, 10base-t1s, rcp, gpan, can-fd-light, automotive, eea]
 concepts: [mculess-architecture, eea-architecture, can-eth-protocol-conversion, zonal-gateway]
 entities: [goodix-technology]
+last_verified: 2026-04-28
 ---
 
 # 从分布式ECU到MCU-less边缘节点的技术演进之路

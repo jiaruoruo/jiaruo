@@ -7,10 +7,12 @@ source_url: https://mp.weixin.qq.com/s/onQ1uh9YFboECVcYTmbWFA
 author: AlvinY
 published: 2026-04-28
 ingested: 2026-04-28
-sha256: 304dbdfa
+raw_sha256: 304dbdfacbcac22ffa42cb45ac2c28b8a2fc9f7119b2c2d855f79697e2faba6a
+raw_file: "raw/clippings/2026-04-28聊一聊MCULess, 10BASE-T1S以及RCP.md"
 tags: [mculess, 10base-t1s, rcp, plca, ieee802-3cg, someip, ieee1722, automotive]
 concepts: [mculess-architecture, eea-architecture, can-eth-protocol-conversion, zonal-gateway]
 entities: []
+last_verified: 2026-04-28
 ---
 
 # 聊一聊MCULess, 10BASE-T1S以及RCP

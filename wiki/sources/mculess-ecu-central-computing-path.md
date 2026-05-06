@@ -7,10 +7,12 @@ source_url: https://mp.weixin.qq.com/s/hr61klU7pMRb7TIZyrMY8w
 author: 汽车电子工程笔记
 published: 2026-04-28
 ingested: 2026-04-28
-sha256: b6697bab
+raw_sha256: b6697bab71dbc79b3d6423070b23dc64b01eea802a62c60ea2de1d0f18a956a8
+raw_file: "raw/clippings/2026-04-28汽车ECU的MCU-less变革：从分布式走向中央计算的关键路径.md"
 tags: [mculess, 10base-t1s, rcp, can-fd-light, automotive, eea]
 concepts: [mculess-architecture, eea-architecture, can-eth-protocol-conversion]
 entities: []
+last_verified: 2026-04-28
 ---
 
 # 汽车ECU的MCU-less变革：从分布式走向中央计算的关键路径

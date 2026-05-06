@@ -7,10 +7,12 @@ source_url: https://mp.weixin.qq.com/s/zEl1EF_5e21-igpDJ5hkvg
 author: 汽车电子老登
 published: 2026-04-28
 ingested: 2026-04-28
-sha256: 9c17ce58
+raw_sha256: 9c17ce58b5025a803b7664db45ed5bd418acf81904a13440941596930e69d5d0
+raw_file: "raw/clippings/2026-04-28硬件极简化革命：从传统ECU到MCU-less边缘节点的设计变革.md"
 tags: [mculess, rcp, 10base-t1s, can-fd-light, gpan, automotive, bom-cost, asil]
 concepts: [mculess-architecture, eea-architecture, can-eth-protocol-conversion]
 entities: [goodix-technology]
+last_verified: 2026-04-28
 ---
 
 # 硬件极简化革命：从传统ECU到MCU-less边缘节点的设计变革

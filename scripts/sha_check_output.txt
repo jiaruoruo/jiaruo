@@ -1,0 +1,15 @@
+77375dd5c630c11d9e640af66483578de6e66c93746e6ecdecf0aa3d8ef911b2  GPAN 机器人应用介绍.pdf
+9160f813dbe62ddfe37666ed8b34b506daf61327861b56fd7d4684d4add3943d  深圳We Accelerate Robotics--传感赋能：半导体创新助力机器人智能进化--梁国信.pdf
+6eae6cdaa914e7aecb1be683219631976f43d2eca2c5ac7e61c3b46d0a3451f3  深圳We Accelerate Robotics--基于英飞凌PSOC C3与GaN的电机驱动方案--韩兴涛.pdf
+aa9a5b3dd07d77f743e71ce41eedffd45f1a1f2e163a1fb9cfe64faa7bf6a650  深圳We Accelerate Robotics--英飞凌整体解决方案助力机器人高速发展--张强.pdf
+7b77caa26f687165808b8a9c9c3d04ca2d782c4f41803c4fd0347fe350223f58  深圳We Accelerate Robotics--驱动创新：英飞凌氮化镓解决方案在机器人中的应用--伦伟强.pdf
+fd1ad0fbfac7a7daff8b5e259fff783b524318c7d80e64ca5e0ccdf1446f9b89  深圳We Enable AI -- AI 释能：感知、计算、连接--钟至仁.pdf
+06b226ea55b96763794a1e1aa1ac9dba7342f7173dde5a4bff94a60c876009b3  深圳We Enable AI --人工智能的高速发展需要更广更强的数据安全防护--郑力仁.pdf
+77be62dbc7ce4b98b73ccca2257f485ba08f1a3777186b09c701f4f5cc54c748  深圳We Enable AI --在边缘人工智能中应用英飞凌XENSIV™雷达--周永.pdf
+40b4d577dce22429e2553fae118d7b24dbdcbe0edf1c0474733b78406736a3f5  深圳We Enable AI --英飞凌AIROC™无线产品助力AI未来---翁伟钿.pdf
+aa4cfa7df74f523fc498d09821a7e9bb5c444edf1225c740cffad0f0fc5d58e2  北京主论坛--从WiFi无线感知技术到6G展望：AIoT生态系统中的嵌入式系统开发与技术挑战--佟国香.pdf
+3b2232ceaae85031292fc65c67aefd111c208a33168babac471c1128ba12867f  深圳We Power AI --人工智能数据中心向更高总线电压的演变及可用解决方案-宋清亮.pdf
+be45ce2239729c3be1e6c2047a65cb55bd32808926632e569c305a22476ebe6b  深圳We Power AI --英飞凌CoolGaN™赋能AI数据中心--程文涛.pdf
+bced59e8a50026d8e06b321c056350a6fc0eca8553ca2afe4cd0f5002cb0bd55  深圳We Power AI --英飞凌为AI服务器提供高效率高功率密度供电方案--卢柱强.pdf
+4563861779c4f3f98ade9ecf7bd2fbc1fdcc4a09548e56680fa5c724683c4f70  深圳主论坛--2025年度重磅“芯”品全解析--郭晶虹.pdf
+0d0ad004ff1d27e60d026c03c1846cc964cc980ccf205039fb390fc3f11e42a1  深圳主论坛--氮化镓功率器件：技术、应用及未来展望--弓小武.pdf
