@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "8d2889a4caa281f9",
+        "id": "e494da92f98b1725",
         "type": "tabs",
         "children": [
           {
-            "id": "4093cf096ceb5135",
+            "id": "311600070c420651",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "关系图谱"
+              "type": "markdown",
+              "state": {
+                "file": "raw/notes/daily-tech-digest-2026-05-11.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "daily-tech-digest-2026-05-11"
             }
           }
         ]
@@ -74,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 453.5
+    "width": 301.5
   },
   "right": {
     "id": "fe355a5c926db48d",
@@ -109,11 +113,22 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "raw/notes/daily-tech-digest-2026-05-11.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "出链"
+              "title": "daily-tech-digest-2026-05-11 的出链列表"
+            }
+          },
+          {
+            "id": "3629c1e0b8f37c77",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {},
+              "icon": "calendar-with-checkmark",
+              "title": "Calendar"
             }
           },
           {
@@ -151,21 +166,21 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "raw/clippings/2026-04-13-‍​﻿​‬‍​​⁢​​‍‌‍​‬​⁣‍⁣⁣​‌‌⁢⁤‍​​⁢‬​⁤​​‍⁤‬‍‬‌​⁡⁢﻿⁤‌‬⁣⁤平台软件管理会-2026 - 飞书云文档.md",
+                "file": "raw/notes/daily-tech-digest-2026-05-11.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of 2026-04-13-‍​﻿​‬‍​​⁢​​‍‌‍​‬​⁣‍⁣⁣​‌‌⁢⁤‍​​⁢‬​⁤​​‍⁤‬‍‬‌​⁡⁢﻿⁤‌‬⁣⁤平台软件管理会-2026 - 飞书云文档"
+              "title": "daily-tech-digest-2026-05-11 的大纲"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
-    "width": 223.5
+    "width": 360.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -178,44 +193,45 @@
       "bases:新建数据库": false
     }
   },
-  "active": "e8bb7041c79e2a57",
+  "active": "311600070c420651",
   "lastOpenFiles": [
-    "scripts/fix_source_frontmatter.py",
-    "scripts/all_shas.txt",
-    "scripts/gen_all_shas.py",
-    "scripts/shas_result.txt",
-    "scripts/gen_shas.py",
-    "scripts/clippings_status.txt",
-    "scripts/check_clippings2.py",
-    "scripts/check_clippings.py",
-    "scripts/sha_check_output.txt",
-    "raw/clippings/2026-05-05PoDL技术在汽车以太网供电的创新应用.md",
-    "wiki/sources/10baset1s-automotive-ethernet-technical-analysis.md",
-    "wiki/sources/10baset1s-deep-dive-automotive-architecture-revolution.md",
-    "wiki/sources/sdv-rce-edge-node-zone-architecture.md",
-    "wiki/sources/automotive-ethernet-evolution-10baset1s-to-1gbase.md",
-    "wiki/sources/rcp-protocol-automotive-architecture-paradigm-shift.md",
-    "wiki/sources/rcp-protocol-mculess-hardware-control-deep-dive.md",
-    "wiki/sources/podl-automotive-ethernet-power-delivery.md",
-    "raw/clippings/2026-05-0510BASE-T1S汽车以太网技术深度解析.md",
-    "raw/clippings/2026-05-0510BASE-T1S技术深度解析与汽车电子架构革命.md",
-    "raw/clippings/2026-05-05软件定义汽车时代：RCE边缘节点与区域架构的深度变革.md",
-    "raw/clippings/2026-05-05汽车以太网技术深度解析：从10BASE-T1S到1000BASE-T1的全面演进.md",
-    "raw/clippings/2026-05-05RCP协议深度解析：MCU-less架构下如何实现远程硬件控制.md",
-    "raw/clippings/2026-05-05RCP远程控制协议的革命性创新：汽车电子架构的范式转移.md",
-    "raw/clippings/2026-04-28车身(区域)研究：ZCU搭载量超200万辆，向“即插即用”模块化平台演进.md",
-    "raw/clippings/2026-04-28从分布式ECU到MCU-less边缘节点的技术演进之路.md",
-    "raw/clippings/2026-04-28聊一聊MCULess, 10BASE-T1S以及RCP.md",
-    "raw/clippings/2026-04-28汽车ECU的MCU-less变革：从分布式走向中央计算的关键路径.md",
-    "raw/clippings/2026-04-28软件定义汽车的背后：一场架构的“深层次革命”.md",
-    "raw/clippings/2026-04-28下一代汽车电子架构革命：MCU Less技术如何重塑区域控制器设计？.md",
-    "raw/clippings/2026-04-28硬件极简化革命：从传统ECU到MCU-less边缘节点的设计变革.md",
-    "raw/clippings/2026-04-28MCU-less架构在汽车电子中的实现路径深度解析.md",
-    "raw/clippings/2026-04-28车灯技术迎来新变革？MCU-Less方案正在重新定义智能车灯.md",
-    "raw/clippings/2026-04-19OpenClaw vs Hermes：一文深入理解两大通用 Agent.md",
-    "raw/clippings/2026-04-18最新！万字综述Harness革命！.md",
-    "raw/clippings/_tesla_content.txt",
-    "wiki/outputs/2026-05-02-mculess-technology-insight-full.html",
+    "wiki/concepts/automotive-sensor.md",
+    "wiki/test_char.txt",
+    "wiki/entities/kpmg.md",
+    "f7c.b64",
+    "wiki/sources/qualcomm-chip-roadmap-2010-nda.md",
+    "f7b.b64",
+    "f7a.b64",
+    "wiki/sources/qualcomm-chip-spec-2009.md",
+    "f6a.b64",
+    "wiki/sources/mediatek-sdk-reference.md",
+    "f5a.b64",
+    "f4d.b64",
+    "f4c.b64",
+    "wiki/sources/mediatek-mtk-chip-catalog.md",
+    "f4b.b64",
+    "f4a.b64",
+    "wiki/sources/ic-packaging-reliability-chip-interconnect.md",
+    "wiki/sources/bare-die-packaging-development-challenges.md",
+    "wiki/sources/ic-package-lead-electrical-testing.md",
+    "wiki/sources/chip-testing-significance.md",
+    "wiki/sources/ic-packaging-testing-education.md",
+    "wiki/sources/flip-chip-bonding-process-solutions.md",
+    "wiki/sources/flexible-electronics-manufacturing-2014.md",
+    "wiki/sources/test_persist.md",
+    "wiki/sources/chip-manufacturing-process-illustrated.md",
+    "wiki/sources/arm-chip-selection-reference.md",
+    "wiki/sources/arm-chip-selection-guide-embedded.md",
+    "wiki/sources/kpmg-test99.md",
+    "wiki/sources/test-write-full.md",
+    "wiki/sources/brand-new-test.md",
+    "wiki/sources/kpmg-automotive-sensor-market-2024.md",
+    "wiki/sources/vlsi-low-power-design-analysis.md",
+    "wiki/sources/chip-design-flow-cadence-virtuoso.md",
+    "wiki/sources/chip-design-production-flow.md",
+    "wiki/sources/flip-chip-bump-fabrication-methods.md",
+    "wiki/sources/chip-rd-process-overview-2014.md",
+    "raw/pdfs/532 汽车电子芯片研发制造测试全套资料！/更多资料获取地址/免责声明.JPG",
     "llm-wiki-dataview.canvas"
   ]
 }

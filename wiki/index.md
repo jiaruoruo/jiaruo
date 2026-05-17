@@ -9,6 +9,43 @@ graph-excluded: true
 
 ### Processed
 
+- 2026-05-17 [[sources/kpmg-automotive-sensor-market-2024]]
+- 2026-05-17 [[sources/arm-architecture-course-notes-buaa]]
+- 2026-05-17 [[sources/arm-chip-selection-guide-embedded]]
+- 2026-05-17 [[sources/arm-chip-selection-reference]]
+- 2026-05-17 [[sources/mediatek-mtk-chip-catalog]]
+- 2026-05-17 [[sources/mediatek-sdk-reference]]
+- 2026-05-17 [[sources/qualcomm-chip-spec-2009]]
+- 2026-05-17 [[sources/qualcomm-chip-roadmap-2010-nda]]
+- 2026-05-17 [[sources/flip-chip-bump-fabrication-methods]]
+- 2026-05-17 [[sources/chip-manufacturing-process-illustrated]]
+- 2026-05-17 [[sources/flexible-electronics-manufacturing-2014]]
+- 2026-05-17 [[sources/flip-chip-bonding-process-solutions]]
+- 2026-05-17 [[sources/ic-packaging-testing-education]]
+- 2026-05-17 [[sources/chip-testing-significance]]
+- 2026-05-17 [[sources/ic-package-lead-electrical-testing]]
+- 2026-05-17 [[sources/bare-die-packaging-development-challenges]]
+- 2026-05-17 [[sources/ic-packaging-reliability-chip-interconnect]]
+- 2026-05-17 [[sources/vlsi-backend-design-018um]]
+- 2026-05-17 [[sources/eco-soc-chip-design-application]]
+- 2026-05-17 [[sources/ldo-chip-design-report-uestc-2015]]
+- 2026-05-17 [[sources/mems-pressure-sensor-chip-design-2011]]
+- 2026-05-17 [[sources/semiconductor-defects-glossary]]
+- 2026-05-17 [[sources/rf-chip-calibration-design-broadcom-2008]]
+- 2026-05-17 [[sources/memory-chip-design-guide]]
+- 2026-05-17 [[sources/chip-rd-process-overview-2014]]
+- 2026-05-17 [[sources/chip-design-production-flow]]
+- 2026-05-17 [[sources/chip-design-flow-cadence-virtuoso]]
+- 2026-05-17 [[sources/vlsi-low-power-design-analysis]]
+- 2026-05-17 [[sources/mckinsey-humanoid-robot-bom-supply-chain]]
+- 2026-05-14 [[sources/ecc-architecture-design]]
+- 2026-05-14 [[sources/ecc-detailed-design]]
+- 2026-05-14 [[sources/ecc-tutorial-and-extension]]
+- 2026-05-14 [[sources/automotive-agents-tutorial]]
+- 2026-05-14 [[sources/automotive-agents-reference]]
+- 2026-05-14 [[sources/everything-claude-code-workflow-library]]
+- 2026-05-10 [[sources/autosar-complex-driver-deep-dive]]
+- 2026-05-10 [[sources/flextools-autosar-cdd-toolchain]]
 - 2026-05-05 [[sources/10baset1s-automotive-ethernet-technical-analysis]]
 - 2026-05-05 [[sources/10baset1s-deep-dive-automotive-architecture-revolution]]
 - 2026-05-05 [[sources/sdv-rce-edge-node-zone-architecture]]
@@ -134,6 +171,11 @@ graph-excluded: true
 - [[concepts/mculess-architecture]]
 - [[concepts/tensor-mathematics]]
 - [[concepts/rcp-remote-control-protocol]]
+- [[concepts/autosar-complex-driver]]
+- [[concepts/autosar-configuration-toolchain]]
+- [[concepts/claude-code-workflow]]
+- [[concepts/humanoid-robot-supply-chain]]
+- [[concepts/automotive-sensor]]
 
 ---
 
@@ -153,6 +195,10 @@ graph-excluded: true
 - [[entities/hermes-agent]]
 - [[entities/robosuite]]
 - [[entities/superagent]]
+- [[entities/flextools]]
+- [[entities/claude-code]]
+- [[entities/ecc-framework]]
+- [[entities/automotive-claude-code-agents]]
 
 ### Institutions
 
@@ -162,11 +208,13 @@ graph-excluded: true
 - [[entities/unitree-robotics]]
 - [[entities/tesla-optimus]]
 - [[entities/minimax]]
+- [[entities/mckinsey]]
 - [[entities/li-auto]]
 - [[entities/deepseek]]
 - [[entities/goodix-technology]]
 - [[entities/kimi-k2]]
 - [[entities/zhipu-ai]]
+- [[entities/kpmg]]
 
 ### Papers
 

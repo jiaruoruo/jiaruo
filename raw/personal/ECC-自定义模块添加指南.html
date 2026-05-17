@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ECC 自定义模块添加指南 — 流程架构图</title>
+<style>
+/* ===== RESET & BASE ===== */
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0d1117;color:#c9d1d9;line-height:1.6}
+a{color:#58a6ff;text-decoration:none}
+
+/* ===== LAYOUT ===== */
+.page{max-width:1280px;margin:0 auto;padding:0 24px 80px}
+
+/* ===== HEADER ===== */
+.header{padding:48px 0 32px;text-align:center;border-bottom:1px solid #21262d}
+.header h1{font-size:2rem;font-weight:700;background:linear-gradient(135deg,#58a6ff,#a5b4fc,#34d399);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.header p{color:#8b949e;margin-top:8px;font-size:1rem}
+.badge-row{display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+.badge{padding:4px 12px;border-radius:20px;font-size:.75rem;font-weight:600;border:1px solid}
+
+/* ===== SECTION TITLES ===== */
+.section{margin-top:56px}
+.section-title{font-size:1.25rem;font-weight:700;color:#e6edf3;margin-bottom:24px;display:flex;align-items:center;gap:8px}
+.section-title::before{content:'';display:inline-block;width:4px;height:22px;border-radius:2px;background:linear-gradient(180deg,#58a6ff,#a5b4fc)}
+
+/* ===== OVERVIEW CARDS ===== */
+.module-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+@media(max-width:900px){.module-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.module-grid{grid-template-columns:repeat(2,1fr)}}
+
+.module-card{border:1px solid;border-radius:12px;padding:16px 12px;text-align:center;transition:transform .2s,box-shadow .2s;cursor:default}
+.module-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.module-card .icon{font-size:2rem;margin-bottom:8px}
+.module-card .name{font-weight:700;font-size:.95rem;margin-bottom:4px}
+.module-card .desc{font-size:.75rem;color:#8b949e;line-height:1.4}
+
+/* ===== MAIN FLOW ===== */
+.flow-wrap{overflow-x:auto;padding-bottom:8px}
+.flow-diagram{display:flex;align-items:flex-start;gap:0;min-width:900px;padding:8px 0}
+
+/* column */
+.flow-col{display:flex;flex-direction:column;align-items:center;gap:0}
+.flow-col-label{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8b949e;margin-bottom:8px;padding:0 8px;text-align:center}
+
+/* node */
+.fnode{border:1px solid;border-radius:8px;padding:10px 14px;font-size:.8rem;font-weight:600;text-align:center;min-width:140px;max-width:160px;line-height:1.4;position:relative}
+.fnode sub{font-size:.68rem;font-weight:400;color:#8b949e;display:block;margin-top:2px}
+
+/* arrow between cols */
+.flow-arrow{display:flex;align-items:center;padding:0 4px;margin-top:40px}
+.flow-arrow svg{flex-shrink:0}
+
+/* arrow inside col (down) */
+.down-arrow{width:24px;height:28px;display:flex;align-items:center;justify-content:center;color:#444d56;font-size:1.1rem;flex-shrink:0}
+
+/* ===== TABS ===== */
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:0;border-bottom:1px solid #21262d;padding-bottom:0}
+.tab-btn{padding:8px 18px;border:1px solid transparent;border-bottom:none;border-radius:8px 8px 0 0;font-size:.85rem;font-weight:600;cursor:pointer;background:transparent;color:#8b949e;transition:all .15s;position:relative;bottom:-1px}
+.tab-btn.active{background:#161b22;border-color:#30363d;color:#e6edf3}
+.tab-btn:hover:not(.active){color:#c9d1d9;background:rgba(255,255,255,.04)}
+
+.tab-content{display:none;background:#161b22;border:1px solid #30363d;border-radius:0 8px 8px 8px;padding:0}
+.tab-content.active{display:block}
+
+/* ===== STEP FLOW inside tab ===== */
+.step-flow{padding:24px}
+.step-row{display:flex;align-items:stretch;gap:0;flex-wrap:wrap}
+.step-box{flex:1;min-width:160px;border:1px solid;border-radius:10px;padding:14px 16px;margin:4px}
+.step-box .step-num{font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;opacity:.7}
+.step-box .step-title{font-size:.9rem;font-weight:700;margin-bottom:6px}
+.step-box .step-body{font-size:.78rem;color:#8b949e;line-height:1.5}
+.step-sep{display:flex;align-items:center;padding:0 2px;flex-shrink:0}
+.step-sep svg{opacity:.5}
+
+/* ===== CODE BLOCK ===== */
+.code-section{padding:0 24px 24px}
+.code-header{display:flex;align-items:center;justify-content:space-between;background:#0d1117;border:1px solid #30363d;border-bottom:none;border-radius:8px 8px 0 0;padding:8px 16px}
+.code-header .filename{font-size:.8rem;color:#8b949e;font-family:'Cascadia Code','Consolas',monospace}
+.code-header .lang-badge{font-size:.7rem;padding:2px 8px;border-radius:4px;background:#21262d;color:#7ee787}
+pre{background:#0d1117;border:1px solid #30363d;border-radius:0 0 8px 8px;padding:16px;font-family:'Cascadia Code','Consolas',monospace;font-size:.78rem;overflow-x:auto;line-height:1.6}
+pre code .kw{color:#ff7b72}
+pre code .str{color:#a5d6ff}
+pre code .cm{color:#8b949e;font-style:italic}
+pre code .prop{color:#79c0ff}
+pre code .val{color:#a5d6ff}
+pre code .yaml-key{color:#7ee787}
+pre code .yaml-val{color:#a5d6ff}
+pre code .yaml-str{color:#a5d6ff}
+pre code .ph{color:#ffa657}
+
+/* ===== CHECKLIST ===== */
+.checklist{padding:0 24px 24px}
+.check-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:700px){.check-grid{grid-template-columns:1fr}}
+.check-item{display:flex;align-items:flex-start;gap:8px;padding:8px 12px;background:#0d1117;border:1px solid #21262d;border-radius:6px;font-size:.8rem}
+.check-item .ci{font-size:1rem;flex-shrink:0;margin-top:1px}
+
+/* ===== INTEGRATION DIAGRAM ===== */
+.integ-wrap{background:#161b22;border:1px solid #30363d;border-radius:12px;padding:32px;overflow-x:auto}
+
+/* directory tree */
+.dir-tree{font-family:'Cascadia Code','Consolas',monospace;font-size:.82rem;line-height:2;color:#c9d1d9}
+.dir-tree .dir{color:#79c0ff}
+.dir-tree .file{color:#7ee787}
+.dir-tree .comment{color:#8b949e}
+.dir-tree .new{color:#ffa657;font-weight:700}
+
+/* ===== DISCOVERY FLOW (horizontal lanes) ===== */
+.discovery-lanes{display:grid;grid-template-columns:1fr 80px 1fr;gap:0;align-items:center;margin-top:24px}
+.lane{display:flex;flex-direction:column;gap:8px}
+.lane-title{font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.lane-item{padding:8px 12px;border:1px solid;border-radius:6px;font-size:.78rem;font-weight:600;text-align:center}
+.lane-arrow{display:flex;flex-direction:column;align-items:center;gap:6px;color:#8b949e;font-size:.75rem}
+.lane-arrow svg{flex-shrink:0}
+
+/* ===== TIPS BOX ===== */
+.tips-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
+@media(max-width:700px){.tips-grid{grid-template-columns:1fr}}
+.tip-card{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:16px}
+.tip-card .tip-title{font-size:.85rem;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.tip-card ul{font-size:.78rem;color:#8b949e;padding-left:16px;line-height:1.8}
+.tip-card ul li{margin-bottom:2px}
+
+/* ===== REAL EXAMPLE ===== */
+.example-box{background:#161b22;border:1px solid #30363d;border-radius:12px;overflow:hidden}
+.example-header{padding:12px 20px;background:#0d1117;border-bottom:1px solid #30363d;display:flex;align-items:center;gap:10px}
+.example-header .proj-icon{font-size:1.2rem}
+.example-header .proj-name{font-weight:700;font-size:.95rem;color:#e6edf3}
+.example-header .proj-tag{font-size:.72rem;padding:2px 8px;border-radius:4px;background:rgba(255,166,87,.15);color:#ffa657;border:1px solid rgba(255,166,87,.3)}
+.example-body{padding:20px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:700px){.example-body{grid-template-columns:1fr 1fr}}
+.ex-col .col-title{font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid #21262d}
+.ex-item{font-size:.78rem;color:#8b949e;padding:3px 0;display:flex;align-items:center;gap:6px}
+.ex-item::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;flex-shrink:0}
+
+/* color tokens */
+.c-agent{color:#a78bfa;border-color:#7c3aed44;background:rgba(124,58,237,.08)}
+.c-skill{color:#34d399;border-color:#06b45d44;background:rgba(6,180,93,.08)}
+.c-rule{color:#f87171;border-color:#ef444444;background:rgba(239,68,68,.08)}
+.c-cmd{color:#fbbf24;border-color:#f59e0b44;background:rgba(245,158,11,.08)}
+.c-hook{color:#60a5fa;border-color:#3b82f644;background:rgba(59,130,246,.08)}
+.c-mcp{color:#fb923c;border-color:#f9730044;background:rgba(249,115,0,.08)}
+
+.b-agent{border-color:#7c3aed88;background:rgba(124,58,237,.1)}
+.b-skill{border-color:#06b45d88;background:rgba(6,180,93,.1)}
+.b-rule{border-color:#ef444488;background:rgba(239,68,68,.1)}
+.b-cmd{border-color:#f59e0b88;background:rgba(245,158,11,.1)}
+.b-hook{border-color:#3b82f688;background:rgba(59,130,246,.1)}
+
+.dot-agent{background:#a78bfa}.dot-skill{background:#34d399}.dot-rule{background:#f87171}.dot-cmd{background:#fbbf24}.dot-hook{background:#60a5fa}
+
+.footer{margin-top:60px;padding:24px 0;border-top:1px solid #21262d;text-align:center;color:#8b949e;font-size:.8rem}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ===== HEADER ===== -->
+<header class="header">
+  <h1>🧩 ECC 自定义模块添加指南</h1>
+  <p>如何向 Everything Claude Code 工程添加自定义 Agents · Skills · Rules · Commands · Hooks</p>
+  <div class="badge-row">
+    <span class="badge" style="color:#a78bfa;border-color:#7c3aed55;background:rgba(124,58,237,.1)">🤖 Agent</span>
+    <span class="badge" style="color:#34d399;border-color:#06b45d55;background:rgba(6,180,93,.1)">⚡ Skill</span>
+    <span class="badge" style="color:#f87171;border-color:#ef444455;background:rgba(239,68,68,.1)">📏 Rule</span>
+    <span class="badge" style="color:#fbbf24;border-color:#f59e0b55;background:rgba(245,158,11,.1)">🔧 Command</span>
+    <span class="badge" style="color:#60a5fa;border-color:#3b82f655;background:rgba(59,130,246,.1)">🪝 Hook</span>
+    <span class="badge" style="color:#8b949e;border-color:#444d56;background:#161b22">v2.0.0-rc.1</span>
+  </div>
+</header>
+
+<!-- ===== OVERVIEW ===== -->
+<section class="section">
+  <div class="section-title">模块类型概览</div>
+  <div class="module-grid">
+    <div class="module-card b-agent">
+      <div class="icon">🤖</div>
+      <div class="name" style="color:#a78bfa">Agent</div>
+      <div class="desc">专用子代理<br>处理特定领域任务<br>由主 AI 自动调度</div>
+    </div>
+    <div class="module-card b-skill">
+      <div class="icon">⚡</div>
+      <div class="name" style="color:#34d399">Skill</div>
+      <div class="desc">工作流知识模块<br>领域最佳实践<br>按场景自动激活</div>
+    </div>
+    <div class="module-card b-rule">
+      <div class="icon">📏</div>
+      <div class="name" style="color:#f87171">Rule</div>
+      <div class="desc">全局强制规范<br>始终遵守的准则<br>约束代码行为</div>
+    </div>
+    <div class="module-card b-cmd">
+      <div class="icon">🔧</div>
+      <div class="name" style="color:#fbbf24">Command</div>
+      <div class="desc">斜杠命令入口<br>/cmd 触发工作流<br>用户手动调用</div>
+    </div>
+    <div class="module-card b-hook">
+      <div class="icon">🪝</div>
+      <div class="name" style="color:#60a5fa">Hook</div>
+      <div class="desc">事件自动触发<br>工具前后拦截<br>会话生命周期</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MAIN PROCESS FLOW ===== -->
+<section class="section">
+  <div class="section-title">整体添加流程</div>
+  <div class="flow-wrap">
+    <div class="flow-diagram">
+
+      <!-- COL 1: 设计 -->
+      <div class="flow-col">
+        <div class="flow-col-label">① 设计</div>
+        <div class="fnode" style="border-color:#58a6ff55;background:rgba(88,166,255,.08);color:#58a6ff">
+          明确需求
+          <sub>确定模块类型<br>定义功能范围</sub>
+        </div>
+        <div class="down-arrow">↓</div>
+        <div class="fnode" style="border-color:#58a6ff55;background:rgba(88,166,255,.06);color:#79c0ff">
+          选择模块类型
+          <sub>Agent / Skill<br>Rule / Cmd / Hook</sub>
+        </div>
+      </div>
+
+      <div class="flow-arrow">
+        <svg width="28" height="16" viewBox="0 0 28 16"><path d="M0 8 H20 M14 2 L26 8 L14 14" stroke="#444d56" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+      </div>
+
+      <!-- COL 2: 创建文件 -->
+      <div class="flow-col">
+        <div class="flow-col-label">② 创建文件</div>
+        <div class="fnode b-agent" style="color:#a78bfa">
+          agents/<i>name</i>.md
+          <sub>YAML frontmatter<br>+ 角色说明 + 工作流</sub>
+        </div>
+        <div class="down-arrow" style="color:#21262d">·</div>
+        <div class="fnode b-skill" style="color:#34d399">
+          skills/<i>name</i>/SKILL.md
+          <sub>name + description<br>+ When to Use + 示例</sub>
+        </div>
+        <div class="down-arrow" style="color:#21262d">·</div>
+        <div class="fnode b-rule" style="color:#f87171">
+          rules/<i>lang</i>/<i>name</i>.md
+          <sub>强制规范描述<br>违例示例 + 正例</sub>
+        </div>
+        <div class="down-arrow" style="color:#21262d">·</div>
+        <div class="fnode b-cmd" style="color:#fbbf24">
+          commands/<i>name</i>.md
+          <sub>description frontmatter<br>+ 用法 + 工作流步骤</sub>
+        </div>
+        <div class="down-arrow" style="color:#21262d">·</div>
+        <div class="fnode b-hook" style="color:#60a5fa">
+          hooks/hooks.json
+          <sub>matcher 条件<br>+ command 动作</sub>
+        </div>
+      </div>
+
+      <div class="flow-arrow">
+        <svg width="28" height="16" viewBox="0 0 28 16"><path d="M0 8 H20 M14 2 L26 8 L14 14" stroke="#444d56" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+      </div>
+
+      <!-- COL 3: 安装/部署 -->
+      <div class="flow-col">
+        <div class="flow-col-label">③ 安装部署</div>
+        <div class="fnode" style="border-color:#a78bfa55;background:rgba(167,139,250,.07);color:#c4b5fd;font-size:.76rem">
+          方式 A：拷贝到 ~/.claude/
+          <sub>cp -r agents/ ~/.claude/agents/<br>cp -r skills/ ~/.claude/skills/</sub>
+        </div>
+        <div class="down-arrow">↓</div>
+        <div class="fnode" style="border-color:#34d39955;background:rgba(52,211,153,.07);color:#6ee7b7;font-size:.76rem">
+          方式 B：独立项目目录
+          <sub>在项目根目录创建<br>CLAUDE.md + AGENTS.md</sub>
+        </div>
+        <div class="down-arrow">↓</div>
+        <div class="fnode" style="border-color:#fbbf2455;background:rgba(251,191,36,.07);color:#fcd34d;font-size:.76rem">
+          方式 C：PR 贡献上游
+          <sub>fork → branch → PR<br>遵循 CONTRIBUTING.md</sub>
+        </div>
+      </div>
+
+      <div class="flow-arrow">
+        <svg width="28" height="16" viewBox="0 0 28 16"><path d="M0 8 H20 M14 2 L26 8 L14 14" stroke="#444d56" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+      </div>
+
+      <!-- COL 4: 测试 -->
+      <div class="flow-col">
+        <div class="flow-col-label">④ 测试验证</div>
+        <div class="fnode" style="border-color:#fb923c55;background:rgba(251,146,60,.07);color:#fdba74">
+          Claude Code 中调用
+          <sub>agent: Task tool 委托<br>skill: /skill 激活</sub>
+        </div>
+        <div class="down-arrow">↓</div>
+        <div class="fnode" style="border-color:#fb923c55;background:rgba(251,146,60,.06);color:#fed7aa">
+          检查执行结果
+          <sub>日志 / 输出格式<br>覆盖率 / 安全审查</sub>
+        </div>
+        <div class="down-arrow">↓</div>
+        <div class="fnode" style="border-color:#fb923c55;background:rgba(251,146,60,.05);color:#fef3c7">
+          迭代优化
+          <sub>收紧 matcher<br>完善 description</sub>
+        </div>
+      </div>
+
+      <div class="flow-arrow">
+        <svg width="28" height="16" viewBox="0 0 28 16"><path d="M0 8 H20 M14 2 L26 8 L14 14" stroke="#444d56" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+      </div>
+
+      <!-- COL 5: 生效 -->
+      <div class="flow-col">
+        <div class="flow-col-label">⑤ 生效运行</div>
+        <div class="fnode" style="border-color:#34d39988;background:rgba(52,211,153,.12);color:#34d399;font-weight:700">
+          ✅ ECC 自动发现
+          <sub>文件系统扫描<br>frontmatter 解析</sub>
+        </div>
+        <div class="down-arrow">↓</div>
+        <div class="fnode" style="border-color:#34d39955;background:rgba(52,211,153,.07);color:#6ee7b7">
+          自动激活 / 调度
+          <sub>Agent: Task 委托<br>Skill: 场景匹配<br>Hook: 事件触发</sub>
+        </div>
+        <div class="down-arrow">↓</div>
+        <div class="fnode" style="border-color:#58a6ff55;background:rgba(88,166,255,.07);color:#93c5fd">
+          输出结果 → 用户
+          <sub>代码 / 报告<br>自动化操作</sub>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== DETAIL TABS ===== -->
+<section class="section">
+  <div class="section-title">各模块详细步骤</div>
+
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('agent',this)">🤖 Agent</button>
+    <button class="tab-btn" onclick="switchTab('skill',this)">⚡ Skill</button>
+    <button class="tab-btn" onclick="switchTab('rule',this)">📏 Rule</button>
+    <button class="tab-btn" onclick="switchTab('command',this)">🔧 Command</button>
+    <button class="tab-btn" onclick="switchTab('hook',this)">🪝 Hook</button>
+  </div>
+
+  <!-- ===== AGENT TAB ===== -->
+  <div id="tab-agent" class="tab-content active">
+    <div class="step-flow">
+      <div class="step-row">
+        <div class="step-box b-agent">
+          <div class="step-num" style="color:#a78bfa">Step 1</div>
+          <div class="step-title" style="color:#c4b5fd">定义 Agent 职责</div>
+          <div class="step-body">明确 Agent 的专业领域、触发场景、工具权限、模型选择（haiku/sonnet/opus）。</div>
+        </div>
+        <div class="step-sep"><svg width="20" height="20"><path d="M4 10 H16 M11 5 L17 10 L11 15" stroke="#444d56" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+        <div class="step-box b-agent">
+          <div class="step-num" style="color:#a78bfa">Step 2</div>
+          <div class="step-title" style="color:#c4b5fd">创建 .md 文件</div>
+          <div class="step-body">路径：<code style="color:#a78bfa">agents/your-agent-name.md</code><br>包含 YAML frontmatter + 角色说明 + 工作流。</div>
+        </div>
+        <div class="step-sep"><svg width="20" height="20"><path d="M4 10 H16 M11 5 L17 10 L11 15" stroke="#444d56" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+        <div class="step-box b-agent">
+          <div class="step-num" style="color:#a78bfa">Step 3</div>
+          <div class="step-title" style="color:#c4b5fd">注册到 AGENTS.md</div>
+          <div class="step-body">在 AGENTS.md 的 Available Agents 表格中新增一行，描述触发时机。</div>
+        </div>
+        <div class="step-sep"><svg width="20" height="20"><path d="M4 10 H16 M11 5 L17 10 L11 15" stroke="#444d56" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+        <div class="step-box b-agent">
+          <div class="step-num" style="color:#a78bfa">Step 4</div>
+          <div class="step-title" style="color:#c4b5fd">安装 &amp; 测试</div>
+          <div class="step-body">拷贝到 <code style="color:#a78bfa">~/.claude/agents/</code>，用 Task tool 委托触发，验证输出格式。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="code-section">
+      <div class="code-header">
+        <span class="filename">agents/your-agent-name.md</span>
+        <span class="lang-badge">Markdown + YAML</span>
+      </div>
+      <pre><code><span class="cm">---</span>
+<span class="yaml-key">name</span><span class="cm">:</span> <span class="yaml-val">your-agent-name</span>
+<span class="yaml-key">description</span><span class="cm">:</span> <span class="yaml-val">专业职责描述——Claude 据此决定何时调用。要具体！</span>
+<span class="yaml-key">tools</span><span class="cm">:</span> <span class="yaml-val">["Read", "Write", "Edit", "Bash", "Grep", "Glob"]</span>
+<span class="yaml-key">model</span><span class="cm">:</span> <span class="yaml-val">sonnet</span>         <span class="cm"># haiku(简单) / sonnet(编码) / opus(复杂)</span>
+<span class="cm">---</span>
+
+<span class="ph">You are a [专业角色] specialist.</span>
+
+<span class="kw">## Your Role</span>
+
+- 主要职责
+- 次要职责
+- 明确不做什么（边界）
+
+<span class="kw">## Workflow</span>
+
+<span class="kw">### Step 1: Understand</span>
+分析任务，收集上下文。
+
+<span class="kw">### Step 2: Execute</span>
+执行核心工作，给出具体输出。
+
+<span class="kw">### Step 3: Verify</span>
+验证结果，确保质量 80%+ 覆盖率。
+
+<span class="kw">## Output Format</span>
+
+返回给用户/主 Agent 的格式说明。
+
+<span class="kw">## Examples</span>
+
+<span class="cm">### Example: [场景]</span>
+Input: [用户输入]
+Action: [执行动作]
+Output: [返回内容]</code></pre>
+    </div>
+
+    <div class="checklist">
+      <div style="font-size:.85rem;font-weight:700;color:#e6edf3;margin-bottom:12px">✅ Agent 验收清单</div>
+      <div class="check-grid">
+        <div class="check-item"><span class="ci">🎯</span> description 具体描述调用场景（非泛泛而谈）</div>
+        <div class="check-item"><span class="ci">🔧</span> tools 仅列出实际需要的工具</div>
+        <div class="check-item"><span class="ci">📐</span> model 与任务复杂度匹配</div>
+        <div class="check-item"><span class="ci">📋</span> 包含明确的工作流步骤</div>
+        <div class="check-item"><span class="ci">🚧</span> 明确列出 NOT DO 边界</div>
+        <div class="check-item"><span class="ci">💡</span> 包含至少一个示例场景</div>
+        <div class="check-item"><span class="ci">🔒</span> 无硬编码密钥或敏感路径</div>
+        <div class="check-item"><span class="ci">📝</span> 已在 AGENTS.md 中注册</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SKILL TAB ===== -->
+  <div id="tab-skill" class="tab-content">
+    <div class="step-flow">
+      <div class="step-row">
+        <div class="step-box b-skill">
+          <div class="step-num" style="color:#34d399">Step 1</div>
+          <div class="step-title" style="color:#6ee7b7">确定 Skill 领域</div>
+          <div class="step-body">聚焦单一技术/工作流（不要太宽泛）。例如：autosar-classic、embedded-tdd。</div>
+        </div>
+        <div class="step-sep"><svg width="20" height="20"><path d="M4 10 H16 M11 5 L17 10 L11 15" stroke="#444d56" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+        <div class="step-box b-skill">
+          <div class="step-num" style="color:#34d399">Step 2</div>
+          <div class="step-title" style="color:#6ee7b7">创建目录 &amp; 文件</div>
+          <div class="step-body"><code style="color:#34d399">skills/your-skill-name/SKILL.md</code><br>frontmatter 含 name + description。</div>
+        </div>
+        <div class="step-sep"><svg width="20" height="20"><path d="M4 10 H16 M11 5 L17 10 L11 15" stroke="#444d56" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+        <div class="step-box b-skill">
+          <div class="step-num" style="color:#34d399">Step 3</div>
+          <div class="step-title" style="color:#6ee7b7">写好激活条件</div>
+          <div class="step-body">"When to Activate" 段落是关键——AI 靠它判断何时加载本 Skill。</div>
+        </div>
+        <div class="step-sep"><svg width="20" height="20"><path d="M4 10 H16 M11 5 L17 10 L11 15" stroke="#444d56" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+        <div class="step-box b-skill">
+          <div class="step-num" style="color:#34d399">Step 4</div>
+          <div class="step-title" style="color:#6ee7b7">安装 &amp; 测试</div>
+          <div class="step-body">拷贝到 <code style="color:#34d399">~/.claude/skills/</code>，在相关场景下触发验证自动激活。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="code-section">
+      <div class="code-header">
+        <span class="filename">skills/your-skill-name/SKILL.md</span>
+        <span class="lang-badge">Markdown + YAML</span>
+      </div>
+      <pre><code><span class="cm">---</span>
+<span class="yaml-key">name</span><span class="cm">:</span> <span class="yaml-val">your-skill-name</span>            <span class="cm"># 与目录名保持一致</span>
+<span class="yaml-key">description</span><span class="cm">:</span> <span class="yaml-val">Skill 描述——用于自动激活判断，必须精准</span>
+<span class="yaml-key">origin</span><span class="cm">:</span> <span class="yaml-val">ECC</span>
+<span class="cm">---</span>
+
+<span class="kw"># Skill 标题</span>
+
+简短概述本 Skill 的覆盖范围。
+
+<span class="kw">## When to Activate</span>
+
+<span class="cm"># ⭐ 关键段落：描述何时 AI 应自动加载本 Skill</span>
+- 遇到 [场景A] 时
+- 用户提到 [关键词B] 时
+- 处理 [技术栈C] 代码时
+
+<span class="kw">## Core Concepts</span>
+
+核心模式与准则（带代码示例）。
+
+<span class="kw">## Code Examples</span>
+
+\`\`\`c
+// ✅ 正确示例（有注释）
+void example(void) {
+    /* 遵循规范的实现 */
+}
+\`\`\`
+
+<span class="kw">## Anti-Patterns</span>
+
+\`\`\`c
+// ❌ 反模式示例——说明原因
+\`\`\`
+
+<span class="kw">## Best Practices</span>
+
+- 可操作的指导项
+- Do's &amp; Don'ts
+- 常见陷阱规避
+
+<span class="kw">## Related Skills</span>
+
+关联 Skill：\`related-skill-1\`, \`related-skill-2\`</code></pre>
+    </div>
+
+    <div class="checklist">
+      <div style="font-size:.85rem;font-weight:700;color:#e6edf3;margin-bottom:12px">✅ Skill 验收清单</div>
+      <div class="check-grid">
+        <div class="check-item"><span class="ci">🎯</span> 聚焦单一领域（不要太宽泛）</div>
+        <div class="check-item"><span class="ci">🔍</span> "When to Activate" 段落清晰具体</div>
+        <div class="check-item"><span class="ci">📦</span> frontmatter name 与目录名一致</div>
+        <div class="check-item"><span class="ci">💬</span> description 为内联或折叠标量（非 |）</div>
+        <div class="check-item"><span class="ci">📝</span> 包含可复制粘贴的代码示例</div>
+        <div class="check-item"><span class="ci">🚫</span> 展示了反模式（禁止做什么）</div>
+        <div class="check-item"><span class="ci">📏</span> 不超过 500 行（最多 800 行）</div>
+        <div class="check-item"><span class="ci">🔗</span> 链接了相关 Skills</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== RULE TAB ===== -->
+  <div id="tab-rule" class="tab-content">
+    <div class="step-flow">
+      <div class="step-row">
+        <div class="step-box b-rule">
+          <div class="step-num" style="color:#f87171">Step 1</div>
+          <div class="step-title" style="color:#fca5a5">确定规范类型</div>
+          <div class="step-body">Rules 是"始终遵守"的约束。确定适用的语言/场景（common / typescript / python 等）。</div>
+        </div>
+        <div class="step-sep"><svg width="20" height="20"><path d="M4 10 H16 M11 5 L17 10 L11 15" stroke="#444d56" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+        <div class="step-box b-rule">
+          <div class="step-num" style="color:#f87171">Step 2</div>
+          <div class="step-title" style="color:#fca5a5">选择/创建子目录</div>
+          <div class="step-body"><code style="color:#f87171">rules/your-lang/your-rule.md</code><br>或新建 <code style="color:#f87171">rules/your-domain/</code>。</div>
+        </div>
+        <div class="step-sep"><svg width="20" height="20"><path d="M4 10 H16 M11 5 L17 10 L11 15" stroke="#444d56" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+        <div class="step-box b-rule">
+          <div class="step-num" style="color:#f87171">Step 3</div>
+          <div class="step-title" style="color:#fca5a5">编写规范条目</div>
+          <div class="step-body">给出正例 + 反例对比，说明违规原因，引用标准（如 MISRA-C、ISO 26262）。</div>
+        </div>
+        <div class="step-sep"><svg width="20" height="20"><path d="M4 10 H16 M11 5 L17 10 L11 15" stroke="#444d56" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+        <div class="step-box b-rule">
+          <div class="step-num" style="color:#f87171">Step 4</div>
+          <div class="step-title" style="color:#fca5a5">在 CLAUDE.md 引用</div>
+          <div class="step-body">在项目 CLAUDE.md 或 AGENTS.md 中声明：总是遵守 rules/ 目录下的规范。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="code-section">
+      <div class="code-header">
+        <span class="filename">rules/your-domain/your-rule.md</span>
+        <span class="lang-badge">Markdown</span>
+      </div>
+      <pre><code><span class="kw"># Your Domain Coding Rules</span>
+
+<span class="cm"># Rules 是 Claude 始终遵守的准则，每个会话自动加载</span>
+
+<span class="kw">## 核心规则</span>
+
+<span class="kw">### 规则 1：[规则名称]</span>
+
+**适用范围**：所有 [语言/场景] 代码
+
+**要求**：
+- 必须做 A
+- 不允许做 B
+- 推荐使用 C
+
+**正例：**
+\`\`\`c
+// ✅ 符合规范
+void safe_function(uint8_t* ptr, size_t len) {
+    if (ptr == NULL || len == 0U) { return; }
+    /* 安全操作 */
+}
+\`\`\`
+
+**反例：**
+\`\`\`c
+// ❌ 违反规范：未检查空指针
+void unsafe_function(uint8_t* ptr) {
+    *ptr = 0;  /* 可能 NULL 解引用 */
+}
+\`\`\`
+
+**原因**：[说明为何重要，引用标准编号]
+
+<span class="kw">### 规则 2：[规则名称]</span>
+<span class="cm">...</span>
+
+<span class="kw">## 违规处理</span>
+
+发现违规时：1) 停止生成 2) 指出问题 3) 给出修正方案</code></pre>
+    </div>
+
+    <div class="checklist">
+      <div style="font-size:.85rem;font-weight:700;color:#e6edf3;margin-bottom:12px">✅ Rule 验收清单</div>
+      <div class="check-grid">
+        <div class="check-item"><span class="ci">📌</span> 规则条目清晰可操作（非模糊指导）</div>
+        <div class="check-item"><span class="ci">⚖️</span> 正例 + 反例对比齐全</div>
+        <div class="check-item"><span class="ci">📚</span> 引用了权威标准或原因</div>
+        <div class="check-item"><span class="ci">🗂️</span> 放置在正确的子目录</div>
+        <div class="check-item"><span class="ci">🔒</span> 涵盖安全规范（内存/输入/权限）</div>
+        <div class="check-item"><span class="ci">📢</span> 包含违规时的处理说明</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== COMMAND TAB ===== -->
+  <div id="tab-command" class="tab-content">
+    <div class="step-flow">
+      <div class="step-row">
+        <div class="step-box b-cmd">
+          <div class="step-num" style="color:#fbbf24">Step 1</div>
+          <div class="step-title" style="color:#fcd34d">定义命令用途</div>
+          <div class="step-body">Command 是用户手动 /trigger 的工作流。明确触发条件、参数、输出形式。</div>
+        </div>
+        <div class="step-sep"><svg width="20" height="20"><path d="M4 10 H16 M11 5 L17 10 L11 15" stroke="#444d56" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+        <div class="step-box b-cmd">
+          <div class="step-num" style="color:#fbbf24">Step 2</div>
+          <div class="step-title" style="color:#fcd34d">创建 .md 文件</div>
+          <div class="step-body"><code style="color:#fbbf24">commands/your-command.md</code><br>必须含 description frontmatter。</div>
+        </div>
+        <div class="step-sep"><svg width="20" height="20"><path d="M4 10 H16 M11 5 L17 10 L11 15" stroke="#444d56" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+        <div class="step-box b-cmd">
+          <div class="step-num" style="color:#fbbf24">Step 3</div>
+          <div class="step-title" style="color:#fcd34d">关联 Agent/Skill</div>
+          <div class="step-body">命令通常是入口点，内部调度对应 Agent 或激活 Skill 执行具体工作。</div>
+        </div>
+        <div class="step-sep"><svg width="20" height="20"><path d="M4 10 H16 M11 5 L17 10 L11 15" stroke="#444d56" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+        <div class="step-box b-cmd">
+          <div class="step-num" style="color:#fbbf24">Step 4</div>
+          <div class="step-title" style="color:#fcd34d">安装 &amp; 测试</div>
+          <div class="step-body">拷贝到 <code style="color:#fbbf24">~/.claude/commands/</code>，在 Claude Code 中输入 /<i>name</i> 测试。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="code-section">
+      <div class="code-header">
+        <span class="filename">commands/your-command.md</span>
+        <span class="lang-badge">Markdown + YAML</span>
+      </div>
+      <pre><code><span class="cm">---</span>
+<span class="yaml-key">description</span><span class="cm">:</span> <span class="yaml-val">命令简短描述——在 /help 中显示</span>
+<span class="cm">---</span>
+
+<span class="kw"># /your-command</span>
+
+<span class="kw">## Purpose</span>
+
+本命令执行的具体操作说明。
+
+<span class="kw">## Usage</span>
+
+\`\`\`
+/your-command [可选参数]
+\`\`\`
+
+<span class="kw">## Workflow</span>
+
+1. 分析当前上下文（读取相关文件）
+2. 调用对应 Agent：<span class="ph">@your-agent-name</span> 执行任务
+3. 汇总结果，以 [格式] 输出给用户
+
+<span class="kw">## Output</span>
+
+用户收到的内容格式说明。
+
+<span class="kw">## Examples</span>
+
+\`\`\`
+/your-command src/main.c
+\`\`\`
+→ 分析 main.c 并返回 [报告类型]</code></pre>
+    </div>
+
+    <div class="checklist">
+      <div style="font-size:.85rem;font-weight:700;color:#e6edf3;margin-bottom:12px">✅ Command 验收清单</div>
+      <div class="check-grid">
+        <div class="check-item"><span class="ci">📄</span> frontmatter description 存在且简洁</div>
+        <div class="check-item"><span class="ci">🚀</span> 工作流步骤清晰可执行</div>
+        <div class="check-item"><span class="ci">🔗</span> 明确了调用哪些 Agent/Skill</div>
+        <div class="check-item"><span class="ci">📤</span> Output 格式有明确描述</div>
+        <div class="check-item"><span class="ci">💡</span> 包含使用示例</div>
+        <div class="check-item"><span class="ci">🔄</span> 无与现有命令重复的功能</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== HOOK TAB ===== -->
+  <div id="tab-hook" class="tab-content">
+    <div class="step-flow">
+      <div class="step-row">
+        <div class="step-box b-hook">
+          <div class="step-num" style="color:#60a5fa">Step 1</div>
+          <div class="step-title" style="color:#93c5fd">确定触发事件</div>
+          <div class="step-body">选择事件类型：PreToolUse（前置拦截）/ PostToolUse（后置处理）/ SessionStart / Stop。</div>
+        </div>
+        <div class="step-sep"><svg width="20" height="20"><path d="M4 10 H16 M11 5 L17 10 L11 15" stroke="#444d56" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+        <div class="step-box b-hook">
+          <div class="step-num" style="color:#60a5fa">Step 2</div>
+          <div class="step-title" style="color:#93c5fd">编写 matcher</div>
+          <div class="step-body"><code style="color:#60a5fa">hooks/hooks.json</code> 中添加条目。matcher 要精确，避免过度拦截。</div>
+        </div>
+        <div class="step-sep"><svg width="20" height="20"><path d="M4 10 H16 M11 5 L17 10 L11 15" stroke="#444d56" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+        <div class="step-box b-hook">
+          <div class="step-num" style="color:#60a5fa">Step 3</div>
+          <div class="step-title" style="color:#93c5fd">编写 command</div>
+          <div class="step-body">exit 1 = 阻断操作；exit 0 = 允许继续。命令输出会显示给用户/AI。</div>
+        </div>
+        <div class="step-sep"><svg width="20" height="20"><path d="M4 10 H16 M11 5 L17 10 L11 15" stroke="#444d56" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+        <div class="step-box b-hook">
+          <div class="step-num" style="color:#60a5fa">Step 4</div>
+          <div class="step-title" style="color:#93c5fd">测试拦截行为</div>
+          <div class="step-body">模拟触发动作，验证 hook 正确执行。检查不应误拦截的正常操作。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="code-section">
+      <div class="code-header">
+        <span class="filename">hooks/hooks.json（追加条目）</span>
+        <span class="lang-badge">JSON</span>
+      </div>
+      <pre><code>{
+  <span class="prop">"hooks"</span>: {
+    <span class="prop">"PreToolUse"</span>: [
+      {
+        <span class="cm">// 安全检查：阻断危险命令</span>
+        <span class="prop">"matcher"</span>: <span class="str">"tool == \"Bash\" && tool_input.command matches \"rm -rf /\""</span>,
+        <span class="prop">"hooks"</span>: [{
+          <span class="prop">"type"</span>: <span class="str">"command"</span>,
+          <span class="prop">"command"</span>: <span class="str">"echo '[Hook] BLOCKED: Dangerous command' && exit 1"</span>
+        }],
+        <span class="prop">"description"</span>: <span class="str">"Block dangerous rm commands"</span>
+      }
+    ],
+    <span class="prop">"PostToolUse"</span>: [
+      {
+        <span class="cm">// 自动格式化：编辑 .c 文件后运行 clang-format</span>
+        <span class="prop">"matcher"</span>: <span class="str">"tool == \"Edit\" && tool_input.file_path matches \"\\.c$\""</span>,
+        <span class="prop">"hooks"</span>: [{
+          <span class="prop">"type"</span>: <span class="str">"command"</span>,
+          <span class="prop">"command"</span>: <span class="str">"clang-format -i \"$file_path\""</span>
+        }],
+        <span class="prop">"description"</span>: <span class="str">"Auto-format C files after edit"</span>
+      }
+    ],
+    <span class="prop">"SessionStart"</span>: [
+      {
+        <span class="cm">// 会话启动时加载项目上下文</span>
+        <span class="prop">"matcher"</span>: <span class="str">""</span>,
+        <span class="prop">"hooks"</span>: [{
+          <span class="prop">"type"</span>: <span class="str">"command"</span>,
+          <span class="prop">"command"</span>: <span class="str">"cat PROJECT_CONTEXT.md"</span>
+        }],
+        <span class="prop">"description"</span>: <span class="str">"Load project context on session start"</span>
+      }
+    ]
+  }
+}</code></pre>
+    </div>
+
+    <div class="checklist">
+      <div style="font-size:.85rem;font-weight:700;color:#e6edf3;margin-bottom:12px">✅ Hook 验收清单</div>
+      <div class="check-grid">
+        <div class="check-item"><span class="ci">🎯</span> matcher 精确（不会过度匹配）</div>
+        <div class="check-item"><span class="ci">📢</span> error/info 消息清晰明了</div>
+        <div class="check-item"><span class="ci">🚦</span> exit 1（阻断）/ exit 0（放行）用法正确</div>
+        <div class="check-item"><span class="ci">🔍</span> 已测试正常流程不被误拦截</div>
+        <div class="check-item"><span class="ci">📝</span> 每条 hook 有 description 字段</div>
+        <div class="check-item"><span class="ci">⚡</span> Hook 命令轻量快速（不阻塞工作流）</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DIRECTORY STRUCTURE ===== -->
+<section class="section">
+  <div class="section-title">文件系统结构 — 模块放置位置</div>
+  <div class="integ-wrap">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;flex-wrap:wrap">
+      <!-- ECC 仓库结构 -->
+      <div>
+        <div style="font-size:.8rem;font-weight:700;color:#8b949e;margin-bottom:12px;text-transform:uppercase;letter-spacing:.08em">ECC 工程目录（贡献 / 本地复用）</div>
+        <div class="dir-tree">
+<span class="dir">everything-claude-code/</span>
+├── <span class="dir">agents/</span>
+│   ├── tdd-guide.md        <span class="comment"># 内置 Agent</span>
+│   └── <span class="new">your-agent.md      # ← 新增 Agent</span>
+├── <span class="dir">skills/</span>
+│   ├── <span class="dir">coding-standards/</span>
+│   │   └── SKILL.md
+│   └── <span class="new">your-skill/       # ← 新增 Skill</span>
+│       └── <span class="new">SKILL.md</span>
+├── <span class="dir">rules/</span>
+│   ├── <span class="dir">common/</span>
+│   ├── <span class="dir">typescript/</span>
+│   └── <span class="new">your-domain/      # ← 新增 Rule 目录</span>
+│       └── <span class="new">your-rule.md</span>
+├── <span class="dir">commands/</span>
+│   ├── build-fix.md
+│   └── <span class="new">your-command.md   # ← 新增 Command</span>
+├── <span class="dir">hooks/</span>
+│   └── hooks.json          <span class="comment"># ← 在此追加 Hook 条目</span>
+├── AGENTS.md               <span class="comment"># ← 注册新 Agent</span>
+└── CLAUDE.md               <span class="comment"># ← 更新技能映射表</span>
+        </div>
+      </div>
+      <!-- 用户本地目录结构 -->
+      <div>
+        <div style="font-size:.8rem;font-weight:700;color:#8b949e;margin-bottom:12px;text-transform:uppercase;letter-spacing:.08em">用户本地 Claude 目录（全局生效）</div>
+        <div class="dir-tree">
+<span class="dir">~/.claude/</span>    <span class="comment"># 全局配置目录</span>
+├── <span class="dir">agents/</span>
+│   └── <span class="new">your-agent.md     # ← 全局可用</span>
+├── <span class="dir">skills/</span>
+│   └── <span class="new">your-skill/</span>
+│       └── <span class="new">SKILL.md</span>
+├── <span class="dir">commands/</span>
+│   └── <span class="new">your-command.md</span>
+├── <span class="dir">rules/</span>
+│   └── <span class="new">your-rule.md</span>
+└── settings.json           <span class="comment"># Claude Code 配置</span>
+
+<span class="dir">your-project/</span>  <span class="comment"># 项目级（覆盖全局）</span>
+├── <span class="dir">.claude/</span>      <span class="comment"># 项目专用模块</span>
+│   ├── <span class="dir">agents/</span>
+│   ├── <span class="dir">skills/</span>
+│   └── <span class="dir">commands/</span>
+├── CLAUDE.md               <span class="comment"># 项目指令文件</span>
+└── AGENTS.md               <span class="comment"># 项目 Agent 注册</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ECC DISCOVERY MECHANISM ===== -->
+<section class="section">
+  <div class="section-title">ECC 模块发现与加载机制</div>
+  <div class="integ-wrap">
+    <!-- top row: file types → scanner → loader -->
+    <div style="display:grid;grid-template-columns:200px 1fr 200px;gap:24px;align-items:start">
+
+      <!-- 左：文件输入 -->
+      <div>
+        <div style="font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#8b949e;margin-bottom:12px">📁 文件输入</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div class="fnode b-agent" style="color:#a78bfa;font-size:.75rem;min-width:unset;padding:7px 10px">agents/*.md<sub>YAML frontmatter</sub></div>
+          <div class="fnode b-skill" style="color:#34d399;font-size:.75rem;min-width:unset;padding:7px 10px">skills/*/SKILL.md<sub>name + description</sub></div>
+          <div class="fnode b-rule" style="color:#f87171;font-size:.75rem;min-width:unset;padding:7px 10px">rules/**/*.md<sub>强制规范文档</sub></div>
+          <div class="fnode b-cmd" style="color:#fbbf24;font-size:.75rem;min-width:unset;padding:7px 10px">commands/*.md<sub>description frontmatter</sub></div>
+          <div class="fnode b-hook" style="color:#60a5fa;font-size:.75rem;min-width:unset;padding:7px 10px">hooks/hooks.json<sub>matcher + command</sub></div>
+        </div>
+      </div>
+
+      <!-- 中：处理流 -->
+      <div>
+        <div style="font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#8b949e;margin-bottom:12px">⚙️ ECC 核心处理流程</div>
+        <!-- SVG flow -->
+        <svg viewBox="0 0 560 340" width="100%" style="max-height:340px">
+          <!-- scan -->
+          <rect x="20" y="20" width="150" height="44" rx="7" fill="rgba(88,166,255,.08)" stroke="#58a6ff55"/>
+          <text x="95" y="38" text-anchor="middle" fill="#79c0ff" font-size="11" font-weight="700">文件系统扫描</text>
+          <text x="95" y="54" text-anchor="middle" fill="#8b949e" font-size="10">FileSystem Discovery</text>
+
+          <!-- arrow down -->
+          <path d="M95 64 V90" stroke="#444d56" stroke-width="1.5" marker-end="url(#arr)"/>
+
+          <!-- parse -->
+          <rect x="20" y="90" width="150" height="44" rx="7" fill="rgba(165,180,252,.08)" stroke="#a5b4fc55"/>
+          <text x="95" y="108" text-anchor="middle" fill="#c4b5fd" font-size="11" font-weight="700">解析 frontmatter</text>
+          <text x="95" y="124" text-anchor="middle" fill="#8b949e" font-size="10">YAML / JSON Parse</text>
+
+          <!-- arrow right -->
+          <path d="M170 112 H220" stroke="#444d56" stroke-width="1.5" marker-end="url(#arr)"/>
+
+          <!-- index -->
+          <rect x="220" y="90" width="150" height="44" rx="7" fill="rgba(52,211,153,.08)" stroke="#34d39955"/>
+          <text x="295" y="108" text-anchor="middle" fill="#6ee7b7" font-size="11" font-weight="700">模块索引注册</text>
+          <text x="295" y="124" text-anchor="middle" fill="#8b949e" font-size="10">name → handler map</text>
+
+          <!-- arrow right -->
+          <path d="M370 112 H420" stroke="#444d56" stroke-width="1.5" marker-end="url(#arr)"/>
+
+          <!-- context -->
+          <rect x="420" y="90" width="120" height="44" rx="7" fill="rgba(251,191,36,.08)" stroke="#fbbf2455"/>
+          <text x="480" y="108" text-anchor="middle" fill="#fcd34d" font-size="11" font-weight="700">上下文注入</text>
+          <text x="480" y="124" text-anchor="middle" fill="#8b949e" font-size="10">系统提示词组装</text>
+
+          <!-- ─── runtime dispatch ─── -->
+          <!-- arrow down from 295,134 -->
+          <path d="M295 134 V180" stroke="#444d56" stroke-width="1.5" marker-end="url(#arr)"/>
+
+          <!-- runtime box -->
+          <rect x="180" y="180" width="230" height="50" rx="8" fill="rgba(99,102,241,.12)" stroke="#6366f155"/>
+          <text x="295" y="198" text-anchor="middle" fill="#a5b4fc" font-size="12" font-weight="700">运行时调度引擎</text>
+          <text x="295" y="216" text-anchor="middle" fill="#8b949e" font-size="10">Runtime Dispatch Engine</text>
+
+          <!-- 4 dispatch arrows -->
+          <!-- to agent -->
+          <path d="M230 230 L150 275" stroke="#a78bfa55" stroke-width="1.5" marker-end="url(#arrP)"/>
+          <text x="170" y="260" fill="#a78bfa" font-size="9">Task 委托</text>
+          <!-- to skill -->
+          <path d="M265 230 L230 275" stroke="#34d39955" stroke-width="1.5" marker-end="url(#arrG)"/>
+          <text x="230" y="263" fill="#34d399" font-size="9">场景激活</text>
+          <!-- to cmd -->
+          <path d="M325 230 L355 275" stroke="#fbbf2455" stroke-width="1.5" marker-end="url(#arrY)"/>
+          <text x="330" y="263" fill="#fbbf24" font-size="9">/触发</text>
+          <!-- to hook -->
+          <path d="M360 230 L430 275" stroke="#60a5fa55" stroke-width="1.5" marker-end="url(#arrB)"/>
+          <text x="390" y="260" fill="#60a5fa" font-size="9">事件触发</text>
+
+          <!-- result boxes -->
+          <rect x="100" y="275" width="80" height="36" rx="5" fill="rgba(124,58,237,.1)" stroke="#7c3aed55"/>
+          <text x="140" y="289" text-anchor="middle" fill="#c4b5fd" font-size="10" font-weight="600">Agent</text>
+          <text x="140" y="303" text-anchor="middle" fill="#8b949e" font-size="9">执行任务</text>
+
+          <rect x="195" y="275" width="80" height="36" rx="5" fill="rgba(6,180,93,.1)" stroke="#06b45d55"/>
+          <text x="235" y="289" text-anchor="middle" fill="#6ee7b7" font-size="10" font-weight="600">Skill</text>
+          <text x="235" y="303" text-anchor="middle" fill="#8b949e" font-size="9">知识注入</text>
+
+          <rect x="310" y="275" width="80" height="36" rx="5" fill="rgba(245,158,11,.1)" stroke="#f59e0b55"/>
+          <text x="350" y="289" text-anchor="middle" fill="#fcd34d" font-size="10" font-weight="600">Command</text>
+          <text x="350" y="303" text-anchor="middle" fill="#8b949e" font-size="9">工作流</text>
+
+          <rect x="400" y="275" width="80" height="36" rx="5" fill="rgba(59,130,246,.1)" stroke="#3b82f655"/>
+          <text x="440" y="289" text-anchor="middle" fill="#93c5fd" font-size="10" font-weight="600">Hook</text>
+          <text x="440" y="303" text-anchor="middle" fill="#8b949e" font-size="9">自动化</text>
+
+          <!-- arrow markers -->
+          <defs>
+            <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6" stroke="#444d56" stroke-width="1" fill="none"/></marker>
+            <marker id="arrP" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6" stroke="#a78bfa" stroke-width="1" fill="none"/></marker>
+            <marker id="arrG" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6" stroke="#34d399" stroke-width="1" fill="none"/></marker>
+            <marker id="arrY" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6" stroke="#fbbf24" stroke-width="1" fill="none"/></marker>
+            <marker id="arrB" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6" stroke="#60a5fa" stroke-width="1" fill="none"/></marker>
+          </defs>
+        </svg>
+      </div>
+
+      <!-- 右：优先级 -->
+      <div>
+        <div style="font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#8b949e;margin-bottom:12px">📐 加载优先级</div>
+        <div style="display:flex;flex-direction:column;gap:6px;font-size:.78rem">
+          <div style="padding:8px 10px;border:1px solid #f87171aa;border-radius:6px;background:rgba(239,68,68,.08)">
+            <div style="color:#fca5a5;font-weight:700;margin-bottom:2px">① 项目级（最高）</div>
+            <div style="color:#8b949e">.claude/ 目录<br>CLAUDE.md</div>
+          </div>
+          <div style="color:#444d56;text-align:center;font-size:1rem">↓</div>
+          <div style="padding:8px 10px;border:1px solid #fbbf24aa;border-radius:6px;background:rgba(245,158,11,.08)">
+            <div style="color:#fcd34d;font-weight:700;margin-bottom:2px">② 用户级</div>
+            <div style="color:#8b949e">~/.claude/<br>全局配置</div>
+          </div>
+          <div style="color:#444d56;text-align:center;font-size:1rem">↓</div>
+          <div style="padding:8px 10px;border:1px solid #58a6ff55;border-radius:6px;background:rgba(88,166,255,.08)">
+            <div style="color:#79c0ff;font-weight:700;margin-bottom:2px">③ ECC 内置（基础）</div>
+            <div style="color:#8b949e">53 Agents<br>200+ Skills</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REAL WORLD EXAMPLE ===== -->
+<section class="section">
+  <div class="section-title">真实案例 — automotive-sw-agents 定制项目</div>
+  <div class="example-box">
+    <div class="example-header">
+      <span class="proj-icon">🚗</span>
+      <span class="proj-name">automotive-sw-agents</span>
+      <span class="proj-tag">自定义项目示例</span>
+      <span style="margin-left:auto;font-size:.75rem;color:#8b949e">基于 ECC v2.0 扩展 · 汽车软件开发领域</span>
+    </div>
+    <div class="example-body">
+      <div class="ex-col">
+        <div class="col-title" style="color:#a78bfa;border-color:#7c3aed44">🤖 自定义 Agents (17)</div>
+        <div class="ex-item" style="color:#c4b5fd"><span class="ex-item-dot dot-agent"></span>autosar-architect</div>
+        <div class="ex-item" style="color:#c4b5fd"><span class="ex-item-dot dot-agent"></span>misra-c-reviewer</div>
+        <div class="ex-item" style="color:#c4b5fd"><span class="ex-item-dot dot-agent"></span>iso26262-reviewer</div>
+        <div class="ex-item" style="color:#c4b5fd"><span class="ex-item-dot dot-agent"></span>aspice-reviewer</div>
+        <div class="ex-item" style="color:#c4b5fd"><span class="ex-item-dot dot-agent"></span>embedded-c-reviewer</div>
+        <div class="ex-item" style="color:#c4b5fd"><span class="ex-item-dot dot-agent"></span>can-protocol-reviewer</div>
+        <div class="ex-item" style="color:#c4b5fd"><span class="ex-item-dot dot-agent"></span>uds-reviewer</div>
+        <div class="ex-item" style="color:#c4b5fd"><span class="ex-item-dot dot-agent"></span>memory-safety-reviewer</div>
+        <div class="ex-item" style="color:#c4b5fd"><span class="ex-item-dot dot-agent"></span>automotive-security-reviewer</div>
+        <div class="ex-item" style="color:#c4b5fd"><span class="ex-item-dot dot-agent"></span>requirements-tracer</div>
+        <div class="ex-item" style="color:#c4b5fd"><span class="ex-item-dot dot-agent"></span>rtos-reviewer</div>
+        <div class="ex-item" style="color:#c4b5fd"><span class="ex-item-dot dot-agent"></span>hil-sil-planner</div>
+        <div class="ex-item" style="color:#c4b5fd"><span class="ex-item-dot dot-agent"></span>embedded-build-resolver</div>
+        <div class="ex-item" style="color:#c4b5fd"><span class="ex-item-dot dot-agent"></span>calibration-reviewer</div>
+        <div class="ex-item" style="color:#c4b5fd"><span class="ex-item-dot dot-agent"></span>bootloader-reviewer</div>
+        <div class="ex-item" style="color:#c4b5fd"><span class="ex-item-dot dot-agent"></span>misra-cpp-reviewer</div>
+        <div class="ex-item" style="color:#c4b5fd"><span class="ex-item-dot dot-agent"></span>planner / tdd-guide / architect</div>
+      </div>
+      <div class="ex-col">
+        <div class="col-title" style="color:#34d399;border-color:#06b45d44">⚡ 自定义 Skills (9)</div>
+        <div class="ex-item" style="color:#6ee7b7"><span class="ex-item-dot dot-skill"></span>autosar-classic/SKILL.md</div>
+        <div class="ex-item" style="color:#6ee7b7"><span class="ex-item-dot dot-skill"></span>autosar-adaptive/SKILL.md</div>
+        <div class="ex-item" style="color:#6ee7b7"><span class="ex-item-dot dot-skill"></span>misra-c/SKILL.md</div>
+        <div class="ex-item" style="color:#6ee7b7"><span class="ex-item-dot dot-skill"></span>iso26262-safety/SKILL.md</div>
+        <div class="ex-item" style="color:#6ee7b7"><span class="ex-item-dot dot-skill"></span>embedded-tdd/SKILL.md</div>
+        <div class="ex-item" style="color:#6ee7b7"><span class="ex-item-dot dot-skill"></span>can-protocol/SKILL.md</div>
+        <div class="ex-item" style="color:#6ee7b7"><span class="ex-item-dot dot-skill"></span>uds-protocol/SKILL.md</div>
+        <div class="ex-item" style="color:#6ee7b7"><span class="ex-item-dot dot-skill"></span>rtos-patterns/SKILL.md</div>
+        <div class="ex-item" style="color:#6ee7b7"><span class="ex-item-dot dot-skill"></span>embedded-c-patterns/SKILL.md</div>
+
+        <div class="col-title" style="color:#f87171;border-color:#ef444444;margin-top:16px">📏 自定义 Rules (4)</div>
+        <div class="ex-item" style="color:#fca5a5"><span class="ex-item-dot dot-rule"></span>embedded-c.md</div>
+        <div class="ex-item" style="color:#fca5a5"><span class="ex-item-dot dot-rule"></span>misra-c.md</div>
+        <div class="ex-item" style="color:#fca5a5"><span class="ex-item-dot dot-rule"></span>safety-critical.md</div>
+        <div class="ex-item" style="color:#fca5a5"><span class="ex-item-dot dot-rule"></span>automotive-security.md</div>
+      </div>
+      <div class="ex-col">
+        <div class="col-title" style="color:#fbbf24;border-color:#f59e0b44">🔧 自定义 Commands (8)</div>
+        <div class="ex-item" style="color:#fcd34d"><span class="ex-item-dot dot-cmd"></span>misra-check.md</div>
+        <div class="ex-item" style="color:#fcd34d"><span class="ex-item-dot dot-cmd"></span>autosar-review.md</div>
+        <div class="ex-item" style="color:#fcd34d"><span class="ex-item-dot dot-cmd"></span>iso26262-check.md</div>
+        <div class="ex-item" style="color:#fcd34d"><span class="ex-item-dot dot-cmd"></span>build-fix.md</div>
+        <div class="ex-item" style="color:#fcd34d"><span class="ex-item-dot dot-cmd"></span>test-coverage.md</div>
+        <div class="ex-item" style="color:#fcd34d"><span class="ex-item-dot dot-cmd"></span>can-analyze.md</div>
+        <div class="ex-item" style="color:#fcd34d"><span class="ex-item-dot dot-cmd"></span>requirements-trace.md</div>
+        <div class="ex-item" style="color:#fcd34d"><span class="ex-item-dot dot-cmd"></span>quality-gate.md</div>
+
+        <div class="col-title" style="color:#60a5fa;border-color:#3b82f644;margin-top:16px">🪝 自定义 Hook (1)</div>
+        <div class="ex-item" style="color:#93c5fd"><span class="ex-item-dot dot-hook"></span>pre-commit-safety.md</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TIPS ===== -->
+<section class="section">
+  <div class="section-title">最佳实践与注意事项</div>
+  <div class="tips-grid">
+    <div class="tip-card" style="border-color:#34d39933">
+      <div class="tip-title" style="color:#34d399">⚡ 命名规范</div>
+      <ul>
+        <li>全小写 + 连字符：<code>my-agent.md</code></li>
+        <li>描述性命名：<code>misra-c-reviewer</code> 优于 <code>reviewer</code></li>
+        <li>Skill 目录名 = frontmatter name</li>
+        <li>避免与内置模块同名（会被覆盖）</li>
+      </ul>
+    </div>
+    <div class="tip-card" style="border-color:#a78bfa33">
+      <div class="tip-title" style="color:#a78bfa">🤖 Agent description 要点</div>
+      <ul>
+        <li>说明<strong>何时</strong>调用（触发条件）</li>
+        <li>说明<strong>处理什么</strong>（领域范围）</li>
+        <li>用 PROACTIVELY 标注主动调用</li>
+        <li>长度适中（1-3 句话）</li>
+      </ul>
+    </div>
+    <div class="tip-card" style="border-color:#fbbf2433">
+      <div class="tip-title" style="color:#fbbf24">🔒 安全必须项</div>
+      <ul>
+        <li>禁止硬编码 API Key / 密码 / Token</li>
+        <li>Hook matcher 精确，避免过度拦截</li>
+        <li>Rule 覆盖输入验证和内存安全</li>
+        <li>提交前用 security-reviewer Agent 检查</li>
+      </ul>
+    </div>
+    <div class="tip-card" style="border-color:#60a5fa33">
+      <div class="tip-title" style="color:#60a5fa">🔗 跨模块协作模式</div>
+      <ul>
+        <li>Command → 调度 Agent → 使用 Skill</li>
+        <li>Hook（前置）→ 触发安全检查 Agent</li>
+        <li>Rule 约束 Skill 和 Agent 的行为范围</li>
+        <li>在 AGENTS.md 中集中注册 orchestration 策略</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== QUICK INSTALL ===== -->
+<section class="section">
+  <div class="section-title">快速安装命令</div>
+  <div class="code-section" style="padding:0">
+    <div class="code-header">
+      <span class="filename">Terminal — 将自定义模块复制到全局目录</span>
+      <span class="lang-badge">Bash</span>
+    </div>
+    <pre><code><span class="cm"># 安装单个 Agent</span>
+cp agents/your-agent.md ~/.claude/agents/
+
+<span class="cm"># 安装单个 Skill</span>
+cp -r skills/your-skill/ ~/.claude/skills/
+
+<span class="cm"># 安装整个自定义项目的所有模块</span>
+cp -r agents/   ~/.claude/agents/
+cp -r skills/   ~/.claude/skills/
+cp -r commands/ ~/.claude/commands/
+
+<span class="cm"># 安装 Rules（合并到全局规则目录）</span>
+mkdir -p ~/.claude/rules/your-domain/
+cp -r rules/your-domain/ ~/.claude/rules/
+
+<span class="cm"># 查看已安装的 Agents</span>
+ls ~/.claude/agents/
+
+<span class="cm"># 在项目根目录初始化 ECC 自定义配置</span>
+cp AGENTS.md  ./AGENTS.md   <span class="cm"># 项目级 Agent 注册</span>
+cp CLAUDE.md  ./CLAUDE.md   <span class="cm"># 项目指令文件</span></code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>Everything Claude Code v2.0.0-rc.1 · 自定义模块添加指南 · 生成于 2026-05-13</p>
+  <p style="margin-top:4px"><a href="ECC-架构图.html">← ECC 总体架构图</a> · <a href="https://github.com/affaan-m/everything-claude-code" target="_blank">GitHub ↗</a></p>
+</footer>
+
+</div><!-- /page -->
+
+<script>
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>

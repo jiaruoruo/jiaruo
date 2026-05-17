@@ -56,6 +56,13 @@ Agent Harness 是包裹模型运行的外围基础设施，定义式公式为：
 
 **未解决的问题**：多 AI 并行时的上下文隔离（各 Agent 不知道对方在改什么）、文档过期无银弹、「AI 自测自」导致的验收偏差——这些是 Harness 工程的下一个战场。
 
+**ECC 给出了新答案（2026-05-14 补充）**：[[entities/ecc-framework]] 以 53 专用 Agent + Hooks 安全层 + Immutability 原则的组合，实质上是对上述三个问题的工程回应：
+- 上下文隔离 → 专用 Agent 独立上下文窗口，职责边界清晰
+- 文档过期 → Immutability 原则，框架核心不可变，自定义通过 override 隔离
+- 验收偏差 → Rules 层常驻约束 + Test-Driven 设计原则内嵌测试要求
+
+**垂直化 Harness 的价值**：[[entities/automotive-claude-code-agents]] 将 Harness 工程能力垂直化到汽车软件领域——507+ 行业知识库 + 40+ 专业 Agent + 合规检查 Hooks，证明了"通用 Harness + 领域知识库 + 行业规则层"是可复制的垂直化模式。
+
 ## Contradictions
 
 ## Sources
@@ -66,6 +73,8 @@ Agent Harness 是包裹模型运行的外围基础设施，定义式公式为：
 - [[sources/openclaw-vs-hermes-deep-dive]]
 - [[sources/ai-collaboration-practices]]
 - [[sources/agent-route-comparison-2026]]
+- [[sources/ecc-architecture-design]]（个人写作）
+- [[sources/automotive-agents-reference]]（个人写作）
 
 ## Evolution Log
 
@@ -73,3 +82,4 @@ Agent Harness 是包裹模型运行的外围基础设施，定义式公式为：
 - 2026-04-19（4 sources）：强化——架构师深度对比文章从系统层拆解 OpenClaw vs Hermes 定位差异，补充 Skill 语义/Memory 架构/安全思路三维度细节
 - 2026-04-19 个人写作 [[sources/ai-collaboration-practices]] 确立了对此概念的明确立场
 - 2026-04-25（5 sources）：强化——三条路线比较文章从竞争格局视角补充 Agent 基础设施"执行层+学习层+安全层"分层卡位逻辑，丰富 Harness 架构的安全治理维度
+- 2026-05-14 个人写作 [[sources/ecc-architecture-design]] / [[sources/automotive-agents-reference]] 补充：ECC 对多 Agent 隔离/文档过期/验收偏差三大难题的工程回应；垂直化 Harness 可复制模式

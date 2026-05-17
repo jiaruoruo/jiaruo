@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自定义扩展流程指南 — Automotive Claude Code Agents</title>
+<style>
+:root {
+  --bg: #0d1117;
+  --surface: #161b22;
+  --surface2: #1f2937;
+  --surface3: #0d1b2e;
+  --border: #30363d;
+  --blue:   #58a6ff;
+  --purple: #bc8cff;
+  --green:  #3fb950;
+  --orange: #f0883e;
+  --red:    #ff7b72;
+  --cyan:   #39d5c4;
+  --yellow: #e3b341;
+  --pink:   #f778ba;
+  --text1: #e6edf3;
+  --text2: #8b949e;
+  --text3: #484f58;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text1);
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  padding: 28px 20px 40px;
+  min-height: 100vh;
+}
+
+/* ══ HEADER ══ */
+.header { text-align: center; margin-bottom: 40px; }
+.header h1 {
+  font-size: 24px; font-weight: 800;
+  background: linear-gradient(135deg, #58a6ff, #bc8cff, #3fb950);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; margin-bottom: 8px;
+}
+.header p { color: var(--text2); font-size: 13px; }
+
+/* ══ MAIN FLOW WRAPPER ══ */
+.flow-wrap {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* ══ SECTION TITLE ══ */
+.sec-title {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 12px; font-weight: 700; letter-spacing: 1.2px;
+  text-transform: uppercase; margin-bottom: 12px;
+}
+.sec-title::before {
+  content: '';
+  flex: 1; height: 1px; background: var(--border);
+}
+.sec-title::after {
+  content: '';
+  flex: 3; height: 1px; background: var(--border);
+}
+
+/* ══ PHASE ROW ══ */
+.phase {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px 20px 16px;
+  margin-bottom: 0;
+}
+.phase-label {
+  position: absolute;
+  top: -12px; left: 18px;
+  padding: 2px 14px;
+  border-radius: 8px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase;
+}
+
+/* ══ PHASE COLORS ══ */
+.ph-start  { border-color:#58a6ff44; background:linear-gradient(135deg,#0c1a2e,#161b22); }
+.ph-start  .phase-label { background:#58a6ff22;color:#58a6ff;border:1px solid #58a6ff44; }
+
+.ph-choose { border-color:#bc8cff44; background:linear-gradient(135deg,#18102e,#161b22); }
+.ph-choose .phase-label { background:#bc8cff22;color:#bc8cff;border:1px solid #bc8cff44; }
+
+.ph-agent  { border-color:#3fb95044; background:linear-gradient(135deg,#0c1e12,#161b22); }
+.ph-agent  .phase-label { background:#3fb95022;color:#3fb950;border:1px solid #3fb95044; }
+
+.ph-skill  { border-color:#f0883e44; background:linear-gradient(135deg,#1e1008,#161b22); }
+.ph-skill  .phase-label { background:#f0883e22;color:#f0883e;border:1px solid #f0883e44; }
+
+.ph-rule   { border-color:#ff7b7244; background:linear-gradient(135deg,#1e0a0a,#161b22); }
+.ph-rule   .phase-label { background:#ff7b7222;color:#ff7b72;border:1px solid #ff7b7244; }
+
+.ph-cmd    { border-color:#39d5c444; background:linear-gradient(135deg,#081e1c,#161b22); }
+.ph-cmd    .phase-label { background:#39d5c422;color:#39d5c4;border:1px solid #39d5c444; }
+
+.ph-install{ border-color:#e3b34144; background:linear-gradient(135deg,#1e1808,#161b22); }
+.ph-install .phase-label { background:#e3b34122;color:#e3b341;border:1px solid #e3b34144; }
+
+.ph-valid  { border-color:#f778ba44; background:linear-gradient(135deg,#1e0818,#161b22); }
+.ph-valid  .phase-label { background:#f778ba22;color:#f778ba;border:1px solid #f778ba44; }
+
+/* ══ DOWN ARROW ══ */
+.arrow {
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  height:40px; color:var(--text3);
+  position:relative;
+}
+.arrow::before {
+  content:'';
+  width:2px; height:24px;
+  background:linear-gradient(to bottom,var(--border),transparent);
+}
+.arrow .tip {
+  font-size:14px; color:#58a6ff66;
+  position:absolute; bottom:0;
+}
+
+/* ══ NODE ROW ══ */
+.nodes { display:flex; gap:10px; flex-wrap:wrap; align-items:stretch; }
+
+/* ══ NODE BOX ══ */
+.node {
+  flex:1; min-width:150px;
+  border-radius:10px; padding:12px 14px;
+  border:1px solid var(--border);
+  background:var(--surface2);
+  transition:transform .15s, box-shadow .15s;
+  cursor:default; position:relative;
+}
+.node:hover { transform:translateY(-3px); box-shadow:0 4px 16px rgba(0,0,0,.4); }
+.node-icon { font-size:20px; margin-bottom:6px; display:block; }
+.node-title { font-size:12px; font-weight:700; margin-bottom:4px; }
+.node-body  { font-size:11px; color:var(--text2); line-height:1.55; }
+.node-code  {
+  margin-top:8px; background:#0d1117;
+  border-radius:6px; padding:6px 8px;
+  font-size:10px; font-family:monospace;
+  color:#39d5c4; line-height:1.6;
+  border:1px solid #30363d;
+  white-space:pre-wrap; word-break:break-all;
+}
+
+/* ══ DIAMOND (decision) ══ */
+.diamond-wrap {
+  display:flex; justify-content:center;
+  align-items:center; gap:0;
+  position:relative; margin: 4px 0;
+}
+.diamond {
+  width:160px; height:60px;
+  background:var(--surface2);
+  border:1.5px solid #bc8cff66;
+  border-radius:6px;
+  clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
+  display:flex; align-items:center; justify-content:center;
+  font-size:11px; font-weight:700; color:#bc8cff;
+  text-align:center; position:relative;
+}
+.diamond-label {
+  font-size:11px; font-weight:700;
+  padding:8px 16px; border-radius:20px;
+  border:1.5px solid #bc8cff55;
+  background:#bc8cff11; color:#bc8cff;
+  text-align:center;
+}
+.branch-row {
+  display:flex; gap:10px;
+  flex-wrap:wrap;
+  align-items:flex-start;
+  justify-content:center;
+}
+.branch {
+  flex:1; min-width:180px;
+  display:flex; flex-direction:column;
+  align-items:center; gap:6px;
+}
+.branch-label {
+  font-size:10px; font-weight:700;
+  padding:3px 10px; border-radius:10px;
+}
+.bl-agent  { background:#3fb95022;color:#3fb950;border:1px solid #3fb95044; }
+.bl-skill  { background:#f0883e22;color:#f0883e;border:1px solid #f0883e44; }
+.bl-rule   { background:#ff7b7222;color:#ff7b72;border:1px solid #ff7b7244; }
+.bl-cmd    { background:#39d5c422;color:#39d5c4;border:1px solid #39d5c444; }
+
+/* ══ STEPS HORIZONTAL ══ */
+.steps {
+  display:flex; align-items:stretch;
+  gap:0; overflow-x:auto;
+}
+.step {
+  flex:1; min-width:130px;
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:0; padding:10px 12px;
+  position:relative; text-align:center;
+}
+.step:first-child { border-radius:8px 0 0 8px; }
+.step:last-child  { border-radius:0 8px 8px 0; }
+.step + .step { border-left:none; }
+.step::after {
+  content:'▶';
+  position:absolute; right:-10px; top:50%;
+  transform:translateY(-50%);
+  font-size:12px; color:#58a6ff55;
+  z-index:2;
+}
+.step:last-child::after { display:none; }
+.step-num {
+  width:20px; height:20px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:10px; font-weight:800;
+  margin:0 auto 5px;
+}
+.step-title { font-size:11px; font-weight:700; margin-bottom:4px; }
+.step-desc  { font-size:10px; color:var(--text2); line-height:1.4; }
+
+/* color variants */
+.sn-agent { background:#3fb95033;color:#3fb950; }
+.sn-skill { background:#f0883e33;color:#f0883e; }
+.sn-rule  { background:#ff7b7233;color:#ff7b72; }
+.sn-cmd   { background:#39d5c433;color:#39d5c4; }
+.sn-inst  { background:#e3b34133;color:#e3b341; }
+.sn-val   { background:#f778ba33;color:#f778ba; }
+
+/* ══ FILE TREE ══ */
+.tree {
+  font-family:monospace; font-size:11px;
+  background:#0d1117; border-radius:8px;
+  padding:10px 14px; border:1px solid var(--border);
+  color:var(--text2); line-height:1.8;
+}
+.tree .d { color:#58a6ff; }
+.tree .f { color:#3fb950; }
+.tree .h { color:#f0883e; }
+.tree .c { color:#39d5c4; }
+.tree .r { color:#ff7b72; }
+.tree .y { color:#e3b341; }
+
+/* ══ TAG ROW ══ */
+.tags { display:flex; flex-wrap:wrap; gap:5px; margin-top:8px; }
+.tag {
+  font-size:10px; padding:2px 8px;
+  border-radius:4px; font-weight:600;
+}
+.t-g { background:#3fb95022;color:#3fb950;border:1px solid #3fb95044; }
+.t-b { background:#58a6ff22;color:#58a6ff;border:1px solid #58a6ff44; }
+.t-p { background:#bc8cff22;color:#bc8cff;border:1px solid #bc8cff44; }
+.t-o { background:#f0883e22;color:#f0883e;border:1px solid #f0883e44; }
+.t-r { background:#ff7b7222;color:#ff7b72;border:1px solid #ff7b7244; }
+.t-c { background:#39d5c422;color:#39d5c4;border:1px solid #39d5c444; }
+.t-y { background:#e3b34122;color:#e3b341;border:1px solid #e3b34144; }
+
+/* ══ CONNECTOR LINES ══ */
+.connect-h {
+  display:flex; align-items:center;
+  gap:4px; margin:6px 0;
+  font-size:10px; color:var(--text3);
+}
+.connect-h::before, .connect-h::after {
+  content:''; flex:1; height:1px; background:var(--border);
+}
+
+/* ══ CHECK LIST ══ */
+.checklist { list-style:none; }
+.checklist li {
+  font-size:11px; padding:4px 0;
+  border-bottom:1px solid #21262d;
+  display:flex; align-items:center; gap:8px;
+  color:var(--text2);
+}
+.checklist li:last-child { border:none; }
+.checklist .ok { color:#3fb950; font-size:13px; }
+.checklist .warn { color:#f0883e; font-size:13px; }
+
+/* ══ HIGHLIGHT BOX ══ */
+.highlight {
+  border-radius:8px; padding:10px 14px;
+  font-size:11px; line-height:1.7;
+  border-left:3px solid;
+}
+.hl-green  { background:#3fb95011; border-color:#3fb950; color:#c4f0c9; }
+.hl-blue   { background:#58a6ff11; border-color:#58a6ff; color:#c0d8ff; }
+.hl-orange { background:#f0883e11; border-color:#f0883e; color:#f5cda8; }
+.hl-red    { background:#ff7b7211; border-color:#ff7b72; color:#ffc4c0; }
+
+/* ══ TOOLTIP ══ */
+[data-tip] { position:relative; cursor:help; }
+[data-tip]:hover::after {
+  content:attr(data-tip);
+  position:absolute; bottom:calc(100% + 6px); left:50%;
+  transform:translateX(-50%);
+  background:#2d333b; border:1px solid var(--border);
+  border-radius:6px; padding:6px 10px;
+  font-size:10px; color:var(--text1);
+  white-space:pre-line; min-width:180px; max-width:260px;
+  z-index:99; pointer-events:none;
+  line-height:1.5; box-shadow:0 4px 12px rgba(0,0,0,.5);
+}
+
+/* ══ FOOTER STAT ══ */
+.stat-bar {
+  display:flex; gap:18px; flex-wrap:wrap;
+  justify-content:center; margin-top:28px;
+  padding:14px 20px; background:var(--surface);
+  border:1px solid var(--border); border-radius:10px;
+  max-width:1300px; margin-left:auto; margin-right:auto;
+}
+.stat { text-align:center; }
+.stat .n { font-size:20px; font-weight:800; line-height:1; }
+.stat .l { font-size:10px; color:var(--text2); margin-top:2px; }
+
+::-webkit-scrollbar { width:7px; height:7px; }
+::-webkit-scrollbar-track { background:var(--bg); }
+::-webkit-scrollbar-thumb { background:var(--border); border-radius:4px; }
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<div class="header">
+  <h1>🔧 用户自定义功能模块扩展指南</h1>
+  <p>如何向 Automotive Claude Code Agents 添加自定义 Agent · Skill · Rule · Command — 完整流程图</p>
+</div>
+
+<div class="flow-wrap">
+
+<!-- ══════════ PHASE 0: START ══════════ -->
+<div class="phase ph-start">
+  <span class="phase-label">① 起始：识别需求</span>
+  <div class="nodes">
+    <div class="node" style="flex:2; border-color:#58a6ff55;"
+         data-tip="在开始创建前，先明确需求类型&#10;是否已有类似 Agent？&#10;可复用哪些现有 Skills？">
+      <span class="node-icon">🎯</span>
+      <div class="node-title" style="color:#58a6ff;">我想扩展什么功能？</div>
+      <div class="node-body">在开始前，先明确自定义需求：领域知识扩展？新命令？编码规则？</div>
+      <div class="tags">
+        <span class="tag t-b">领域 Agent</span>
+        <span class="tag t-g">专业 Skill</span>
+        <span class="tag t-r">编码 Rule</span>
+        <span class="tag t-c">执行 Command</span>
+      </div>
+    </div>
+    <div class="node" style="border-color:#58a6ff33;">
+      <span class="node-icon">📋</span>
+      <div class="node-title" style="color:#58a6ff;">检查现有资产</div>
+      <div class="node-body">先查看是否有可复用的现有 Agent 或 Skill</div>
+      <div class="node-code">ls agents/
+ls skills/
+ls commands/</div>
+    </div>
+    <div class="node" style="border-color:#58a6ff33;">
+      <span class="node-icon">🔍</span>
+      <div class="node-title" style="color:#58a6ff;">验证 Schema</div>
+      <div class="node-body">了解标准格式与目录规范，再开始创建</div>
+      <div class="node-code">python scripts/validate-schema.py \
+  --check-existing</div>
+    </div>
+    <div class="node" style="border-color:#58a6ff33;">
+      <span class="node-icon">📁</span>
+      <div class="node-title" style="color:#58a6ff;">选择目标目录</div>
+      <div class="node-body">选择已有领域目录，或新建领域目录</div>
+      <div class="node-code">agents/my-domain/
+skills/my-skill/
+commands/my-cmd/
+rules/my-rules/</div>
+    </div>
+  </div>
+</div>
+
+<div class="arrow"><span class="tip">▼</span></div>
+
+<!-- ══════════ PHASE 1: DECISION ══════════ -->
+<div class="phase ph-choose">
+  <span class="phase-label">② 决策：选择扩展类型</span>
+  <div style="display:flex;justify-content:center;margin-bottom:14px;">
+    <div class="diamond-label">❓ 需要添加的是哪种类型的模块？</div>
+  </div>
+  <div class="branch-row">
+    <div class="branch">
+      <span class="branch-label bl-agent">🤖 Agent（智能体）</span>
+      <div style="font-size:10px;color:var(--text2);text-align:center;padding:4px 8px;">
+        需要一个具备特定领域<br>专业知识的对话专家
+      </div>
+    </div>
+    <div class="branch">
+      <span class="branch-label bl-skill">🎯 Skill（技能）</span>
+      <div style="font-size:10px;color:var(--text2);text-align:center;padding:4px 8px;">
+        需要封装一段专业知识<br>或代码生成模板
+      </div>
+    </div>
+    <div class="branch">
+      <span class="branch-label bl-rule">📏 Rule（规则）</span>
+      <div style="font-size:10px;color:var(--text2);text-align:center;padding:4px 8px;">
+        需要强制约束代码生成<br>符合特定编码/安全标准
+      </div>
+    </div>
+    <div class="branch">
+      <span class="branch-label bl-cmd">⚡ Command（命令）</span>
+      <div style="font-size:10px;color:var(--text2);text-align:center;padding:4px 8px;">
+        需要一个可直接调用的<br>预定义 /斜线命令
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="arrow"><span class="tip">▼</span></div>
+
+<!-- ══════════ PHASE 2: CREATE AGENT ══════════ -->
+<div class="phase ph-agent">
+  <span class="phase-label">③-A 创建自定义 Agent</span>
+  <div class="steps" style="margin-bottom:14px;">
+    <div class="step">
+      <div class="step-num sn-agent">1</div>
+      <div class="step-title">新建目录</div>
+      <div class="step-desc">在 agents/ 下选择或新建领域目录</div>
+    </div>
+    <div class="step">
+      <div class="step-num sn-agent">2</div>
+      <div class="step-title">创建 YAML</div>
+      <div class="step-desc">按模板编写 agent.yaml 定义文件</div>
+    </div>
+    <div class="step">
+      <div class="step-num sn-agent">3</div>
+      <div class="step-title">声明技能</div>
+      <div class="step-desc">在 skills_used 中引用所需 Skills</div>
+    </div>
+    <div class="step">
+      <div class="step-num sn-agent">4</div>
+      <div class="step-title">定义工作流</div>
+      <div class="step-desc">编写 workflows 执行步骤</div>
+    </div>
+    <div class="step">
+      <div class="step-num sn-agent">5</div>
+      <div class="step-title">验证 Schema</div>
+      <div class="step-desc">运行 validate-schema.py 检查格式</div>
+    </div>
+  </div>
+  <div class="nodes">
+    <div class="node" style="flex:2;">
+      <div class="node-title" style="color:#3fb950;">📄 YAML 模板结构</div>
+      <div class="node-code"># agents/my-domain/my-agent.yaml
+name: my-custom-agent
+version: "1.0.0"
+namespace: automotive   # 必须保留
+
+description: |
+  此 Agent 提供 [专业领域] 的深度分析能力。
+  适用场景: [具体任务类型]
+
+role: "Senior Automotive Engineer - [领域]"
+
+expertise:
+  - "[专业技术1]"
+  - "[相关标准]"
+
+skills_used:
+  # 引用已有 Skill
+  - "automotive-cybersecurity/iso-21434-tara"
+  # 引用自定义 Skill（见 ③-B）
+  - "my-domain/my-custom-skill"
+
+standards:
+  - "ISO 26262:2018"
+  - "AUTOSAR 4.4"
+
+context_loading:
+  - path: "knowledge-base/standards/iso26262"
+  - path: "rules/safety-standards"
+
+workflows:
+  - name: "主要分析流程"
+    trigger: "当用户请求 [任务类型] 时"
+    steps:
+      - "步骤1: 解析用户需求"
+      - "步骤2: 执行专业分析"
+      - "步骤3: 生成合规输出"
+      - "步骤4: 验证标准符合性"
+
+output_formats:
+  - "结构化报告 (Markdown)"
+  - "代码片段 (C/C++/Python)"
+
+quality_gates:
+  - "所有代码通过 MISRA 检查"
+  - "安全函数含 ASIL 注释"</div>
+    </div>
+    <div class="node">
+      <div class="node-title" style="color:#3fb950;">📁 目录结构</div>
+      <div class="tree">
+<span class="d">agents/</span>
+└── <span class="d">my-domain/</span>         ← 新建目录
+    ├── <span class="f">my-agent.yaml</span>   ← 主定义文件
+    ├── <span class="f">README.md</span>       ← 可选说明
+    └── <span class="f">examples/</span>       ← 使用示例
+</div>
+      <div class="highlight hl-green" style="margin-top:10px;">
+        ✅ 命名必须使用 <strong>automotive-</strong> 前缀<br>
+        ✅ YAML 格式严格遵循 Schema<br>
+        ✅ skills_used 引用路径需存在
+      </div>
+      <div class="tags" style="margin-top:10px;">
+        <span class="tag t-g">YAML 配置</span>
+        <span class="tag t-g">工作流驱动</span>
+        <span class="tag t-g">Skills 组合</span>
+      </div>
+    </div>
+    <div class="node">
+      <div class="node-title" style="color:#3fb950;">⚠️ 关键注意事项</div>
+      <ul class="checklist">
+        <li><span class="ok">✓</span> namespace 必须为 "automotive"</li>
+        <li><span class="ok">✓</span> skills_used 引用路径必须存在</li>
+        <li><span class="ok">✓</span> standards 字段引用精确标准版本</li>
+        <li><span class="warn">!</span> 避免与现有 Agent 名称冲突</li>
+        <li><span class="warn">!</span> 安全关键 Agent 需 ASIL 级别声明</li>
+        <li><span class="warn">!</span> workflows 步骤不宜超过 10 个</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="arrow"><span class="tip">▼</span></div>
+
+<!-- ══════════ PHASE 3: CREATE SKILL ══════════ -->
+<div class="phase ph-skill">
+  <span class="phase-label">③-B 创建自定义 Skill</span>
+  <div class="steps" style="margin-bottom:14px;">
+    <div class="step">
+      <div class="step-num sn-skill">1</div>
+      <div class="step-title">新建目录</div>
+      <div class="step-desc">在 skills/ 下以 automotive- 前缀命名</div>
+    </div>
+    <div class="step">
+      <div class="step-num sn-skill">2</div>
+      <div class="step-title">编写知识</div>
+      <div class="step-desc">创建 Markdown 格式的核心知识文档</div>
+    </div>
+    <div class="step">
+      <div class="step-num sn-skill">3</div>
+      <div class="step-title">添加示例</div>
+      <div class="step-desc">提供代码模板和最佳实践示例</div>
+    </div>
+    <div class="step">
+      <div class="step-num sn-skill">4</div>
+      <div class="step-title">编写 SKILL.md</div>
+      <div class="step-desc">添加元数据：版本/适用标准/触发词</div>
+    </div>
+    <div class="step">
+      <div class="step-num sn-skill">5</div>
+      <div class="step-title">引用验证</div>
+      <div class="step-desc">确保 Agent 中 skills_used 路径正确</div>
+    </div>
+  </div>
+  <div class="nodes">
+    <div class="node" style="flex:2;">
+      <div class="node-title" style="color:#f0883e;">📄 Skill 文档结构模板</div>
+      <div class="node-code"># skills/automotive-my-skill/core-knowledge.md
+
+# My Automotive Skill — 核心知识
+
+## 概述
+此 Skill 提供 [专业领域] 的专业知识库。
+适用场景: [具体使用场景]
+相关标准: [ISO/AUTOSAR 等]
+
+---
+
+## 核心技术要点
+
+### 1. [技术要点1]
+详细技术说明...
+
+代码示例:
+```c
+/* @ASIL{B} */
+/* @req MY-SPEC-001 */
+void MyFunction(const MyParam_Type* param) {
+    /* MISRA C:2012 Rule 15.5 compliant */
+    if (NULL != param) {
+        /* 实现逻辑 */
+    }
+}
+```
+
+### 2. [技术要点2]
+...
+
+---
+
+## 最佳实践
+1. 实践1 — 说明原因
+2. 实践2 — 示例代码
+
+## 常见错误
+| 错误 | 原因 | 解决方案 |
+|------|------|---------|
+| 错误1 | 原因1 | 方案1 |
+
+## 参考标准
+- [ISO 26262-6:2018 §8.4.4]
+- [MISRA C:2012 Rule 17.2]</div>
+    </div>
+    <div class="node">
+      <div class="node-title" style="color:#f0883e;">📁 Skill 目录结构</div>
+      <div class="tree">
+<span class="d">skills/</span>
+└── <span class="d">automotive-my-skill/</span>
+    ├── <span class="f">SKILL.md</span>         ← 元数据
+    ├── <span class="f">core-knowledge.md</span> ← 核心知识
+    ├── <span class="f">code-templates.md</span> ← 代码模板
+    ├── <span class="f">best-practices.md</span> ← 最佳实践
+    └── <span class="f">examples/</span>         ← 使用示例
+</div>
+      <div class="node-code" style="margin-top:8px;"># SKILL.md 元数据示例
+name: automotive-my-skill
+version: "1.0.0"
+description: |
+  提供 [领域] 专业知识
+standards:
+  - "ISO 26262:2018"
+triggers:
+  - "[触发关键词1]"
+  - "[触发关键词2]"</div>
+    </div>
+  </div>
+</div>
+
+<div class="arrow"><span class="tip">▼</span></div>
+
+<!-- ══════════ PHASE 4: CREATE RULE ══════════ -->
+<div class="phase ph-rule">
+  <span class="phase-label">③-C 创建自定义 Rule（规则约束）</span>
+  <div class="steps" style="margin-bottom:14px;">
+    <div class="step">
+      <div class="step-num sn-rule">1</div>
+      <div class="step-title">选择分类</div>
+      <div class="step-desc">选择 coding / safety / security / testing 规则目录</div>
+    </div>
+    <div class="step">
+      <div class="step-num sn-rule">2</div>
+      <div class="step-title">编写规则</div>
+      <div class="step-desc">Markdown 格式，逐条列出强制约束</div>
+    </div>
+    <div class="step">
+      <div class="step-num sn-rule">3</div>
+      <div class="step-title">写偏差处理</div>
+      <div class="step-desc">说明如何合理偏差及审批流程</div>
+    </div>
+    <div class="step">
+      <div class="step-num sn-rule">4</div>
+      <div class="step-title">配置注入</div>
+      <div class="step-desc">在 CLAUDE.md 中引用使其自动加载</div>
+    </div>
+  </div>
+  <div class="nodes">
+    <div class="node" style="flex:2;">
+      <div class="node-title" style="color:#ff7b72;">📄 Rule 文档模板</div>
+      <div class="node-code"># rules/coding-standards/my-company-coding.md
+# 公司内部编码规范 v1.0
+
+## 适用范围
+- 所有 ASIL-B 及以上等级的 C/C++ 代码
+- 适用标准: MISRA C:2012 + 公司扩展规则
+
+---
+
+## 强制规则（违反即阻断提交）
+
+### MY-C-001: 函数长度限制
+❌ 禁止: 单函数超过 60 行代码
+✅ 要求: 超过时必须拆分为子函数
+原因: 可读性与可测试性
+
+### MY-C-002: 命名规范
+✅ 全局变量: g_<模块名>_<变量名>
+✅ 静态变量: s_<变量名>
+✅ 宏定义:   MY_MACRO_NAME (全大写)
+✅ 函数名:   ModuleName_FunctionName
+
+### MY-C-003: ASIL 注释
+✅ 所有 ASIL-B+ 函数顶部必须注释:
+   /* @ASIL{B} */
+   /* @req [需求编号] */
+   /* @wcet [最坏执行时间] */
+
+---
+
+## 建议规则（警告但不阻断）
+
+### MY-C-010: 注释语言
+推荐使用英文注释（方便国际协作）
+
+---
+
+## 偏差处理
+若必须偏离以上规则，需：
+1. 添加 DEVIATION 注释块
+2. 说明偏离原因
+3. 获得安全团队审批
+
+/* DEVIATION: MY-C-001
+   Reason: [原因]
+   Approval: Safety Lead, [日期] */</div>
+    </div>
+    <div class="node">
+      <div class="node-title" style="color:#ff7b72;">📁 规则目录分类</div>
+      <div class="tree">
+<span class="d">rules/</span>
+├── <span class="d">coding-standards/</span>  ← 编码规范
+│   ├── <span class="r">misra-c-2012.md</span>
+│   ├── <span class="r">autosar-cpp14.md</span>
+│   └── <span class="r">my-company-coding.md</span> ← 新增
+├── <span class="d">safety-standards/</span>  ← 安全规范
+│   └── <span class="r">my-asil-rules.md</span>    ← 新增
+├── <span class="d">security-standards/</span>← 安全规范
+├── <span class="d">testing-standards/</span> ← 测试规范
+├── <span class="d">process-standards/</span> ← 流程规范
+└── <span class="d">china-standards/</span>   ← 中国国标
+</div>
+      <div class="highlight hl-orange" style="margin-top:10px;">
+        ⚡ 在项目 <strong>CLAUDE.md</strong> 中配置自动加载：<br><br>
+        <code style="font-size:10px;background:#0d1117;padding:2px 6px;border-radius:4px;">
+        ## 编码规范<br>
+        - 规则文件: rules/coding-standards/my-company-coding.md<br>
+        - 严格模式: 强制执行 MY-C-001 至 MY-C-003
+        </code>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="arrow"><span class="tip">▼</span></div>
+
+<!-- ══════════ PHASE 5: CREATE COMMAND ══════════ -->
+<div class="phase ph-cmd">
+  <span class="phase-label">③-D 创建自定义 Command（斜线命令）</span>
+  <div class="steps" style="margin-bottom:14px;">
+    <div class="step">
+      <div class="step-num sn-cmd">1</div>
+      <div class="step-title">命名命令</div>
+      <div class="step-desc">/automotive-[领域]-[动作]</div>
+    </div>
+    <div class="step">
+      <div class="step-num sn-cmd">2</div>
+      <div class="step-title">创建 .md 文件</div>
+      <div class="step-desc">在 commands/[目录]/ 下创建 Markdown</div>
+    </div>
+    <div class="step">
+      <div class="step-num sn-cmd">3</div>
+      <div class="step-title">定义参数</div>
+      <div class="step-desc">说明支持的参数与默认值</div>
+    </div>
+    <div class="step">
+      <div class="step-num sn-cmd">4</div>
+      <div class="step-title">描述行为</div>
+      <div class="step-desc">用步骤列表说明 Agent 执行逻辑</div>
+    </div>
+    <div class="step">
+      <div class="step-num sn-cmd">5</div>
+      <div class="step-title">写使用示例</div>
+      <div class="step-desc">提供 2-3 个真实调用示例</div>
+    </div>
+  </div>
+  <div class="nodes">
+    <div class="node" style="flex:2;">
+      <div class="node-title" style="color:#39d5c4;">📄 Command 文档模板</div>
+      <div class="node-code"># /automotive-my-domain-analyze
+# 在 commands/my-domain/my-analyze.md 中创建
+
+## 功能描述
+对 [特定目标] 执行 [专业分析类型]，
+输出符合 [相关标准] 的分析报告。
+
+## 参数说明
+| 参数 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `--target` | 文件路径 | 当前文件 | 分析目标 |
+| `--level` | basic/full | full | 分析深度 |
+| `--standard` | 字符串 | ISO26262 | 参考标准 |
+| `--output` | 文件路径 | stdout | 输出位置 |
+
+## 使用示例
+
+### 示例1: 基本分析
+```
+/automotive-my-domain-analyze --target src/my_ecu.c
+```
+
+### 示例2: 完整报告
+```
+/automotive-my-domain-analyze \
+  --target src/ \
+  --level full \
+  --standard ISO26262 \
+  --output reports/my-analysis.md
+```
+
+## Agent 执行流程
+激活后，按以下步骤执行：
+1. 读取并解析目标文件
+2. 激活相关 Skills (automotive-my-skill)
+3. 应用规则约束 (rules/my-rules)
+4. 执行专业分析算法
+5. 生成结构化报告
+6. 验证输出符合标准要求
+
+## 输出格式
+```
+MY-DOMAIN 分析报告
+==================
+文件: [目标文件]
+标准: [参考标准]
+
+[分析结果内容]
+
+✅ 通过: [通过项]
+⚠ 警告: [警告项]
+❌ 错误: [错误项]
+```</div>
+    </div>
+    <div class="node">
+      <div class="node-title" style="color:#39d5c4;">📁 命令目录结构</div>
+      <div class="tree">
+<span class="d">commands/</span>
+├── <span class="d">general/</span>      ← 通用命令
+├── <span class="d">safety/</span>       ← 安全命令
+├── <span class="d">security/</span>     ← 网络安全命令
+├── <span class="d">diagnostics/</span>  ← 诊断命令
+├── <span class="d">my-domain/</span>    ← 新建目录
+│   ├── <span class="c">my-analyze.md</span> ← 新命令
+│   └── <span class="c">my-generate.md</span>← 新命令
+└── ...
+</div>
+      <div class="highlight hl-blue" style="margin-top:10px;">
+        💡 命名规范：<br>
+        <code style="font-size:10px;">/automotive-[领域]-[动词]-[目标]</code><br><br>
+        好的命名示例：<br>
+        <code style="font-size:10px;">/automotive-battery-analyze-soc</code><br>
+        <code style="font-size:10px;">/automotive-my-domain-generate-report</code>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="arrow"><span class="tip">▼</span></div>
+
+<!-- ══════════ PHASE 6: INSTALL ══════════ -->
+<div class="phase ph-install">
+  <span class="phase-label">④ 安装部署到 Claude Code</span>
+  <div class="nodes">
+
+    <div class="node" data-tip="install.sh 追加安装模式&#10;绝不覆盖已有配置&#10;使用 automotive- 前缀命名空间">
+      <span class="node-icon">⬇️</span>
+      <div class="node-title" style="color:#e3b341;">方式1: 完整安装（含自定义）</div>
+      <div class="node-code">./install.sh</div>
+      <div class="node-body" style="margin-top:6px;">自动扫描所有 agents/ skills/ commands/ rules/ 目录并安装到 ~/.claude/</div>
+    </div>
+
+    <div class="node" data-tip="--include-custom 参数&#10;仅安装指定目录中的新增内容&#10;适合增量更新场景">
+      <span class="node-icon">📦</span>
+      <div class="node-title" style="color:#e3b341;">方式2: 指定目录安装</div>
+      <div class="node-code"># 安装指定 agent 目录
+./install.sh \
+  --include-custom agents/my-domain/
+
+# 安装指定 skill
+./install.sh \
+  --include-custom skills/automotive-my-skill/
+
+# 安装到指定项目
+./install.sh \
+  --project /path/to/my/project</div>
+    </div>
+
+    <div class="node" data-tip="--dry-run 预览模式&#10;不实际安装&#10;只显示将要安装的内容">
+      <span class="node-icon">👁️</span>
+      <div class="node-title" style="color:#e3b341;">方式3: 预览模式（推荐先运行）</div>
+      <div class="node-code"># 预览将要安装的内容（不实际安装）
+./install.sh --dry-run
+
+# 检查安装状态
+./install.sh --status
+
+# 如需回滚，卸载自定义内容
+./install.sh --uninstall \
+  --custom-only</div>
+    </div>
+
+    <div class="node">
+      <span class="node-icon">📂</span>
+      <div class="node-title" style="color:#e3b341;">安装目标路径</div>
+      <div class="tree">
+<span class="d">~/.claude/</span>           ← 安装根目录
+├── <span class="d">agents/</span>
+│   └── <span class="d">automotive-my-domain/</span>
+├── <span class="d">commands/</span>
+│   └── <span class="d">automotive-my-domain/</span>
+├── <span class="d">skills/</span>
+│   └── <span class="d">automotive-my-skill/</span>
+└── <span class="d">rules/</span>
+    └── <span class="d">my-coding-rules/</span>
+</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="arrow"><span class="tip">▼</span></div>
+
+<!-- ══════════ PHASE 7: VALIDATE ══════════ -->
+<div class="phase ph-valid">
+  <span class="phase-label">⑤ 验证与测试</span>
+  <div class="steps" style="margin-bottom:14px;">
+    <div class="step">
+      <div class="step-num sn-val">1</div>
+      <div class="step-title">Schema 验证</div>
+      <div class="step-desc">Python 脚本检查 YAML 格式合规</div>
+    </div>
+    <div class="step">
+      <div class="step-num sn-val">2</div>
+      <div class="step-title">功能测试</div>
+      <div class="step-desc">在 Claude Code 中调用新命令验证</div>
+    </div>
+    <div class="step">
+      <div class="step-num sn-val">3</div>
+      <div class="step-title">代码质量</div>
+      <div class="step-desc">make lint + make test 通过</div>
+    </div>
+    <div class="step">
+      <div class="step-num sn-val">4</div>
+      <div class="step-title">合规审查</div>
+      <div class="step-desc">安全关键 Agent 需 Safety Review</div>
+    </div>
+    <div class="step">
+      <div class="step-num sn-val">5</div>
+      <div class="step-title">提交贡献</div>
+      <div class="step-desc">可选: 提 PR 贡献到主仓库</div>
+    </div>
+  </div>
+  <div class="nodes">
+
+    <div class="node" style="flex:2;">
+      <div class="node-title" style="color:#f778ba;">🔬 验证命令集</div>
+      <div class="node-code"># 1. YAML Schema 格式验证
+python scripts/validate-schema.py \
+  agents/my-domain/my-agent.yaml
+
+# 2. 批量验证所有自定义资产
+python scripts/validate-schema.py \
+  --dir agents/my-domain/ \
+  --dir skills/automotive-my-skill/
+
+# 3. 代码格式化
+make format
+
+# 4. Lint 检查（MISRA + Ruff）
+make lint
+
+# 5. 运行测试套件
+make test
+
+# 6. 检查安装状态
+./install.sh --status
+
+# 7. 在 Claude Code 中验证
+# 打开 Claude Code，输入：
+# /automotive-my-domain-analyze --target test.c</div>
+    </div>
+
+    <div class="node">
+      <div class="node-title" style="color:#f778ba;">✅ 验收清单</div>
+      <ul class="checklist">
+        <li><span class="ok">✓</span> YAML Schema 验证通过</li>
+        <li><span class="ok">✓</span> 命名使用 automotive- 前缀</li>
+        <li><span class="ok">✓</span> skills_used 引用路径存在</li>
+        <li><span class="ok">✓</span> make lint 无错误</li>
+        <li><span class="ok">✓</span> make test 通过 (≥80% 覆盖率)</li>
+        <li><span class="ok">✓</span> Claude Code 可识别新命令</li>
+        <li><span class="ok">✓</span> 提供至少 1 个使用示例</li>
+        <li><span class="warn">!</span> 安全关键 Agent 需 Safety Review</li>
+        <li><span class="warn">!</span> ASIL-D 级需 LLM Council 评审</li>
+      </ul>
+    </div>
+
+    <div class="node">
+      <div class="node-title" style="color:#f778ba;">🚀 提交贡献（可选）</div>
+      <div class="node-code"># 遵循 Conventional Commits 规范
+git add agents/my-domain/
+git add skills/automotive-my-skill/
+
+git commit -m "feat(agents): 添加[领域] Agent
+  - 新增 my-custom-agent.yaml
+  - 支持 [专业功能]
+  - 遵循 ISO 26262 安全规范
+  
+  BREAKING CHANGE: none"
+
+# 推送并提交 Pull Request
+git push origin feat/my-custom-agent
+
+# PR 标题格式:
+# feat: Add [Domain] Agent for [Capability]</div>
+      <div class="tags" style="margin-top:8px;">
+        <span class="tag t-p">Conventional Commits</span>
+        <span class="tag t-p">GitHub PR</span>
+        <span class="tag t-p">Code Review</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="arrow"><span class="tip">▼</span></div>
+
+<!-- ══════════ FINAL: COMPLETE ══════════ -->
+<div style="
+  background: linear-gradient(135deg, #0c1e12, #161b22);
+  border: 1px solid #3fb95044;
+  border-radius: 14px;
+  padding: 20px;
+  text-align: center;
+">
+  <div style="font-size:32px;margin-bottom:10px;">🎉</div>
+  <div style="font-size:16px;font-weight:800;color:#3fb950;margin-bottom:8px;">扩展完成！</div>
+  <div style="font-size:12px;color:var(--text2);max-width:600px;margin:0 auto;line-height:1.8;">
+    您的自定义 Agent / Skill / Rule / Command 已成功集成到<br>
+    Automotive Claude Code Agents 工具包中。<br>
+    在 Claude Code 中即可通过 <code style="background:#0d1117;padding:1px 6px;border-radius:4px;color:#39d5c4;">/automotive-[您的命令]</code> 调用。
+  </div>
+  <div class="tags" style="justify-content:center;margin-top:14px;">
+    <span class="tag t-g">Agent 就绪</span>
+    <span class="tag t-o">Skill 激活</span>
+    <span class="tag t-r">Rule 生效</span>
+    <span class="tag t-c">Command 可用</span>
+    <span class="tag t-b">~/.claude/ 已更新</span>
+  </div>
+</div>
+
+</div><!-- /flow-wrap -->
+
+<!-- ══════════ FOOTER STATS ══════════ -->
+<div class="stat-bar">
+  <div class="stat"><div class="n" style="color:#3fb950;">5步</div><div class="l">创建 Agent</div></div>
+  <div class="stat"><div class="n" style="color:#f0883e;">5步</div><div class="l">创建 Skill</div></div>
+  <div class="stat"><div class="n" style="color:#ff7b72;">4步</div><div class="l">创建 Rule</div></div>
+  <div class="stat"><div class="n" style="color:#39d5c4;">5步</div><div class="l">创建 Command</div></div>
+  <div class="stat"><div class="n" style="color:#e3b341;">3种</div><div class="l">安装方式</div></div>
+  <div class="stat"><div class="n" style="color:#f778ba;">9项</div><div class="l">验收清单</div></div>
+  <div class="stat"><div class="n" style="color:#bc8cff;">automotive-</div><div class="l">必须前缀</div></div>
+</div>
+
+<p style="text-align:center;color:var(--text3);font-size:11px;margin-top:16px;">
+  Automotive Claude Code Agents · 自定义扩展流程指南 · v1.0.0 · 2026-05-13 ·
+  <a href="AUTOMOTIVE_AGENTS_ARCHITECTURE.html" style="color:#58a6ff66;text-decoration:none;">架构总览</a> ·
+  <a href="AUTOMOTIVE_AGENTS_REFERENCE.md" style="color:#58a6ff66;text-decoration:none;">详细说明书</a> ·
+  <a href="AUTOMOTIVE_AGENTS_TUTORIAL.md" style="color:#58a6ff66;text-decoration:none;">使用教程</a>
+</p>
+
+</body>
+</html>

@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Automotive Claude Code Agents — 架构图</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #1f2937;
+    --border: #30363d;
+    --accent-blue: #58a6ff;
+    --accent-purple: #bc8cff;
+    --accent-green: #3fb950;
+    --accent-orange: #f0883e;
+    --accent-red: #ff7b72;
+    --accent-cyan: #39d5c4;
+    --accent-yellow: #e3b341;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --text-muted: #484f58;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
+    min-height: 100vh;
+    padding: 24px;
+  }
+
+  /* ── Header ── */
+  .header {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+  .header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #58a6ff 0%, #bc8cff 50%, #3fb950 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .header .subtitle {
+    color: var(--text-secondary);
+    font-size: 13px;
+  }
+  .header .badges {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+  .badge {
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  .badge-blue   { background: rgba(88,166,255,.15); color: #58a6ff; border: 1px solid rgba(88,166,255,.3); }
+  .badge-purple { background: rgba(188,140,255,.15); color: #bc8cff; border: 1px solid rgba(188,140,255,.3); }
+  .badge-green  { background: rgba(63,185,80,.15);  color: #3fb950; border: 1px solid rgba(63,185,80,.3); }
+  .badge-orange { background: rgba(240,136,62,.15); color: #f0883e; border: 1px solid rgba(240,136,62,.3); }
+  .badge-cyan   { background: rgba(57,213,196,.15); color: #39d5c4; border: 1px solid rgba(57,213,196,.3); }
+
+  /* ── Architecture Canvas ── */
+  .arch-canvas {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* ── Layer Block ── */
+  .layer {
+    position: relative;
+    border-radius: 12px;
+    padding: 18px 20px 16px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .layer + .layer { margin-top: 0; }
+
+  .layer-label {
+    position: absolute;
+    top: -11px;
+    left: 20px;
+    padding: 2px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ── Arrow between layers ── */
+  .arrow-down {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    position: relative;
+  }
+  .arrow-down::before {
+    content: '';
+    width: 2px;
+    height: 20px;
+    background: linear-gradient(to bottom, var(--border), #58a6ff55);
+    display: block;
+  }
+  .arrow-down::after {
+    content: '▼';
+    position: absolute;
+    bottom: 0;
+    font-size: 10px;
+    color: #58a6ff88;
+  }
+
+  /* ── Cards inside layers ── */
+  .cards {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: stretch;
+  }
+  .card {
+    flex: 1;
+    min-width: 140px;
+    border-radius: 8px;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    transition: transform .15s, border-color .15s;
+    cursor: default;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+  }
+  .card-title {
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .card-title .icon { font-size: 14px; }
+  .card-desc {
+    font-size: 11px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 8px;
+  }
+  .tag {
+    font-size: 10px;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+
+  /* Layer color themes */
+  .layer-user    { border-color: #58a6ff44; background: linear-gradient(135deg, #0d1c2e 0%, #161b22 100%); }
+  .layer-user    .layer-label  { background: #58a6ff22; color: #58a6ff; border: 1px solid #58a6ff44; }
+  .layer-user    .card:hover   { border-color: #58a6ff88; }
+
+  .layer-core    { border-color: #bc8cff44; background: linear-gradient(135deg, #1a1028 0%, #161b22 100%); }
+  .layer-core    .layer-label  { background: #bc8cff22; color: #bc8cff; border: 1px solid #bc8cff44; }
+  .layer-core    .card:hover   { border-color: #bc8cff88; }
+
+  .layer-orch    { border-color: #f0883e44; background: linear-gradient(135deg, #1e1508 0%, #161b22 100%); }
+  .layer-orch    .layer-label  { background: #f0883e22; color: #f0883e; border: 1px solid #f0883e44; }
+  .layer-orch    .card:hover   { border-color: #f0883e88; }
+
+  .layer-exec    { border-color: #3fb95044; background: linear-gradient(135deg, #0d1e12 0%, #161b22 100%); }
+  .layer-exec    .layer-label  { background: #3fb95022; color: #3fb950; border: 1px solid #3fb95044; }
+  .layer-exec    .card:hover   { border-color: #3fb95088; }
+
+  .layer-domain  { border-color: #39d5c444; background: linear-gradient(135deg, #0a1e1d 0%, #161b22 100%); }
+  .layer-domain  .layer-label  { background: #39d5c422; color: #39d5c4; border: 1px solid #39d5c444; }
+  .layer-domain  .card:hover   { border-color: #39d5c488; }
+
+  .layer-kb      { border-color: #e3b34144; background: linear-gradient(135deg, #1e1808 0%, #161b22 100%); }
+  .layer-kb      .layer-label  { background: #e3b34122; color: #e3b341; border: 1px solid #e3b34144; }
+  .layer-kb      .card:hover   { border-color: #e3b34188; }
+
+  .layer-tools   { border-color: #ff7b7244; background: linear-gradient(135deg, #1e0d0d 0%, #161b22 100%); }
+  .layer-tools   .layer-label  { background: #ff7b7222; color: #ff7b72; border: 1px solid #ff7b7244; }
+  .layer-tools   .card:hover   { border-color: #ff7b7288; }
+
+  /* Tag color helpers */
+  .t-blue   { background: #58a6ff22; color: #58a6ff; border: 1px solid #58a6ff33; }
+  .t-purple { background: #bc8cff22; color: #bc8cff; border: 1px solid #bc8cff33; }
+  .t-green  { background: #3fb95022; color: #3fb950; border: 1px solid #3fb95033; }
+  .t-orange { background: #f0883e22; color: #f0883e; border: 1px solid #f0883e33; }
+  .t-red    { background: #ff7b7222; color: #ff7b72; border: 1px solid #ff7b7233; }
+  .t-cyan   { background: #39d5c422; color: #39d5c4; border: 1px solid #39d5c433; }
+  .t-yellow { background: #e3b34122; color: #e3b341; border: 1px solid #e3b34133; }
+
+  /* ── Domain Grid (many small cards) ── */
+  .domain-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+    gap: 8px;
+  }
+  .domain-card {
+    border-radius: 6px;
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    transition: transform .15s, border-color .15s;
+    cursor: default;
+  }
+  .domain-card:hover { transform: translateY(-2px); border-color: #39d5c488; }
+  .domain-card .dc-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: #39d5c4;
+    margin-bottom: 3px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .domain-card .dc-std {
+    font-size: 10px;
+    color: var(--text-muted);
+  }
+
+  /* ── Standards Row ── */
+  .std-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+  .std-chip {
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 600;
+  }
+
+  /* ── Flow lines in core layer ── */
+  .core-flow {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .flow-arrow {
+    color: var(--text-muted);
+    font-size: 16px;
+    padding: 0 4px;
+  }
+
+  /* ── Info Footer ── */
+  .footer-stats {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 28px;
+    padding: 16px 20px;
+    border-radius: 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+  .stat {
+    text-align: center;
+  }
+  .stat .num {
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1;
+  }
+  .stat .lbl {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 3px;
+  }
+
+  /* ── Tooltip ── */
+  .card[data-tip] { position: relative; }
+  .card[data-tip]:hover::after {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2d333b;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 11px;
+    color: var(--text-primary);
+    white-space: pre-line;
+    min-width: 200px;
+    max-width: 280px;
+    z-index: 99;
+    pointer-events: none;
+    line-height: 1.5;
+    box-shadow: 0 4px 12px rgba(0,0,0,.5);
+  }
+
+  /* ── Scrollbar ── */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+  /* ══ ENHANCED ARROWS ══ */
+  .arrow-labeled {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 16px; height: 54px; position: relative;
+  }
+  .al-side {
+    display: flex; flex-direction: column; gap: 4px; min-width: 180px;
+  }
+  .al-side-right { align-items: flex-end; text-align: right; }
+  .al-flow {
+    display: flex; align-items: center; gap: 5px;
+    font-size: 10px; white-space: nowrap;
+  }
+  .al-flow-icon { font-size: 11px; }
+  .al-flow-text { font-weight: 600; }
+  .al-center {
+    display: flex; flex-direction: column; align-items: center; gap: 2px; flex: 1; padding: 0 12px;
+  }
+  .al-line { width: 2px; height: 16px; background: linear-gradient(to bottom, var(--border), #58a6ff66); margin: 0 auto; }
+  .al-arrow-icon { font-size: 10px; color: #58a6ff88; }
+  .al-tag {
+    font-size: 9px; padding: 1px 7px; border-radius: 8px;
+    background: var(--surface); border: 1px solid var(--border); color: var(--text-muted); white-space: nowrap;
+  }
+  /* bidirectional arrows in core layer */
+  .bidir-row {
+    display: flex; align-items: center; justify-content: center; gap: 4px;
+    margin-top: 10px; padding: 6px 0 2px;
+    border-top: 1px dashed #bc8cff22;
+  }
+  .bidir-node {
+    padding: 3px 10px; border-radius: 6px; font-size: 10px; font-weight: 700;
+    background: #bc8cff18; color: #bc8cff; border: 1px solid #bc8cff33;
+  }
+  .bidir-arrow { color: #bc8cff66; font-size: 15px; padding: 0 2px; }
+  .bidir-label { font-size: 9px; color: var(--text-muted); margin-top: 2px; text-align: center; }
+
+  /* ══ INTERACTION SECTION ══ */
+  .interact-section { max-width: 1400px; margin: 28px auto 0; }
+  .isec-hdr {
+    display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px;
+    padding-bottom: 10px; border-bottom: 1px solid var(--border);
+  }
+  .isec-title { font-size: 18px; font-weight: 700; }
+  .isec-sub { font-size: 12px; color: var(--text-secondary); }
+
+  /* SVG container */
+  .svg-container {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 16px; overflow: hidden; margin-bottom: 20px;
+  }
+  .svg-container svg { width: 100%; display: block; }
+
+  /* Interaction cards */
+  .icard-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 10px;
+  }
+  .icard {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: 13px 15px; transition: border-color .15s, transform .15s;
+  }
+  .icard:hover { border-color: #58a6ff55; transform: translateY(-1px); }
+  .icard-flow {
+    display: flex; align-items: center; gap: 6px; margin-bottom: 7px; flex-wrap: wrap;
+  }
+  .inode {
+    padding: 3px 9px; border-radius: 5px; font-size: 10px; font-weight: 700; white-space: nowrap;
+  }
+  .iarrow-wrap {
+    display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 50px;
+  }
+  .iarrow-line {
+    height: 2px; width: 100%; position: relative;
+    display: flex; align-items: center; justify-content: flex-end;
+  }
+  .iarrow-line::after { content: '▶'; font-size: 7px; }
+  .iarrow-bidir::before { content: '◀'; font-size: 7px; position: absolute; left: 0; }
+  .iarrow-lbl { font-size: 9px; color: var(--text-muted); margin-top: 2px; white-space: nowrap; }
+  .icard-desc { font-size: 11px; color: var(--text-secondary); line-height: 1.5; }
+  .icard-eg { margin-top: 5px; font-size: 10px; color: var(--text-muted); font-family: monospace; }
+
+  /* Legend */
+  .legend-row {
+    display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 16px;
+    padding: 10px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text-secondary); }
+  .legend-line { width: 28px; height: 2px; border-radius: 1px; flex-shrink: 0; }
+  .legend-dash { background: repeating-linear-gradient(90deg,currentColor 0,currentColor 4px,transparent 4px,transparent 8px); }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════ HEADER ════════════════════ -->
+<div class="header">
+  <h1>🚗 Automotive Claude Code Agents</h1>
+  <p class="subtitle">专为汽车软件工程打造的专业级 Claude Code Agent 工具包 — 系统架构图</p>
+  <div class="badges">
+    <span class="badge badge-blue">Claude Code</span>
+    <span class="badge badge-purple">40+ Agents</span>
+    <span class="badge badge-green">200+ Commands</span>
+    <span class="badge badge-orange">75+ Skills</span>
+    <span class="badge badge-cyan">507+ 知识文档</span>
+  </div>
+</div>
+
+<!-- ════════════════════ ARCHITECTURE CANVAS ════════════════════ -->
+<div class="arch-canvas">
+
+  <!-- ① USER INTERFACE LAYER -->
+  <div class="layer layer-user">
+    <span class="layer-label">① 用户接口层 · User Interface</span>
+    <div class="cards">
+      <div class="card" style="flex:3; border-color:#58a6ff44;" data-tip="Claude Code IDE 集成环境&#10;支持 /命令调用 和自然语言对话&#10;项目级 CLAUDE.md 配置">
+        <div class="card-title"><span class="icon">💬</span>Claude Code IDE</div>
+        <div class="card-desc">斜线命令 / 自然语言 / 项目配置 CLAUDE.md</div>
+        <div class="card-tags">
+          <span class="tag t-blue">/ 命令调用</span>
+          <span class="tag t-blue">自然语言对话</span>
+          <span class="tag t-blue">CLAUDE.md</span>
+        </div>
+      </div>
+      <div class="card" data-tip="Git Hooks 自动化检查&#10;pre-commit: MISRA C 静态分析&#10;pre-push: 完整测试套件&#10;pre-merge: ASPICE 合规检查">
+        <div class="card-title"><span class="icon">🔗</span>Git Hooks</div>
+        <div class="card-desc">pre-commit / pre-push / pre-merge / post-deploy</div>
+        <div class="card-tags">
+          <span class="tag t-blue">MISRA 静态检查</span>
+          <span class="tag t-blue">自动合规</span>
+        </div>
+      </div>
+      <div class="card" data-tip="CI/CD 流水线集成&#10;GitHub Actions / GitLab CI&#10;安全注释检查 + 覆盖率验证">
+        <div class="card-title"><span class="icon">⚙️</span>CI/CD Pipeline</div>
+        <div class="card-desc">GitHub Actions / GitLab CI 集成</div>
+        <div class="card-tags">
+          <span class="tag t-blue">自动化测试</span>
+          <span class="tag t-blue">质量门禁</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Arrow ①→② -->
+  <div class="arrow-labeled">
+    <div class="al-side">
+      <div class="al-flow" style="color:#58a6ff99;">
+        <span class="al-flow-icon">▼</span>
+        <span class="al-flow-text" style="color:#58a6ff;">用户请求 / slash命令 / 自然语言</span>
+      </div>
+      <div class="al-flow" style="color:#58a6ff66;font-size:9px;">触发：CLAUDE.md 上下文注入</div>
+    </div>
+    <div class="al-center">
+      <div class="al-line"></div>
+      <div class="al-arrow-icon">▼</div>
+    </div>
+    <div class="al-side al-side-right">
+      <div class="al-flow" style="color:#3fb95099;justify-content:flex-end;">
+        <span class="al-flow-text" style="color:#3fb950;">执行结果 / 生成内容 / 报告</span>
+        <span class="al-flow-icon">▲</span>
+      </div>
+      <div class="al-flow" style="color:#3fb95066;font-size:9px;justify-content:flex-end;">回传：ADR · 代码 · 分析文档</div>
+    </div>
+  </div>
+
+  <!-- ② CORE LAYER -->
+  <div class="layer layer-core">
+    <span class="layer-label">② 核心调度层 · Core Dispatch</span>
+    <div class="cards">
+
+      <div class="card" style="flex:2; border-color:#bc8cff66;" data-tip="LLM Council 多模型协作框架&#10;Claude Opus 4.6 + GPT-5.4 多轮辩论&#10;最多 5 轮达成工程共识&#10;输出架构决策记录 (ADR)&#10;每次约 $0.04–$0.12">
+        <div class="card-title"><span class="icon">⚖️</span>LLM Council</div>
+        <div class="card-desc">Claude Opus 4.6 ⟺ GPT-5.4 多轮辩论 · 最大 5 轮 · 共识阈值 85%</div>
+        <div class="card-tags">
+          <span class="tag t-purple">架构决策 ADR</span>
+          <span class="tag t-purple">ASIL-D 双模型审查</span>
+          <span class="tag t-purple">TARA 多视角</span>
+        </div>
+      </div>
+
+      <div class="card" style="flex:2; border-color:#bc8cff44;" data-tip="Skill Router 任务路由器&#10;11 个汽车领域智能识别&#10;AUTOSAR / ADAS / Battery / Security&#10;Diagnostics / Powertrain / V2X...">
+        <div class="card-title"><span class="icon">🔀</span>Skill Router</div>
+        <div class="card-desc">11 领域任务智能路由 · 自动匹配最优 Agent + Skill 组合</div>
+        <div class="card-tags">
+          <span class="tag t-purple">AUTOSAR</span>
+          <span class="tag t-purple">Safety</span>
+          <span class="tag t-purple">ADAS</span>
+          <span class="tag t-purple">Battery</span>
+          <span class="tag t-purple">Security</span>
+        </div>
+      </div>
+
+      <div class="card" style="flex:2; border-color:#bc8cff44;" data-tip="Tool Adapter 工具适配层&#10;300+ 汽车工具统一抽象接口&#10;商业工具 ↔ 开源工具无缝切换&#10;年节约成本估算 $310,000">
+        <div class="card-title"><span class="icon">🔧</span>Tool Adapter</div>
+        <div class="card-desc">商业 ↔ 开源工具统一接口 · 300+ 工具 · 年节约 $310K</div>
+        <div class="card-tags">
+          <span class="tag t-purple">CANoe → python-can</span>
+          <span class="tag t-purple">MATLAB → Scilab</span>
+          <span class="tag t-purple">dSPACE → CARMaker</span>
+        </div>
+      </div>
+
+    </div>
+    <!-- Core 层内部双向通信 -->
+    <div class="bidir-row">
+      <span class="bidir-node">⚖️ LLM Council</span>
+      <span class="bidir-arrow">⟺</span>
+      <div style="display:flex;flex-direction:column;align-items:center;">
+        <span class="bidir-node">🔀 Skill Router</span>
+        <span class="bidir-label">协作路由决策</span>
+      </div>
+      <span class="bidir-arrow">⟺</span>
+      <span class="bidir-node">🔧 Tool Adapter</span>
+      <span style="font-size:9px;color:var(--text-muted);margin-left:8px;">← 同层双向通信：任务分析 · 领域识别 · 工具匹配 →</span>
+    </div>
+  </div>
+
+  <!-- Arrow ②→③ -->
+  <div class="arrow-labeled">
+    <div class="al-side">
+      <div class="al-flow" style="color:#bc8cff99;">
+        <span class="al-flow-icon">▼</span>
+        <span class="al-flow-text" style="color:#bc8cff;">编排模式选择 / 任务调度分发</span>
+      </div>
+      <div class="al-flow" style="color:#bc8cff55;font-size:9px;">Skill Router → 最优编排策略</div>
+    </div>
+    <div class="al-center">
+      <div class="al-line" style="background:linear-gradient(to bottom,var(--border),#bc8cff55);"></div>
+      <div class="al-arrow-icon" style="color:#bc8cff88;">▼</div>
+    </div>
+    <div class="al-side al-side-right">
+      <div class="al-flow" style="color:#f0883e88;justify-content:flex-end;">
+        <span class="al-flow-text" style="color:#f0883e;">执行状态 / 模式完成反馈</span>
+        <span class="al-flow-icon">▲</span>
+      </div>
+      <div class="al-flow" style="color:#f0883e55;font-size:9px;justify-content:flex-end;">回传：进度 · 中间结果 · 异常</div>
+    </div>
+  </div>
+
+  <!-- ③ ORCHESTRATION LAYER -->
+  <div class="layer layer-orch">
+    <span class="layer-label">③ 编排层 · Orchestration (41 模式)</span>
+    <div class="cards">
+      <div class="card" data-tip="自适应调试模式&#10;动态调整调试策略&#10;根据错误类型选择最优 Agent">
+        <div class="card-title"><span class="icon">🔄</span>自适应调试</div>
+        <div class="card-desc">adaptive-orchestrator<br>动态调整策略</div>
+      </div>
+      <div class="card" data-tip="任务竞标模式&#10;多 Agent 并行竞标任务&#10;按能力最优分配">
+        <div class="card-title"><span class="icon">🏆</span>任务竞标</div>
+        <div class="card-desc">auction-based<br>并行任务分配</div>
+      </div>
+      <div class="card" data-tip="变更传播模式&#10;跨模块变更影响分析&#10;自动更新关联文档">
+        <div class="card-title"><span class="icon">📡</span>变更传播</div>
+        <div class="card-desc">change-propagator<br>影响域分析</div>
+      </div>
+      <div class="card" data-tip="合规审计模式&#10;多标准并行合规检查&#10;ISO 26262 + ISO 21434 同步审计">
+        <div class="card-title"><span class="icon">✅</span>合规审计</div>
+        <div class="card-desc">compliance-auditor<br>多标准并行检查</div>
+      </div>
+      <div class="card" data-tip="专家委员会模式&#10;多领域专家联合会审&#10;安全+网络安全+AUTOSAR 协同">
+        <div class="card-title"><span class="icon">👥</span>专家委员会</div>
+        <div class="card-desc">expert-panel<br>多领域联合会审</div>
+      </div>
+      <div class="card" data-tip="并行分析模式&#10;多维度同时分析&#10;时间效率最大化">
+        <div class="card-title"><span class="icon">⚡</span>并行分析</div>
+        <div class="card-desc">parallel-analyzer<br>多维度同时进行</div>
+      </div>
+      <div class="card" data-tip="渐进式改进模式&#10;迭代优化代码质量&#10;每轮聚焦一个改进点">
+        <div class="card-title"><span class="icon">📈</span>渐进改进</div>
+        <div class="card-desc">incremental-refiner<br>迭代质量优化</div>
+      </div>
+      <div class="card" data-tip="知识综合模式&#10;跨文档知识融合&#10;生成综合分析报告">
+        <div class="card-title"><span class="icon">🧠</span>知识综合</div>
+        <div class="card-desc">knowledge-synthesizer<br>跨文档融合</div>
+      </div>
+      <div class="card" style="border: 1px dashed #f0883e55; background: #1a140a;">
+        <div class="card-title" style="color:#f0883e88;"><span class="icon">➕</span>+ 33 模式</div>
+        <div class="card-desc" style="color:var(--text-muted);">context-compressor<br>collaborative-editing<br>及更多...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Arrow ③→④ -->
+  <div class="arrow-labeled">
+    <div class="al-side">
+      <div class="al-flow" style="color:#f0883e99;">
+        <span class="al-flow-icon">▼</span>
+        <span class="al-flow-text" style="color:#f0883e;">多Agent并行调度 / 编排指令下发</span>
+      </div>
+      <div class="al-flow" style="color:#f0883e55;font-size:9px;">Orchestration → 指定Agent执行子任务</div>
+    </div>
+    <div class="al-center">
+      <div class="al-line" style="background:linear-gradient(to bottom,var(--border),#f0883e55);"></div>
+      <div class="al-arrow-icon" style="color:#f0883e88;">▼</div>
+    </div>
+    <div class="al-side al-side-right">
+      <div class="al-flow" style="color:#3fb95088;justify-content:flex-end;">
+        <span class="al-flow-text" style="color:#3fb950;">子任务结果 / 决策上报</span>
+        <span class="al-flow-icon">▲</span>
+      </div>
+      <div class="al-flow" style="color:#3fb95055;font-size:9px;justify-content:flex-end;">复杂决策 → LLM Council 仲裁</div>
+    </div>
+  </div>
+
+  <!-- ④ EXECUTION LAYER: Agents + Commands + Skills -->
+  <div class="layer layer-exec">
+    <span class="layer-label">④ 执行层 · Execution (Agents · Commands · Skills)</span>
+    <div class="cards">
+
+      <!-- Agents Column -->
+      <div class="card" style="flex:1; min-width:200px; border-color:#3fb95055;">
+        <div class="card-title" style="color:#3fb950;"><span class="icon">🤖</span>Agents（40+）</div>
+        <div class="card-desc" style="margin-bottom:8px;">具备领域专业知识的智能体<br>定义角色·职责·工作流</div>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;align-items:center;gap:6px;font-size:10px;">
+            <span style="width:8px;height:8px;border-radius:50%;background:#3fb950;flex-shrink:0;"></span>
+            <span style="color:#3fb950;font-weight:600;">core/</span>
+            <span style="color:var(--text-muted);">LLM Council · Router · Adapter</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;font-size:10px;">
+            <span style="width:8px;height:8px;border-radius:50%;background:#58a6ff;flex-shrink:0;"></span>
+            <span style="color:#58a6ff;font-weight:600;">orchestration/</span>
+            <span style="color:var(--text-muted);">41 种编排模式</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;font-size:10px;">
+            <span style="width:8px;height:8px;border-radius:50%;background:#bc8cff;flex-shrink:0;"></span>
+            <span style="color:#bc8cff;font-weight:600;">27 领域 Agent</span>
+            <span style="color:var(--text-muted);">safety·cyber·adas…</span>
+          </div>
+        </div>
+        <div class="card-tags" style="margin-top:10px;">
+          <span class="tag t-green">YAML 配置</span>
+          <span class="tag t-green">工作流驱动</span>
+        </div>
+      </div>
+
+      <!-- Commands Column -->
+      <div class="card" style="flex:1; min-width:200px; border-color:#3fb95055;">
+        <div class="card-title" style="color:#3fb950;"><span class="icon">⚡</span>Commands（200+）</div>
+        <div class="card-desc" style="margin-bottom:8px;">可直接调用的预定义命令<br>封装完整执行逻辑</div>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="font-size:10px;color:var(--text-secondary);font-family:monospace;background:#0d1117;padding:2px 6px;border-radius:4px;">/automotive-safety-hara</div>
+          <div style="font-size:10px;color:var(--text-secondary);font-family:monospace;background:#0d1117;padding:2px 6px;border-radius:4px;">/automotive-sec-tara</div>
+          <div style="font-size:10px;color:var(--text-secondary);font-family:monospace;background:#0d1117;padding:2px 6px;border-radius:4px;">/automotive-diag-uds</div>
+          <div style="font-size:10px;color:var(--text-secondary);font-family:monospace;background:#0d1117;padding:2px 6px;border-radius:4px;">/automotive-autosar-classic</div>
+          <div style="font-size:10px;color:var(--text-secondary);font-family:monospace;background:#0d1117;padding:2px 6px;border-radius:4px;">/automotive-test-unit</div>
+        </div>
+        <div class="card-tags" style="margin-top:10px;">
+          <span class="tag t-green">40+ 目录</span>
+          <span class="tag t-green">参数化调用</span>
+        </div>
+      </div>
+
+      <!-- Skills Column -->
+      <div class="card" style="flex:1; min-width:200px; border-color:#3fb95055;">
+        <div class="card-title" style="color:#3fb950;"><span class="icon">🎯</span>Skills（75+）</div>
+        <div class="card-desc" style="margin-bottom:8px;">细粒度专业知识单元<br>封装最佳实践和代码模板</div>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;align-items:center;gap:6px;font-size:10px;">
+            <span style="color:#ff7b72;font-weight:600;">automotive-cybersecurity/</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;font-size:10px;">
+            <span style="color:#39d5c4;font-weight:600;">automotive-diagnostics/</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;font-size:10px;">
+            <span style="color:#58a6ff;font-weight:600;">automotive-adas/</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;font-size:10px;">
+            <span style="color:#bc8cff;font-weight:600;">automotive-hpc/</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;font-size:10px;">
+            <span style="color:#e3b341;font-weight:600;">automotive-china-*-compliance/</span>
+          </div>
+        </div>
+        <div class="card-tags" style="margin-top:10px;">
+          <span class="tag t-green">Markdown 格式</span>
+          <span class="tag t-green">代码模板</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Arrow ④→⑤ -->
+  <div class="arrow-labeled">
+    <div class="al-side">
+      <div class="al-flow" style="color:#3fb95099;">
+        <span class="al-flow-icon">▼</span>
+        <span class="al-flow-text" style="color:#3fb950;">领域能力调用 / Agent专业化分工</span>
+      </div>
+      <div class="al-flow" style="color:#3fb95055;font-size:9px;">Commands/Skills → 触发领域专家Agent</div>
+    </div>
+    <div class="al-center">
+      <div class="al-line" style="background:linear-gradient(to bottom,var(--border),#3fb95055);"></div>
+      <div class="al-arrow-icon" style="color:#3fb95088;">▼</div>
+    </div>
+    <div class="al-side al-side-right">
+      <div class="al-flow" style="color:#39d5c488;justify-content:flex-end;">
+        <span class="al-flow-text" style="color:#39d5c4;">领域知识能力 / 标准合规输出</span>
+        <span class="al-flow-icon">▲</span>
+      </div>
+      <div class="al-flow" style="color:#39d5c455;font-size:9px;justify-content:flex-end;">HARA·TARA·UDS报告 → 执行层组装</div>
+    </div>
+  </div>
+
+  <!-- ⑤ DOMAIN LAYER -->
+  <div class="layer layer-domain">
+    <span class="layer-label">⑤ 领域覆盖 · Domain Coverage (27 专业领域)</span>
+    <div class="domain-grid">
+      <div class="domain-card"><div class="dc-title">🛡️ 功能安全</div><div class="dc-std">ISO 26262 · ASIL-D</div></div>
+      <div class="domain-card"><div class="dc-title">🔐 网络安全</div><div class="dc-std">ISO 21434 · UN R155</div></div>
+      <div class="domain-card"><div class="dc-title">🚗 ADAS 感知</div><div class="dc-std">SOTIF · ROS 2</div></div>
+      <div class="domain-card"><div class="dc-title">🔋 电池管理</div><div class="dc-std">BMS · UN 38.3</div></div>
+      <div class="domain-card"><div class="dc-title">🩺 车辆诊断</div><div class="dc-std">UDS · OBD-II · DoIP</div></div>
+      <div class="domain-card"><div class="dc-title">📐 AUTOSAR</div><div class="dc-std">Classic · Adaptive</div></div>
+      <div class="domain-card"><div class="dc-title">⚡ QNX RTOS</div><div class="dc-std">实时任务 · IPC</div></div>
+      <div class="domain-card"><div class="dc-title">🧠 AI ECU</div><div class="dc-std">NPU · TensorRT</div></div>
+      <div class="domain-card"><div class="dc-title">🖥️ HPC 平台</div><div class="dc-std">ARM · RISC-V · Hypervisor</div></div>
+      <div class="domain-card"><div class="dc-title">🚦 SOTIF</div><div class="dc-std">ISO 21448 · KPL</div></div>
+      <div class="domain-card"><div class="dc-title">📡 V2X 通信</div><div class="dc-std">DSRC · C-V2X · 5G</div></div>
+      <div class="domain-card"><div class="dc-title">☁️ 云端/OTA</div><div class="dc-std">UN R156 · TLS</div></div>
+      <div class="domain-card"><div class="dc-title">🧪 HIL/SIL</div><div class="dc-std">dSPACE · CARMaker</div></div>
+      <div class="domain-card"><div class="dc-title">📊 MBD</div><div class="dc-std">MATLAB/Simulink</div></div>
+      <div class="domain-card"><div class="dc-title">🏎️ 动力底盘</div><div class="dc-std">ECU · ABS · ESC</div></div>
+      <div class="domain-card"><div class="dc-title">🛋️ 智能座舱</div><div class="dc-std">HMI · IVI · Android</div></div>
+      <div class="domain-card"><div class="dc-title">⚡ 电驱系统</div><div class="dc-std">FOC · 充电管理</div></div>
+      <div class="domain-card"><div class="dc-title">🤖 ML 分析</div><div class="dc-std">预测维护 · 异常检测</div></div>
+      <div class="domain-card"><div class="dc-title">☸️ Kubernetes</div><div class="dc-std">容器化 · Helm</div></div>
+      <div class="domain-card"><div class="dc-title">🇨🇳 中国合规</div><div class="dc-std">GB/T · CATARC</div></div>
+      <div class="domain-card"><div class="dc-title">🏗️ SDV 平台</div><div class="dc-std">软件定义汽车</div></div>
+      <div class="domain-card"><div class="dc-title">🔌 区域架构</div><div class="dc-std">Zonal ECU · 以太网</div></div>
+      <div class="domain-card"><div class="dc-title">📋 标定</div><div class="dc-std">XCP · A2L · INCA</div></div>
+      <div class="domain-card"><div class="dc-title">🏭 制造</div><div class="dc-std">APQP · PPAP · SPC</div></div>
+      <div class="domain-card"><div class="dc-title">📝 产品管理</div><div class="dc-std">需求 · 路线图</div></div>
+      <div class="domain-card"><div class="dc-title">🔧 工具链</div><div class="dc-std">GCC · CMake · Jenkins</div></div>
+      <div class="domain-card"><div class="dc-title">📦 服务层</div><div class="dc-std">SOME/IP · DDS · gRPC</div></div>
+    </div>
+  </div>
+
+  <!-- Arrow ⑤↔⑥ -->
+  <div class="arrow-labeled">
+    <div class="al-side">
+      <div class="al-flow" style="color:#39d5c499;">
+        <span class="al-flow-icon">▼</span>
+        <span class="al-flow-text" style="color:#39d5c4;">领域知识查询 / 标准文档检索</span>
+      </div>
+      <div class="al-flow" style="color:#39d5c455;font-size:9px;">Domain Agent → 拉取对应知识库条目</div>
+    </div>
+    <div class="al-center">
+      <div class="al-line" style="background:linear-gradient(to bottom,var(--border),#e3b34155);"></div>
+      <div class="al-arrow-icon" style="color:#e3b34188;">⇅</div>
+    </div>
+    <div class="al-side al-side-right">
+      <div class="al-flow" style="color:#e3b34188;justify-content:flex-end;">
+        <span class="al-flow-text" style="color:#e3b341;">规则约束注入 / 上下文知识提供</span>
+        <span class="al-flow-icon">▲</span>
+      </div>
+      <div class="al-flow" style="color:#e3b34155;font-size:9px;justify-content:flex-end;">KB主动推送 → Rules强制合规检查</div>
+    </div>
+  </div>
+
+  <!-- ⑥ KNOWLEDGE & RULES LAYER -->
+  <div class="layer layer-kb">
+    <span class="layer-label">⑥ 知识与规则层 · Knowledge &amp; Rules</span>
+    <div class="cards">
+
+      <div class="card" style="flex:3; border-color:#e3b34155;">
+        <div class="card-title" style="color:#e3b341;"><span class="icon">📚</span>Knowledge Base（507+ 文档 · 5级层次）</div>
+        <div class="cards" style="gap:8px;margin-top:8px;">
+          <div style="flex:1;min-width:100px;background:#0d1117;border-radius:6px;padding:8px;border:1px solid #e3b34122;">
+            <div style="font-size:11px;color:#e3b341;font-weight:700;margin-bottom:4px;">📋 Standards</div>
+            <div style="font-size:10px;color:var(--text-muted);">75篇 · ISO/AUTOSAR/ASPICE/UN</div>
+          </div>
+          <div style="flex:1;min-width:100px;background:#0d1117;border-radius:6px;padding:8px;border:1px solid #e3b34122;">
+            <div style="font-size:11px;color:#e3b341;font-weight:700;margin-bottom:4px;">🔬 Technologies</div>
+            <div style="font-size:10px;color:var(--text-muted);">225篇 · OS/协议/中间件/安全</div>
+          </div>
+          <div style="flex:1;min-width:100px;background:#0d1117;border-radius:6px;padding:8px;border:1px solid #e3b34122;">
+            <div style="font-size:11px;color:#e3b341;font-weight:700;margin-bottom:4px;">⚙️ Processes</div>
+            <div style="font-size:10px;color:var(--text-muted);">40篇 · APQP/FMEA/TARA/HAZOP</div>
+          </div>
+          <div style="flex:1;min-width:100px;background:#0d1117;border-radius:6px;padding:8px;border:1px solid #e3b34122;">
+            <div style="font-size:11px;color:#e3b341;font-weight:700;margin-bottom:4px;">🛠️ Tools</div>
+            <div style="font-size:10px;color:var(--text-muted);">167篇 · 300+ 工具文档</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="flex:2; border-color:#e3b34155;">
+        <div class="card-title" style="color:#e3b341;"><span class="icon">📏</span>Rules（37+ 规则文件）</div>
+        <div style="display:flex;flex-direction:column;gap:5px;margin-top:6px;">
+          <div style="display:flex;align-items:center;gap:8px;font-size:11px;">
+            <span style="color:#f0883e;font-weight:600;min-width:90px;">编码规范</span>
+            <span style="color:var(--text-muted);">MISRA C/C++ · AUTOSAR C++14 · CERT-C</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:11px;">
+            <span style="color:#ff7b72;font-weight:600;min-width:90px;">安全标准</span>
+            <span style="color:var(--text-muted);">ISO 26262 · ASPICE L2 · SOTIF</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:11px;">
+            <span style="color:#39d5c4;font-weight:600;min-width:90px;">安全规范</span>
+            <span style="color:var(--text-muted);">ISO 21434 · UN R155 · PKI</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:11px;">
+            <span style="color:#3fb950;font-weight:600;min-width:90px;">测试规范</span>
+            <span style="color:var(--text-muted);">MC/DC · HIL Test · 单元测试</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:11px;">
+            <span style="color:#e3b341;font-weight:600;min-width:90px;">中国标准</span>
+            <span style="color:var(--text-muted);">GB/T L2/L3 · 工信部 · CATARC</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Arrow ⑥↔⑦ -->
+  <div class="arrow-labeled">
+    <div class="al-side">
+      <div class="al-flow" style="color:#e3b34199;">
+        <span class="al-flow-icon">▼</span>
+        <span class="al-flow-text" style="color:#e3b341;">工具调用请求 / 工具参数传递</span>
+      </div>
+      <div class="al-flow" style="color:#e3b34155;font-size:9px;">Tool Adapter → 统一接口适配外部工具</div>
+    </div>
+    <div class="al-center">
+      <div class="al-line" style="background:linear-gradient(to bottom,var(--border),#ff7b7255);"></div>
+      <div class="al-arrow-icon" style="color:#ff7b7288;">⇅</div>
+    </div>
+    <div class="al-side al-side-right">
+      <div class="al-flow" style="color:#ff7b7288;justify-content:flex-end;">
+        <span class="al-flow-text" style="color:#ff7b72;">工具执行结果 / 仿真数据回传</span>
+        <span class="al-flow-icon">▲</span>
+      </div>
+      <div class="al-flow" style="color:#ff7b7255;font-size:9px;justify-content:flex-end;">CANoe波形·Simulink仿真·Polyspace报告</div>
+    </div>
+  </div>
+
+  <!-- ⑦ EXTERNAL TOOLS LAYER -->
+  <div class="layer layer-tools">
+    <span class="layer-label">⑦ 外部工具层 · External Tools (300+)</span>
+    <div class="cards">
+      <div class="card" data-tip="总线分析工具&#10;CANoe / CANalyzer → python-can&#10;cantools / CANdb++">
+        <div class="card-title" style="color:#ff7b72;"><span class="icon">🚌</span>总线分析</div>
+        <div class="card-desc">CANoe · CANalyzer<br>python-can · cantools</div>
+      </div>
+      <div class="card" data-tip="标定工具&#10;ETAS INCA → openMCU&#10;XCP over CAN/ETH · A2L">
+        <div class="card-title" style="color:#ff7b72;"><span class="icon">🎚️</span>标定工具</div>
+        <div class="card-desc">ETAS INCA · HSP<br>XCP · A2L 格式</div>
+      </div>
+      <div class="card" data-tip="HIL 仿真平台&#10;dSPACE HIL → CARMaker&#10;MicroAutoBox · TargetLink">
+        <div class="card-title" style="color:#ff7b72;"><span class="icon">🖥️</span>HIL 仿真</div>
+        <div class="card-desc">dSPACE MicroAutoBox<br>CARMaker · IPG</div>
+      </div>
+      <div class="card" data-tip="模型驱动开发&#10;MATLAB/Simulink → Scilab&#10;TargetLink · Embedded Coder">
+        <div class="card-title" style="color:#ff7b72;"><span class="icon">📐</span>MBD 工具</div>
+        <div class="card-desc">MATLAB/Simulink<br>Scilab · OpenModelica</div>
+      </div>
+      <div class="card" data-tip="自动驾驶仿真&#10;CARLA · Prescan · CarSim&#10;LGSVL · AirSim">
+        <div class="card-title" style="color:#ff7b72;"><span class="icon">🌐</span>自动驾驶仿真</div>
+        <div class="card-desc">CARLA · Prescan<br>CarSim · AirSim</div>
+      </div>
+      <div class="card" data-tip="静态分析工具&#10;Polyspace / LDRA / Coverity&#10;PC-lint · SonarQube">
+        <div class="card-title" style="color:#ff7b72;"><span class="icon">🔍</span>静态分析</div>
+        <div class="card-desc">Polyspace · LDRA<br>PC-lint · Coverity</div>
+      </div>
+      <div class="card" data-tip="云平台集成&#10;AWS IoT · Azure IoT Hub&#10;Kubernetes · Terraform">
+        <div class="card-title" style="color:#ff7b72;"><span class="icon">☁️</span>云平台</div>
+        <div class="card-desc">AWS IoT · Azure<br>Kubernetes · Helm</div>
+      </div>
+      <div class="card" data-tip="监控可观测性&#10;Prometheus + Grafana&#10;Jaeger 分布式追踪">
+        <div class="card-title" style="color:#ff7b72;"><span class="icon">📊</span>监控</div>
+        <div class="card-desc">Prometheus · Grafana<br>Jaeger 追踪</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /arch-canvas -->
+
+<!-- ════════════════════ INTERACTION SECTION ════════════════════ -->
+<div class="interact-section">
+  <div class="isec-hdr">
+    <span class="isec-title">🔗 架构交互关系全景</span>
+    <span class="isec-sub">跨层交互 · 双向依赖 · 非顺序通信路径 — 展示各层之间的完整交互关系</span>
+  </div>
+
+  <!-- Interaction Legend -->
+  <div class="legend-row">
+    <div class="legend-item"><div class="legend-line" style="background:#58a6ff;color:#58a6ff;"></div>主请求流（顺序下行）</div>
+    <div class="legend-item"><div class="legend-line" style="background:#3fb950;color:#3fb950;" class="legend-dash"></div><span style="background:repeating-linear-gradient(90deg,#3fb950 0,#3fb950 4px,transparent 4px,transparent 8px);width:28px;height:2px;display:inline-block;margin-right:6px;"></span>结果回传（逆向上行）</div>
+    <div class="legend-item"><div class="legend-line" style="background:#e3b341;"></div>知识注入（跨层横向）</div>
+    <div class="legend-item"><div class="legend-line" style="background:#f0883e;"></div>规则约束（强制执行）</div>
+    <div class="legend-item"><div class="legend-line" style="background:#ff7b72;"></div>工具调用（外部集成）</div>
+    <div class="legend-item"><div class="legend-line" style="background:#bc8cff;"></div>决策仲裁（LLM协作）</div>
+    <div class="legend-item"><div class="legend-line" style="background:#39d5c4;"></div>领域查询（知识检索）</div>
+  </div>
+
+  <!-- SVG Network Diagram -->
+  <div class="svg-container">
+    <svg viewBox="0 0 1000 490" xmlns="http://www.w3.org/2000/svg" style="max-height:490px">
+      <defs>
+        <marker id="ah-b" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L0,7 L7,3.5 z" fill="#58a6ff88"/></marker>
+        <marker id="ah-g" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L0,7 L7,3.5 z" fill="#3fb95099"/></marker>
+        <marker id="ah-y" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L0,7 L7,3.5 z" fill="#e3b34199"/></marker>
+        <marker id="ah-o" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L0,7 L7,3.5 z" fill="#f0883e99"/></marker>
+        <marker id="ah-r" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L0,7 L7,3.5 z" fill="#ff7b7299"/></marker>
+        <marker id="ah-p" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L0,7 L7,3.5 z" fill="#bc8cff99"/></marker>
+        <marker id="ah-c" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L0,7 L7,3.5 z" fill="#39d5c499"/></marker>
+        <marker id="ah-gr" markerWidth="7" markerHeight="7" refX="1" refY="3.5" orient="auto"><path d="M7,0 L7,7 L0,3.5 z" fill="#3fb95099"/></marker>
+        <marker id="ah-pr" markerWidth="7" markerHeight="7" refX="1" refY="3.5" orient="auto"><path d="M7,0 L7,7 L0,3.5 z" fill="#bc8cff99"/></marker>
+      </defs>
+
+      <!-- ① User Interface -->
+      <rect x="305" y="8" width="390" height="48" rx="8" fill="#0d1c2e" stroke="#58a6ff55" stroke-width="1.5"/>
+      <text x="500" y="28" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="700">① 用户接口层 · User Interface</text>
+      <text x="500" y="44" text-anchor="middle" fill="#58a6ff66" font-size="9">Claude Code IDE · Git Hooks · CI/CD Pipeline</text>
+
+      <!-- ② Core Dispatch -->
+      <rect x="250" y="100" width="500" height="84" rx="8" fill="#1a1028" stroke="#bc8cff55" stroke-width="1.5"/>
+      <text x="500" y="118" text-anchor="middle" fill="#bc8cff" font-size="11" font-weight="700">② 核心调度层 · Core Dispatch</text>
+      <!-- Sub-nodes -->
+      <rect x="264" y="124" width="138" height="50" rx="6" fill="#bc8cff15" stroke="#bc8cff33" stroke-width="1"/>
+      <text x="333" y="143" text-anchor="middle" fill="#bc8cff" font-size="9" font-weight="600">⚖️ LLM Council</text>
+      <text x="333" y="158" text-anchor="middle" fill="#bc8cff55" font-size="8">Claude ⟺ GPT-5.4</text>
+      <rect x="431" y="124" width="138" height="50" rx="6" fill="#bc8cff15" stroke="#bc8cff33" stroke-width="1"/>
+      <text x="500" y="143" text-anchor="middle" fill="#bc8cff" font-size="9" font-weight="600">🔀 Skill Router</text>
+      <text x="500" y="158" text-anchor="middle" fill="#bc8cff55" font-size="8">11域智能路由</text>
+      <rect x="598" y="124" width="138" height="50" rx="6" fill="#bc8cff15" stroke="#bc8cff33" stroke-width="1"/>
+      <text x="667" y="143" text-anchor="middle" fill="#bc8cff" font-size="9" font-weight="600">🔧 Tool Adapter</text>
+      <text x="667" y="158" text-anchor="middle" fill="#bc8cff55" font-size="8">300+工具统一接口</text>
+      <!-- Internal bidirectional arrows -->
+      <line x1="402" y1="149" x2="431" y2="149" stroke="#bc8cff66" stroke-width="1.5" marker-end="url(#ah-p)" marker-start="url(#ah-pr)"/>
+      <line x1="569" y1="149" x2="598" y2="149" stroke="#bc8cff66" stroke-width="1.5" marker-end="url(#ah-p)" marker-start="url(#ah-pr)"/>
+
+      <!-- ③ Orchestration -->
+      <rect x="250" y="228" width="500" height="48" rx="8" fill="#1e1508" stroke="#f0883e55" stroke-width="1.5"/>
+      <text x="500" y="248" text-anchor="middle" fill="#f0883e" font-size="11" font-weight="700">③ 编排层 · Orchestration</text>
+      <text x="500" y="263" text-anchor="middle" fill="#f0883e66" font-size="9">41种模式 · adaptive · auction · compliance · expert-panel · parallel…</text>
+
+      <!-- ④ Execution -->
+      <rect x="250" y="322" width="500" height="48" rx="8" fill="#0d1e12" stroke="#3fb95055" stroke-width="1.5"/>
+      <text x="500" y="342" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="700">④ 执行层 · Execution</text>
+      <text x="500" y="357" text-anchor="middle" fill="#3fb95066" font-size="9">Agents(40+) · Commands(200+) · Skills(75+)</text>
+
+      <!-- ⑤ Domain Coverage -->
+      <rect x="250" y="416" width="500" height="48" rx="8" fill="#0a1e1d" stroke="#39d5c455" stroke-width="1.5"/>
+      <text x="500" y="436" text-anchor="middle" fill="#39d5c4" font-size="11" font-weight="700">⑤ 领域覆盖 · Domain Coverage</text>
+      <text x="500" y="451" text-anchor="middle" fill="#39d5c466" font-size="9">27专业领域 · 功能安全 · 网络安全 · ADAS · BMS · AUTOSAR · QNX…</text>
+
+      <!-- ⑥ KB & Rules (right panel) -->
+      <rect x="862" y="100" width="128" height="364" rx="8" fill="#1e1808" stroke="#e3b34155" stroke-width="1.5"/>
+      <text x="926" y="122" text-anchor="middle" fill="#e3b341" font-size="10" font-weight="700">⑥ 知识与规则层</text>
+      <text x="926" y="148" text-anchor="middle" fill="#e3b34177" font-size="8">📚 507+ 知识文档</text>
+      <text x="926" y="163" text-anchor="middle" fill="#e3b34166" font-size="7">Standards · Technologies</text>
+      <text x="926" y="176" text-anchor="middle" fill="#e3b34166" font-size="7">Processes · Tools</text>
+      <line x1="872" y1="188" x2="980" y2="188" stroke="#e3b34122" stroke-width="1"/>
+      <text x="926" y="205" text-anchor="middle" fill="#f0883e88" font-size="9" font-weight="600">📏 37+ Rules</text>
+      <text x="926" y="222" text-anchor="middle" fill="#f0883e55" font-size="7">MISRA C/C++</text>
+      <text x="926" y="235" text-anchor="middle" fill="#f0883e55" font-size="7">ISO 26262</text>
+      <text x="926" y="248" text-anchor="middle" fill="#f0883e55" font-size="7">ISO 21434</text>
+      <text x="926" y="261" text-anchor="middle" fill="#f0883e55" font-size="7">ASPICE L2</text>
+      <text x="926" y="274" text-anchor="middle" fill="#f0883e55" font-size="7">CERT-C/C++</text>
+      <text x="926" y="287" text-anchor="middle" fill="#f0883e55" font-size="7">SOTIF</text>
+      <text x="926" y="300" text-anchor="middle" fill="#f0883e55" font-size="7">GB/T L2/L3</text>
+
+      <!-- ⑦ External Tools (left panel) -->
+      <rect x="10" y="280" width="128" height="184" rx="8" fill="#1e0d0d" stroke="#ff7b7255" stroke-width="1.5"/>
+      <text x="74" y="302" text-anchor="middle" fill="#ff7b72" font-size="10" font-weight="700">⑦ 外部工具层</text>
+      <text x="74" y="320" text-anchor="middle" fill="#ff7b7266" font-size="8">🚌 CANoe/python-can</text>
+      <text x="74" y="334" text-anchor="middle" fill="#ff7b7266" font-size="8">🖥️ dSPACE/CARMaker</text>
+      <text x="74" y="348" text-anchor="middle" fill="#ff7b7266" font-size="8">📐 MATLAB/Scilab</text>
+      <text x="74" y="362" text-anchor="middle" fill="#ff7b7266" font-size="8">🌐 CARLA/Prescan</text>
+      <text x="74" y="376" text-anchor="middle" fill="#ff7b7266" font-size="8">🔍 Polyspace/LDRA</text>
+      <text x="74" y="390" text-anchor="middle" fill="#ff7b7266" font-size="8">☁️ AWS/Kubernetes</text>
+      <text x="74" y="404" text-anchor="middle" fill="#ff7b7266" font-size="8">📊 Prometheus</text>
+      <text x="74" y="420" text-anchor="middle" fill="#ff7b7244" font-size="7">300+ tools · 商业↔开源</text>
+      <text x="74" y="454" text-anchor="middle" fill="#ff7b7244" font-size="7">年节约 $310K</text>
+
+      <!-- ══ MAIN FLOW ARROWS (vertical, blue, x=500) ══ -->
+      <line x1="500" y1="56" x2="500" y2="100" stroke="#58a6ff88" stroke-width="2" marker-end="url(#ah-b)"/>
+      <line x1="500" y1="184" x2="500" y2="228" stroke="#bc8cff88" stroke-width="2" marker-end="url(#ah-b)"/>
+      <line x1="500" y1="276" x2="500" y2="322" stroke="#f0883e88" stroke-width="2" marker-end="url(#ah-b)"/>
+      <line x1="500" y1="370" x2="500" y2="416" stroke="#3fb95088" stroke-width="2" marker-end="url(#ah-b)"/>
+
+      <!-- ══ RETURN FLOW (dashed green, right side x=640) ══ -->
+      <path d="M640,460 L640,56" stroke="#3fb95066" stroke-width="1.5" stroke-dasharray="5,3" fill="none" marker-end="url(#ah-g)"/>
+      <text x="656" y="230" fill="#3fb95055" font-size="8" transform="rotate(90,656,230)">执行结果回传</text>
+
+      <!-- ══ KNOWLEDGE INJECTION ⑥→② (yellow, horizontal) ══ -->
+      <path d="M862,142 L750,142" stroke="#e3b34199" stroke-width="1.5" fill="none" marker-end="url(#ah-y)"/>
+      <text x="806" y="137" text-anchor="middle" fill="#e3b34199" font-size="8">知识注入</text>
+
+      <!-- ══ RULE ENFORCEMENT ⑥→④ (orange, horizontal) ══ -->
+      <path d="M862,346 L750,346" stroke="#f0883e99" stroke-width="1.5" fill="none" marker-end="url(#ah-o)"/>
+      <text x="806" y="341" text-anchor="middle" fill="#f0883e99" font-size="8">规则强制</text>
+
+      <!-- ══ COMPLIANCE INJECT ⑥→③ (orange dashed) ══ -->
+      <path d="M862,252 L750,252" stroke="#f0883e66" stroke-width="1.5" stroke-dasharray="4,2" fill="none" marker-end="url(#ah-o)"/>
+      <text x="806" y="268" text-anchor="middle" fill="#f0883e66" font-size="8">合规约束</text>
+
+      <!-- ══ DOMAIN QUERY ⑤→⑥ (cyan, curved) ══ -->
+      <path d="M750,440 C810,440 862,400 862,370" stroke="#39d5c499" stroke-width="1.5" fill="none" marker-end="url(#ah-c)"/>
+      <text x="832" y="425" fill="#39d5c477" font-size="8">知识查询</text>
+
+      <!-- ══ TOOL CALL ②→⑦ (red, curved) ══ -->
+      <path d="M250,158 C200,158 138,300 138,336" stroke="#ff7b7288" stroke-width="1.5" fill="none" marker-end="url(#ah-r)"/>
+      <text x="167" y="250" fill="#ff7b7266" font-size="8">工具调用</text>
+
+      <!-- ══ TOOL RESULT ⑦→④ (red dashed) ══ -->
+      <path d="M138,346 C148,346 200,346 250,346" stroke="#ff7b7266" stroke-width="1.5" stroke-dasharray="4,2" fill="none" marker-end="url(#ah-r)"/>
+      <text x="190" y="364" text-anchor="middle" fill="#ff7b7255" font-size="8">工具结果</text>
+
+      <!-- ══ AGENT ESCALATION ④→② (purple dashed, left curved) ══ -->
+      <path d="M310,322 C275,290 268,220 268,184" stroke="#bc8cff88" stroke-width="1.5" stroke-dasharray="4,2" fill="none" marker-end="url(#ah-p)"/>
+      <text x="248" y="260" text-anchor="middle" fill="#bc8cff66" font-size="8">决策上报</text>
+
+      <!-- ══ ORCHESTRATION FEEDBACK ③→② (purple dashed) ══ -->
+      <path d="M290,228 L290,184" stroke="#bc8cff66" stroke-width="1" stroke-dasharray="3,2" fill="none" marker-end="url(#ah-p)"/>
+
+      <!-- Flow labels on main arrows -->
+      <text x="514" y="84" fill="#58a6ff77" font-size="8">请求路由</text>
+      <text x="514" y="210" fill="#bc8cff66" font-size="8">编排调度</text>
+      <text x="514" y="304" fill="#f0883e66" font-size="8">Agent分配</text>
+      <text x="514" y="398" fill="#3fb95066" font-size="8">领域调用</text>
+    </svg>
+  </div>
+
+  <!-- Interaction Cards Grid -->
+  <div class="icard-grid">
+
+    <!-- Card 1 -->
+    <div class="icard" style="border-color:#58a6ff33;">
+      <div class="icard-flow">
+        <span class="inode" style="background:#58a6ff18;color:#58a6ff;border:1px solid #58a6ff33;">① 用户接口</span>
+        <div class="iarrow-wrap"><div class="iarrow-line" style="background:#58a6ff;color:#58a6ff;"></div><div class="iarrow-lbl">请求路由</div></div>
+        <span class="inode" style="background:#bc8cff18;color:#bc8cff;border:1px solid #bc8cff33;">② 核心调度</span>
+      </div>
+      <div class="icard-desc">用户输入的自然语言或 /slash命令，携带 CLAUDE.md 上下文，被路由至 Skill Router 进行领域识别和任务分解。</div>
+      <div class="icard-eg">触发：/automotive-safety-hara → CLAUDE.md注入 → 领域识别(safety)</div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="icard" style="border-color:#bc8cff33;">
+      <div class="icard-flow">
+        <span class="inode" style="background:#bc8cff18;color:#bc8cff;border:1px solid #bc8cff33;">⚖️ LLM Council</span>
+        <div class="iarrow-wrap"><div class="iarrow-line iarrow-bidir" style="background:#bc8cff;color:#bc8cff;"></div><div class="iarrow-lbl">协作路由决策</div></div>
+        <span class="inode" style="background:#bc8cff18;color:#bc8cff;border:1px solid #bc8cff33;">🔀 Skill Router</span>
+      </div>
+      <div class="icard-desc">LLM Council 与 Skill Router 双向协作：Router 识别任务领域后上报 Council；Council 基于多轮辩论输出 ADR 决策，再反馈给 Router 调整路由策略。</div>
+      <div class="icard-eg">complex_arch_task → Council辩论5轮 → ADR → Router分配功能安全+AUTOSAR双Agent</div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="icard" style="border-color:#bc8cff33;">
+      <div class="icard-flow">
+        <span class="inode" style="background:#bc8cff18;color:#bc8cff;border:1px solid #bc8cff33;">🔀 Skill Router</span>
+        <div class="iarrow-wrap"><div class="iarrow-line" style="background:#bc8cff;color:#bc8cff;"></div><div class="iarrow-lbl">模式选择</div></div>
+        <span class="inode" style="background:#f0883e18;color:#f0883e;border:1px solid #f0883e33;">③ 编排层</span>
+      </div>
+      <div class="icard-desc">Skill Router 根据任务复杂度选择最优编排模式：单任务 → 直接执行；多领域 → expert-panel；安全审计 → compliance-auditor；并行分析 → parallel-analyzer。</div>
+      <div class="icard-eg">TARA任务 → compliance-auditor · parallel-analyzer 双模式</div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="icard" style="border-color:#f0883e33;">
+      <div class="icard-flow">
+        <span class="inode" style="background:#f0883e18;color:#f0883e;border:1px solid #f0883e33;">③ 编排层</span>
+        <div class="iarrow-wrap"><div class="iarrow-line" style="background:#f0883e;color:#f0883e;"></div><div class="iarrow-lbl">Agent调度</div></div>
+        <span class="inode" style="background:#3fb95018;color:#3fb950;border:1px solid #3fb95033;">④ 执行层</span>
+      </div>
+      <div class="icard-desc">Orchestration 层根据选定模式，并行或串行调度多个 Agent。auction-based 模式下，Agents 竞标子任务；expert-panel 模式下，多Agent联合会审。</div>
+      <div class="icard-eg">expert-panel: functional-safety + cybersecurity + autosar Agent 三方会审</div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="icard" style="border-color:#bc8cff33;">
+      <div class="icard-flow">
+        <span class="inode" style="background:#3fb95018;color:#3fb950;border:1px solid #3fb95033;">④ 执行层 Agent</span>
+        <div class="iarrow-wrap"><div class="iarrow-line" style="background:#bc8cff;color:#bc8cff;stroke-dasharray:4,2;"></div><div class="iarrow-lbl">决策上报</div></div>
+        <span class="inode" style="background:#bc8cff18;color:#bc8cff;border:1px solid #bc8cff33;">⚖️ LLM Council</span>
+      </div>
+      <div class="icard-desc">当 Agent 遇到超出单模型置信度的复杂决策（ASIL-D 边界、安全合规冲突等），自动上报 LLM Council 进行多模型仲裁，输出带理由的 ADR 结论。</div>
+      <div class="icard-eg">ASIL-D驾驶功能 → Council: Claude主辩 + GPT挑战 → 共识ADR</div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="icard" style="border-color:#e3b34133;">
+      <div class="icard-flow">
+        <span class="inode" style="background:#e3b34118;color:#e3b341;border:1px solid #e3b34133;">⑥ Knowledge Base</span>
+        <div class="iarrow-wrap"><div class="iarrow-line" style="background:#e3b341;color:#e3b341;"></div><div class="iarrow-lbl">跨层知识注入</div></div>
+        <span class="inode" style="background:#bc8cff18;color:#bc8cff;border:1px solid #bc8cff33;">② ③ ④ 各层</span>
+      </div>
+      <div class="icard-desc">Knowledge Base 不仅被顺序访问，还主动向上层注入领域知识：向 Core 层提供路由知识库，向 Orchestration 提供模式选择依据，向 Execution 注入标准文档上下文。</div>
+      <div class="icard-eg">ISO 26262 标准全文 → 注入功能安全Agent上下文窗口</div>
+    </div>
+
+    <!-- Card 7 -->
+    <div class="icard" style="border-color:#f0883e33;">
+      <div class="icard-flow">
+        <span class="inode" style="background:#f0883e18;color:#f0883e;border:1px solid #f0883e33;">📏 Rules (37+)</span>
+        <div class="iarrow-wrap"><div class="iarrow-line" style="background:#f0883e;color:#f0883e;"></div><div class="iarrow-lbl">规则强制注入</div></div>
+        <span class="inode" style="background:#3fb95018;color:#3fb950;border:1px solid #3fb95033;">④ Commands/Code</span>
+      </div>
+      <div class="icard-desc">Rules 层在代码生成时强制应用约束：MISRA C 规则注入 C 代码生成 Prompt，AUTOSAR C++14 规则约束 SWC 代码，ISO 26262 注释格式规范化。</div>
+      <div class="icard-eg">MISRA-C-rules.md → /automotive-embedded-c → 生成安全符合代码</div>
+    </div>
+
+    <!-- Card 8 -->
+    <div class="icard" style="border-color:#39d5c433;">
+      <div class="icard-flow">
+        <span class="inode" style="background:#39d5c418;color:#39d5c4;border:1px solid #39d5c433;">⑤ Domain Agent</span>
+        <div class="iarrow-wrap"><div class="iarrow-line" style="background:#39d5c4;color:#39d5c4;"></div><div class="iarrow-lbl">知识检索</div></div>
+        <span class="inode" style="background:#e3b34118;color:#e3b341;border:1px solid #e3b34133;">⑥ KB Standards</span>
+      </div>
+      <div class="icard-desc">27个领域 Agent 各自按需从 Knowledge Base 检索对应标准文档：功能安全 Agent 拉取 ISO 26262，网络安全 Agent 拉取 ISO 21434/UN R155，BMS Agent 拉取 UN 38.3。</div>
+      <div class="icard-eg">battery-agent → KB检索UN38.3+IEC62133 → 生成热失控分析报告</div>
+    </div>
+
+    <!-- Card 9 -->
+    <div class="icard" style="border-color:#ff7b7233;">
+      <div class="icard-flow">
+        <span class="inode" style="background:#bc8cff18;color:#bc8cff;border:1px solid #bc8cff33;">🔧 Tool Adapter</span>
+        <div class="iarrow-wrap"><div class="iarrow-line iarrow-bidir" style="background:#ff7b72;color:#ff7b72;"></div><div class="iarrow-lbl">适配调用↔结果</div></div>
+        <span class="inode" style="background:#ff7b7218;color:#ff7b72;border:1px solid #ff7b7233;">⑦ 外部工具</span>
+      </div>
+      <div class="icard-desc">Tool Adapter 提供商业工具与开源工具的统一抽象接口：同一 API 调用可无缝切换 CANoe↔python-can，MATLAB↔Scilab，dSPACE↔CARMaker，无需修改上层代码。</div>
+      <div class="icard-eg">adapter.bus_analyze(trace) → CANoe(license) or python-can(free)</div>
+    </div>
+
+    <!-- Card 10 -->
+    <div class="icard" style="border-color:#3fb95033;">
+      <div class="icard-flow">
+        <span class="inode" style="background:#3fb95018;color:#3fb950;border:1px solid #3fb95033;">④ 执行层</span>
+        <div class="iarrow-wrap"><div class="iarrow-line" style="background:#3fb950;color:#3fb950;stroke-dasharray:4,2;"></div><div class="iarrow-lbl">完整结果回传</div></div>
+        <span class="inode" style="background:#58a6ff18;color:#58a6ff;border:1px solid #58a6ff33;">① 用户接口</span>
+      </div>
+      <div class="icard-desc">执行完成后，结果逐层上传回用户：代码文件写入工作区，分析报告呈现在 IDE，Git Hooks 触发自动化验证，CI/CD 流水线执行最终质量门禁。</div>
+      <div class="icard-eg">HARA表格 → Markdown报告 → IDE显示 → pre-commit MISRA检查</div>
+    </div>
+
+    <!-- Card 11 -->
+    <div class="icard" style="border-color:#f0883e33;">
+      <div class="icard-flow">
+        <span class="inode" style="background:#f0883e18;color:#f0883e;border:1px solid #f0883e33;">📏 Rules</span>
+        <div class="iarrow-wrap"><div class="iarrow-line" style="background:#f0883e;color:#f0883e;"></div><div class="iarrow-lbl">合规约束</div></div>
+        <span class="inode" style="background:#f0883e18;color:#f0883e;border:1px solid #f0883e33;">③ Orchestration</span>
+      </div>
+      <div class="icard-desc">Rules 层向 Orchestration 注入合规约束：compliance-auditor 模式自动加载对应安全规则集，确保编排过程中每个子任务都满足 ASPICE L2 过程要求。</div>
+      <div class="icard-eg">safety-rules.md → compliance-auditor → 每步输出ISO 26262 Trace</div>
+    </div>
+
+    <!-- Card 12 -->
+    <div class="icard" style="border-color:#bc8cff33;">
+      <div class="icard-flow">
+        <span class="inode" style="background:#3fb95018;color:#3fb950;border:1px solid #3fb95033;">🤖 Agent ↔ 🎯 Skill</span>
+        <div class="iarrow-wrap"><div class="iarrow-line iarrow-bidir" style="background:#3fb950;color:#3fb950;"></div><div class="iarrow-lbl">横向调用</div></div>
+        <span class="inode" style="background:#3fb95018;color:#3fb950;border:1px solid #3fb95033;">④ 同层协作</span>
+      </div>
+      <div class="icard-desc">执行层内部也存在横向交互：Agent 调用 Skill 获取细粒度知识模板；多个 Agent 通过 Orchestration 协同；Commands 触发多个 Skill 组合形成完整工作流。</div>
+      <div class="icard-eg">functional-safety-agent → skill:hara-template + skill:asil-calc → 输出完整HARA</div>
+    </div>
+
+  </div>
+</div><!-- /interact-section -->
+
+<!-- ════════════════════ STANDARDS COMPLIANCE ════════════════════ -->
+<div style="max-width:1400px;margin:20px auto 0;">
+  <div class="layer" style="border-color:#30363d;">
+    <span class="layer-label" style="background:#21262d;color:#8b949e;border:1px solid #30363d;">标准符合性 · Standards Compliance</span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;padding-top:4px;">
+      <span class="std-chip" style="background:#58a6ff22;color:#58a6ff;border:1px solid #58a6ff33;">ISO 26262:2018 功能安全</span>
+      <span class="std-chip" style="background:#ff7b7222;color:#ff7b72;border:1px solid #ff7b7233;">ISO/SAE 21434:2021 网络安全</span>
+      <span class="std-chip" style="background:#bc8cff22;color:#bc8cff;border:1px solid #bc8cff33;">AUTOSAR Classic 4.x</span>
+      <span class="std-chip" style="background:#bc8cff22;color:#bc8cff;border:1px solid #bc8cff33;">AUTOSAR Adaptive 22.11</span>
+      <span class="std-chip" style="background:#3fb95022;color:#3fb950;border:1px solid #3fb95033;">ASPICE Level 2</span>
+      <span class="std-chip" style="background:#f0883e22;color:#f0883e;border:1px solid #f0883e33;">UN R155 / R156</span>
+      <span class="std-chip" style="background:#39d5c422;color:#39d5c4;border:1px solid #39d5c433;">SOTIF ISO 21448</span>
+      <span class="std-chip" style="background:#e3b34122;color:#e3b341;border:1px solid #e3b34133;">MISRA C:2012 / C++:2008</span>
+      <span class="std-chip" style="background:#e3b34122;color:#e3b341;border:1px solid #e3b34133;">CERT-C / CERT-C++</span>
+      <span class="std-chip" style="background:#58a6ff22;color:#58a6ff;border:1px solid #58a6ff33;">ISO 14229 UDS</span>
+      <span class="std-chip" style="background:#58a6ff22;color:#58a6ff;border:1px solid #58a6ff33;">ISO 11898 CAN</span>
+      <span class="std-chip" style="background:#ff7b7222;color:#ff7b72;border:1px solid #ff7b7233;">GB/T L2/L3 中国国标</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════ FOOTER STATS ════════════════════ -->
+<div class="footer-stats" style="max-width:1400px;margin:16px auto 0;">
+  <div class="stat"><div class="num" style="color:#3fb950;">40+</div><div class="lbl">Agents</div></div>
+  <div class="stat"><div class="num" style="color:#58a6ff;">200+</div><div class="lbl">Commands</div></div>
+  <div class="stat"><div class="num" style="color:#bc8cff;">75+</div><div class="lbl">Skills</div></div>
+  <div class="stat"><div class="num" style="color:#e3b341;">507+</div><div class="lbl">知识文档</div></div>
+  <div class="stat"><div class="num" style="color:#f0883e;">37+</div><div class="lbl">规则文件</div></div>
+  <div class="stat"><div class="num" style="color:#39d5c4;">41</div><div class="lbl">编排模式</div></div>
+  <div class="stat"><div class="num" style="color:#ff7b72;">27</div><div class="lbl">专业领域</div></div>
+  <div class="stat"><div class="num" style="color:#58a6ff;">300+</div><div class="lbl">外部工具</div></div>
+  <div class="stat"><div class="num" style="color:#3fb950;">12</div><div class="lbl">行业标准</div></div>
+</div>
+
+<p style="text-align:center;color:var(--text-muted);font-size:11px;margin-top:20px;margin-bottom:8px;">
+  Automotive Claude Code Agents · v1.0.0 · 2026-05-13 · 
+  <a href="AUTOMOTIVE_AGENTS_REFERENCE.md" style="color:#58a6ff88;text-decoration:none;">详细说明书</a> · 
+  <a href="AUTOMOTIVE_AGENTS_TUTORIAL.md" style="color:#58a6ff88;text-decoration:none;">使用教程</a>
+</p>
+
+</body>
+</html>

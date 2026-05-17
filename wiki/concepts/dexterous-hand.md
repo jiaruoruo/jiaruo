@@ -2,16 +2,16 @@
 type: concept
 title: "灵巧手技术"
 date: 2026-04-15
-updated: 2026-04-15
+updated: 2026-05-17
 tags:
   - dexterous-hand
   - manipulation
   - tactile-sensor
   - robotics
-source_count: 5
+source_count: 6
 confidence: low
 domain_volatility: high
-last_reviewed: 2026-04-15
+last_reviewed: 2026-05-17
 aliases:
   - "灵巧手技术"
   - "Dexterous Hand"
@@ -37,6 +37,9 @@ aliases:
 - **控制算法**：DexNet（点云深度学习抓取规划，成功率>90%）；Dactyl（PPO强化学习，OpenAI Shadow Hand 魔方操作）；ACT/Diffusion Policy（模仿学习，50-200条演示即可）；阻抗控制（柔顺抓取未知物体）
 - **当前挑战**：精细操作（线材插拔、精密装配）成功率<70%；泛化能力不足；高性能灵巧手（Shadow Hand）成本>¥35万难以量产；线驱耐久性问题
 - **技术趋势**：触觉密度提升（<10点/手→>100点/手）；端到端学习替代模块化控制；LEAP Hand 证明<$2000低成本方案可行性
+- **特斯拉 Optimus Gen 3 灵巧手**（麦肯锡 2026）：手部 50+ 执行器，超过身体其他部分（28 个关节执行器）；人手 20+ DOF + 高密度触觉反馈
+- **触觉传感器供应链现状**：无主导架构，高度碎片化，多数方案来自初创公司；六轴力矩传感器（ATI/OnRobot）集中于少数专业供应商，无汽车/消费电子溢出效应，校准密集、自动化程度有限
+- **手部是规模化关口**：性能要求高（20+ DOF）、供应商不成熟（触觉无主导设计）、缺乏标准化——三重约束叠加，是整机最难降本的子系统，也是最具吸引力的机会领域
 
 ## My Position
 
@@ -49,9 +52,11 @@ aliases:
 - [[sources/st-smart-industry-robotics-v9]]
 - [[sources/renesas-robot-servo-ethercat-application]]
 - [[sources/humanoid-robot-research-rapid-prototyping]]
+- [[sources/mckinsey-humanoid-robot-bom-supply-chain]]
 
 ## Evolution Log
 
 - 2026-04-15（1 sources）：概念初建，来源为人形机器人技术研究及快速原型建设报告
 - 2026-04-15（2 sources）：强化——瑞萨官方文档与现有定义一致；补充芯片级实现细节：RA8T2 主控（手掌）+ RA6/RA4 从站（手指微电机），CAN-FD/SPI 内部通信，EtherCAT 对外，支持 micro-ROS
 - 2026-04-15（5 sources）：强化——英飞凌/ST 多份文档补充：手掌5-15伺服电机/滚珠丝杠/触觉传感器/扭矩传感器；ST 整机 BOM 估算（灵巧手触觉000，扭矩50，电机200）
+- 2026-05-17（6 sources）：强化——麦肯锡 BOM 报告补充供应链视角：Optimus Gen 3 手部 50+ 执行器（>身体 28 个）、触觉传感无主导架构判断（供应链风险定性）、六轴力矩传感器供应瓶颈分析、手部作为整机规模化最难突破子系统的战略定位
