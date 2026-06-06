@@ -11,14 +11,10 @@
             "id": "311600070c420651",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "raw/notes/daily-tech-digest-2026-05-11.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "daily-tech-digest-2026-05-11"
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "关系图谱"
             }
           }
         ]
@@ -78,7 +74,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 301.5
+    "width": 235.5
   },
   "right": {
     "id": "fe355a5c926db48d",
@@ -113,12 +109,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "raw/notes/daily-tech-digest-2026-05-11.md",
+                "file": "raw/clippings/2026-05-20麦肯锡拆解人形机器人 BOM：最贵的是执行器，最缺的是供应链.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "daily-tech-digest-2026-05-11 的出链列表"
+              "title": "2026-05-20麦肯锡拆解人形机器人 BOM：最贵的是执行器，最缺的是供应链 的出链列表"
             }
           },
           {
@@ -166,13 +162,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "raw/notes/daily-tech-digest-2026-05-11.md",
+                "file": "raw/clippings/2026-05-20麦肯锡拆解人形机器人 BOM：最贵的是执行器，最缺的是供应链.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "daily-tech-digest-2026-05-11 的大纲"
+              "title": "2026-05-20麦肯锡拆解人形机器人 BOM：最贵的是执行器，最缺的是供应链 的大纲"
             }
           }
         ],
@@ -180,7 +176,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 360.5
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -195,6 +191,23 @@
   },
   "active": "311600070c420651",
   "lastOpenFiles": [
+    "raw/clippings/2026-05-23我把 Karpathy 的 AutoResearch 搬到了软件开发领域，效果炸了.md",
+    "raw/clippings/2026-05-23GitHub 热点  Multica Agent即队友.md",
+    "raw/clippings/2026-05-23Karpathy、Claude Code之父Boris，最新访谈，把整个程序员圈炸了！.md",
+    "raw/clippings/2026-05-20麦肯锡拆解人形机器人 BOM：最贵的是执行器，最缺的是供应链.md",
+    "raw/notes/daily-tech-digest-2026-05-21.md",
+    "outputs/humanoid-robot-oem-supplier-opportunities.html",
+    "raw/clippings/2026-05-14麦肯锡拆解人形机器人 BOM：最贵的是执行器，最缺的是供应链.md",
+    "raw/clippings/2026-05-17人形机器人MCU哪家强？.md",
+    "raw/notes/daily-tech-digest-2026-05-20.md",
+    "raw/notes/daily-tech-digest-2026-05-19.md",
+    "raw/notes/daily-report-2026-05-18.md",
+    "raw/notes/daily-tech-digest-2026-05-18.md",
+    "wiki/outputs/2026-05-17-robot-mcu-vs-mculess-analysis.html",
+    "raw/clippings/MCU-LESS.md",
+    "raw/clippings/MCULess调研报告.md",
+    "raw/clippings/2026-05-17人形机器人MCU哪家强？ 1.md",
+    "raw/notes/daily-tech-digest-2026-05-11.md",
     "wiki/concepts/automotive-sensor.md",
     "wiki/test_char.txt",
     "wiki/entities/kpmg.md",
@@ -209,28 +222,11 @@
     "f4d.b64",
     "f4c.b64",
     "wiki/sources/mediatek-mtk-chip-catalog.md",
-    "f4b.b64",
-    "f4a.b64",
     "wiki/sources/ic-packaging-reliability-chip-interconnect.md",
     "wiki/sources/bare-die-packaging-development-challenges.md",
     "wiki/sources/ic-package-lead-electrical-testing.md",
     "wiki/sources/chip-testing-significance.md",
     "wiki/sources/ic-packaging-testing-education.md",
-    "wiki/sources/flip-chip-bonding-process-solutions.md",
-    "wiki/sources/flexible-electronics-manufacturing-2014.md",
-    "wiki/sources/test_persist.md",
-    "wiki/sources/chip-manufacturing-process-illustrated.md",
-    "wiki/sources/arm-chip-selection-reference.md",
-    "wiki/sources/arm-chip-selection-guide-embedded.md",
-    "wiki/sources/kpmg-test99.md",
-    "wiki/sources/test-write-full.md",
-    "wiki/sources/brand-new-test.md",
-    "wiki/sources/kpmg-automotive-sensor-market-2024.md",
-    "wiki/sources/vlsi-low-power-design-analysis.md",
-    "wiki/sources/chip-design-flow-cadence-virtuoso.md",
-    "wiki/sources/chip-design-production-flow.md",
-    "wiki/sources/flip-chip-bump-fabrication-methods.md",
-    "wiki/sources/chip-rd-process-overview-2014.md",
     "raw/pdfs/532 汽车电子芯片研发制造测试全套资料！/更多资料获取地址/免责声明.JPG",
     "llm-wiki-dataview.canvas"
   ]
