@@ -12,7 +12,7 @@ tags:
   - harness
 processed: true
 raw_file: "raw/clippings/2026-04-19用OpenClaw打造一支24小时无休的AI团队，实战来了！.md"
-raw_sha256: 0f009a0e734d30425ced1d37ebe25db3f9674fdd39b51f03ba107771805c284e
+raw_sha256: ae73064194c6760f3f4b8af54cd2f5d46e2b6241a56a6ad68428df65c57aaa9e
 last_verified: 2026-06-27
 possibly_outdated: false
 language: "zh"

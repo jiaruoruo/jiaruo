@@ -17,8 +17,8 @@ tags:
   - GLM
 processed: true
 raw_file: "raw/articles/2026-04-27-llm-benchmark-comparison-analysis.md"
-raw_sha256: "63df2961bc4543c63cec0f6075d7a73ed229b33e139e75a7324900a4a17f96b2"
-last_verified: 2026-04-27
+raw_sha256: "1e07861748977403636664413745eade266d772760ba1290fd597b219eca6087"
+last_verified: 2026-06-27
 possibly_outdated: false
 language: "zh"
 canonical_source: ""

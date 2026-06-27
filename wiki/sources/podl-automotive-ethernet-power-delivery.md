@@ -6,7 +6,7 @@ author: "汽车电子老登"
 date: "2026-05-05"
 tags: [podl, 10baset1s, automotive-ethernet, mculess-architecture, t30hm1ts3600, wire-harness]
 raw_file: "raw/clippings/2026-05-05PoDL技术在汽车以太网供电的创新应用.md"
-raw_sha256: 66d69a6e130b0df86a9b27d1f8b09b418091510580dcbcd08a47f1043faf9e9b
+raw_sha256: 315c51247b54159c466ffc011ef95d497992c24d9019bc4f5c1bc5de7b854893
 last_verified: 2026-06-27
 ---
 

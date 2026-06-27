@@ -13,7 +13,7 @@ tags:
   - automotive-software
 processed: true
 raw_file: "raw/clippings/2026-05-10AUTOSAR ComplexDriver深入解析：我在项目中的实践与思考.md"
-raw_sha256: df5e0535f86ed9841f29561e43faa56d65c10fd56620ff9a57d17d3305563b5d
+raw_sha256: f6e947a3f6f1bed43e9125c0697777f243affd0fedf0027363d8f970477129a9
 last_verified: 2026-06-27
 possibly_outdated: false
 language: "zh"
