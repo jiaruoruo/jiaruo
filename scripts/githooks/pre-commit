@@ -1,0 +1,37 @@
+#!/bin/sh
+# 知识库 pre-commit 门禁（见 CLAUDE.md 第十四节）。
+# 提交前运行 lint 关键检查（frontmatter / 孤儿断链 / index 一致性 / SHA），
+# 任一失败则阻断提交。质量提示类（stub/近重复/stale/跨语言/格式）不阻断。
+#
+# 安装（每个克隆执行一次）：
+#   git config core.hooksPath scripts/githooks
+# 临时绕过（仅在确有必要时）：
+#   git commit --no-verify
+
+# 定位仓库根目录
+ROOT="$(git rev-parse --show-toplevel)"
+cd "$ROOT" || exit 1
+
+# 选择 python 解释器
+if command -v python >/dev/null 2>&1; then
+    PY=python
+elif command -v python3 >/dev/null 2>&1; then
+    PY=python3
+else
+    echo "[pre-commit] 未找到 python，跳过 lint 门禁（建议安装 python 后重试）" >&2
+    exit 0
+fi
+
+echo "[pre-commit] 运行 lint 门禁..."
+"$PY" scripts/lint.py --gate
+STATUS=$?
+
+if [ "$STATUS" -ne 0 ]; then
+    echo "" >&2
+    echo "[pre-commit] ❌ lint 门禁未通过，提交已阻断。" >&2
+    echo "[pre-commit] 修复上述关键问题后重试；确需绕过用：git commit --no-verify" >&2
+    exit 1
+fi
+
+echo "[pre-commit] ✅ lint 门禁通过。"
+exit 0

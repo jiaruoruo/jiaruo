@@ -3,7 +3,7 @@
 > 本文件是面向用户的操作手册，与 CLAUDE.md 保持同步。
 > 当 CLAUDE.md 规则更新时，本文件对应章节必须同步更新。
 
-_最后同步：2026-04-15_
+_最后同步：2026-06-27_
 
 ---
 
@@ -48,7 +48,7 @@ outputs/      ← 最终对外输出产物
 9. 处理提取到的每个实体
 10. 更新 `wiki/index.md`
 11. 检查 `wiki/QUESTIONS.md`，看是否能回答已有问题
-12. 更新 qmd 索引并追加日志
+12. **收尾自检（强制）**：运行 `python scripts/lint.py --gate`（关键检查失败必须先修）→ 更新 qmd 索引 → 更新 `wiki/overview.md` 仪表盘 → 追加日志
 
 **个人写作**（`raw/personal/` 下的文件）：
 - 不生成客观摘要，核心论点写入 concept 页的 `My Position` 节
@@ -89,12 +89,14 @@ AI 会：
 | 3 | Index 一致性 |
 | 4 | Stub 页面（正文 < 100 字符） |
 | 5 | 近重复概念名称（Jaccard > 0.7） |
-| 6 | SHA-256 完整性（原始文件是否被修改） |
+| 6 | SHA-256 完整性（哈希长度 64 位校验 + 原始文件是否被修改） |
 | 7 | Stale 页面（超过时效阈值） |
 | 8 | 跨语言重复（URL + aliases 重叠） |
 | 9 | Wikilink 格式规范（禁止中文/驼峰/下划线） |
 
 报告自动保存至 `wiki/outputs/lint-YYYY-MM-DD.md`。AI 会展示摘要并询问是否立即修复。
+
+**门禁模式 `--gate`：** `python scripts/lint.py --gate` 不写报告，仅当**关键检查**（frontmatter / 孤儿断链 / index 一致性 / SHA）失败时返回非零退出码。它被 pre-commit hook 调用，提交前自动拦截带病改动（见下方「自动化门禁」）。质量提示类问题（stub/近重复/stale 等）不阻断提交。
 
 ---
 
@@ -107,6 +109,8 @@ AI 会执行四阶段分析：
 - **Stage 1**：批量扫描所有 concept/entity/synthesis 页，识别模式与关联
 - **Stage 2**：深度合成，写入 `wiki/synthesis/`
 - **Stage 3**：Gap Analysis，识别知识空白，写入 `wiki/outputs/gap-report-*.md`
+
+**AI 何时会主动建议 REFLECT：** 当摄入远快于综合（如来源/综合 > 30）、孤立单源概念积压（≥10 个超 30 天）、或某主题被 ≥8 个来源提及却无独立概念页时，AI 会主动提示你「该做一轮 reflect 了」，避免知识库「广而不深」。
 
 ---
 
@@ -168,7 +172,27 @@ qmd status       # 查看索引状态
 
 ---
 
-## 六、文件放置指南
+## 六、自动化门禁（pre-commit）
+
+仓库挂了一道 git 提交前门禁，帮你兜底——避免「摄入完没建概念」「哈希写错」等问题被提交进仓库。
+
+- 每次 `git commit` 前自动运行 `python scripts/lint.py --gate`。
+- **关键问题会阻断提交**：frontmatter 非法、引用了不存在的概念页（孤儿断链）、index 不一致、SHA 截断或不匹配。
+- 质量提示（stub、近重复等）不阻断，只在常规 `lint` 里提示。
+
+**新克隆仓库后需执行一次安装：**
+```bash
+git config core.hooksPath scripts/githooks
+```
+
+**确需绕过门禁时**（谨慎使用）：
+```bash
+git commit --no-verify
+```
+
+---
+
+## 七、文件放置指南
 
 | 内容类型 | 放入目录 |
 |---|---|
@@ -183,13 +207,16 @@ qmd status       # 查看索引状态
 
 ---
 
-## 七、常见问题
+## 八、常见问题
 
 **Q：INGEST 时发现重复来源怎么办？**
 A：AI 会提示你，询问是否继续。若是同一来源的译文版本，你可选择摄入为独立页面（使用 `canonical_source` 字段关联原文）或跳过。
 
 **Q：SHA-256 不匹配（SOURCE MODIFIED）怎么处理？**
-A：说明 raw/ 下的原始文件被修改过。执行 `ingest` 重新处理该文件，AI 会自动更新所有相关 concept/entity 页面。
+A：先区分真假。①若是 raw 文件确实改了内容，执行 `ingest` 重新处理，AI 会更新相关 concept/entity 页面。②若只是行尾（CRLF/LF）变动或早期写入了截断哈希（非 64 位），属误报，AI 会重算全量 64 位哈希回填——仓库已用 `.gitattributes` 固定 raw 行尾、并由 lint Check 6 校验哈希长度来防这类误报。
+
+**Q：为什么我 commit 被拦下来了？**
+A：pre-commit 门禁发现了关键问题（多半是引用了不存在的概念页，即孤儿断链）。按提示修复后重新提交；确需绕过用 `git commit --no-verify`（见第六节）。
 
 **Q：qmd query 返回 No results？**
 A：执行 `qmd embed` 生成嵌入向量后重试。
@@ -199,4 +226,4 @@ A：需要 5+ 个来源且无重大矛盾，AI 会展示证据请你确认，你
 
 ---
 
-_本文档与 CLAUDE.md 保持同步，最后更新：2026-04-15_
+_本文档与 CLAUDE.md 保持同步，最后更新：2026-06-27_

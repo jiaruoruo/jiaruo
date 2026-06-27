@@ -34,6 +34,18 @@ OUTPUTS_DIR = WIKI_ROOT / "outputs"
 # System files excluded from most checks (they intentionally lack full frontmatter)
 SYSTEM_FILES = {"index.md", "log.md", "overview.md", "QUESTIONS.md"}
 
+# 关键检查（--gate 硬门禁）：失败即阻断提交。
+# 这些破坏知识库结构完整性：frontmatter 非法、孤儿/断链 wikilink、
+# index 不一致、SHA 截断或不匹配。
+# 其余检查（stub/近重复/stale/跨语言/格式）为质量提示，不阻断提交
+# （否则 Check5 近重复的同族概念误报会卡死每次提交）。
+CRITICAL_CHECKS = {
+    "check1_frontmatter",
+    "check2_broken_wikilinks",
+    "check3_index_consistency",
+    "check6_sha256",
+}
+
 # Stale thresholds by domain_volatility
 STALE_DAYS = {
     "high": 90,
@@ -343,6 +355,16 @@ def check_sha256_integrity(wiki_root: Path, raw_root: Path) -> list[str]:
         if not raw_sha or not raw_file:
             continue
 
+        # SHA-256 长度/格式校验：必须为 64 位十六进制（根治「截断哈希」bug，
+        # 避免截断值与实际全量哈希前缀匹配却被误报为 SOURCE MODIFIED）
+        if not re.fullmatch(r"[0-9a-fA-F]{64}", str(raw_sha)):
+            rel = filepath.relative_to(wiki_root.parent)
+            issues.append(
+                f"- ❌ MALFORMED HASH `{rel}`: raw_sha256 非合法 64 位十六进制"
+                f"（实际 {len(str(raw_sha))} 字符），疑似截断或格式错误"
+            )
+            continue
+
         # Resolve raw file path relative to repo root
         raw_path = raw_root.parent / raw_file
         if not raw_path.exists():
@@ -582,6 +604,14 @@ def write_report(wiki_root: Path, results: dict[str, list[str]]) -> Path:
 # ---------------------------------------------------------------------------
 
 def main():
+    # 防御性：Windows 控制台默认 GBK，输出含非 GBK 字符会抛 UnicodeEncodeError，
+    # 在 pre-commit hook 中会误阻断所有提交。强制 stdout/stderr 用 UTF-8。
+    for stream in (sys.stdout, sys.stderr):
+        try:
+            stream.reconfigure(encoding="utf-8")
+        except (AttributeError, ValueError):
+            pass
+
     parser = argparse.ArgumentParser(description="Knowledge Base Lint Checker")
     parser.add_argument(
         "--wiki-root",
@@ -594,6 +624,12 @@ def main():
         type=Path,
         default=RAW_ROOT,
         help="Path to the raw/ directory (default: ../raw relative to this script)",
+    )
+    parser.add_argument(
+        "--gate",
+        action="store_true",
+        help="门禁模式（用于 pre-commit hook）：不写报告，仅当关键检查"
+        "（frontmatter/断链/index/SHA）失败时返回非零退出码，质量提示不阻断。",
     )
     args = parser.parse_args()
 
@@ -637,9 +673,10 @@ def main():
     results["check9_wikilink_format"] = check_wikilink_format(wiki_root)
 
     print()
-    report_path = write_report(wiki_root, results)
-    print(f"Report written to: {report_path}")
-    print()
+    if not args.gate:
+        report_path = write_report(wiki_root, results)
+        print(f"Report written to: {report_path}")
+        print()
 
     # Summary to stdout
     total = sum(len(v) for v in results.values())
@@ -649,7 +686,22 @@ def main():
     for key, issues in results.items():
         label = key.replace("_", " ").title()
         status = "PASS" if not issues else f"FAIL ({len(issues)} issues)"
-        print(f"  {label}: {status}")
+        gate_tag = " [GATE]" if key in CRITICAL_CHECKS else ""
+        print(f"  {label}: {status}{gate_tag}")
+
+    # 门禁模式：仅关键检查失败才阻断（非零退出码）
+    if args.gate:
+        critical_failed = [k for k in CRITICAL_CHECKS if results.get(k)]
+        if critical_failed:
+            print()
+            print("=== [X] GATE FAILED: 关键检查未通过，提交被阻断 ===")
+            for k in critical_failed:
+                print(f"  - {k}: {len(results[k])} 个问题")
+            print("（修复后重试；质量提示类问题不阻断提交）")
+            return 1
+        print()
+        print("=== [OK] GATE PASSED: 关键检查全部通过 ===")
+        return 0
 
     return 0 if total == 0 else 1
 

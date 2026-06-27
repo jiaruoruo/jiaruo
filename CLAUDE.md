@@ -117,7 +117,7 @@ def sha256_file(path):
 **Step 6：创建 wiki/sources/<slug>.md**
 使用 `wiki/templates/source-template.md`，frontmatter 必须填写：
 - `raw_file`: 相对路径（如 `raw/articles/filename.md`）
-- `raw_sha256`: 步骤 2 计算的哈希值
+- `raw_sha256`: 步骤 2 计算的哈希值，**必须是完整 64 位十六进制字符串，严禁截断**（截断哈希会与全量哈希前缀匹配，导致 lint 误报 SOURCE MODIFIED；lint Check 6 会校验长度并标记 MALFORMED HASH）
 - `last_verified`: 今日日期（YYYY-MM-DD）
 - 若来源发表日期超过 2 年前：设置 `possibly_outdated: true`，并在 Summary 末尾添加：
   > ⚠ 此来源发表于 2 年以上前（{date}），部分内容可能已过时。
@@ -168,14 +168,27 @@ def sha256_file(path):
 - 用户确认后，执行 QUERY 并将结果写入 `wiki/synthesis/`
 - 将该问题从 Open Questions 移入 Resolved Questions，标注解答日期和 synthesis 链接
 
-**Step 12：更新 qmd 索引并追加操作日志**
-```bash
-qmd update
-```
-随后追加日志：
-```
-YYYY-MM-DD HH:MM | ingest | [来源标题]（slug: [slug]，提取 N 个概念，M 个实体）
-```
+**Step 12：收尾自检（强制）——lint 门禁 + 更新索引/仪表盘 + 日志**
+
+INGEST 结束前**必须**按顺序完成以下收尾，不得跳过：
+
+1. **运行 lint 门禁**（防止「摄入完就跑、不建概念」导致孤儿 wikilink）：
+   ```bash
+   python scripts/lint.py --gate
+   ```
+   - 关键检查（frontmatter / 孤儿断链 / index 一致性 / SHA）任一失败 → **必须先修复再继续**，不得带病提交。
+   - 若 source 页引用了尚未创建的 concept/entity（孤儿 wikilink），说明 Step 7–9 未完成，回头补建对应页面。
+2. **更新 qmd 索引**：
+   ```bash
+   qmd update
+   ```
+3. **更新 `wiki/overview.md`** 的 Health Dashboard 数据（Sources/Concepts/Entities/Synthesis 计数与增长趋势行）。
+4. 追加日志：
+   ```
+   YYYY-MM-DD HH:MM | ingest | [来源标题]（slug: [slug]，提取 N 个概念，M 个实体）
+   ```
+
+> 注：仓库已挂 pre-commit 门禁（见第十四节），即使遗漏步骤 1，提交时也会被自动拦截；但应在 INGEST 内主动自检，而非依赖最后一道防线。
 
 ---
 
@@ -242,6 +255,14 @@ YYYY-MM-DD HH:MM | ingest | [来源标题]（slug: [slug]，提取 N 个概念�
    - 若索引落后：执行 `qmd add wiki/`，在报告中记录「索引已更新」
 4. 向用户展示摘要，询问是否立即修复发现的问题
 
+### 门禁模式（`--gate`）
+
+`python scripts/lint.py --gate` 用于 pre-commit hook（见第十四节）：**不写报告**，仅当**关键检查**失败时返回非零退出码以阻断提交。
+
+- **关键检查（阻断提交）**：Check 1 frontmatter、Check 2 孤儿/断链 wikilink、Check 3 index 一致性、Check 6 SHA。
+- **质量提示（不阻断）**：Check 4 stub、Check 5 近重复、Check 7 stale、Check 8 跨语言、Check 9 格式。
+  - 之所以不把 Check 5 列为阻断项：同族概念（如 `chip-design` ↔ `rf-chip-design`）会触发 Jaccard 误报，若阻断会卡死每次提交。
+
 ### 9 项检查说明
 
 | # | 检查项 | 说明 |
@@ -251,7 +272,7 @@ YYYY-MM-DD HH:MM | ingest | [来源标题]（slug: [slug]，提取 N 个概念�
 | 3 | Index 一致性 | wiki/index.md 中标记的文件是否都实际存在 |
 | 4 | Stub 页面 | 正文少于 100 字符的空壳页面 |
 | 5 | 近重复概念名称 | slug 名称 Jaccard 相似度 > 0.7 的 concept 页对 |
-| 6 | SHA-256 完整性 | raw 文件哈希与 source 页 raw_sha256 字段比对（⚠ SOURCE MODIFIED） |
+| 6 | SHA-256 完整性 | ①raw_sha256 长度/格式校验：必须 64 位十六进制，否则标记 `❌ MALFORMED HASH`（防截断 bug）；②raw 文件哈希与 source 页 raw_sha256 字段比对（⚠ SOURCE MODIFIED） |
 | 7 | Stale 页面 | 超过 domain_volatility 时效阈值（high=90天, medium=180天, low=365天） |
 | 8 | 跨语言重复 | source URL 相似度检测 + 不同 concept 页的 aliases 字段重叠检测 |
 | 9 | Wikilink 格式规范 | 检测非英文小写连字符格式的 wikilink（如中文词汇、驼峰、下划线）及别名断链 |
@@ -261,6 +282,17 @@ YYYY-MM-DD HH:MM | ingest | [来源标题]（slug: [slug]，提取 N 个概念�
 ## 五、REFLECT 操作规范
 
 **触发词**：`reflect`、`综合分析`、`发现规律`
+
+### 何时应主动触发 REFLECT（产能平衡机制）
+
+摄入速度远快于综合速度时，知识库会「广而不深」——大量孤立、单来源概念堆积，却缺乏跨来源的综合判断。出现以下任一信号时，**应主动提示用户执行 REFLECT**（无需等待触发词）：
+
+- **综合覆盖严重滞后**：`Sources 数 / Synthesis 数 > 30`（例：135 来源仅 2 篇 synthesis）。
+- **孤立概念积压**：`source_count = 1` 且创建超过 30 天的概念 ≥ 10 个。
+- **隐性盲区**：某主题被 ≥ 8 个来源提及却无独立 concept 页（如曾出现的 functional-safety / gan-power-devices）。
+- **某主题簇已成熟**：单一主题下 concept 的累计 `source_count` 已较高（如机器人半导体、MCUless、Agent 路线、芯片制造流程），具备综合条件。
+
+LINT 报告与 `overview.md` 应据此给出 REFLECT 建议。
 
 ### 四阶段执行
 
@@ -406,11 +438,17 @@ qmd multi-get "wiki/synthesis/*.md" -l 60
 
 ## 十一、Source Integrity Rules（来源完整性规则）
 
+### 哈希格式规则（写入时校验）
+- `raw_sha256` **必须是完整 64 位十六进制字符串**，严禁截断或简写。
+  - 原因：截断哈希（如只存前 8 位）会与全量哈希前缀匹配，让 lint 把「未修改」的来源误报为 `⚠ SOURCE MODIFIED`，淹没真正的篡改信号。
+  - lint Check 6 会校验长度，非 64 位标记 `❌ MALFORMED HASH`，并作为 `--gate` 关键检查阻断提交。
+- raw 文件应避免被 git 行尾规范化（仓库已配置 `.gitattributes` 的 `raw/** -text`），否则 CRLF/LF 变动会改变字节、导致哈希漂移误报。
+
 ### Re-ingest 规则
 若 lint 报告 `⚠ SOURCE MODIFIED`（SHA-256 不匹配）：
-1. 重新摄入该文件（执行完整的外部来源标准流程）
-2. 更新所有受影响的 concept/entity 页面
-3. Evolution Log 记录：
+1. 先区分**真实修改**与**误报**：用 `--ignore-all-space` 或重算确认是内容变更，还是行尾/截断导致的假阳性。
+2. 若为误报：重算全量 64 位哈希回填 `raw_sha256`，更新 `last_verified`。
+3. 若为真实修改：重新摄入该文件（执行完整的外部来源标准流程），更新所有受影响的 concept/entity 页面，并在 Evolution Log 记录：
    ```
    - YYYY-MM-DD（N sources）：来源更新：wiki/sources/[slug].md 哈希变更，内容已重新提取
    ```
@@ -443,4 +481,28 @@ qmd multi-get "wiki/synthesis/*.md" -l 60
 
 ---
 
-_最后更新：2026-04-15_
+## 十四、自动化门禁机制（pre-commit gate）
+
+仓库挂载了 git pre-commit 门禁，作为「摄入完就跑、不建概念」等问题的**最后一道防线**。
+
+### 工作机制
+- hook 脚本：`scripts/githooks/pre-commit`（随仓库版本化）。
+- 每次 `git commit` 前自动运行 `python scripts/lint.py --gate`。
+- **关键检查失败即阻断提交**：frontmatter 非法、孤儿/断链 wikilink、index 不一致、SHA 截断或不匹配（详见第四节门禁模式）。
+- 质量提示类问题（stub/近重复/stale/跨语言/格式）**不阻断**。
+
+### 安装（每个新克隆执行一次）
+```bash
+git config core.hooksPath scripts/githooks
+```
+
+### 绕过（仅在确有必要时）
+```bash
+git commit --no-verify
+```
+
+> 门禁是兜底，不是免责。INGEST/REFLECT 等操作仍须在流程内主动自检（见各节），不得依赖门禁兜底而带病推进。
+
+---
+
+_最后更新：2026-06-27_
