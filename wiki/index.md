@@ -9,6 +9,23 @@ graph-excluded: true
 
 ### Processed
 
+- 2026-06-14 [[sources/mcu-on-device-ai-inference]]
+- 2026-06-14 [[sources/tinyml-neural-network-basics]]
+- 2026-06-14 [[sources/on-device-ai-impossible-triangle]]
+- 2026-06-14 [[sources/ai-native-organization]]
+- 2026-06-09 [[sources/embodied-ai-real-robot-data-bottleneck]]
+- 2026-06-07 [[sources/humanoid-robot-13-hardware-categories]]
+- 2026-06-07 [[sources/embodied-ai-motion-control-overview]]
+- 2026-06-07 [[sources/embedded-systems-for-embodied-ai]]
+- 2026-06-07 [[sources/npu-embedded-mcu-trend]]
+- 2026-06-06 [[sources/gigadevice-robot-joint-ethercat]]
+- 2026-06-06 [[sources/embodied-ai-weekly-papers-2026-06-06]]
+- 2026-06-06 [[sources/behavior-foundation-model-bfm-survey]]
+- 2026-05-23 [[sources/multica-agent-platform]]
+- 2026-05-23 [[sources/karpathy-boris-software-3-0]]
+- 2026-05-23 [[sources/autoresearch-software-development]]
+- 2026-05-23 [[sources/anthropic-skill-methodology]]
+- 2026-05-17 [[sources/humanoid-robot-mcu-vendor-landscape]]
 - 2026-05-17 [[sources/kpmg-automotive-sensor-market-2024]]
 - 2026-05-17 [[sources/arm-architecture-course-notes-buaa]]
 - 2026-05-17 [[sources/arm-chip-selection-guide-embedded]]
@@ -202,6 +219,8 @@ graph-excluded: true
 - [[concepts/mmwave-radar]]
 - [[concepts/functional-safety]]
 - [[concepts/gan-power-devices]]
+- [[concepts/edge-ai]]
+- [[concepts/behavior-foundation-model]]
 
 ---
 

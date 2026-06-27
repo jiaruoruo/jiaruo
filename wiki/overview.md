@@ -11,13 +11,13 @@ _最后更新：2026-06-27_
 
 | 指标 | 数值 | 说明 |
 |---|---|---|
-| 总来源数（Sources） | 126 | wiki/sources/ 下的页面总数 |
-| 总 Concept 页数 | 59 | wiki/concepts/ 下的页面总数 |
+| 总来源数（Sources） | 143 | wiki/sources/ 下的页面总数 |
+| 总 Concept 页数 | 61 | wiki/concepts/ 下的页面总数 |
 | 总 Entity 页数 | 29 | wiki/entities/ 下的页面总数 |
 | 总 Synthesis 页数 | 3 | wiki/synthesis/ 下的页面总数 |
 | 高置信度概念数（High Confidence） | 2 | confidence: high 的 concept 页数 |
-| 中置信度概念数（Medium Confidence） | 14 | confidence: medium 的 concept 页数 |
-| 低置信度概念数（Low Confidence） | 43 | confidence: low 的 concept 页数 |
+| 中置信度概念数（Medium Confidence） | 15 | confidence: medium 的 concept 页数 |
+| 低置信度概念数（Low Confidence） | 44 | confidence: low 的 concept 页数 |
 | 开放问题数（Open Questions） | 0 | QUESTIONS.md 中未解决的问题数 |
 | Stale 页面数 | 0 | 超过 domain_volatility 时效阈值的页面数 |
 | 近重复概念对数 | 2 | Jaccard>0.7 的概念名对（同族概念误报，已核实非重复） |
@@ -54,6 +54,7 @@ _最后更新：2026-06-27_
 | 2026-04-20 | 41 | 19 | 14 | 0 |
 | 2026-04-25 | 55 | 24 | 16 | 2 |
 | 2026-06-27 | 126 | 57 | 29 | 2 |
+| 2026-06-27（整合远端+补全） | 143 | 61 | 29 | 3 |
 
 ## 待办（下一步建议）
 
