@@ -1,0 +1,19 @@
+# 临时脚本与中间产物（历史上 scripts/ 曾被一次性 sha/extract 脚本污染）
+# 约定：以下划线开头的脚本/文本为临时文件，不入库
+scripts/_*.py
+scripts/_*.txt
+scripts/*_output*.txt
+scripts/sha_*.txt
+scripts/*.tmp
+
+# 常见临时/系统文件
+*.pyc
+__pycache__/
+.DS_Store
+Thumbs.db
+
+# 根目录临时草稿（历史上出现过 temp_*.md / *_test.txt 污染）
+/temp_*.md
+/*_test.txt
+/test.txt
+/enc_test.txt

@@ -56,6 +56,13 @@ STALE_DAYS = {
 # Jaccard similarity threshold for near-duplicate concept names
 JACCARD_THRESHOLD = 0.7
 
+# 近重复「已确认非重复」白名单：同族但语义不同的概念对（slug 词元高度重叠
+# 触发 Jaccard 误报，但实为不同概念，不应合并）。维护时按 slug 对（无序）添加。
+NEAR_DUP_WHITELIST = {
+    frozenset({"arm-architecture", "eea-architecture"}),  # 处理器架构 vs 整车电子电气架构
+    frozenset({"chip-design", "rf-chip-design"}),          # 芯片设计 vs 其射频子领域
+}
+
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -320,6 +327,10 @@ def check_near_duplicate_concepts(wiki_root: Path) -> list[str]:
             if pair_key in checked:
                 continue
             checked.add(pair_key)
+
+            # 跳过已确认非重复的同族概念对
+            if frozenset({name_a, name_b}) in NEAR_DUP_WHITELIST:
+                continue
 
             sim = jaccard_similarity(name_a, name_b)
             if sim > JACCARD_THRESHOLD:

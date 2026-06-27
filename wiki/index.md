@@ -272,6 +272,9 @@ graph-excluded: true
 ## Recent Synthesis
 
 <!-- 最近生成的综合分析页，格式：- YYYY-MM-DD [[synthesis/slug]] -->
+- 2026-06-27 [[synthesis/embodied-ai-humanoid-robot-synthesis]]
+- 2026-06-27 [[synthesis/edge-ai-on-device-inference-synthesis]]
+- 2026-06-27 [[synthesis/chip-design-manufacturing-flow-synthesis]]
 - 2026-06-27 [[synthesis/mculess-eea-architecture-synthesis]]
 - 2026-04-25 [[synthesis/robot-semiconductor-competitive-synthesis]]
 - 2026-04-25 [[synthesis/agent-architecture-landscape-synthesis]]

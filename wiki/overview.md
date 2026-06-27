@@ -14,19 +14,18 @@ _最后更新：2026-06-27_
 | 总来源数（Sources） | 143 | wiki/sources/ 下的页面总数 |
 | 总 Concept 页数 | 61 | wiki/concepts/ 下的页面总数 |
 | 总 Entity 页数 | 29 | wiki/entities/ 下的页面总数 |
-| 总 Synthesis 页数 | 3 | wiki/synthesis/ 下的页面总数 |
+| 总 Synthesis 页数 | 6 | wiki/synthesis/ 下的页面总数 |
+| 来源/综合比 | 24:1 | 143/6，已从 47:1 降至阈值（30）以下 |
 | 高置信度概念数（High Confidence） | 2 | confidence: high 的 concept 页数 |
 | 中置信度概念数（Medium Confidence） | 15 | confidence: medium 的 concept 页数 |
 | 低置信度概念数（Low Confidence） | 44 | confidence: low 的 concept 页数 |
-| 开放问题数（Open Questions） | 0 | QUESTIONS.md 中未解决的问题数 |
+| 开放问题数（Open Questions） | 5 | QUESTIONS.md 中未解决的问题数（2026-06-27 从 gap 分析播种） |
 | Stale 页面数 | 0 | 超过 domain_volatility 时效阈值的页面数 |
-| 近重复概念对数 | 2 | Jaccard>0.7 的概念名对（同族概念误报，已核实非重复） |
+| 近重复概念对数 | 0 | lint Check5 已加白名单豁免同族概念误报，达 9/9 |
 
 ## 最近 Lint 报告
 
-- 2026-06-27 `wiki/outputs/lint-2026-06-27.md`（**8/9 项通过**；仅余 2 个近重复启发式误报）
-- 2026-04-28 `wiki/outputs/lint-2026-04-28.md`
-- 2026-04-25 `wiki/outputs/lint-2026-04-25.md`（0 个问题，9/9 项通过）
+- 2026-06-27 `wiki/outputs/lint-2026-06-27.md`（**9/9 项通过，0 问题**；近重复白名单已豁免同族概念误报）
 
 ## 最近修复（2026-06-27 健康整治）
 
@@ -37,7 +36,10 @@ _最后更新：2026-06-27_
 
 ## 最近 Synthesis
 
-- 2026-06-27 `wiki/synthesis/mculess-eea-architecture-synthesis.md`（MCULess 与汽车 EEA 架构演进，硬件路由 vs 软件路由的过渡范式，confidence: medium）
+- 2026-06-27 `wiki/synthesis/embodied-ai-humanoid-robot-synthesis.md`（人形机器人约束下移到「身体层」三大瓶颈：BFM 接口/真机数据/灵巧手供应链，confidence: medium）
+- 2026-06-27 `wiki/synthesis/edge-ai-on-device-inference-synthesis.md`（边缘AI：推理下沉设备端、重塑 MCU 角色、不可能三角，confidence: medium）
+- 2026-06-27 `wiki/synthesis/chip-design-manufacturing-flow-synthesis.md`（芯片设计制造全流程地图 + 与前沿簇割裂的孤岛诊断，confidence: medium）
+- 2026-06-27 `wiki/synthesis/mculess-eea-architecture-synthesis.md`（MCULess 与汽车 EEA 架构演进，硬件路由 vs 软件路由，confidence: medium）
 - 2026-04-25 `wiki/synthesis/robot-semiconductor-competitive-synthesis.md`（机器人半导体竞争格局，confidence: medium）
 - 2026-04-25 `wiki/synthesis/agent-architecture-landscape-synthesis.md`（Agent 框架三条路线，confidence: low）
 
@@ -55,8 +57,11 @@ _最后更新：2026-06-27_
 | 2026-04-25 | 55 | 24 | 16 | 2 |
 | 2026-06-27 | 126 | 57 | 29 | 2 |
 | 2026-06-27（整合远端+补全） | 143 | 61 | 29 | 3 |
+| 2026-06-27（三簇 REFLECT） | 143 | 61 | 29 | 6 |
 
 ## 待办（下一步建议）
 
-- **提炼滞后**：126 来源仅 2 篇 synthesis、42/57 概念为 low 置信度。建议对成熟主题（芯片制造流程、MCULess、机器人半导体、Agent 路线）执行 REFLECT，将孤立概念升格为综合。
-- **芯片新概念待深化**：本次新建的 24 个芯片概念多为 source_count 1–10 的初版，可在后续摄入中强化定义、补充矛盾点。
+- **横向连通补桥**：芯片簇仍是相对孤岛（concept↔concept 链接稀疏），后续 ingest 现代芯片内容时应优先连到 advanced-packaging / gan-power-devices / mobile-soc / functional-safety 四个桥接点（见 chip-design-manufacturing-flow-synthesis）。
+- **单源概念深化**：仍有 32 个 `source_count=1` 概念，可在后续摄入中强化定义、补充矛盾点。
+- **raw 待清理**：`raw/clippings/MCU-LESS.md` 是已摄入 `raw/articles/MCU-LESS.md` 的逐字节重复；`全球机器人思考路线图 2025–2035.md` 为空文件（raw 属人类层，待你处理）。
+- **跟进开放问题**：QUESTIONS.md 已播种 5 个开放问题，后续 ingest 时留意是否被回答。
