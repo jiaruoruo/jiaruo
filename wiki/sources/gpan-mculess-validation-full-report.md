@@ -14,8 +14,8 @@ tags:
   - automotive
 processed: true
 raw_file: "raw/articles/GPAN_MCULess_验证报告.html"
-raw_sha256: "38fe0b35dd6c2835142e4fd255d7edc7a608f015dc2efbb0e4aaf484b7424cc7"
-last_verified: 2026-04-27
+raw_sha256: "9a3ef55dfb295141e7d2c30e9ed575085e0cdd90e79acc2aed788a72f8f675bb"
+last_verified: 2026-06-27
 possibly_outdated: false
 language: "zh"
 canonical_source: ""
