@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "raw/notes/daily-tech-digest-2026-05-11.md",
+                "file": "raw/clippings/全球机器人技术路线图 2025–2035.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "daily-tech-digest-2026-05-11"
+              "title": "全球机器人技术路线图 2025–2035"
             }
           }
         ]
@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 301.5
+    "width": 315.5
   },
   "right": {
     "id": "fe355a5c926db48d",
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "raw/notes/daily-tech-digest-2026-05-11.md",
+                "file": "raw/clippings/2026-05-20麦肯锡拆解人形机器人 BOM：最贵的是执行器，最缺的是供应链.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "daily-tech-digest-2026-05-11 的出链列表"
+              "title": "2026-05-20麦肯锡拆解人形机器人 BOM：最贵的是执行器，最缺的是供应链 的出链列表"
             }
           },
           {
@@ -166,13 +166,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "raw/notes/daily-tech-digest-2026-05-11.md",
+                "file": "raw/clippings/2026-05-20麦肯锡拆解人形机器人 BOM：最贵的是执行器，最缺的是供应链.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "daily-tech-digest-2026-05-11 的大纲"
+              "title": "2026-05-20麦肯锡拆解人形机器人 BOM：最贵的是执行器，最缺的是供应链 的大纲"
             }
           }
         ],
@@ -180,7 +180,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 360.5
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -195,43 +195,52 @@
   },
   "active": "311600070c420651",
   "lastOpenFiles": [
-    "wiki/concepts/automotive-sensor.md",
-    "wiki/test_char.txt",
-    "wiki/entities/kpmg.md",
-    "f7c.b64",
-    "wiki/sources/qualcomm-chip-roadmap-2010-nda.md",
-    "f7b.b64",
-    "f7a.b64",
-    "wiki/sources/qualcomm-chip-spec-2009.md",
-    "f6a.b64",
-    "wiki/sources/mediatek-sdk-reference.md",
-    "f5a.b64",
-    "f4d.b64",
-    "f4c.b64",
-    "wiki/sources/mediatek-mtk-chip-catalog.md",
-    "f4b.b64",
-    "f4a.b64",
-    "wiki/sources/ic-packaging-reliability-chip-interconnect.md",
-    "wiki/sources/bare-die-packaging-development-challenges.md",
-    "wiki/sources/ic-package-lead-electrical-testing.md",
-    "wiki/sources/chip-testing-significance.md",
-    "wiki/sources/ic-packaging-testing-education.md",
-    "wiki/sources/flip-chip-bonding-process-solutions.md",
-    "wiki/sources/flexible-electronics-manufacturing-2014.md",
-    "wiki/sources/test_persist.md",
-    "wiki/sources/chip-manufacturing-process-illustrated.md",
-    "wiki/sources/arm-chip-selection-reference.md",
-    "wiki/sources/arm-chip-selection-guide-embedded.md",
-    "wiki/sources/kpmg-test99.md",
-    "wiki/sources/test-write-full.md",
-    "wiki/sources/brand-new-test.md",
-    "wiki/sources/kpmg-automotive-sensor-market-2024.md",
-    "wiki/sources/vlsi-low-power-design-analysis.md",
-    "wiki/sources/chip-design-flow-cadence-virtuoso.md",
-    "wiki/sources/chip-design-production-flow.md",
-    "wiki/sources/flip-chip-bump-fabrication-methods.md",
-    "wiki/sources/chip-rd-process-overview-2014.md",
-    "raw/pdfs/532 汽车电子芯片研发制造测试全套资料！/更多资料获取地址/免责声明.JPG",
+    "raw/clippings/Anthropic终于公开了他们内部Skill方法论。.md",
+    "raw/clippings/全球机器人技术路线图 2025–2035.md",
+    "wiki/sources/anthropic终于公开了他们内部skill方法论.md",
+    "wiki/sources/2026-06-14端侧-ai-的不可能三角延迟内存精度.md",
+    "wiki/sources/2026-06-14玩转边缘aitinyml需要掌握的神经网络基础知识汇总.md",
+    "wiki/sources/2026-06-14别再只把-mcu-当控制器新一代芯片正在把-ai-推理搬到设备端.md",
+    "wiki/sources/2026-06-14ai-native-从超级个体到原生组织.md",
+    "wiki/sources/2026-06-09具身智能的重复造轮子终于有人开始认真解了.md",
+    "wiki/sources/2026-06-07嵌入式系统如何支撑具身智能.md",
+    "wiki/sources/2026-06-07具身智能运动控制技术介绍.md",
+    "wiki/sources/2026-06-07从特斯拉-optimus-到宇树人形机器人-13-类核心硬件全拆解附代表企业.md",
+    "wiki/sources/2026-06-07npu-正在成为嵌入式芯片标配mcu-工程师会被改变吗.md",
+    "wiki/sources/2026-06-06智元众擎逐际都在卷的人形机器人运控基座41篇论文看懂bfm.md",
+    "wiki/sources/2026-06-06具身智能上周最值得看的十篇论文人形机器人从运控基座到视频数据.md",
+    "wiki/sources/2026-06-06兆易创新机器人关节为什么需要-ethercat.md",
+    "wiki/sources/2026-05-23我把-karpathy-的-autoresearch-搬到了软件开发领域效果炸了.md",
+    "wiki/sources/2026-05-23karpathyclaude-code之父boris最新访谈把整个程序员圈炸了.md",
+    "wiki/sources/2026-05-23github-热点-multica-agent即队友.md",
+    "wiki/sources/2026-05-17人形机器人mcu哪家强.md",
+    "wiki/sources/2026-04-14-仿真平台的新战场openclaw-simulation-rl把会做事的能力自主训练出来.md",
+    "scripts/ingest_new_clippings.py",
+    "wiki/outputs/lint-2026-06-21.md",
+    "raw/notes/weekly-report-W25-2026-06-15-to-2026-06-21.md",
+    "raw/notes/daily-tech-digest-2026-06-21.md",
+    "raw/notes/daily-tech-digest-2026-06-19.md",
+    "raw/clippings/2026-06-14别再只把 MCU 当控制器：新一代芯片正在把 AI 推理搬到设备端.md",
+    "raw/notes/daily-tech-digest-2026-06-16.md",
+    "raw/images/agent-memory11.png",
+    "raw/images/未确认 906312.crdownload",
+    "raw/images/agent-memory10.png",
+    "raw/images/未确认 44192.crdownload",
+    "raw/images/agent-memory9.png",
+    "raw/images/未确认 3267.crdownload",
+    "raw/images/agent-memory8.png",
+    "raw/images/未确认 550522.crdownload",
+    "raw/images/agent-memory7.png",
+    "raw/images/未确认 264360.crdownload",
+    "raw/images/agent-memory6.png",
+    "raw/images/未确认 414596.crdownload",
+    "raw/images/agent-memory5.png",
+    "raw/images/未确认 944524.crdownload",
+    "raw/images/agent-memory4.png",
+    "raw/images/未确认 315833.crdownload",
+    "raw/images/agent-memory3.png",
+    "raw/images/未确认 153087.crdownload",
+    "raw/images/agent-memory2.png",
     "llm-wiki-dataview.canvas"
   ]
 }

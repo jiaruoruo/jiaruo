@@ -13,8 +13,8 @@ tags:
   - actuator
   - mckinsey
 processed: true
-raw_file: "raw/clippings/2026-05-14麦肯锡拆解人形机器人 BOM：最贵的是执行器，最缺的是供应链.md"
-raw_sha256: a78b51221a86cde6b3161ee687f71381e4e3e561c887b994ea38ba6050e1430c
+raw_file: "raw/clippings/2026-05-20麦肯锡拆解人形机器人 BOM：最贵的是执行器，最缺的是供应链.md"
+raw_sha256: "33ad064c1d92faad1d99284b18f320ff7fc24dc081164f8a0cd782d52a1da7ea"
 last_verified: 2026-06-27
 possibly_outdated: false
 language: "zh"
