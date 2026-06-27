@@ -8,8 +8,8 @@ author: ""
 tags: [arm, chip-selection, reference, education]
 processed: true
 raw_file: "raw/pdfs/芯片企业合集/ARM常用ARM芯片选型.pdf"
-raw_sha256: "206337fe"
-last_verified: 2026-05-17
+raw_sha256: 206337fe7eb958f5cef1f0a70d86286410fd6a3638468c3eb43587e14412597a
+last_verified: 2026-06-27
 possibly_outdated: true
 language: "zh"
 canonical_source: ""

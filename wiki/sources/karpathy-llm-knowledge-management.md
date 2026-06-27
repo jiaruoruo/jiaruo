@@ -13,8 +13,8 @@ tags:
   - karpathy
 processed: true
 raw_file: "raw/clippings/2026-04-24Karpathy大神的LLM驱动知识库管理方法论.md"
-raw_sha256: "c2a3a2e5bb17dbdc1bb753ef3a3bf608712d1e570c4e49758355c0b9ca3ef865"
-last_verified: 2026-04-25
+raw_sha256: 341b3a71d99cd26fff695ec3874264a2dfa29f73dec998cc74ba400de56f33d1
+last_verified: 2026-06-27
 possibly_outdated: false
 language: "zh"
 canonical_source: ""

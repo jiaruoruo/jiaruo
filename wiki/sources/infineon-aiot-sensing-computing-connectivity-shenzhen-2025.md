@@ -4,6 +4,7 @@ title: "AI 释能：感知、计算、连接"
 date: 2026-04-20
 sha256: "fd1ad0fbfac7a7daff8b5e259fff783b524318c7d80e64ca5e0ccdf1446f9b89"
 raw_file: "raw/pdfs/深圳We Enable AI -- AI 释能：感知、计算、连接--钟至仁.pdf"
+raw_sha256: fd1ad0fbfac7a7daff8b5e259fff783b524318c7d80e64ca5e0ccdf1446f9b89
 author: "钟至仁（Marco Chung），英飞凌科技"
 event: "深圳 We Enable AI 2025"
 domain:

@@ -8,8 +8,8 @@ author: ""
 tags: [chip-testing, ic-testing, education]
 processed: true
 raw_file: "raw/pdfs/芯片封装测试/测试!芯片测试的意义.pdf"
-raw_sha256: "a0f43df8"
-last_verified: 2026-05-17
+raw_sha256: a0f43df839fb4832450c988a3df37f0bb1b8d9be6b7ab9a27b4fdfec8c7597f4
+last_verified: 2026-06-27
 possibly_outdated: true
 language: "zh"
 canonical_source: ""

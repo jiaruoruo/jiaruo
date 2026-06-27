@@ -4,6 +4,7 @@ title: "英飞凌为AI服务器提供高效率高功率密度供电方案"
 date: 2026-04-20
 sha256: "bced59e8a50026d8e06b321c056350a6fc0eca8553ca2afe4cd0f5002cb0bd55"
 raw_file: "raw/pdfs/深圳We Power AI --英飞凌为AI服务器提供高效率高功率密度供电方案--卢柱强.pdf"
+raw_sha256: bced59e8a50026d8e06b321c056350a6fc0eca8553ca2afe4cd0f5002cb0bd55
 author: "卢柱强，英飞凌科技"
 event: "深圳 We Power AI 2025"
 domain:

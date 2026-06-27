@@ -4,6 +4,7 @@ title: "人工智能的高速发展需要更广更强的数据安全防护"
 date: 2026-04-20
 sha256: "06b226ea55b96763794a1e1aa1ac9dba7342f7173dde5a4bff94a60c876009b3"
 raw_file: "raw/pdfs/深圳We Enable AI --人工智能的高速发展需要更广更强的数据安全防护--郑力仁.pdf"
+raw_sha256: 06b226ea55b96763794a1e1aa1ac9dba7342f7173dde5a4bff94a60c876009b3
 author: "郑力仁，市场经理，英飞凌科技"
 event: "深圳 We Enable AI 2025"
 domain:

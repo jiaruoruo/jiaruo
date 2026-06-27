@@ -8,8 +8,8 @@ author: ""
 tags: [arm, embedded, chip-selection, education]
 processed: true
 raw_file: "raw/pdfs/芯片企业合集/ARM嵌入式系统ARM芯片的应用和选型.pdf"
-raw_sha256: "c1af4774"
-last_verified: 2026-05-17
+raw_sha256: c1af477450caf2906eee7ea777dfd09bcde6428a174be18ce23a6728ac1a90bc
+last_verified: 2026-06-27
 possibly_outdated: true
 language: "zh"
 canonical_source: ""

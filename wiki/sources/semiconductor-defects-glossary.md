@@ -8,8 +8,8 @@ author: ""
 tags: [semiconductor, defects, glossary, terminology]
 processed: true
 raw_file: "raw/pdfs/芯片设计/半导体缺陷解析及中英文术语一览.pdf"
-raw_sha256: "43b45a23"
-last_verified: 2026-05-17
+raw_sha256: 43b45a237eede3a81a4f0366fa2a7d5f32afc715c066b16e482a1307cc75c9ad
+last_verified: 2026-06-27
 possibly_outdated: true
 language: "zh"
 canonical_source: ""

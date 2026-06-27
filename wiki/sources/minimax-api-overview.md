@@ -14,8 +14,8 @@ tags:
   - video-generation
 processed: true
 raw_file: "raw/clippings/2026-04-13-接口概览 - MiniMax 开放平台文档中心.md"
-raw_sha256: "35880ce46d75fc7e24bceef3b1c5c6f56cb3923c5e46e9b8aadc09dfd1c4c3a2"
-last_verified: 2026-04-15
+raw_sha256: c28ba018d66f29725c8cca00d06ffa3683ad6e9da599fbb7bce39ecfc606effa
+last_verified: 2026-06-27
 possibly_outdated: false
 language: "zh"
 canonical_source: "https://platform.minimaxi.com/docs/api-reference/api-overview"

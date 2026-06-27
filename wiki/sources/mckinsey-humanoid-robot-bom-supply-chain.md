@@ -14,8 +14,8 @@ tags:
   - mckinsey
 processed: true
 raw_file: "raw/clippings/2026-05-14麦肯锡拆解人形机器人 BOM：最贵的是执行器，最缺的是供应链.md"
-raw_sha256: "52cad1bc1cc72b684baa9ec0a39ada18dce8088accf988433d64858f4b5035b9"
-last_verified: 2026-05-17
+raw_sha256: a78b51221a86cde6b3161ee687f71381e4e3e561c887b994ea38ba6050e1430c
+last_verified: 2026-06-27
 possibly_outdated: false
 language: "zh"
 ---

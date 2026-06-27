@@ -1,0 +1,9 @@
+# raw/ 是受 SHA-256 完整性校验的原始素材层（见 CLAUDE.md 第十一节）。
+# 禁止 git 改写其行尾，否则工作区字节变化会导致 raw_sha256 误报 SOURCE MODIFIED。
+raw/** -text
+
+# 二进制素材显式标记，避免任何规范化
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary

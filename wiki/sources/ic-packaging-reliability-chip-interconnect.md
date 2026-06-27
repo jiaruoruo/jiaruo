@@ -8,8 +8,8 @@ author: "电子科技大学（UESTC）"
 tags: [ic-packaging, reliability, chip-interconnect, wire-bonding, flip-chip, education]
 processed: true
 raw_file: "raw/pdfs/芯片封装测试/集成电路封装和可靠性Chapter2-1-芯片互连技术.pdf"
-raw_sha256: "8e178c4c"
-last_verified: 2026-05-17
+raw_sha256: 8e178c4ca90f2e33b94f3532d06e690bca8e2d0a0485dc2a105face8f0b6c775
+last_verified: 2026-06-27
 possibly_outdated: true
 language: "zh"
 canonical_source: ""

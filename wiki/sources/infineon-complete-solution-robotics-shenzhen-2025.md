@@ -4,6 +4,7 @@ title: "英飞凌整体解决方案助力机器人高速发展"
 date: 2026-04-20
 sha256: "aa9a5b3dd07d77f743e71ce41eedffd45f1a1f2e163a1fb9cfe64faa7bf6a650"
 raw_file: "raw/pdfs/深圳We Accelerate Robotics--英飞凌整体解决方案助力机器人高速发展--张强.pdf"
+raw_sha256: aa9a5b3dd07d77f743e71ce41eedffd45f1a1f2e163a1fb9cfe64faa7bf6a650
 author: "张强（Luke Zhang），英飞凌科技"
 event: "深圳 We Accelerate Robotics 2025"
 domain:

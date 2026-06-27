@@ -7,12 +7,12 @@ source_url: https://mp.weixin.qq.com/s/RFORh-e07XIsKbvZS8_7dg
 author: 汽车电子老登
 published: 2026-04-28
 ingested: 2026-04-28
-raw_sha256: dd1ba0a074fc3dbc5efda374e560be7db8f3aca323625d0d743241e9aa417c02
+raw_sha256: 42c0317859245e729e5a345eed9161d0642b38be5ad0e856b48228a7d4b3689c
 raw_file: "raw/clippings/2026-04-28MCU-less架构在汽车电子中的实现路径深度解析.md"
 tags: [mculess, 10base-t1s, rcp, onsemi, t30hm1ts3600, automotive]
 concepts: [mculess-architecture, eea-architecture, can-eth-protocol-conversion, zonal-gateway]
 entities: []
-last_verified: 2026-04-28
+last_verified: 2026-06-27
 ---
 
 # MCU-less架构在汽车电子中的实现路径深度解析

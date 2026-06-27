@@ -4,6 +4,7 @@ title: "基于英飞凌PSOC™ C3与GaN的电机驱动方案"
 date: 2026-04-20
 sha256: "6eae6cdaa914e7aecb1be683219631976f43d2eca2c5ac7e61c3b46d0a3451f3"
 raw_file: "raw/pdfs/深圳We Accelerate Robotics--基于英飞凌PSOC C3与GaN的电机驱动方案--韩兴涛.pdf"
+raw_sha256: 6eae6cdaa914e7aecb1be683219631976f43d2eca2c5ac7e61c3b46d0a3451f3
 author: "韩兴涛，贝能国际应用设计中心（睿能科技全资子公司）"
 event: "深圳 We Accelerate Robotics 2025"
 domain:

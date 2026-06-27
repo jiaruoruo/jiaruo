@@ -4,6 +4,7 @@ title: "人工智能数据中心向更高总线电压的演变及可用解决方
 date: 2026-04-20
 sha256: "3b2232ceaae85031292fc65c67aefd111c208a33168babac471c1128ba12867f"
 raw_file: "raw/pdfs/深圳We Power AI --人工智能数据中心向更高总线电压的演变及可用解决方案-宋清亮.pdf"
+raw_sha256: 3b2232ceaae85031292fc65c67aefd111c208a33168babac471c1128ba12867f
 author: "宋清亮（Owen Song），英飞凌科技"
 event: "深圳 We Power AI 2025"
 domain:

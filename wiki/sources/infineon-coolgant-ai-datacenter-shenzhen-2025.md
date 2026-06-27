@@ -4,6 +4,7 @@ title: "英飞凌CoolGaN™赋能AI数据中心"
 date: 2026-04-20
 sha256: "be45ce2239729c3be1e6c2047a65cb55bd32808926632e569c305a22476ebe6b"
 raw_file: "raw/pdfs/深圳We Power AI --英飞凌CoolGaN™赋能AI数据中心--程文涛.pdf"
+raw_sha256: be45ce2239729c3be1e6c2047a65cb55bd32808926632e569c305a22476ebe6b
 author: "程文涛，英飞凌科技消费、计算与通讯业务部门"
 event: "深圳 We Power AI 2025"
 domain:

@@ -5,6 +5,13 @@ date: 2026-05-17
 updated: 2026-05-17
 tags: [sensor, automotive, lidar, radar, camera]
 source_count: 1
+confidence: low
+domain_volatility: medium
+last_reviewed: 2026-05-17
+aliases:
+  - "汽车传感器"
+  - "Automotive Sensor"
+  - "automotive-sensor"
 ---
 
 # Automotive Sensor（汽车传感器）

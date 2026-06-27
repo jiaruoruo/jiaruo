@@ -176,6 +176,32 @@ graph-excluded: true
 - [[concepts/claude-code-workflow]]
 - [[concepts/humanoid-robot-supply-chain]]
 - [[concepts/automotive-sensor]]
+- [[concepts/chip-design]]
+- [[concepts/vlsi-design]]
+- [[concepts/soc-design]]
+- [[concepts/analog-chip-design]]
+- [[concepts/rf-chip-design]]
+- [[concepts/memory-design]]
+- [[concepts/sensor-design]]
+- [[concepts/low-power-design]]
+- [[concepts/power-management-ic]]
+- [[concepts/semiconductor-manufacturing]]
+- [[concepts/ic-packaging]]
+- [[concepts/advanced-packaging]]
+- [[concepts/flip-chip]]
+- [[concepts/wire-bonding]]
+- [[concepts/ic-testing]]
+- [[concepts/eda-tools]]
+- [[concepts/arm-architecture]]
+- [[concepts/embedded-system]]
+- [[concepts/mobile-soc]]
+- [[concepts/mems]]
+- [[concepts/flexible-electronics]]
+- [[concepts/autonomous-driving]]
+- [[concepts/lidar]]
+- [[concepts/mmwave-radar]]
+- [[concepts/functional-safety]]
+- [[concepts/gan-power-devices]]
 
 ---
 
@@ -199,6 +225,7 @@ graph-excluded: true
 - [[entities/claude-code]]
 - [[entities/ecc-framework]]
 - [[entities/automotive-claude-code-agents]]
+- [[entities/cadence]]
 
 ### Institutions
 
@@ -215,6 +242,9 @@ graph-excluded: true
 - [[entities/kimi-k2]]
 - [[entities/zhipu-ai]]
 - [[entities/kpmg]]
+- [[entities/qualcomm]]
+- [[entities/mediatek]]
+- [[entities/broadcom]]
 
 ### Papers
 
@@ -223,6 +253,7 @@ graph-excluded: true
 ## Recent Synthesis
 
 <!-- 最近生成的综合分析页，格式：- YYYY-MM-DD [[synthesis/slug]] -->
+- 2026-06-27 [[synthesis/mculess-eea-architecture-synthesis]]
 - 2026-04-25 [[synthesis/robot-semiconductor-competitive-synthesis]]
 - 2026-04-25 [[synthesis/agent-architecture-landscape-synthesis]]
 

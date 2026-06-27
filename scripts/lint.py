@@ -219,8 +219,11 @@ def check_broken_wikilinks(wiki_root: Path) -> list[str]:
 
         for link in links:
             target = link.strip()
-            # Normalize
-            target_norm = target.lstrip("/").lstrip("wiki/")
+            # Normalize: strip leading "/" and "wiki/" PREFIX (not char-set;
+            # lstrip("wiki/") would mangle slugs like "kpmg" -> "pmg")
+            target_norm = target.lstrip("/")
+            if target_norm.startswith("wiki/"):
+                target_norm = target_norm[5:]
             target_bare = target_norm.split("/")[-1]
 
             resolved = slug_to_path(target, wiki_root)

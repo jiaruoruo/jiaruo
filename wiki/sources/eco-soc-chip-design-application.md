@@ -7,9 +7,9 @@ domain: "chip-design"
 author: "王巍巍"
 tags: [eco, soc, chip-design, physical-design]
 processed: true
-raw_file: "raw/pdfs/芯片设计/ECO技术在SoC芯片设计中的应用-王巍巍.pdf"
-raw_sha256: "662d31c5"
-last_verified: 2026-05-17
+raw_file: "raw/pdfs/芯片设计/ECO技术在SoC芯片设计中的应用-王巍.pdf"
+raw_sha256: 662d31c5f991ce2b7e6ef0451e2efd5068d69e708a451ea9f4bfa26b30772e06
+last_verified: 2026-06-27
 possibly_outdated: true
 language: "zh"
 canonical_source: ""

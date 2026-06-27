@@ -8,8 +8,8 @@ author: "毕马威中国（KPMG China）"
 tags: [automotive, sensor, lidar, radar, camera, market-research]
 processed: true
 raw_file: "raw/pdfs/【报告7670】汽车传感器市场调研.pdf"
-raw_sha256: "031b34a1"
-last_verified: 2026-05-17
+raw_sha256: 031b34a111f1b2d4a3ede7f36746aaf022713582bceeec8e144ffa6749a9bea7
+last_verified: 2026-06-27
 possibly_outdated: false
 language: "zh"
 canonical_source: ""

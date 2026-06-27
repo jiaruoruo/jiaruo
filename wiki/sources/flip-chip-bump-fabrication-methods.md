@@ -8,8 +8,8 @@ author: ""
 tags: [flip-chip, bump, packaging, fabrication]
 processed: true
 raw_file: "raw/pdfs/芯片制造/倒装芯片凸点制作方法.pdf"
-raw_sha256: "d8a60de8"
-last_verified: 2026-05-17
+raw_sha256: d8a60de8b98073324780a484e9c4498f3f09d73677340c930cd5c094d9d267a2
+last_verified: 2026-06-27
 possibly_outdated: true
 language: "zh"
 canonical_source: ""

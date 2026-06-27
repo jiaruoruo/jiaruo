@@ -8,8 +8,8 @@ author: ""
 tags: [vlsi, backend-design, layout, 018um]
 processed: true
 raw_file: "raw/pdfs/芯片设计/18微米芯片后端设计的相关技术.pdf"
-raw_sha256: "33ba4d8a"
-last_verified: 2026-05-17
+raw_sha256: 33ba4d8ae770b1c94b5b82c850df1950888a9c2011cc30fd7def5db78948f9b5
+last_verified: 2026-06-27
 possibly_outdated: true
 language: "zh"
 canonical_source: ""

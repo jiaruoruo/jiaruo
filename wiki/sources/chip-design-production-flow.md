@@ -8,8 +8,8 @@ author: ""
 tags: [chip-design, semiconductor-manufacturing, flow, education]
 processed: true
 raw_file: "raw/pdfs/芯片设计/芯片设计和生产流程.pdf"
-raw_sha256: "d415ce59"
-last_verified: 2026-05-17
+raw_sha256: d415ce5920d250b63d5edb1abdcdb0bc3d71c0fec3b01678617161c65103dbd5
+last_verified: 2026-06-27
 possibly_outdated: true
 language: "zh"
 canonical_source: ""

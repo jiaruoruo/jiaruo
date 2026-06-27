@@ -4,6 +4,7 @@ title: "在边缘人工智能中应用英飞凌XENSIV™雷达"
 date: 2026-04-20
 sha256: "77be62dbc7ce4b98b73ccca2257f485ba08f1a3777186b09c701f4f5cc54c748"
 raw_file: "raw/pdfs/深圳We Enable AI --在边缘人工智能中应用英飞凌XENSIV™雷达--周永.pdf"
+raw_sha256: 77be62dbc7ce4b98b73ccca2257f485ba08f1a3777186b09c701f4f5cc54c748
 author: "周永（Zhou Terry），英飞凌科技"
 event: "深圳 We Enable AI 2025"
 domain:

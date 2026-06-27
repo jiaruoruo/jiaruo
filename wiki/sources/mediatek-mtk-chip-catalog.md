@@ -8,8 +8,8 @@ author: "MediaTek"
 tags: [mediatek, mtk, chip-catalog, mobile-soc]
 processed: true
 raw_file: "raw/pdfs/芯片企业合集/联发科MTK芯片型号资料大全.pdf"
-raw_sha256: "9ce5c9a4"
-last_verified: 2026-05-17
+raw_sha256: 9ce5c9a4acb47f6fb536c9e382ecd7451a1f1817f933f15aa84a1d4d0dafe45b
+last_verified: 2026-06-27
 possibly_outdated: true
 language: "zh"
 canonical_source: ""

@@ -14,8 +14,8 @@ tags:
   - automotive
 processed: true
 raw_file: "raw/articles/MCU-LESS.md"
-raw_sha256: "f9d8b35f9a3d6a6d5684e39b8d3a10e87007a8a22547ed1088a321406d3b0c65"
-last_verified: 2026-04-27
+raw_sha256: df8eff7d69bcdbc8f8c0dae77c7048c52ca02c5bcaa1eed94606949d844ee223
+last_verified: 2026-06-27
 possibly_outdated: false
 language: "zh"
 canonical_source: ""

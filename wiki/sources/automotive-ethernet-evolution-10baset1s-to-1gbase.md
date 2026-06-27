@@ -6,8 +6,8 @@ author: "汽车电子老登"
 date: "2026-05-05"
 tags: [automotive-ethernet, 10baset1s, 100baset1, 1000baset1, ti, rce, plca, tsn]
 raw_file: "raw/clippings/2026-05-05汽车以太网技术深度解析：从10BASE-T1S到1000BASE-T1的全面演进.md"
-raw_sha256: d4ae84be41a9d71a37e7ad70c205e83da20219f89c3457186cf97543f31cb3d4
-last_verified: 2026-05-05
+raw_sha256: 6f8c27e679949110fc117f87c998d5a9adf3677352be3c73ae7e4a7f80ca3b6a
+last_verified: 2026-06-27
 ---
 
 ## 核心摘要

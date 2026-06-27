@@ -8,8 +8,8 @@ author: ""
 tags: [chip-design, rd-process, semiconductor, overview]
 processed: true
 raw_file: "raw/pdfs/芯片设计/芯片研发过程介绍.pdf"
-raw_sha256: "3dd77a6d"
-last_verified: 2026-05-17
+raw_sha256: 3dd77a6daac5825ab1fc7e0c91e70dee78006184786a05da9a4917a862005931
+last_verified: 2026-06-27
 possibly_outdated: true
 language: "zh"
 canonical_source: ""

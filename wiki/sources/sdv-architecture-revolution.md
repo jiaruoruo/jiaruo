@@ -7,12 +7,12 @@ source_url: https://mp.weixin.qq.com/s/t977V2t9r-iibn6Yb7HhnA
 author: 经纬恒润
 published: 2026-04-28
 ingested: 2026-04-28
-raw_sha256: 1405e3c95e520625badc2b6f7380d2ebc1c23b2dce58dfa803e9a2ae4814a529
+raw_sha256: 8bfb7b0f0fb2426cf37171305f8b0f0b23eab3413ef1ff9c4d68f54c0e7e0471
 raw_file: "raw/clippings/2026-04-28软件定义汽车的背后：一场架构的“深层次革命”.md"
 tags: [sdv, eea, soa, rcp, optical-communication, automotive]
 concepts: [mculess-architecture, eea-architecture]
 entities: []
-last_verified: 2026-04-28
+last_verified: 2026-06-27
 ---
 
 # 软件定义汽车的背后：一场架构的"深层次革命"

@@ -13,8 +13,8 @@ tags:
   - translation
 processed: true
 raw_file: "raw/clippings/2026-04-24理想M100芯片论文全文翻译也可用于座舱.md"
-raw_sha256: "6332ffdf0deb4051199d70bfe52664e9570a689ac892b92068673537984ab9fe"
-last_verified: 2026-04-25
+raw_sha256: 41ca5e684b3c32e15095e4940427761be63e36370a50550b42cb3180d4e201ce
+last_verified: 2026-06-27
 possibly_outdated: false
 language: "zh"
 canonical_source: "https://arxiv.org/pdf/2604.17862"

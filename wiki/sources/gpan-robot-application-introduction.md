@@ -4,6 +4,7 @@ title: "GPAN 机器人应用介绍"
 date: 2026-04-20
 sha256: "77375dd5c630c11d9e640af66483578de6e66c93746e6ecdecf0aa3d8ef911b2"
 raw_file: "raw/pdfs/GPAN 机器人应用介绍.pdf"
+raw_sha256: 77375dd5c630c11d9e640af66483578de6e66c93746e6ecdecf0aa3d8ef911b2
 author: "GPAN 技术团队"
 domain:
   - robotics

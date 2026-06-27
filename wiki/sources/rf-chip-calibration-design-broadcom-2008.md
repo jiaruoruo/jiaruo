@@ -8,8 +8,8 @@ author: "Broadcom"
 tags: [rf, calibration, broadcom, wireless, chip-design]
 processed: true
 raw_file: "raw/pdfs/芯片设计/射频芯片校准设计.pdf"
-raw_sha256: "10dbe8f0"
-last_verified: 2026-05-17
+raw_sha256: 10dbe8f08c0ad443c9e238a8b7e0aa7be11dfdf0b6f1b30333632f3a0ac7e5d2
+last_verified: 2026-06-27
 possibly_outdated: true
 language: "zh"
 canonical_source: ""

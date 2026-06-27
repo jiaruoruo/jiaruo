@@ -8,8 +8,8 @@ author: "Cadence"
 tags: [chip-design, cadence, virtuoso, analog-design, eda]
 processed: true
 raw_file: "raw/pdfs/芯片设计/芯片设计流程.pdf"
-raw_sha256: "fbb2f3c1"
-last_verified: 2026-05-17
+raw_sha256: fbb2f3c14b31f52f16166a2e733fcc27c59f8c034ef0a1e8001c4d433544357f
+last_verified: 2026-06-27
 possibly_outdated: true
 language: "zh"
 canonical_source: ""

@@ -3,7 +3,7 @@ type: source
 title: "MCULess 半导体厂商调研报告"
 date: 2026-04-28
 raw_file: raw/clippings/MCULess调研报告.md
-raw_sha256: 270332ab2338f56597765016a28a064d2082e2bb5be9a6f86239aa363e43ea9e
+raw_sha256: 8f611e9e45c57921988464f8b4986cb75a8c9edf48198302204c9a3938ab68fb
 source_url: ""
 author: ""
 tags:
@@ -24,7 +24,7 @@ entities:
   - "[[entities/goodix-technology]]"
   - "[[entities/infineon-technologies]]"
   - "[[entities/st-microelectronics]]"
-last_verified: 2026-04-28
+last_verified: 2026-06-27
 ---
 
 # MCULess 半导体厂商调研报告
