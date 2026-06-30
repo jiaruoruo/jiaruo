@@ -5,7 +5,7 @@ graph-excluded: true
 
 # Knowledge Base Health Dashboard
 
-_最后更新：2026-06-27_
+_最后更新：2026-06-29_
 
 ## 健康状态总览
 
@@ -25,6 +25,7 @@ _最后更新：2026-06-27_
 
 ## 最近 Lint 报告
 
+- 2026-06-29 `wiki/outputs/lint-2026-06-29.md`（**9/9 项通过，0 问题**；定时任务运行）
 - 2026-06-27 `wiki/outputs/lint-2026-06-27.md`（**9/9 项通过，0 问题**；近重复白名单已豁免同族概念误报）
 
 ## 最近修复（2026-06-27 健康整治）
@@ -45,6 +46,7 @@ _最后更新：2026-06-27_
 
 ## 最近 Reflect 报告
 
+- 2026-06-29 `wiki/outputs/gap-report-2026-06-29.md`（上轮 P0 已消除；新盲区：ota-update 14 源无页 / thermal-management 9 源 / cybersecurity-automotive 4 源；单源积压 32）
 - 2026-06-27 `wiki/outputs/gap-report-2026-06-27.md`（P0 盲区：functional-safety 23 源无页 / gan-power-devices 11 源无页；eea-architecture 顶层框架单源失衡）
 
 ## 知识增长趋势
