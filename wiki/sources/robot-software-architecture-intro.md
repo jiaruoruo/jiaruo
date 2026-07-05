@@ -14,7 +14,7 @@ tags:
   - humanoid
 processed: true
 raw_file: "raw/clippings/2026-04-24机器人软件架构介绍——具身智能研发基础.md"
-raw_sha256: 7686db6489210c5532de64ea0cdd39af23d597ea3c8432cddc9ac51e8e11bdf3
+raw_sha256: aff7a32c7aaaaa07daac374c97080317c68113ff715efa3dd004bf12184ab8bb
 last_verified: 2026-06-27
 possibly_outdated: false
 language: "zh"

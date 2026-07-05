@@ -6,7 +6,7 @@ author: "汽车电子老登"
 date: "2026-05-05"
 tags: [10baset1s, plca, automotive-ethernet, t30hm1ts3600, ieee-802-3cg, mculess-architecture]
 raw_file: "raw/clippings/2026-05-0510BASE-T1S汽车以太网技术深度解析.md"
-raw_sha256: 7e836d6b485cf88a357c371e082082b2f36deac9bfe3ba3ea349d80d9f32a372
+raw_sha256: b5f581a8b8c7cb567ae708123c2a1d67b47bf02a356b70f8fbd02ac270e047e7
 last_verified: 2026-06-27
 ---
 

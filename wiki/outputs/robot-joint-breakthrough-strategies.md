@@ -1,3 +1,13 @@
+---
+type: output-note
+title: 机器人关节模组破局方向详解
+date: 2026-06-30
+tags:
+  - robot
+  - joint
+  - strategy
+---
+
 # 机器人关节模组破局方向详解
 
 > 日期：2026-06-30
