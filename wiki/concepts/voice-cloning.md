@@ -2,7 +2,7 @@
 type: concept
 title: "音色克隆"
 date: 2026-04-13
-updated: 2026-04-13
+updated: 2026-07-13
 tags:
   - tts
   - voice
@@ -11,7 +11,7 @@ tags:
 source_count: 1
 confidence: low
 domain_volatility: high
-last_reviewed: 2026-04-13
+last_reviewed: 2026-07-13
 aliases:
   - "音色克隆"
   - "音色复刻"
