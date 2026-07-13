@@ -1,3 +1,16 @@
+---
+type: analysis
+date: 2026-06-30
+graph-excluded: true
+title: "机器人关节模组破局方向详解"
+tags:
+  - robot
+  - joint-module
+  - diagnosis
+  - roadmap
+  - li-auto
+---
+
 # 机器人关节模组破局方向详解
 
 > 日期：2026-06-30
