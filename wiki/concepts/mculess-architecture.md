@@ -9,10 +9,10 @@ tags:
   - eea
   - zonal-gateway
   - bom-cost
-source_count: 27
+source_count: 28
 confidence: high
 domain_volatility: high
-last_reviewed: 2026-04-28
+last_reviewed: 2026-07-13
 aliases:
   - "MCULess 架构"
   - "MCULess"
@@ -123,10 +123,12 @@ MCULess 架构是 EEA 3.0 向 EEA 4.0（软件定义汽车）演进的重要过�
 - [[sources/mculess-smart-lighting-innovation]]
 - [[sources/zcu-market-research-2025]]
 - [[sources/sdv-architecture-revolution]]
+- [[sources/mculess-tech-industry-current-state]]
 
 ## Evolution Log
 
 - 2026-04-27（10 sources）：概念初建，来源为 Goodix GPAN MCULess 方案完整资料集（芯片手册 + 调研报告 + 验证报告 + 硬件设计 + 售前方案）
+- 2026-07-13（28 sources）：强化——内部笔记「MCU-LESS 技术行业现状」补充 RCP/10Base-T1S（ADI AD330x、NXP TJA1415）vs GPAN（汇顶 GE1101）双路线行业现状对比、三层应用架构设想（顶层 SoC 虚拟 MCU / 中间 Zone Controller 或 MCU-LESS / 底层无 MCU 哑硬件）、ZCU 二级网络成本评估（合计节约约 161 元/车）、OC 项目量产验证（Master PZCU + Slaver SCU/CTM）
 - 2026-04-27（12 sources）：raw/articles 批次新增 5 个来源，补充 RCP（ADI/NXP 10Base-T1S）vs GPAN 详细对比表（10M 半双工 vs 100M 全双工、控制延迟 1.09ms vs 50μs、节点数 12 vs 60）、座椅项目 ZCU BOM 成本明细（总节省 161 RMB/套）、IO 支持矩阵（CAN×5 / LIN×5 / GPIO×50 / PWM×24 / ADC×16 / 82 唤醒源）
 - 2026-04-27（17 sources）：raw/articles 二进制文件解析批次新增 5 个来源，补充 SDV 演进 4 阶段路线（现有→ZCU含音频→逐步去MCU→全车集中）、座椅项目 4 种拓扑候选方案（推荐大环方案 D）、ZCU 5 层软件架构（GPAN SDK→RCP抽象层→设备抽象层→原子服务→应用）、BOM 三级网络节约 20 元/车、48V 音频节约 315 元/车、ASIL-B 安全支持
 - 2026-04-28（18 sources）：raw/clippings 批次新增 1 个来源，补充全行业 MCU-less 竞品对比表（ADI/TI/NXP/ST/Infineon/汇顶科技 GE1101）；GE1101 以 64 路 IO + 100BaseT1 + ~14 RMB 价格在规格上最全；确认 2026 Q2 量产计划

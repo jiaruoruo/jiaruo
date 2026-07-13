@@ -13,7 +13,7 @@ tags:
   - robotics
 processed: true
 raw_file: "raw/clippings/2026-04-15‌﻿⁡​﻿​⁤‬⁣​⁣‍​‍‌​​​⁡​﻿⁣‍⁣‌‌‌⁣‬​‌​‍‍​⁢﻿‌‬⁢⁣‬​⁤⁤‌‍⁡‍机器人传感器执行器通信技术沙盘.md"
-raw_sha256: b80f8064e9098a60e700e6aae7d00d8373a13ee20fb19e833fcb75d7c87f68b9
+raw_sha256: cba3bab07d472e6779050076e46b15a2216095b089f7db9107229fa635367850
 last_verified: 2026-06-27
 possibly_outdated: false
 language: "zh"

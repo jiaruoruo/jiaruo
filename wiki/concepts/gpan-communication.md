@@ -10,10 +10,10 @@ tags:
   - robotics
   - automotive
   - mculess
-source_count: 23
+source_count: 24
 confidence: medium
 domain_volatility: medium
-last_reviewed: 2026-04-27
+last_reviewed: 2026-07-13
 aliases:
   - "GPAN 通信协议"
   - "GPAN"
@@ -96,10 +96,12 @@ GPAN（通用精密自动化网络，General Precision Automation Network）是�
 - [[sources/gpan-automotive-comm-app-v06]]
 - [[sources/gpan-seat-project-discussion]]
 - [[sources/gpan-bom-cost-analysis]]
+- [[sources/mculess-tech-industry-current-state]]
 
 ## Evolution Log
 
 - 2026-04-15（2 sources）：概念初建，来源为 EtherCAT & GPAN 技术验证方案和 GPAN MCULess 验证报告
+- 2026-07-13（24 sources）：强化——内部笔记补充 GPAN 路线行业现状（汇顶 GE1101 为国内唯一供应商，注意供应风险；27 年规划 48/144/196 Pin 芯片；通信协议为私有、现有软件工具链基本不支持）；与 RCP/10Base-T1S 路线并列对比
 - 2026-04-20（3 sources）：新增《GPAN 机器人应用介绍》PDF 来源，补充 100Base-T1 环形拓扑、>80% 带宽利用率、20μs 控制周期、≤40ns 时钟同步、MCULess 远程外设控制、<100μA 低功耗等机器人场景核心指标
 - 2026-04-27（13 sources）：新增 Goodix GPAN 车载通信完整资料集（GE1101 芯片手册/MCULess 方案调研/验证报告/硬件设计/理想汽车座椅售前方案），更新 GE1101 芯片具体规格（BGA144/BGA196 封装、PTP 硬件精度 ≤40ns）、MCULess 实测延迟（CAN→CAN 21~62μs / CAN→ETH 43~63μs / 音频 40μs）、ADI 10BaseT1S 竞品对比表；confidence 由 low 提升为 medium
 - 2026-04-27（18 sources）：raw/articles 批次新增 5 个来源（MCU-LESS 技术对比文档、EtherCAT-GPAN 验证设计 HTML、GPAN MCULess 验证报告 HTML、GPAN 芯片规格 V0.2、GPAN 功能澄清文档 V4.1），补充帧格式（72-bit 头 + 音频 + 子块 + HACK）、两种初始化模式（MCU 软件 ~190μs vs 硬件自动组网 <15ms）、Force Sleep/TC10 唤醒机制等细节

@@ -14,7 +14,7 @@ tags:
   - toolchain
 processed: true
 raw_file: "raw/clippings/2026-05-10告别脚本和手动配置：用FlexTools一站式搞定AUTOSAR复杂驱动开发.md"
-raw_sha256: eb7aec6c315e2cba8d544105d9db3478f73fe8ecf079452e7d349a5d66058525
+raw_sha256: 61dc04aaa43d1a292366db257716ea1e9f2c634dd9b6cc433291c804e967af4a
 last_verified: 2026-06-27
 possibly_outdated: false
 language: "zh"

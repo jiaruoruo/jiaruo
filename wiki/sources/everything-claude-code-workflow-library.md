@@ -14,7 +14,7 @@ tags:
   - skills
 processed: true
 raw_file: "raw/clippings/2026-05-11everything-claude-code：一套可复用的 Claude Code 工程工作流组件库.md"
-raw_sha256: 545a05e9f4ecd8e92aab82fafbed116821a62a44dcf1e689053cee2bd84773ac
+raw_sha256: 2f45c5296ea624a33ce2c9be4b188d28b9bff9ec7c44ab03fe275628fe18535f
 last_verified: 2026-06-27
 possibly_outdated: false
 language: "zh"

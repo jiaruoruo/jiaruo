@@ -6,7 +6,7 @@ author: "汽车电子老登"
 date: "2026-05-05"
 tags: [rcp, t30hm1ts3600, mculess-architecture, sdv, automotive-ethernet, onsemi]
 raw_file: "raw/clippings/2026-05-05RCP远程控制协议的革命性创新：汽车电子架构的范式转移.md"
-raw_sha256: a9c67f2c911ad87035e05563563bd8a5c617e4d1033ab787f794ae047190e038
+raw_sha256: fc1e2e63177859ddbc72cefbf4ba43ccca2e425cdce74437033cf679e26bd0c9
 last_verified: 2026-06-27
 ---
 

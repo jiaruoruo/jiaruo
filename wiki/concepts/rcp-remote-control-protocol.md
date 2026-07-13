@@ -10,10 +10,10 @@ tags:
   - automotive
   - eea
   - ieee
-source_count: 5
+source_count: 6
 confidence: medium
 domain_volatility: high
-last_reviewed: 2026-04-28
+last_reviewed: 2026-07-13
 aliases:
   - "RCP"
   - "Remote Control Protocol"
@@ -110,7 +110,9 @@ RCP 是 MCU-less 架构的核心使能协议，其标准化进程（Draft 0.2）
 - [[sources/mculess-edge-node-tech-evolution]]
 - [[sources/mculess-hardware-simplification-revolution]]
 - [[sources/zcu-market-research-2025]]
+- [[sources/mculess-tech-industry-current-state]]
 
 ## Evolution Log
 
 - 2026-04-28（5 sources）：概念初建，来源为 2026-04-28 批次 raw/clippings 多篇深度技术文章，覆盖 RCP 起源（宝马 2023）、标准化进程（TC18 Draft 0.2）、Onsemi T30HM1TS3600 完整实现、封装协议对比（SOME/IP vs IEEE 1722）、三种部署模式
+- 2026-07-13（6 sources）：强化——内部笔记补充 RCP/10Base-T1S 路线行业现状（ADI AD330x MACPHY、NXP TJA1415；基于 IEEE 802.3cg，10Mbps 半双工多点拓扑，PLCA 确定性调度，最小周期 1ms，支持 TSN 802.1AS/IEEE1588）；与 GPAN 路线并列对比

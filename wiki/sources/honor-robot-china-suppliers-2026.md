@@ -14,7 +14,7 @@ related_entities:
   - entities/unitree-robotics
   - entities/tesla-optimus
 raw_file: "raw/clippings/2026-05-02荣耀机器人背后，7家中国供应商！.md"
-raw_sha256: c5ea4b334ca0a322c21bb18ddab59e3f7e9cc2b9c3aa9552a907e701234f4c85
+raw_sha256: 5a516983115a5cadedbc1f2a7a81b78b9fb6fb6f4dbcb9c8bc5bb0b763184a2a
 last_verified: 2026-06-27
 ---
 

@@ -17,3 +17,15 @@ Thumbs.db
 /*_test.txt
 /test.txt
 /enc_test.txt
+
+# 根目录 lint 调试临时文件
+/lint_*.txt
+
+# .claude 工作区（Claude Code 的 worktree 沙箱，机器特定）
+/.claude/worktrees/
+
+# .obsidian 工作区状态（个人 UI 布局，非共享配置）
+.obsidian/workspace.json
+
+# WorkBuddy AI 记忆（知微的个人记忆，机器特定，不入共享仓库）
+/.workbuddy/

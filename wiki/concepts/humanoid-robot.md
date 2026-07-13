@@ -7,10 +7,10 @@ tags:
   - humanoid-robot
   - robotics
   - embodied-ai
-source_count: 10
+source_count: 12
 confidence: low
 domain_volatility: high
-last_reviewed: 2026-05-17
+last_reviewed: 2026-07-13
 aliases:
   - "人形机器人"
   - "Humanoid Robot"
@@ -59,6 +59,8 @@ aliases:
 - [[sources/renesas-robot-servo-ethercat-application]]
 - [[sources/humanoid-robot-research-rapid-prototyping]]
 - [[sources/mckinsey-humanoid-robot-bom-supply-chain]]
+- [[sources/global-robotics-roadmap-2025-2035]]
+- [[sources/robot-safety-implementation]]
 
 ## Evolution Log
 
@@ -67,3 +69,5 @@ aliases:
 - 2026-04-15（3 sources）：强化——传感器沙盘补充状态感知融合需求（状态估计延迟<5ms、频率>500Hz）与现有定义一致
 - 2026-04-15（9 sources）：强化——英飞凌/ST/瑞萨多份文档一致印证市场规模、整机结构（44轴/BOM构成）、半导体方案架构，与现有定义高度一致；英飞凌更新中国市场预测至2025年15K台、全球70%份额
 - 2026-05-17（10 sources）：强化——麦肯锡 BOM 报告新增供应链视角：执行器占比 40-60%、当前 BOM $30,000-$150,000/台、整机执行器拓扑（Optimus 身体 28 个 + 手部 50+ 个）、宇树 G1 $13,500 定价、供应链规模化困境量化数据
+- 2026-07-13（11 sources）：强化——全球机器人路线图补充人形硬件路线图里程碑：双足人形（工厂）2027 试产 10 台→2031 年产万台；双足人形（家庭）2030 辅助生活试用→2035 有限部署；灵巧手 2027 20DoF+触觉→2031 类人灵巧度；区域格局（美软件优先/中规模优先/欧信任优先）
+- 2026-07-13（12 sources）：强化——内部机器人安全需求软/硬件实现方案补充安全维度：L1-L4 分层架构、灵巧手防夹(ISO/TS 15066)、整机姿态安全(摔倒/碰撞)、功能安全故障上报，与人形机器人物理交互安全直接相关（详见 [[robot-safety]]）
