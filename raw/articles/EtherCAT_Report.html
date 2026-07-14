@@ -1,0 +1,1839 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EtherCAT 行业应用与实现方案调研报告 2025</title>
+  <style>
+    :root {
+      --primary: #0f4c81;
+      --primary-light: #1a6fba;
+      --accent: #00a8e8;
+      --accent2: #ff6b35;
+      --bg: #f0f4f8;
+      --card: #ffffff;
+      --text: #1a2332;
+      --text-muted: #5a6a7e;
+      --border: #dde5f0;
+      --success: #22c55e;
+      --warning: #f59e0b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #0a2d52 0%, #0f4c81 50%, #1a6fba 100%);
+      color: #fff;
+      padding: 80px 40px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-inner { max-width: 1100px; margin: 0 auto; position: relative; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(0,168,232,0.25);
+      border: 1px solid rgba(0,168,232,0.5);
+      color: #7dd3f8;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .hero h1 span { color: #00a8e8; }
+    .hero-subtitle {
+      font-size: 16px;
+      color: #a8c8e8;
+      max-width: 680px;
+      margin-bottom: 36px;
+    }
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .hero-stat {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      padding: 16px 24px;
+      min-width: 160px;
+    }
+    .hero-stat .val {
+      font-size: 28px;
+      font-weight: 800;
+      color: #00a8e8;
+    }
+    .hero-stat .lbl {
+      font-size: 13px;
+      color: #a8c8e8;
+      margin-top: 2px;
+    }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 60px 0; }
+    .section-title {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title::before {
+      content: '';
+      width: 4px;
+      height: 28px;
+      background: linear-gradient(180deg, var(--accent), var(--primary));
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 15px;
+      margin-bottom: 36px;
+    }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 2px 12px rgba(15,76,129,0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(15,76,129,0.12);
+    }
+
+    /* ── GRID ── */
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+
+    /* ── TECH FEATURES ── */
+    .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    .tech-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .tech-item .icon {
+      width: 44px; height: 44px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .tech-item .key { font-size: 13px; color: var(--text-muted); }
+    .tech-item .val { font-size: 18px; font-weight: 700; color: var(--primary); }
+
+    /* ── MARKET SHARE BARS ── */
+    .market-table { width: 100%; }
+    .market-row {
+      display: grid;
+      grid-template-columns: 220px 1fr 80px;
+      align-items: center;
+      gap: 16px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .market-row:last-child { border-bottom: none; }
+    .market-name { font-size: 14px; font-weight: 600; color: var(--text); }
+    .bar-wrap { background: #eef2f8; border-radius: 8px; height: 12px; overflow: hidden; }
+    .bar-fill {
+      height: 100%;
+      border-radius: 8px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transition: width 1s ease;
+    }
+    .market-pct { font-size: 14px; font-weight: 700; color: var(--primary); text-align: right; }
+
+    /* ── PROTOCOL SHARE ── */
+    .protocol-chart {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 20px;
+    }
+    .proto-row { display: grid; grid-template-columns: 160px 1fr 60px; align-items: center; gap: 14px; }
+    .proto-name { font-size: 14px; font-weight: 600; }
+    .proto-bar { height: 20px; border-radius: 6px; display: flex; align-items: center; padding-left: 8px; font-size: 12px; color: #fff; font-weight: 600; transition: width 1s ease; }
+    .proto-pct { font-size: 14px; font-weight: 700; text-align: right; }
+
+    /* ── INDUSTRY CARDS ── */
+    .industry-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 2px 12px rgba(15,76,129,0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .industry-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 32px rgba(15,76,129,0.14);
+    }
+    .industry-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .industry-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+    .industry-title { font-size: 16px; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+    .industry-share { font-size: 22px; font-weight: 800; }
+    .industry-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 14px; }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+
+    /* ── TREND TIMELINE ── */
+    .timeline { position: relative; padding-left: 32px; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px; top: 8px; bottom: 8px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--accent), var(--primary));
+      border-radius: 2px;
+    }
+    .tl-item {
+      position: relative;
+      margin-bottom: 32px;
+    }
+    .tl-item:last-child { margin-bottom: 0; }
+    .tl-dot {
+      position: absolute;
+      left: -28px;
+      top: 4px;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--card);
+      box-shadow: 0 0 0 3px rgba(0,168,232,0.2);
+    }
+    .tl-year {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .tl-title { font-size: 16px; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+    .tl-body { font-size: 14px; color: var(--text-muted); }
+
+    /* ── MARKET GROWTH ── */
+    .growth-chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 16px;
+      height: 200px;
+      padding: 20px 0 0;
+      border-bottom: 2px solid var(--border);
+      margin-top: 20px;
+    }
+    .growth-bar-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .growth-bar-label { font-size: 12px; color: var(--text-muted); }
+    .growth-bar-val { font-size: 13px; font-weight: 700; color: var(--primary); }
+    .growth-bar-inner {
+      width: 100%;
+      border-radius: 6px 6px 0 0;
+      background: linear-gradient(180deg, var(--accent), var(--primary));
+      transition: height 1s ease;
+      min-height: 8px;
+    }
+
+    /* ── VENDOR TABLE ── */
+    .vendor-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+    }
+    .vendor-table th {
+      background: var(--primary);
+      color: #fff;
+      padding: 12px 16px;
+      text-align: left;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .vendor-table th:first-child { border-radius: 8px 0 0 0; }
+    .vendor-table th:last-child { border-radius: 0 8px 0 0; }
+    .vendor-table td {
+      padding: 12px 16px;
+      font-size: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .vendor-table tr:last-child td { border-bottom: none; }
+    .vendor-table tr:nth-child(even) td { background: #f7f9fc; }
+    .vendor-badge {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* ── REGION CARDS ── */
+    .region-card {
+      text-align: center;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px 16px;
+    }
+    .region-flag { font-size: 32px; margin-bottom: 8px; }
+    .region-name { font-size: 14px; color: var(--text-muted); margin-bottom: 6px; }
+    .region-pct { font-size: 28px; font-weight: 800; color: var(--primary); }
+    .region-trend { font-size: 12px; margin-top: 4px; }
+
+    /* ── HIGHLIGHT BOX ── */
+    .highlight {
+      background: linear-gradient(135deg, #e8f4fd, #f0f8ff);
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin: 20px 0;
+    }
+    .highlight p { font-size: 14px; color: var(--text); }
+    .highlight strong { color: var(--primary); }
+
+    /* ── NAV ── */
+    .toc {
+      position: sticky;
+      top: 20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      width: 220px;
+      flex-shrink: 0;
+    }
+    .toc h3 { font-size: 13px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+    .toc a {
+      display: block;
+      font-size: 13px;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 5px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.2s;
+    }
+    .toc a:last-child { border-bottom: none; }
+    .toc a:hover { color: var(--primary); }
+
+    .page-layout {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .main-content { flex: 1; min-width: 0; }
+
+    @media (max-width: 768px) {
+      .toc { display: none; }
+      .page-layout { padding: 0 16px; }
+      .market-row { grid-template-columns: 150px 1fr 60px; }
+      .proto-row { grid-template-columns: 120px 1fr 50px; }
+      .hero { padding: 50px 20px 40px; }
+    }
+
+    /* ── SUMMARY TABLE ── */
+    .sum-table { width: 100%; border-collapse: collapse; }
+    .sum-table th { background: #f0f4f8; padding: 10px 14px; font-size: 13px; color: var(--text-muted); text-align: left; border-bottom: 2px solid var(--border); }
+    .sum-table td { padding: 10px 14px; font-size: 14px; border-bottom: 1px solid var(--border); }
+    .sum-table tr:hover td { background: #f7f9fc; }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: #0a2d52;
+      color: #7a9abf;
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+    .footer strong { color: #a8c8e8; }
+
+    /* Divider */
+    hr.divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════ HERO ════════════════════════════════════════ -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">行业调研报告 · 数据截至 2026年5月</div>
+    <h1>EtherCAT <span>行业应用</span>深度调研报告</h1>
+    <p class="hero-subtitle">
+      覆盖工业自动化、机器人、半导体、汽车、医疗等核心行业，深度解析全球市场格局、各行业占比及2030年发展趋势。含主站/从站实现方案与实时环境选型指南。
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="val">$27亿</div>
+        <div class="lbl">2025年市场规模（美元）</div>
+      </div>
+      <div class="hero-stat">
+        <div class="val">~10%</div>
+        <div class="lbl">年均复合增长率（CAGR）</div>
+      </div>
+      <div class="hero-stat">
+        <div class="val">1.052亿</div>
+        <div class="lbl">全球累计安装节点（2026Q1）</div>
+      </div>
+      <div class="hero-stat">
+        <div class="val">8,700+</div>
+        <div class="lbl">ETG协会会员企业（79国）</div>
+      </div>
+      <div class="hero-stat">
+        <div class="val">17%</div>
+        <div class="lbl">工业以太网新增节点份额</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ BODY ════════════════════════════════════════ -->
+<div class="page-layout" style="padding-top:48px; padding-bottom:64px;">
+
+  <!-- TOC Sidebar -->
+  <nav class="toc">
+    <h3>目录</h3>
+    <a href="#overview">一、技术概述</a>
+    <a href="#market">二、全球市场规模</a>
+    <a href="#protocol">三、协议竞争格局</a>
+    <a href="#industry">四、各行业应用</a>
+    <a href="#share">五、市场占比汇总</a>
+    <a href="#region">六、区域市场分布</a>
+    <a href="#trend">七、未来发展趋势</a>
+    <a href="#vendor">八、主要厂商</a>
+    <a href="#master">十、主站实现方案</a>
+    <a href="#slave">十一、从站开发工具链</a>
+    <a href="#rtos">十二、实时环境对比</a>
+    <a href="#selection">十三、选型建议</a>
+    <a href="#conclusion">十四、综合结论</a>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="main-content">
+
+    <!-- ── SECTION 1: OVERVIEW ── -->
+    <section class="section" id="overview">
+      <div class="section-title">一、EtherCAT 技术概述</div>
+      <p class="section-desc">EtherCAT（Ethernet for Control Automation Technology）由德国倍福自动化（Beckhoff）于2003年发明，是目前工业控制领域实时性最强的现场总线协议之一。</p>
+
+      <div class="tech-grid">
+        <div class="tech-item">
+          <div class="icon">⚡</div>
+          <div class="key">最短通信周期</div>
+          <div class="val">12.5 µs</div>
+        </div>
+        <div class="tech-item">
+          <div class="icon">🎯</div>
+          <div class="key">同步精度（抖动）</div>
+          <div class="val">&lt; 1 µs</div>
+        </div>
+        <div class="tech-item">
+          <div class="icon">📡</div>
+          <div class="key">传输带宽</div>
+          <div class="val">100 Mbps</div>
+        </div>
+        <div class="tech-item">
+          <div class="icon">🔗</div>
+          <div class="key">最大从站节点数</div>
+          <div class="val">65,535</div>
+        </div>
+        <div class="tech-item">
+          <div class="icon">📏</div>
+          <div class="key">单段最大距离</div>
+          <div class="val">100 m / 20 km</div>
+        </div>
+        <div class="tech-item">
+          <div class="icon">🛡️</div>
+          <div class="key">安全等级</div>
+          <div class="val">SIL3 (FSoE)</div>
+        </div>
+        <div class="tech-item">
+          <div class="icon">🌐</div>
+          <div class="key">国际标准</div>
+          <div class="val">IEC 61158</div>
+        </div>
+        <div class="tech-item">
+          <div class="icon">📅</div>
+          <div class="key">发布年份</div>
+          <div class="val">2003年</div>
+        </div>
+      </div>
+
+      <div class="highlight" style="margin-top: 28px;">
+        <p><strong>核心创新——"飞行处理"（Processing on the Fly）：</strong>主站发出一个以太网帧，该帧在经过每个从站时被即时处理——从站在帧通过的微秒内读取指令并写入反馈数据，无需完整接收再转发。这一机制消除了传统交换式以太网的协议开销，使网络延迟极低、确定性极强。</p>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ── SECTION 2: MARKET SIZE ── -->
+    <section class="section" id="market">
+      <div class="section-title">二、全球市场规模</div>
+      <p class="section-desc">EtherCAT 市场规模持续扩张，受工业自动化升级、人形机器人量产落地及半导体设备需求拉动，2025年实际规模约27亿美元，预计2030年突破42–50亿美元。</p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="font-size:15px;color:var(--text-muted);margin-bottom:16px;">市场规模增长（含预测）</h3>
+          <div class="growth-chart" id="growthChart">
+            <div class="growth-bar-wrap">
+              <div class="growth-bar-val">$20.5亿</div>
+              <div class="growth-bar-inner" style="height: 65px;"></div>
+              <div class="growth-bar-label">2023</div>
+            </div>
+            <div class="growth-bar-wrap">
+              <div class="growth-bar-val">$24.5亿</div>
+              <div class="growth-bar-inner" style="height: 82px;"></div>
+              <div class="growth-bar-label">2024</div>
+            </div>
+            <div class="growth-bar-wrap">
+              <div class="growth-bar-val" style="color:var(--accent2);">$27亿</div>
+              <div class="growth-bar-inner" style="height: 100px; background: linear-gradient(180deg, var(--accent2), #c94a1a);"></div>
+              <div class="growth-bar-label" style="font-weight:700;color:var(--accent2);">2025 ★</div>
+            </div>
+            <div class="growth-bar-wrap">
+              <div class="growth-bar-val" style="color:var(--accent);">$30亿</div>
+              <div class="growth-bar-inner" style="height: 113px; background: linear-gradient(180deg, var(--accent), var(--primary));"></div>
+              <div class="growth-bar-label" style="font-weight:700;color:var(--accent);">2026E</div>
+            </div>
+            <div class="growth-bar-wrap">
+              <div class="growth-bar-val">$36亿</div>
+              <div class="growth-bar-inner" style="height: 135px; opacity:0.65;"></div>
+              <div class="growth-bar-label">2028E</div>
+            </div>
+            <div class="growth-bar-wrap">
+              <div class="growth-bar-val">$46亿</div>
+              <div class="growth-bar-inner" style="height: 165px; opacity:0.5;"></div>
+              <div class="growth-bar-label">2030E</div>
+            </div>
+          </div>
+          <p style="font-size:12px;color:var(--text-muted);margin-top:10px;">单位：亿美元（USD Hundred Million）| ★ = 最新实际值 | E = 预测值</p>
+        </div>
+
+        <div class="card">
+          <h3 style="font-size:15px;color:var(--text-muted);margin-bottom:16px;">关键数据指标（截至2026年5月）</h3>
+          <table class="sum-table">
+            <thead><tr><th>指标</th><th>数值</th></tr></thead>
+            <tbody>
+              <tr><td>2024年市场规模</td><td><strong style="color:var(--primary);">约 24.5 亿美元</strong></td></tr>
+              <tr><td>2025年市场规模</td><td><strong style="color:var(--accent2);">约 27 亿美元（实际）</strong></td></tr>
+              <tr><td>2026年预测规模</td><td><strong style="color:var(--accent);">约 30 亿美元</strong></td></tr>
+              <tr><td>2030年预测规模</td><td><strong style="color:var(--primary);">约 42–50 亿美元</strong></td></tr>
+              <tr><td>年均复合增长率</td><td><strong style="color:var(--accent2);">9.8%–11.6%</strong></td></tr>
+              <tr><td>累计安装节点（2026Q1）</td><td><strong>1.052 亿个</strong>（ETG 官方）</td></tr>
+              <tr><td>2025年新增节点</td><td>约 <strong>1,690 万个</strong></td></tr>
+              <tr><td>机器人通信市场占比</td><td><strong style="color:var(--accent2);">~40%</strong>（工业机器人细分）</td></tr>
+              <tr><td>ETG 协会会员</td><td>超过 <strong>8,700 家</strong>（覆盖 79 国）</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ── SECTION 3: PROTOCOL COMPETITION ── -->
+    <section class="section" id="protocol">
+      <div class="section-title">三、工业以太网协议竞争格局</div>
+      <p class="section-desc">基于 HMS Networks 2025年工业网络市场报告（按新安装节点数量统计）。工业以太网整体占比已升至 <strong>76%</strong>，传统现场总线降至17%，无线占7%。</p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="font-size:15px;color:var(--text-muted);margin-bottom:4px;">工业以太网新增节点份额（2025年）</h3>
+          <p style="font-size:12px;color:var(--text-muted);margin-bottom:20px;">数据来源：HMS Networks Industrial Network Market 2025</p>
+          <div class="protocol-chart">
+            <div class="proto-row">
+              <div class="proto-name">PROFINET</div>
+              <div style="flex:1;background:#eef2f8;border-radius:6px;overflow:hidden;">
+                <div class="proto-bar" style="width:27%;background:linear-gradient(90deg,#0057b7,#3e8cdf);">27%</div>
+              </div>
+              <div class="proto-pct" style="color:#0057b7;">27%</div>
+            </div>
+            <div class="proto-row">
+              <div class="proto-name">EtherNet/IP</div>
+              <div style="flex:1;background:#eef2f8;border-radius:6px;overflow:hidden;">
+                <div class="proto-bar" style="width:23%;background:linear-gradient(90deg,#e87722,#f0a055);">23%</div>
+              </div>
+              <div class="proto-pct" style="color:#e87722;">23%</div>
+            </div>
+            <div class="proto-row">
+              <div class="proto-name" style="color:var(--primary);font-weight:800;">EtherCAT ★</div>
+              <div style="flex:1;background:#eef2f8;border-radius:6px;overflow:hidden;">
+                <div class="proto-bar" style="width:17%;background:linear-gradient(90deg,#0f4c81,#00a8e8);">17%</div>
+              </div>
+              <div class="proto-pct" style="color:var(--primary);">17%</div>
+            </div>
+            <div class="proto-row">
+              <div class="proto-name">Modbus TCP</div>
+              <div style="flex:1;background:#eef2f8;border-radius:6px;overflow:hidden;">
+                <div class="proto-bar" style="width:9%;background:linear-gradient(90deg,#22a870,#5dd4a8);">9%</div>
+              </div>
+              <div class="proto-pct" style="color:#22a870;">9%</div>
+            </div>
+            <div class="proto-row">
+              <div class="proto-name">POWERLINK</div>
+              <div style="flex:1;background:#eef2f8;border-radius:6px;overflow:hidden;">
+                <div class="proto-bar" style="width:5%;background:linear-gradient(90deg,#8b5cf6,#a78bfa);">5%</div>
+              </div>
+              <div class="proto-pct" style="color:#8b5cf6;">5%</div>
+            </div>
+            <div class="proto-row">
+              <div class="proto-name">其他协议</div>
+              <div style="flex:1;background:#eef2f8;border-radius:6px;overflow:hidden;">
+                <div class="proto-bar" style="width:19%;background:linear-gradient(90deg,#94a3b8,#cbd5e1);">19%</div>
+              </div>
+              <div class="proto-pct" style="color:#94a3b8;">19%</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="font-size:15px;color:var(--text-muted);margin-bottom:16px;">EtherCAT 核心竞争优势</h3>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div style="display:flex;align-items:flex-start;gap:12px;">
+              <div style="width:36px;height:36px;background:#e8f4fd;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🚀</div>
+              <div>
+                <div style="font-size:14px;font-weight:700;color:var(--primary);">最低延迟</div>
+                <div style="font-size:13px;color:var(--text-muted);">通信周期最短12.5µs，远低于其他协议，是高精度运动控制的首选。</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:12px;">
+              <div style="width:36px;height:36px;background:#e8f4fd;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🎯</div>
+              <div>
+                <div style="font-size:14px;font-weight:700;color:var(--primary);">纳秒级同步</div>
+                <div style="font-size:13px;color:var(--text-muted);">分布式时钟（DC）技术确保多轴同步精度小于1µs，满足高端设备需求。</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:12px;">
+              <div style="width:36px;height:36px;background:#e8f4fd;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">💡</div>
+              <div>
+                <div style="font-size:14px;font-weight:700;color:var(--primary);">标准以太网物理层</div>
+                <div style="font-size:13px;color:var(--text-muted);">使用标准RJ45线缆，无需专有硬件，大幅降低布线与集成成本。</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:12px;">
+              <div style="width:36px;height:36px;background:#e8f4fd;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🛡️</div>
+              <div>
+                <div style="font-size:14px;font-weight:700;color:var(--primary);">功能安全集成</div>
+                <div style="font-size:13px;color:var(--text-muted);">FSoE协议同线传输，达到SIL3安全等级，简化安全认证流程。</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ── SECTION 4: INDUSTRY APPLICATIONS ── -->
+    <section class="section" id="industry">
+      <div class="section-title">四、各行业应用详情</div>
+      <p class="section-desc">EtherCAT 广泛渗透至九大核心工业领域，各行业因其不同的技术需求与EtherCAT形成高度匹配。</p>
+
+      <div class="grid-2">
+
+        <!-- 工业自动化 -->
+        <div class="industry-card">
+          <div class="industry-header">
+            <div class="industry-icon" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe);">🏭</div>
+            <div>
+              <div class="industry-title">工业自动化 / 制造业</div>
+              <div class="industry-share" style="color:#1d4ed8;">25–30%</div>
+            </div>
+          </div>
+          <div class="industry-desc">最大市场。涵盖CNC数控机床多轴联动、PLC分布式I/O系统、传送带精确定位及焊接冲压线同步控制。倍福TwinCAT+EtherCAT已成为欧日系机床厂商标准控制架构。</div>
+          <div class="tag-list">
+            <span class="tag" style="background:#dbeafe;color:#1d4ed8;">CNC机床</span>
+            <span class="tag" style="background:#dbeafe;color:#1d4ed8;">分布式I/O</span>
+            <span class="tag" style="background:#dbeafe;color:#1d4ed8;">伺服控制</span>
+            <span class="tag" style="background:#dbeafe;color:#1d4ed8;">运动控制</span>
+          </div>
+        </div>
+
+        <!-- 机器人 -->
+        <div class="industry-card">
+          <div class="industry-header">
+            <div class="industry-icon" style="background:linear-gradient(135deg,#fef3c7,#fde68a);">🤖</div>
+            <div>
+              <div class="industry-title">机器人行业</div>
+              <div class="industry-share" style="color:#d97706;">20–25%</div>
+            </div>
+          </div>
+          <div class="industry-desc">增速最快之一。工业机器人关节三环控制、协作机器人力控感知、人形机器人（30+自由度）全身统一通信总线。2025年人形机器人商业化爆发是最确定的增量市场。</div>
+          <div class="tag-list">
+            <span class="tag" style="background:#fef3c7;color:#d97706;">工业机器人</span>
+            <span class="tag" style="background:#fef3c7;color:#d97706;">协作机器人</span>
+            <span class="tag" style="background:#fef3c7;color:#d97706;">人形机器人</span>
+            <span class="tag" style="background:#fef3c7;color:#d97706;">AMR/AGV</span>
+          </div>
+        </div>
+
+        <!-- 半导体 -->
+        <div class="industry-card">
+          <div class="industry-header">
+            <div class="industry-icon" style="background:linear-gradient(135deg,#fce7f3,#fbcfe8);">💎</div>
+            <div>
+              <div class="industry-title">半导体 / 电子制造</div>
+              <div class="industry-share" style="color:#be185d;">15–20%</div>
+            </div>
+          </div>
+          <div class="industry-desc">高价值应用。晶圆光刻机精密运动台、AOI检测高速扫描、MFC网络化管理。2007年已纳入SEMI E54.20标准，在新设计高端半导体设备中成为事实标准。</div>
+          <div class="tag-list">
+            <span class="tag" style="background:#fce7f3;color:#be185d;">光刻设备</span>
+            <span class="tag" style="background:#fce7f3;color:#be185d;">AOI检测</span>
+            <span class="tag" style="background:#fce7f3;color:#be185d;">MFC控制</span>
+            <span class="tag" style="background:#fce7f3;color:#be185d;">SEMI标准</span>
+          </div>
+        </div>
+
+        <!-- 汽车 -->
+        <div class="industry-card">
+          <div class="industry-header">
+            <div class="industry-icon" style="background:linear-gradient(135deg,#d1fae5,#a7f3d0);">🚗</div>
+            <div>
+              <div class="industry-title">汽车制造</div>
+              <div class="industry-share" style="color:#065f46;">10–15%</div>
+            </div>
+          </div>
+          <div class="industry-desc">冲压、焊接、涂装、总装四大工艺机器人协调，电池模组PACK线精密装配，新能源汽车电机测试台。新能源电池产线需求带动持续增长。</div>
+          <div class="tag-list">
+            <span class="tag" style="background:#d1fae5;color:#065f46;">焊接产线</span>
+            <span class="tag" style="background:#d1fae5;color:#065f46;">EV电池</span>
+            <span class="tag" style="background:#d1fae5;color:#065f46;">总装协调</span>
+            <span class="tag" style="background:#d1fae5;color:#065f46;">测试台</span>
+          </div>
+        </div>
+
+        <!-- 包装 -->
+        <div class="industry-card">
+          <div class="industry-header">
+            <div class="industry-icon" style="background:linear-gradient(135deg,#ede9fe,#ddd6fe);">📦</div>
+            <div>
+              <div class="industry-title">包装机械</div>
+              <div class="industry-share" style="color:#6d28d9;">10–15%</div>
+            </div>
+          </div>
+          <div class="industry-desc">高速灌装封口多轴同步、柔性包装逐件生产、视觉引导拾取放置。EtherCAT P单缆供电+通信方案显著简化包装机内复杂布线，Hot Connect支持模块化扩展。</div>
+          <div class="tag-list">
+            <span class="tag" style="background:#ede9fe;color:#6d28d9;">灌装封口</span>
+            <span class="tag" style="background:#ede9fe;color:#6d28d9;">Pick & Place</span>
+            <span class="tag" style="background:#ede9fe;color:#6d28d9;">食品包装</span>
+            <span class="tag" style="background:#ede9fe;color:#6d28d9;">EtherCAT P</span>
+          </div>
+        </div>
+
+        <!-- 医疗 -->
+        <div class="industry-card">
+          <div class="industry-header">
+            <div class="industry-icon" style="background:linear-gradient(135deg,#fee2e2,#fecaca);">🏥</div>
+            <div>
+              <div class="industry-title">医疗设备</div>
+              <div class="industry-share" style="color:#b91c1c;">5–7%</div>
+            </div>
+          </div>
+          <div class="industry-desc">手术机器人多轴精密操作臂与力觉反馈、放射治疗设备精密定位、康复外骨骼精确力矩控制。手术机器人"手感延迟"< 1ms，满足外科安全要求。</div>
+          <div class="tag-list">
+            <span class="tag" style="background:#fee2e2;color:#b91c1c;">手术机器人</span>
+            <span class="tag" style="background:#fee2e2;color:#b91c1c;">放疗设备</span>
+            <span class="tag" style="background:#fee2e2;color:#b91c1c;">康复机器人</span>
+            <span class="tag" style="background:#fee2e2;color:#b91c1c;">实验室自动化</span>
+          </div>
+        </div>
+
+        <!-- 印刷 -->
+        <div class="industry-card">
+          <div class="industry-header">
+            <div class="industry-icon" style="background:linear-gradient(135deg,#e0f2fe,#bae6fd);">🖨️</div>
+            <div>
+              <div class="industry-title">印刷行业</div>
+              <div class="industry-share" style="color:#0369a1;">5–8%</div>
+            </div>
+          </div>
+          <div class="industry-desc">轮转印刷机多色组套准控制、数字印刷喷头与走纸同步、模切飞剪控制。套准误差直接影响品质，多轴同步误差需小于1µs。海德堡、高斯、曼罗兰均已采用。</div>
+          <div class="tag-list">
+            <span class="tag" style="background:#e0f2fe;color:#0369a1;">轮转印刷</span>
+            <span class="tag" style="background:#e0f2fe;color:#0369a1;">套准控制</span>
+            <span class="tag" style="background:#e0f2fe;color:#0369a1;">飞剪控制</span>
+            <span class="tag" style="background:#e0f2fe;color:#0369a1;">数字印刷</span>
+          </div>
+        </div>
+
+        <!-- 能源 -->
+        <div class="industry-card">
+          <div class="industry-header">
+            <div class="industry-icon" style="background:linear-gradient(135deg,#ecfdf5,#a7f3d0);">🌬️</div>
+            <div>
+              <div class="industry-title">能源 / 风电</div>
+              <div class="industry-share" style="color:#047857;">3–5%</div>
+            </div>
+          </div>
+          <div class="industry-desc">风机桨距控制、变流器发电机同步、振动传感器分布式采集（状态监测）。光纤扩展至20km可覆盖整个海上风场，无需中继器。</div>
+          <div class="tag-list">
+            <span class="tag" style="background:#ecfdf5;color:#047857;">桨距控制</span>
+            <span class="tag" style="background:#ecfdf5;color:#047857;">变流器</span>
+            <span class="tag" style="background:#ecfdf5;color:#047857;">状态监测</span>
+            <span class="tag" style="background:#ecfdf5;color:#047857;">海上风电</span>
+          </div>
+        </div>
+
+        <!-- 其他 -->
+        <div class="industry-card">
+          <div class="industry-header">
+            <div class="industry-icon" style="background:linear-gradient(135deg,#f1f5f9,#e2e8f0);">🔬</div>
+            <div>
+              <div class="industry-title">航空航天 / 科研及其他</div>
+              <div class="industry-share" style="color:#475569;">5–10%</div>
+            </div>
+          </div>
+          <div class="industry-desc">飞行模拟器多轴运动平台、同步辐射光源束线精密运动、粒子加速器控制、大型舞台飞行机械同步、纺织机械高速张力控制等。</div>
+          <div class="tag-list">
+            <span class="tag" style="background:#f1f5f9;color:#475569;">飞行模拟</span>
+            <span class="tag" style="background:#f1f5f9;color:#475569;">粒子加速器</span>
+            <span class="tag" style="background:#f1f5f9;color:#475569;">舞台机械</span>
+            <span class="tag" style="background:#f1f5f9;color:#475569;">纺织机械</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ── SECTION 5: MARKET SHARE ── -->
+    <section class="section" id="share">
+      <div class="section-title">五、各行业市场占比汇总</div>
+      <p class="section-desc">综合多方来源的估算分布（基于收入占比，各报告口径存在差异，以下为区间中值）。</p>
+
+      <div class="card">
+        <div class="market-table">
+          <div class="market-row" style="font-weight:700;font-size:13px;color:var(--text-muted);border-bottom:2px solid var(--border);">
+            <span>行业</span><span>占比分布</span><span>估算占比</span>
+          </div>
+          <div class="market-row">
+            <div class="market-name">🏭 工业自动化/制造业</div>
+            <div class="bar-wrap"><div class="bar-fill" style="width:27.5%;background:linear-gradient(90deg,#1d4ed8,#3b82f6);"></div></div>
+            <div class="market-pct" style="color:#1d4ed8;">25–30%</div>
+          </div>
+          <div class="market-row">
+            <div class="market-name">🤖 机器人行业</div>
+            <div class="bar-wrap"><div class="bar-fill" style="width:22.5%;background:linear-gradient(90deg,#d97706,#f59e0b);"></div></div>
+            <div class="market-pct" style="color:#d97706;">20–25%</div>
+          </div>
+          <div class="market-row">
+            <div class="market-name">💎 半导体/电子制造</div>
+            <div class="bar-wrap"><div class="bar-fill" style="width:17.5%;background:linear-gradient(90deg,#be185d,#ec4899);"></div></div>
+            <div class="market-pct" style="color:#be185d;">15–20%</div>
+          </div>
+          <div class="market-row">
+            <div class="market-name">🚗 汽车制造</div>
+            <div class="bar-wrap"><div class="bar-fill" style="width:12.5%;background:linear-gradient(90deg,#065f46,#10b981);"></div></div>
+            <div class="market-pct" style="color:#065f46;">10–15%</div>
+          </div>
+          <div class="market-row">
+            <div class="market-name">📦 包装机械</div>
+            <div class="bar-wrap"><div class="bar-fill" style="width:12.5%;background:linear-gradient(90deg,#6d28d9,#8b5cf6);"></div></div>
+            <div class="market-pct" style="color:#6d28d9;">10–15%</div>
+          </div>
+          <div class="market-row">
+            <div class="market-name">🖨️ 印刷行业</div>
+            <div class="bar-wrap"><div class="bar-fill" style="width:6.5%;background:linear-gradient(90deg,#0369a1,#0ea5e9);"></div></div>
+            <div class="market-pct" style="color:#0369a1;">5–8%</div>
+          </div>
+          <div class="market-row">
+            <div class="market-name">🏥 医疗设备</div>
+            <div class="bar-wrap"><div class="bar-fill" style="width:6%;background:linear-gradient(90deg,#b91c1c,#ef4444);"></div></div>
+            <div class="market-pct" style="color:#b91c1c;">5–7%</div>
+          </div>
+          <div class="market-row">
+            <div class="market-name">🌬️ 能源/风电</div>
+            <div class="bar-wrap"><div class="bar-fill" style="width:4%;background:linear-gradient(90deg,#047857,#34d399);"></div></div>
+            <div class="market-pct" style="color:#047857;">3–5%</div>
+          </div>
+          <div class="market-row">
+            <div class="market-name">🔬 航空/科研/其他</div>
+            <div class="bar-wrap"><div class="bar-fill" style="width:7.5%;background:linear-gradient(90deg,#475569,#94a3b8);"></div></div>
+            <div class="market-pct" style="color:#475569;">5–10%</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ── SECTION 6: REGION ── -->
+    <section class="section" id="region">
+      <div class="section-title">六、区域市场分布</div>
+      <p class="section-desc">亚太地区为最大市场且增速最快，欧洲作为技术发源地保持稳定份额，北美深度应用驱动稳健增长。</p>
+
+      <div class="grid-4">
+        <div class="region-card">
+          <div class="region-flag">🌏</div>
+          <div class="region-name">亚太地区</div>
+          <div class="region-pct">&gt;50%</div>
+          <div class="region-trend" style="color:#22c55e;">▲ 最快增长</div>
+          <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">中国、日本、韩国主导；中国国产化驱动加速</p>
+        </div>
+        <div class="region-card">
+          <div class="region-flag">🌍</div>
+          <div class="region-name">欧洲</div>
+          <div class="region-pct">~22%</div>
+          <div class="region-trend" style="color:#f59e0b;">→ 成熟稳定</div>
+          <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">技术发源地；倍福、西门子等核心厂商所在地</p>
+        </div>
+        <div class="region-card">
+          <div class="region-flag">🌎</div>
+          <div class="region-name">北美</div>
+          <div class="region-pct">~20%</div>
+          <div class="region-trend" style="color:#3b82f6;">↗ 稳健增长</div>
+          <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">Industry 4.0深度应用；半导体设备需求强劲</p>
+        </div>
+        <div class="region-card">
+          <div class="region-flag">🌐</div>
+          <div class="region-name">其他地区</div>
+          <div class="region-pct">~8%</div>
+          <div class="region-trend" style="color:#22c55e;">▲ 潜力增长</div>
+          <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">东南亚、印度、中东制造业升级驱动</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ── SECTION 7: TRENDS ── -->
+    <section class="section" id="trend">
+      <div class="section-title">七、未来发展趋势（2025–2030）</div>
+      <p class="section-desc">六大核心趋势重塑EtherCAT市场格局，人形机器人和千兆升级是最确定的增长引擎。</p>
+
+      <div class="grid-2">
+        <div class="timeline">
+
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">2025–2030 · 趋势 01</div>
+            <div class="tl-title">🤖 人形机器人驱动新增长极</div>
+            <div class="tl-body">截至2026年5月，人形机器人已正式进入量产元年。<strong>智元机器人</strong>2025年出货超5,100台（全球份额~39%），<strong>宇树科技</strong>交付超5,500台，<strong>Figure AI</strong>建成年产能1.2万台工厂，Tesla Optimus Gen 3于2026年初启动规模量产。每台人形机器人含30–50个关节节点，EtherCAT是最主流关节通信协议，2026年预计全球出货数万台，将持续贡献数百万新增节点。</div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">2025–2027 · 趋势 02</div>
+            <div class="tl-title">⚡ EtherCAT G 千兆升级</div>
+            <div class="tl-body">EtherCAT G（1 Gbps）和EtherCAT G10（10 Gbps）已完成标准化，面向超高精度半导体设备、高分辨率机器视觉集成等高带宽场景，预计2025–2027年加速落地。</div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">2025–2030 · 趋势 03</div>
+            <div class="tl-title">🧠 AI 与数字孪生融合</div>
+            <div class="tl-body">倍福TwinCAT ML将AI推理嵌入控制器，基于EtherCAT实时数据构建数字孪生，实现预测性维护。AI驱动的自适应运动规划依赖EtherCAT的确定性时基。</div>
+          </div>
+
+        </div>
+
+        <div class="timeline">
+
+          <div class="tl-item">
+            <div class="tl-dot" style="background:#ff6b35;"></div>
+            <div class="tl-year">2025–2028 · 趋势 04</div>
+            <div class="tl-title">🔌 EtherCAT P 单缆方案普及</div>
+            <div class="tl-body">EtherCAT P将24V供电与通信集成在同一根标准以太网线缆中，大幅简化机器人、包装线布线。预计在人形机器人、协作机器人中加速普及，成为新设计的默认选择。</div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot" style="background:#ff6b35;"></div>
+            <div class="tl-year">2026–2030 · 趋势 05</div>
+            <div class="tl-title">🌐 TSN 时间敏感网络融合</div>
+            <div class="tl-body">EtherCAT研究与IEEE 802.1 TSN标准融合路径，实现与标准IT以太网基础设施的无缝互通，满足IIoT与云边协同的长期需求。</div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot" style="background:#ff6b35;"></div>
+            <div class="tl-year">2024–2027 · 趋势 06</div>
+            <div class="tl-title">🇨🇳 国产芯片生态崛起</div>
+            <div class="tl-body">先楫 <strong>HPM6E00 系列</strong>（RISC-V，600MHz+，Beckhoff 授权，含 TSN）和兆易 <strong>GD32H78E 系列</strong>（Cortex-M7，600–750MHz，集成 ESC 的专用"E"后缀型号）在2025–2026年相继量产。方芯半导体推出 Pin-to-Pin 兼容 LAN9253/9254 的国产独立 ESC，助力存量市场无缝替换。主流国产厂商均已取得 Beckhoff 正式授权，消除知识产权顾虑，竞争焦点从"能不能用"转向"IEC 62443 安全合规"与极端工况可靠性。</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ── SECTION 8: VENDORS ── -->
+    <section class="section" id="vendor">
+      <div class="section-title">八、主要厂商与生态系统</div>
+      <p class="section-desc">完整的产业链生态从芯片、主站控制器到从站伺服驱动器，形成强大的护城河。</p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:16px;">主站（Master）方案</h3>
+          <table class="vendor-table">
+            <thead><tr><th>厂商</th><th>代表产品</th><th>定位</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>Beckhoff（倍福）</strong></td>
+                <td>TwinCAT 3（PC-based）</td>
+                <td><span class="vendor-badge" style="background:#dbeafe;color:#1d4ed8;">发明者</span></td>
+              </tr>
+              <tr>
+                <td>OMRON（欧姆龙）</td>
+                <td>NX/NJ 系列 PLC</td>
+                <td><span class="vendor-badge" style="background:#d1fae5;color:#065f46;">日系龙头</span></td>
+              </tr>
+              <tr>
+                <td>Yaskawa（安川）</td>
+                <td>MP3300 系列</td>
+                <td><span class="vendor-badge" style="background:#d1fae5;color:#065f46;">机器人领域</span></td>
+              </tr>
+              <tr>
+                <td>Mitsubishi（三菱）</td>
+                <td>MELSEC iQ-R</td>
+                <td><span class="vendor-badge" style="background:#d1fae5;color:#065f46;">日系主流</span></td>
+              </tr>
+              <tr>
+                <td>Keyence（基恩士）</td>
+                <td>KV-8000 系列</td>
+                <td><span class="vendor-badge" style="background:#ede9fe;color:#6d28d9;">高端传感</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <h3 style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:16px;">从站芯片（ESC）生态</h3>
+          <table class="vendor-table">
+            <thead><tr><th>厂商</th><th>芯片型号</th><th>特点</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>Beckhoff</strong></td>
+                <td>ET1100, ET1200</td>
+                <td><span class="vendor-badge" style="background:#dbeafe;color:#1d4ed8;">原厂ASIC</span></td>
+              </tr>
+              <tr>
+                <td>Texas Instruments</td>
+                <td>AM335x Sitara</td>
+                <td><span class="vendor-badge" style="background:#fef3c7;color:#d97706;">ARM+ESC SoC</span></td>
+              </tr>
+              <tr>
+                <td>Microchip</td>
+                <td>LAN9252/LAN9254</td>
+                <td><span class="vendor-badge" style="background:#d1fae5;color:#065f46;">低成本方案</span></td>
+              </tr>
+              <tr>
+                <td><strong>GigaDevice（兆易）</strong></td>
+                <td>GD32H759</td>
+                <td><span class="vendor-badge" style="background:#fee2e2;color:#b91c1c;">国产首选</span></td>
+              </tr>
+              <tr>
+                <td><strong>HPMicro（先楫）</strong></td>
+                <td>HPM6880</td>
+                <td><span class="vendor-badge" style="background:#fee2e2;color:#b91c1c;">国产高性能</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div style="margin-top:20px;">
+        <div class="card">
+          <h3 style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:16px;">从站驱动器（Servo Drive）主要厂商</h3>
+          <div class="grid-4">
+            <div style="text-align:center;padding:16px;background:#f7f9fc;border-radius:10px;">
+              <div style="font-size:24px;margin-bottom:6px;">🇩🇪</div>
+              <div style="font-size:13px;font-weight:700;">Beckhoff</div>
+              <div style="font-size:12px;color:var(--text-muted);">AX5000/AX8000</div>
+            </div>
+            <div style="text-align:center;padding:16px;background:#f7f9fc;border-radius:10px;">
+              <div style="font-size:24px;margin-bottom:6px;">🇯🇵</div>
+              <div style="font-size:13px;font-weight:700;">Panasonic</div>
+              <div style="font-size:12px;color:var(--text-muted);">MINAS A6</div>
+            </div>
+            <div style="text-align:center;padding:16px;background:#f7f9fc;border-radius:10px;">
+              <div style="font-size:24px;margin-bottom:6px;">🇯🇵</div>
+              <div style="font-size:13px;font-weight:700;">Yaskawa</div>
+              <div style="font-size:12px;color:var(--text-muted);">Sigma-7</div>
+            </div>
+            <div style="text-align:center;padding:16px;background:#f7f9fc;border-radius:10px;">
+              <div style="font-size:24px;margin-bottom:6px;">🇹🇼</div>
+              <div style="font-size:13px;font-weight:700;">Delta（台达）</div>
+              <div style="font-size:12px;color:var(--text-muted);">ASDA-A3</div>
+            </div>
+            <div style="text-align:center;padding:16px;background:#f7f9fc;border-radius:10px;">
+              <div style="font-size:24px;margin-bottom:6px;">🇮🇱</div>
+              <div style="font-size:13px;font-weight:700;">Elmo Motion</div>
+              <div style="font-size:12px;color:var(--text-muted);">超小型高功率密度</div>
+            </div>
+            <div style="text-align:center;padding:16px;background:#f7f9fc;border-radius:10px;">
+              <div style="font-size:24px;margin-bottom:6px;">🇺🇸</div>
+              <div style="font-size:13px;font-weight:700;">Kollmorgen</div>
+              <div style="font-size:12px;color:var(--text-muted);">AKD2 系列</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ── SECTION 10: MASTER IMPLEMENTATIONS ── -->
+    <section class="section" id="master">
+      <div class="section-title">十、主站（Master）协议栈实现方案</div>
+      <p class="section-desc">EtherCAT 主站分为开源与商业两大阵营。开源方案以 IgH EtherCAT Master 和 SOEM 为主，商业方案以 acontis EC-Master、KPA 和 TwinCAT 3 为代表，各有适用场景。</p>
+
+      <!-- Overview Comparison Table -->
+      <div class="card" style="margin-bottom:24px;overflow-x:auto;">
+        <h3 style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:16px;">主站方案总览对比</h3>
+        <table class="vendor-table" style="min-width:800px;">
+          <thead>
+            <tr>
+              <th>方案</th>
+              <th>授权</th>
+              <th>最小周期</th>
+              <th>典型抖动</th>
+              <th>支持 RTOS</th>
+              <th>适用场景</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>IgH EtherCAT Master</strong></td>
+              <td><span class="vendor-badge" style="background:#d1fae5;color:#065f46;">GPLv2 开源</span></td>
+              <td>125 µs</td>
+              <td>&lt; 1 µs (Xenomai)</td>
+              <td>PREEMPT_RT, Xenomai, RTAI</td>
+              <td>工业自动化、机器人、LinuxCNC（最新 v1.6.9）</td>
+            </tr>
+            <tr>
+              <td><strong>SOEM 2.0</strong></td>
+              <td><span class="vendor-badge" style="background:#fef3c7;color:#d97706;">GPLv3 / 商业双授权</span></td>
+              <td>~1 ms</td>
+              <td>依赖 OS</td>
+              <td>Linux, Windows, Xenomai, FreeRTOS</td>
+              <td>研究、快速原型、嵌入式（2025年重大升级）</td>
+            </tr>
+            <tr>
+              <td><strong>acontis EC-Master</strong></td>
+              <td><span class="vendor-badge" style="background:#fee2e2;color:#b91c1c;">商业（MAC 绑定）</span></td>
+              <td>62.5 µs</td>
+              <td>&lt; 1 µs</td>
+              <td>QNX, VxWorks, INtime, RTX, Linux, Windows</td>
+              <td>安全关键、汽车、航空测试台</td>
+            </tr>
+            <tr>
+              <td><strong>KPA EtherCAT Master</strong></td>
+              <td><span class="vendor-badge" style="background:#fee2e2;color:#b91c1c;">商业（报价）</span></td>
+              <td>&lt; 100 µs</td>
+              <td>&lt; 1 µs</td>
+              <td>支持最广：FreeRTOS, bare-metal, FPGA, TI PRU</td>
+              <td>嵌入式 RTOS、bare-metal、工业控制器</td>
+            </tr>
+            <tr>
+              <td><strong>Beckhoff TwinCAT 3</strong></td>
+              <td><span class="vendor-badge" style="background:#dbeafe;color:#1d4ed8;">商业（按平台等级）</span></td>
+              <td>50 µs</td>
+              <td>&lt; 1 µs</td>
+              <td>TwinCAT RT (Windows), TwinCAT/BSD</td>
+              <td>Beckhoff 生态 PLC / 运动控制</td>
+            </tr>
+            <tr>
+              <td><strong>CODESYS EtherCAT</strong></td>
+              <td><span class="vendor-badge" style="background:#fee2e2;color:#b91c1c;">商业</span></td>
+              <td>250 µs</td>
+              <td>中等</td>
+              <td>CODESYS RT, Linux, Windows CE</td>
+              <td>第三方 PLC 产品（Wago、Pilz 等）</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- IgH -->
+      <div class="card" style="margin-bottom:20px;border-left:4px solid #065f46;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+          <div style="width:48px;height:48px;background:linear-gradient(135deg,#d1fae5,#a7f3d0);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;">🐧</div>
+          <div>
+            <div style="font-size:16px;font-weight:800;color:#065f46;">IgH EtherCAT Master（EtherLab）</div>
+            <div style="font-size:13px;color:var(--text-muted);">gitlab.com/etherlab.org/ethercat · GPLv2 开源 · 德国 IgH GmbH 开发 · 最新版本 v1.6.9（2026.3）</div>
+          </div>
+          <span class="vendor-badge" style="background:#d1fae5;color:#065f46;margin-left:auto;font-size:13px;">★ 最推荐开源方案</span>
+        </div>
+        <div class="grid-2" style="gap:16px;">
+          <div>
+            <p style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;">技术架构</p>
+            <p style="font-size:13px;color:var(--text-muted);">Linux <strong>内核模块</strong>（kernel-space），提供用户空间库 <code>libethercat</code>。驱动分 <strong>Native 驱动</strong>（针对 Intel I210/I225 等 NIC，绕过内核网络栈，性能最优）和 <strong>Generic 驱动</strong>（兼容任意 NIC，性能较差）。</p>
+          </div>
+          <div>
+            <p style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;">实时性能（按 RT 环境）</p>
+            <table style="width:100%;font-size:12px;border-collapse:collapse;">
+              <thead><tr style="background:#f0f4f8;"><th style="padding:5px 8px;text-align:left;">实时环境</th><th style="padding:5px 8px;">周期抖动</th><th style="padding:5px 8px;">状态</th></tr></thead>
+              <tbody>
+                <tr><td style="padding:5px 8px;border-bottom:1px solid var(--border);">Xenomai (Cobalt)</td><td style="padding:5px 8px;border-bottom:1px solid var(--border);text-align:center;font-weight:700;color:#065f46;">&lt; 1 µs</td><td style="padding:5px 8px;border-bottom:1px solid var(--border);">✅ 硬实时</td></tr>
+                <tr><td style="padding:5px 8px;border-bottom:1px solid var(--border);">PREEMPT_RT</td><td style="padding:5px 8px;border-bottom:1px solid var(--border);text-align:center;font-weight:700;color:#d97706;">5–30 µs</td><td style="padding:5px 8px;border-bottom:1px solid var(--border);">✅ 主流推荐</td></tr>
+                <tr><td style="padding:5px 8px;">裸 Linux</td><td style="padding:5px 8px;text-align:center;color:#b91c1c;">数百 µs+</td><td style="padding:5px 8px;">❌ 不适用</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div style="margin-top:14px;display:flex;flex-wrap:wrap;gap:8px;">
+          <div style="flex:1;min-width:200px;">
+            <p style="font-size:12px;font-weight:700;color:#065f46;margin-bottom:4px;">✅ 优点</p>
+            <ul style="font-size:12px;color:var(--text-muted);padding-left:16px;">
+              <li>完全开源，社区活跃，文档完善</li>
+              <li>与 LinuxCNC、ROS 深度集成</li>
+              <li>支持 EoE、Hot Connect、冗余拓扑</li>
+            </ul>
+          </div>
+          <div style="flex:1;min-width:200px;">
+            <p style="font-size:12px;font-weight:700;color:#b91c1c;margin-bottom:4px;">⚠️ 注意</p>
+            <ul style="font-size:12px;color:var(--text-muted);padding-left:16px;">
+              <li>GPLv2 对闭源商业产品有合规风险</li>
+              <li>内核支持有时落后于主线（需补丁）</li>
+              <li>不直接支持 QNX/VxWorks</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- SOEM -->
+      <div class="card" style="margin-bottom:20px;border-left:4px solid #d97706;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+          <div style="width:48px;height:48px;background:linear-gradient(135deg,#fef3c7,#fde68a);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;">📦</div>
+          <div>
+            <div style="font-size:16px;font-weight:800;color:#d97706;">SOEM（Simple Open EtherCAT Master）</div>
+            <div style="font-size:13px;color:var(--text-muted);">github.com/OpenEtherCATsociety/SOEM · <strong style="color:#d97706;">SOEM 2.0（2025年发布）</strong> · GPLv3 / 商业双授权 · rt-labs 主导</div>
+          </div>
+          <span class="vendor-badge" style="background:#fef3c7;color:#d97706;margin-left:auto;font-size:13px;">轻量 · 易移植</span>
+        </div>
+        <div class="grid-2" style="gap:16px;">
+          <div>
+            <p style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;">技术架构</p>
+            <p style="font-size:13px;color:var(--text-muted);">纯<strong>用户空间 C 库</strong>，通过 OSAL（OS Abstraction Layer）跨平台。静态内存分配（无动态 malloc），适合嵌入式。直接收发 Layer 2 原始以太网帧。支持 CoE / FoE / EoE / SoE 全部邮箱协议 + 分布式时钟（DC）。<br><strong style="color:#d97706;">SOEM 2.0 重大更新</strong>：迁移至现代 CMake、移除旧 ec_ API 改用 ecx_（增强多线程）、新增 ENI 解析器、授权升级为 GPLv3 + 商业双授权。</p>
+          </div>
+          <div>
+            <p style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;">支持平台</p>
+            <div class="tag-list" style="margin-top:4px;">
+              <span class="tag" style="background:#fef3c7;color:#d97706;">Linux</span>
+              <span class="tag" style="background:#fef3c7;color:#d97706;">Windows (Npcap)</span>
+              <span class="tag" style="background:#fef3c7;color:#d97706;">Xenomai</span>
+              <span class="tag" style="background:#fef3c7;color:#d97706;">FreeRTOS</span>
+              <span class="tag" style="background:#fef3c7;color:#d97706;">macOS (调试)</span>
+              <span class="tag" style="background:#fef3c7;color:#d97706;">bare-metal (部分)</span>
+            </div>
+            <p style="font-size:12px;color:var(--text-muted);margin-top:8px;padding:8px;background:#fffbeb;border-radius:6px;">⚠️ 注意：商业分发主站产品通常需向 ETG/Beckhoff 申请 <strong>EtherCAT Master License</strong></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- acontis -->
+      <div class="card" style="margin-bottom:20px;border-left:4px solid #b91c1c;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+          <div style="width:48px;height:48px;background:linear-gradient(135deg,#fee2e2,#fecaca);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;">🏢</div>
+          <div>
+            <div style="font-size:16px;font-weight:800;color:#b91c1c;">acontis EC-Master</div>
+            <div style="font-size:13px;color:var(--text-muted);">acontis.com · 商业许可（MAC 绑定）· 德国 acontis technologies GmbH</div>
+          </div>
+          <span class="vendor-badge" style="background:#fee2e2;color:#b91c1c;margin-left:auto;font-size:13px;">最短 62.5 µs</span>
+        </div>
+        <div class="grid-2" style="gap:16px;">
+          <div>
+            <p style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;">授权模式</p>
+            <ul style="font-size:13px;color:var(--text-muted);padding-left:16px;">
+              <li>按目标设备 <strong>MAC 地址绑定</strong>，无 license 约 1 小时后停止运行</li>
+              <li>分 Development License + Runtime License（量产每台收费）</li>
+              <li>可选提供<strong>源码版本</strong>，用于安全审计和深度定制</li>
+            </ul>
+          </div>
+          <div>
+            <p style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;">配套工具链</p>
+            <ul style="font-size:13px;color:var(--text-muted);padding-left:16px;">
+              <li><strong>EC-Engineer</strong>：图形化网络配置、ENI 文件生成</li>
+              <li><strong>EC-Simulator</strong>：离线仿真，无需真实硬件</li>
+              <li><strong>EC-Monitor</strong>：实时总线监控与诊断</li>
+              <li><strong>EC-Inspector 4.1.4（2026.2）</strong>：新增"学习模式"，无需 ENI 文件即可诊断网络</li>
+            </ul>
+          </div>
+        </div>
+        <div style="margin-top:12px;padding:10px 14px;background:#fff5f5;border-radius:8px;font-size:12px;color:#b91c1c;">
+          Link Layer 采用 zero-copy / polling 技术，绑定 Intel I210 NIC 可实现 <strong>&lt; 1 µs 抖动</strong>，是商业方案中实时性最优之一。2026年新增 Raspberry Pi 5 就绪实时 Linux 镜像、RISC-V 架构支持。
+        </div>
+      </div>
+
+      <!-- TwinCAT -->
+      <div class="card" style="margin-bottom:20px;border-left:4px solid #1d4ed8;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+          <div style="width:48px;height:48px;background:linear-gradient(135deg,#dbeafe,#bfdbfe);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;">⚙️</div>
+          <div>
+            <div style="font-size:16px;font-weight:800;color:#1d4ed8;">Beckhoff TwinCAT 3</div>
+            <div style="font-size:13px;color:var(--text-muted);">beckhoff.com · EtherCAT Master 内置免费 · 德国 Beckhoff Automation</div>
+          </div>
+          <span class="vendor-badge" style="background:#dbeafe;color:#1d4ed8;margin-left:auto;font-size:13px;">官方参考实现</span>
+        </div>
+        <div class="grid-2" style="gap:16px;">
+          <div>
+            <p style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;">授权体系</p>
+            <table style="width:100%;font-size:12px;border-collapse:collapse;">
+              <thead><tr style="background:#f0f4f8;"><th style="padding:5px 8px;text-align:left;">组件</th><th style="padding:5px 8px;">费用</th></tr></thead>
+              <tbody>
+                <tr><td style="padding:5px 8px;border-bottom:1px solid var(--border);">EtherCAT Master 功能</td><td style="padding:5px 8px;border-bottom:1px solid var(--border);">✅ 免费内置</td></tr>
+                <tr><td style="padding:5px 8px;border-bottom:1px solid var(--border);">XAE 工程环境（VS 插件）</td><td style="padding:5px 8px;border-bottom:1px solid var(--border);">✅ 完全免费</td></tr>
+                <tr><td style="padding:5px 8px;border-bottom:1px solid var(--border);">TwinCAT 3 Runtime（PLC/NC）</td><td style="padding:5px 8px;border-bottom:1px solid var(--border);">💰 按平台等级</td></tr>
+                <tr><td style="padding:5px 8px;">7天试用许可</td><td style="padding:5px 8px;">✅ 可无限续期</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <p style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;">运行环境</p>
+            <ul style="font-size:13px;color:var(--text-muted);padding-left:16px;">
+              <li><strong>TwinCAT RT</strong>：运行于 Windows 10/11 下的 Hypervisor 扩展，实时核与 Windows 隔离</li>
+              <li><strong>TwinCAT/BSD</strong>：基于 FreeBSD 的独立 RTOS（新一代）</li>
+              <li><strong>Beckhoff RT Linux</strong>：新增支持（实验性）</li>
+              <li>多核隔离：实时任务可独占 CPU Core</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ── SECTION 11: SLAVE DEVELOPMENT ── -->
+    <section class="section" id="slave">
+      <div class="section-title">十一、从站（Slave）开发工具链</div>
+      <p class="section-desc">从站开发涵盖 ESC 芯片选型、协议栈实现（SSC/SOES）和认证工具链三个层次，Beckhoff SSC 是最主流的官方实现。</p>
+
+      <div class="grid-2" style="margin-bottom:24px;">
+
+        <!-- SSC -->
+        <div class="card" style="border-top:4px solid #1d4ed8;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+            <div style="width:40px;height:40px;background:#dbeafe;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;">🔧</div>
+            <div>
+              <div style="font-size:15px;font-weight:700;color:#1d4ed8;">Beckhoff SSC Tool</div>
+              <div style="font-size:12px;color:var(--text-muted);">官方从站代码生成器 · ETG 会员免费获取</div>
+            </div>
+          </div>
+          <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Beckhoff 官方提供的从站协议栈（Slave Stack Code）代码生成工具。加入 ETG 协会（免费）并申请 Vendor ID 后可下载使用。</p>
+          <div style="background:#f0f8ff;border-radius:8px;padding:12px;margin-bottom:12px;">
+            <p style="font-size:12px;font-weight:700;color:#1d4ed8;margin-bottom:6px;">开发流程</p>
+            <div style="display:flex;flex-direction:column;gap:4px;">
+              <div style="font-size:12px;color:var(--text-muted);">① 加入 ETG，申请 Vendor ID（免费）</div>
+              <div style="font-size:12px;color:var(--text-muted);">② 在 SSC Tool 中定义对象字典 + PDO 映射</div>
+              <div style="font-size:12px;color:var(--text-muted);">③ 自动生成 C 源码 + ESI XML 文件</div>
+              <div style="font-size:12px;color:var(--text-muted);">④ 集成到 MCU IDE（Keil/IAR/STM32CubeIDE）</div>
+              <div style="font-size:12px;color:var(--text-muted);">⑤ 实现 HAL 层（ESC 硬件驱动）</div>
+              <div style="font-size:12px;color:var(--text-muted);">⑥ TwinCAT 加载 ESI，验证状态机</div>
+            </div>
+          </div>
+          <div class="tag-list">
+            <span class="tag" style="background:#dbeafe;color:#1d4ed8;">CoE</span>
+            <span class="tag" style="background:#dbeafe;color:#1d4ed8;">FoE</span>
+            <span class="tag" style="background:#dbeafe;color:#1d4ed8;">EoE</span>
+            <span class="tag" style="background:#dbeafe;color:#1d4ed8;">SoE</span>
+            <span class="tag" style="background:#dbeafe;color:#1d4ed8;">CiA 402</span>
+          </div>
+        </div>
+
+        <!-- SOES -->
+        <div class="card" style="border-top:4px solid #d97706;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+            <div style="width:40px;height:40px;background:#fef3c7;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;">🐙</div>
+            <div>
+              <div style="font-size:15px;font-weight:700;color:#d97706;">SOES（Simple Open EtherCAT Slave）</div>
+              <div style="font-size:12px;color:var(--text-muted);">github.com/OpenEtherCATsociety/SOES · GPLv2</div>
+            </div>
+          </div>
+          <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">由 rt-labs 开发（与 SOEM 同源），定位为轻量级开源从站协议栈。代码极简洁，适合教学、快速原型，与 SOEM 配合形成完整开发测试环境。</p>
+          <div style="background:#fffbeb;border-radius:8px;padding:12px;margin-bottom:12px;">
+            <p style="font-size:12px;font-weight:700;color:#d97706;margin-bottom:6px;">支持的 ESC 芯片</p>
+            <div class="tag-list">
+              <span class="tag" style="background:#fef3c7;color:#92400e;">ET1100/ET1200</span>
+              <span class="tag" style="background:#fef3c7;color:#92400e;">LAN9252</span>
+              <span class="tag" style="background:#fef3c7;color:#92400e;">AX58100</span>
+              <span class="tag" style="background:#fef3c7;color:#92400e;">任意 HAL 实现</span>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;">
+            <div style="flex:1;">
+              <p style="font-size:12px;font-weight:700;color:#065f46;">✅ 优点</p>
+              <ul style="font-size:12px;color:var(--text-muted);padding-left:14px;margin-top:4px;">
+                <li>代码简洁易读</li>
+                <li>快速原型验证</li>
+              </ul>
+            </div>
+            <div style="flex:1;">
+              <p style="font-size:12px;font-weight:700;color:#b91c1c;">⚠️ 局限</p>
+              <ul style="font-size:12px;color:var(--text-muted);padding-left:14px;margin-top:4px;">
+                <li>功能不如 SSC 完整</li>
+                <li>社区维护活跃度较低</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Beckhoff Tools -->
+      <div class="card" style="margin-bottom:24px;">
+        <h3 style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:14px;">Beckhoff EtherCAT 配置与认证工具</h3>
+        <table class="vendor-table">
+          <thead><tr><th>工具</th><th>功能</th><th>费用</th><th>用途</th></tr></thead>
+          <tbody>
+            <tr><td><strong>ET9000 EtherCAT Configurator</strong></td><td>独立网络拓扑配置（非 TwinCAT 环境）</td><td>✅ 免费</td><td>系统集成商配置用</td></tr>
+            <tr><td><strong>ET9400 CTT（一致性测试工具）</strong></td><td>从站 ETG 官方一致性测试，认证必须</td><td>💰 付费（ETG 会员价）</td><td>产品上市前认证</td></tr>
+            <tr><td><strong>ET9300 Master Simulator</strong></td><td>主站仿真器，用于从站调试（无需真实主站）</td><td>💰 付费</td><td>从站开发调试阶段</td></tr>
+            <tr><td><strong>TwinCAT XAE</strong></td><td>工程环境（Visual Studio 插件），含 ESI 库</td><td>✅ 完全免费</td><td>从站调试、系统集成</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ESC Chip Comparison -->
+      <div class="card">
+        <h3 style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:14px;">ESC 芯片详细对比与配套 SDK</h3>
+        <div style="overflow-x:auto;">
+          <table class="vendor-table" style="min-width:860px;">
+            <thead>
+              <tr>
+                <th>芯片</th>
+                <th>厂商</th>
+                <th>集成 PHY</th>
+                <th>主机接口</th>
+                <th>配套 SDK / 开发板</th>
+                <th>适用场景</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>ET1100</strong></td>
+                <td>Beckhoff</td>
+                <td>❌ 需外置</td>
+                <td>SPI / 并口 / HBI</td>
+                <td>官方参考设计</td>
+                <td>遗留系统 / 认证参考</td>
+              </tr>
+              <tr>
+                <td><strong>LAN9252 / LAN9253</strong></td>
+                <td>Microchip</td>
+                <td>✅ 双 PHY</td>
+                <td>SPI / QSPI / HBI</td>
+                <td>EVB-LAN9253, MPLAB Harmony</td>
+                <td>通用 I/O 模块，<strong>首选低成本方案</strong></td>
+              </tr>
+              <tr>
+                <td><strong>AX58100</strong></td>
+                <td>ASIX</td>
+                <td>✅ 双 PHY</td>
+                <td>SPI / HBI / PWM</td>
+                <td>AX58100-EK, STM32 参考设计</td>
+                <td>电机控制、成本敏感设备</td>
+              </tr>
+              <tr>
+                <td><strong>AX58400</strong></td>
+                <td>ASIX</td>
+                <td>✅ 三 PHY</td>
+                <td>SPI / 并口</td>
+                <td>AX58400-EK</td>
+                <td>环形拓扑从站</td>
+              </tr>
+              <tr>
+                <td><strong>TI AM335x PRU</strong></td>
+                <td>Texas Instruments</td>
+                <td>❌ 外置</td>
+                <td>片上（PRU 固件模拟）</td>
+                <td>Processor SDK, ICE 板</td>
+                <td>高集成 SoC，运动控制</td>
+              </tr>
+              <tr>
+                <td><strong>Renesas RX72M</strong></td>
+                <td>Renesas</td>
+                <td>✅ 集成</td>
+                <td>片上集成 ESC</td>
+                <td>Solution Kit（电机+EtherCAT 一体）</td>
+                <td>单芯片电机控制从站</td>
+              </tr>
+              <tr>
+                <td><strong style="color:#b91c1c;">GD32H78E 系列（兆易）</strong></td>
+                <td>GigaDevice</td>
+                <td>✅ 集成</td>
+                <td>片上集成 ESC（"E"后缀型号）</td>
+                <td>GD32 SDK（2025年量产，Cortex-M7 600–750MHz）</td>
+                <td><strong style="color:#b91c1c;">国产首选</strong>，注：GD32H759 不含ESC，需选"E"系列</td>
+              </tr>
+              <tr>
+                <td><strong style="color:#b91c1c;">HPM6E00 系列（先楫）</strong></td>
+                <td>HPMicro</td>
+                <td>✅ 集成</td>
+                <td>片上集成 ESC（RISC-V 架构）</td>
+                <td>HPM SDK（Beckhoff 正式授权，含 TSN 支持）</td>
+                <td><strong style="color:#b91c1c;">国产高性能</strong>，适合机器人关节，支持多协议</td>
+              </tr>
+              <tr>
+                <td><strong style="color:#b91c1c;">LAN9253 兼容型（方芯）</strong></td>
+                <td>方芯半导体</td>
+                <td>✅ 集成</td>
+                <td>SPI / HBI（Pin-to-Pin 兼容）</td>
+                <td>兼容 Microchip 原有 SDK</td>
+                <td>存量市场国产替换，零迁移成本</td>
+              </tr>
+              <tr>
+                <td><strong>FPGA IP Core</strong></td>
+                <td>Xilinx / Intel / 第三方</td>
+                <td>❌ 外置</td>
+                <td>自定义总线</td>
+                <td>需购买 EtherCAT IP Core</td>
+                <td>超高性能定制逻辑、ASIC 替代</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ── SECTION 12: RTOS ── -->
+    <section class="section" id="rtos">
+      <div class="section-title">十二、实时操作系统（RTOS）方案对比</div>
+      <p class="section-desc">实时环境的选择直接决定 EtherCAT 通信周期的稳定性。从开源 Linux 方案到商业 RTOS，各有不同的性能-成本-维护权衡。</p>
+
+      <!-- Performance table -->
+      <div class="card" style="margin-bottom:24px;overflow-x:auto;">
+        <h3 style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:14px;">各实时方案性能定量对比</h3>
+        <table class="vendor-table" style="min-width:800px;">
+          <thead>
+            <tr>
+              <th>指标</th>
+              <th>裸 Linux</th>
+              <th>PREEMPT_RT</th>
+              <th>Xenomai 3.x</th>
+              <th>RTAI</th>
+              <th>QNX / VxWorks / INtime</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>最差情况延迟</td>
+              <td style="color:#b91c1c;">数 ms～数十 ms</td>
+              <td style="color:#d97706;">50～200 µs</td>
+              <td style="color:#065f46;font-weight:700;">5～30 µs</td>
+              <td style="color:#065f46;">5～20 µs</td>
+              <td style="color:#1d4ed8;">10～50 µs</td>
+            </tr>
+            <tr>
+              <td>典型抖动（σ）</td>
+              <td style="color:#b91c1c;">不可控</td>
+              <td style="color:#d97706;">10～50 µs</td>
+              <td style="color:#065f46;font-weight:700;">1～5 µs</td>
+              <td style="color:#065f46;">1～5 µs</td>
+              <td style="color:#1d4ed8;">1～10 µs</td>
+            </tr>
+            <tr>
+              <td>最小稳定 EtherCAT 周期</td>
+              <td style="color:#b91c1c;">❌ 不适用</td>
+              <td style="color:#d97706;">250 µs～1 ms</td>
+              <td style="color:#065f46;font-weight:700;">125 µs</td>
+              <td style="color:#065f46;">125 µs</td>
+              <td style="color:#1d4ed8;">100～250 µs</td>
+            </tr>
+            <tr>
+              <td>cyclictest 最大延迟</td>
+              <td style="color:#b91c1c;">&gt; 1 ms</td>
+              <td style="color:#d97706;">50～300 µs</td>
+              <td style="color:#065f46;font-weight:700;">5～50 µs</td>
+              <td style="color:#065f46;">5～30 µs</td>
+              <td>参见厂商数据</td>
+            </tr>
+            <tr>
+              <td>硬件驱动兼容性</td>
+              <td>最好</td>
+              <td style="color:#065f46;">很好</td>
+              <td style="color:#d97706;">需 RTDM 驱动</td>
+              <td style="color:#b91c1c;">差（内核老旧）</td>
+              <td style="color:#d97706;">依赖厂商支持</td>
+            </tr>
+            <tr>
+              <td>开发难度</td>
+              <td style="color:#065f46;">低</td>
+              <td style="color:#065f46;">低</td>
+              <td style="color:#b91c1c;">高</td>
+              <td style="color:#b91c1c;">很高</td>
+              <td style="color:#d97706;">中（商业文档完善）</td>
+            </tr>
+            <tr>
+              <td>内核维护难度</td>
+              <td style="color:#065f46;">最低</td>
+              <td style="color:#065f46;">低（趋于主线）</td>
+              <td style="color:#d97706;">中</td>
+              <td style="color:#b91c1c;">很高（已停滞）</td>
+              <td>N/A（商业支持）</td>
+            </tr>
+            <tr>
+              <td>商业许可需求</td>
+              <td>❌ 无</td>
+              <td>❌ 无</td>
+              <td>❌ 无（GPL）</td>
+              <td>❌ 无（GPL）</td>
+              <td style="color:#b91c1c;">✅ 必须（付费）</td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="font-size:11px;color:var(--text-muted);margin-top:8px;">※ 数据来源：ETG 白皮书、acontis 性能报告、Xenomai 官方文档及社区 benchmark，具体数值因硬件平台、BIOS 设置、CPU 负载而存在差异。</p>
+      </div>
+
+      <!-- PREEMPT_RT & Xenomai deep dive -->
+      <div class="grid-2">
+        <div class="card" style="border-top:4px solid #22c55e;">
+          <h3 style="font-size:14px;font-weight:700;color:#065f46;margin-bottom:10px;">🐧 Linux + PREEMPT_RT（推荐入门方案）</h3>
+          <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">将 Linux 内核几乎所有自旋锁替换为可睡眠互斥锁，中断处理线程化，实现接近硬实时性能。已逐步合并入 Linux 主线内核。</p>
+          <p style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:6px;">关键配置项</p>
+          <div style="background:#f0f8f0;border-radius:8px;padding:10px;font-size:12px;color:#374151;font-family:monospace;line-height:1.8;">
+            CONFIG_PREEMPT_RT=y<br>
+            idle=poll（禁用 CPU C-states）<br>
+            cpufreq governor=performance<br>
+            SCHED_FIFO 优先级 80+（实时线程）<br>
+            /proc/irq/N/smp_affinity（中断绑核）
+          </div>
+          <div style="margin-top:10px;font-size:12px;color:var(--text-muted);">🔗 与 IgH EtherCAT Master / SOEM / acontis 均完整兼容</div>
+        </div>
+
+        <div class="card" style="border-top:4px solid #6d28d9;">
+          <h3 style="font-size:14px;font-weight:700;color:#6d28d9;margin-bottom:10px;">🔬 Linux + Xenomai（极致实时方案）</h3>
+          <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">在 Linux 旁运行 Cobalt 微内核，通过 I-pipe 优先截获硬件中断。实时任务完全在 Cobalt 上下文运行，与 Linux 调度器完全隔离。</p>
+          <p style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:6px;">关键注意事项</p>
+          <ul style="font-size:12px;color:var(--text-muted);padding-left:16px;line-height:1.8;">
+            <li>实时任务<strong>不能调用任何 Linux 系统调用</strong>，否则触发 "mode switch" 大延迟</li>
+            <li>网络驱动需使用 <strong>RTDM 版本</strong>（rtnet），否则经过 Linux 网络栈</li>
+            <li>调试难度高，需严格消除 mode switch 警告</li>
+            <li>适用于 125 µs 以下周期、亚微秒抖动的高端场景</li>
+          </ul>
+        </div>
+
+        <div class="card" style="border-top:4px solid #1d4ed8;">
+          <h3 style="font-size:14px;font-weight:700;color:#1d4ed8;margin-bottom:10px;">🏢 QNX Neutrino</h3>
+          <p style="font-size:13px;color:var(--text-muted);margin-bottom:10px;">微内核架构，进程间通信通过消息传递，内核极小（&lt; 100 KB），256 优先级硬实时调度。</p>
+          <div class="tag-list">
+            <span class="tag" style="background:#dbeafe;color:#1d4ed8;">汽车（AUTOSAR 自适应）</span>
+            <span class="tag" style="background:#dbeafe;color:#1d4ed8;">医疗设备</span>
+            <span class="tag" style="background:#dbeafe;color:#1d4ed8;">航空</span>
+          </div>
+          <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">EtherCAT 支持：acontis EC-Master、KPA 均提供 QNX 原生版本</p>
+        </div>
+
+        <div class="card" style="border-top:4px solid #d97706;">
+          <h3 style="font-size:14px;font-weight:700;color:#d97706;margin-bottom:10px;">🪟 INtime（TenAsys）</h3>
+          <p style="font-size:13px;color:var(--text-muted);margin-bottom:10px;">运行于 Windows 系统之上，与 Windows 共享 x86 硬件，实时核独占部分 CPU Core。无需替换操作系统，Windows HMI 与实时控制可同时运行。</p>
+          <div class="tag-list">
+            <span class="tag" style="background:#fef3c7;color:#d97706;">LabVIEW 集成</span>
+            <span class="tag" style="background:#fef3c7;color:#d97706;">MATLAB Simulink</span>
+            <span class="tag" style="background:#fef3c7;color:#d97706;">Windows 工具共存</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ── SECTION 13: SELECTION GUIDE ── -->
+    <section class="section" id="selection">
+      <div class="section-title">十三、选型建议</div>
+      <p class="section-desc">根据授权要求、实时性指标和目标平台，快速定位最优方案组合。</p>
+
+      <div class="grid-2" style="margin-bottom:24px;">
+        <div class="card">
+          <h3 style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:16px;">🧭 主站选型决策路径</h3>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="background:#f0f8ff;border-radius:8px;padding:12px;">
+              <div style="font-size:13px;font-weight:700;color:#1d4ed8;margin-bottom:4px;">可接受 GPLv2 + 需要极致实时（&lt;250µs）</div>
+              <div style="font-size:13px;color:var(--text-muted);">→ <strong>IgH EtherCAT Master + Xenomai</strong></div>
+            </div>
+            <div style="background:#f0fdf4;border-radius:8px;padding:12px;">
+              <div style="font-size:13px;font-weight:700;color:#065f46;margin-bottom:4px;">可接受 GPLv2 + 标准工业精度（1 ms）</div>
+              <div style="font-size:13px;color:var(--text-muted);">→ <strong>IgH EtherCAT Master + PREEMPT_RT</strong>（★ 最推荐开源方案）</div>
+            </div>
+            <div style="background:#fffbeb;border-radius:8px;padding:12px;">
+              <div style="font-size:13px;font-weight:700;color:#d97706;margin-bottom:4px;">快速原型 / 研究 / 嵌入式移植</div>
+              <div style="font-size:13px;color:var(--text-muted);">→ <strong>SOEM</strong>（轻量，跨平台）</div>
+            </div>
+            <div style="background:#fff5f5;border-radius:8px;padding:12px;">
+              <div style="font-size:13px;font-weight:700;color:#b91c1c;margin-bottom:4px;">商业产品 + Linux / QNX / VxWorks</div>
+              <div style="font-size:13px;color:var(--text-muted);">→ <strong>acontis EC-Master</strong>（完整工具链）</div>
+            </div>
+            <div style="background:#fff5f5;border-radius:8px;padding:12px;">
+              <div style="font-size:13px;font-weight:700;color:#b91c1c;margin-bottom:4px;">FreeRTOS / bare-metal / FPGA</div>
+              <div style="font-size:13px;color:var(--text-muted);">→ <strong>KPA EtherCAT Master</strong>（RTOS 支持最广）</div>
+            </div>
+            <div style="background:#eff6ff;border-radius:8px;padding:12px;">
+              <div style="font-size:13px;font-weight:700;color:#1d4ed8;margin-bottom:4px;">Beckhoff 硬件生态 + Windows 环境</div>
+              <div style="font-size:13px;color:var(--text-muted);">→ <strong>TwinCAT 3</strong>（官方生态，最佳兼容性）</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:16px;">🎯 从站开发选型建议</h3>
+          <table class="sum-table">
+            <thead><tr><th>应用场景</th><th>推荐方案</th></tr></thead>
+            <tbody>
+              <tr><td>通用工业 I/O 模块</td><td><strong>LAN9253 + SSC Tool</strong><br><span style="font-size:12px;color:var(--text-muted);">MPLAB Harmony，成熟度最高</span></td></tr>
+              <tr><td>伺服 / 电机控制从站</td><td><strong>AX58100 + SSC Tool</strong><br><span style="font-size:12px;color:var(--text-muted);">或 Renesas RX72M 一体化方案</span></td></tr>
+              <tr><td>高集成 SoC</td><td><strong>TI AM335x/AM64x (PRU)</strong><br><span style="font-size:12px;color:var(--text-muted);">Processor SDK + SSC 补丁</span></td></tr>
+              <tr><td>国产化需求</td><td><strong>GD32H78E / HPM6E00 / 方芯ESC</strong><br><span style="font-size:12px;color:var(--text-muted);">2025–2026年量产，均获 Beckhoff 授权，注意兆易选"E"后缀系列</span></td></tr>
+              <tr><td>快速原型 / 教学</td><td><strong>SOES + LAN9252</strong><br><span style="font-size:12px;color:var(--text-muted);">代码简洁，门槛低</span></td></tr>
+              <tr><td>需要 ETG 认证上市</td><td><strong>SSC + ET9400 CTT</strong><br><span style="font-size:12px;color:var(--text-muted);">申请 Vendor ID，过一致性测试</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Summary matrix -->
+      <div class="card">
+        <h3 style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:14px;">📊 实时环境 × 应用场景推荐矩阵</h3>
+        <table class="vendor-table">
+          <thead><tr><th>需求等级</th><th>典型应用</th><th>推荐实时环境</th><th>推荐主站</th><th>典型周期</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>标准工业自动化</td>
+              <td>PLC、分布式 I/O、传送带</td>
+              <td>Linux + PREEMPT_RT</td>
+              <td>IgH EtherCAT Master</td>
+              <td style="font-weight:700;">1 ms</td>
+            </tr>
+            <tr>
+              <td>中高精度运动控制</td>
+              <td>6 轴机器人、多轴 CNC</td>
+              <td>Linux + PREEMPT_RT（优化）</td>
+              <td>IgH EtherCAT Master</td>
+              <td style="font-weight:700;">500 µs</td>
+            </tr>
+            <tr>
+              <td>高精度多轴同步</td>
+              <td>人形机器人、半导体设备</td>
+              <td>Linux + Xenomai 或商业 RTOS</td>
+              <td>acontis EC-Master / KPA</td>
+              <td style="font-weight:700;color:#065f46;">125–250 µs</td>
+            </tr>
+            <tr>
+              <td>安全关键 / 航空汽车</td>
+              <td>手术机器人、航电测试台</td>
+              <td>QNX / VxWorks</td>
+              <td>acontis EC-Master</td>
+              <td style="font-weight:700;">250 µs～1 ms</td>
+            </tr>
+            <tr>
+              <td>Windows 生态 + 实时</td>
+              <td>Beckhoff IPC、HMI + 控制</td>
+              <td>INtime / TwinCAT RT</td>
+              <td>TwinCAT 3</td>
+              <td style="font-weight:700;">250 µs～1 ms</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ── SECTION 14: CONCLUSION ── -->
+    <section class="section" id="conclusion">
+      <div class="section-title">十四、综合结论</div>
+      <p class="section-desc">EtherCAT 凭借技术领先性、生态完整性和标准支撑，在工业控制领域构筑了深厚壁垒。</p>
+
+      <div class="grid-2">
+        <div class="card" style="border-left:4px solid #1d4ed8;">
+          <div style="font-size:20px;margin-bottom:8px;">📊</div>
+          <h3 style="font-size:15px;font-weight:700;color:#1d4ed8;margin-bottom:8px;">市场规模</h3>
+          <p style="font-size:14px;color:var(--text-muted);">2024年市值约 <strong style="color:var(--text);">245亿美元</strong>，以约 <strong style="color:var(--text);">10% CAGR</strong> 稳步增长，2030年预计突破 <strong style="color:var(--text);">420–500亿美元</strong>。</p>
+        </div>
+        <div class="card" style="border-left:4px solid #d97706;">
+          <div style="font-size:20px;margin-bottom:8px;">🏆</div>
+          <h3 style="font-size:15px;font-weight:700;color:#d97706;margin-bottom:8px;">竞争地位</h3>
+          <p style="font-size:14px;color:var(--text-muted);">新安装节点占全球工业网络 <strong style="color:var(--text);">17%</strong> 份额，运动控制和精密同步场景的<strong style="color:var(--text);">事实标准</strong>，工业机器人细分市场占比约 <strong style="color:var(--text);">40%</strong>。</p>
+        </div>
+        <div class="card" style="border-left:4px solid #be185d;">
+          <div style="font-size:20px;margin-bottom:8px;">🎯</div>
+          <h3 style="font-size:15px;font-weight:700;color:#be185d;margin-bottom:8px;">行业集中度</h3>
+          <p style="font-size:14px;color:var(--text-muted);">工业自动化、机器人、半导体、汽车、包装五大行业合计贡献约 <strong style="color:var(--text);">80%以上</strong>市场收入。</p>
+        </div>
+        <div class="card" style="border-left:4px solid #065f46;">
+          <div style="font-size:20px;margin-bottom:8px;">🚀</div>
+          <h3 style="font-size:15px;font-weight:700;color:#065f46;margin-bottom:8px;">增长驱动</h3>
+          <p style="font-size:14px;color:var(--text-muted);"><strong style="color:var(--text);">人形机器人量产落地</strong>（2025年全球出货~1.5万台，2026年持续增长）、EV与光伏产线扩张、半导体设备国产化、<strong style="color:var(--text);">EtherCAT G千兆稳健扩张</strong>，是未来五年最确定的增量来源。</p>
+        </div>
+        <div class="card" style="border-left:4px solid #6d28d9; grid-column: span 2;">
+          <div style="font-size:20px;margin-bottom:8px;">🏰</div>
+          <h3 style="font-size:15px;font-weight:700;color:#6d28d9;margin-bottom:8px;">生态壁垒</h3>
+          <p style="font-size:14px;color:var(--text-muted);">8,700+ ETG成员（79国）、1.052亿累计节点、完善的SEMI/IEC标准体系、国产芯片合规化（GD32H78E / HPM6E00 均获 Beckhoff 授权），共同构成强大的生态护城河，短期内难以被替代。</p>
+        </div>
+      </div>
+
+      <div class="highlight" style="margin-top:24px;">
+        <p><strong>数据来源：</strong>HMS Networks 工业网络报告（2025）、EtherCAT Technology Group（ETG）官方数据（截至2026年4月）、Grand View Research、Market.us、Fortune Business Insights 市场报告、SEMI 标准文件，以及 Beckhoff、Applied Materials、acontis、rt-labs 等厂商官方公告。报告数据截至 <strong>2026年5月</strong>。</p>
+      </div>
+    </section>
+
+  </div><!-- /main-content -->
+</div><!-- /page-layout -->
+
+<!-- ════════════════════════════════════════ FOOTER ════════════════════════════════════════ -->
+<footer class="footer">
+  <p><strong>EtherCAT 行业应用与实现方案调研报告 2026</strong></p>
+  <p>数据来源：HMS Networks（2025）· ETG 官方数据（2026Q1）· Grand View Research · Fortune Business Insights · SEMI · acontis / KPA / Beckhoff 官方公告</p>
+  <p style="margin-top:8px;color:#4a6a8a;">数据截至2026年5月，市场数据存在一定估算误差，仅供参考。</p>
+</footer>
+
+</body>
+</html>

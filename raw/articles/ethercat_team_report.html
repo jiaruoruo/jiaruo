@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>机器人行业 EtherCAT 总线通信开发团队规划报告</title>
+<style>
+  :root {
+    --primary: #1a3a5c;
+    --accent: #0e7fc7;
+    --accent2: #00b4d8;
+    --green: #10b981;
+    --orange: #f59e0b;
+    --red: #ef4444;
+    --bg: #f0f4f8;
+    --card: #ffffff;
+    --text: #1e293b;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --code-bg: #0f172a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, #0a1f3c 0%, #0e4a7a 50%, #0e7fc7 100%);
+    color: #fff; padding: 60px 40px 50px; position: relative; overflow: hidden;
+  }
+  header::before {
+    content: ''; position: absolute; top: -80px; right: -80px;
+    width: 400px; height: 400px; border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  header::after {
+    content: ''; position: absolute; bottom: -60px; left: 40%;
+    width: 300px; height: 300px; border-radius: 50%;
+    background: rgba(0,180,216,0.08);
+  }
+  .header-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+  header .tag { display: inline-block; background: rgba(0,180,216,0.25); border: 1px solid rgba(0,180,216,0.5); color: #7dd3fc; padding: 4px 14px; border-radius: 20px; font-size: 13px; margin-bottom: 18px; letter-spacing: 1px; }
+  header h1 { font-size: 2.4em; font-weight: 700; line-height: 1.3; margin-bottom: 14px; }
+  header h1 span { color: #38bdf8; }
+  header p { font-size: 1.05em; color: #93c5fd; max-width: 700px; }
+  .header-meta { margin-top: 30px; display: flex; gap: 30px; flex-wrap: wrap; }
+  .header-meta .item { display: flex; flex-direction: column; }
+  .header-meta .item .label { font-size: 12px; color: #7dd3fc; text-transform: uppercase; letter-spacing: 1px; }
+  .header-meta .item .value { font-size: 18px; font-weight: 700; color: #fff; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+
+  /* ── NAV TABS ── */
+  .nav-tabs { display: flex; gap: 6px; margin-bottom: 32px; background: var(--card); padding: 8px; border-radius: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); flex-wrap: wrap; }
+  .nav-tab { padding: 9px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; background: transparent; color: var(--muted); transition: all 0.2s; }
+  .nav-tab.active, .nav-tab:hover { background: var(--accent); color: #fff; }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 48px; }
+  .section-title {
+    font-size: 1.5em; font-weight: 700; color: var(--primary);
+    padding-bottom: 12px; border-bottom: 3px solid var(--accent);
+    margin-bottom: 24px; display: flex; align-items: center; gap: 10px;
+  }
+  .section-title .icon { width: 32px; height: 32px; background: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 16px; }
+  .subsection-title { font-size: 1.1em; font-weight: 700; color: var(--primary); margin: 24px 0 14px; padding-left: 12px; border-left: 4px solid var(--accent2); }
+
+  /* ── CARDS ── */
+  .card { background: var(--card); border-radius: 14px; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); margin-bottom: 20px; border: 1px solid var(--border); }
+  .card-grid { display: grid; gap: 20px; }
+  .card-grid-2 { grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); }
+  .card-grid-3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .card-grid-4 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+
+  /* ── ROLE CARD ── */
+  .role-card { background: var(--card); border-radius: 14px; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid var(--border); border-top: 4px solid var(--accent); }
+  .role-card.green-top { border-top-color: var(--green); }
+  .role-card.orange-top { border-top-color: var(--orange); }
+  .role-card.red-top { border-top-color: var(--red); }
+  .role-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 14px; }
+  .role-title { font-size: 1.05em; font-weight: 700; color: var(--primary); }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+  .badge-blue { background: #dbeafe; color: #1d4ed8; }
+  .badge-green { background: #d1fae5; color: #065f46; }
+  .badge-orange { background: #fef3c7; color: #92400e; }
+  .badge-red { background: #fee2e2; color: #991b1b; }
+  .badge-purple { background: #ede9fe; color: #5b21b6; }
+  .role-count { font-size: 2em; font-weight: 800; color: var(--accent); line-height: 1; }
+  .role-count span { font-size: 0.45em; color: var(--muted); font-weight: 500; }
+  .tech-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
+  .tech-tag { background: #f1f5f9; color: #475569; padding: 3px 10px; border-radius: 6px; font-size: 12px; }
+  .duty-list { margin-top: 12px; }
+  .duty-list li { font-size: 13.5px; color: #475569; margin-bottom: 6px; padding-left: 16px; position: relative; }
+  .duty-list li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 30px; }
+  .timeline::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--accent), var(--accent2)); }
+  .timeline-item { position: relative; margin-bottom: 32px; }
+  .timeline-dot { position: absolute; left: -26px; top: 6px; width: 14px; height: 14px; border-radius: 50%; background: var(--accent); border: 3px solid #fff; box-shadow: 0 0 0 2px var(--accent); }
+  .timeline-dot.green { background: var(--green); box-shadow: 0 0 0 2px var(--green); }
+  .timeline-dot.orange { background: var(--orange); box-shadow: 0 0 0 2px var(--orange); }
+
+  /* ── PHASE CARD ── */
+  .phase-card { background: var(--card); border-radius: 14px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid var(--border); overflow: hidden; margin-bottom: 28px; }
+  .phase-header { padding: 20px 24px; display: flex; align-items: center; gap: 16px; }
+  .phase-header.p1 { background: linear-gradient(135deg, #0e4a7a, #0e7fc7); color: #fff; }
+  .phase-header.p2 { background: linear-gradient(135deg, #065f46, #10b981); color: #fff; }
+  .phase-header.p3 { background: linear-gradient(135deg, #7c2d12, #f59e0b); color: #fff; }
+  .phase-header.p4 { background: linear-gradient(135deg, #4c1d95, #7c3aed); color: #fff; }
+  .phase-header.p5 { background: linear-gradient(135deg, #831843, #ec4899); color: #fff; }
+  .phase-header.p6 { background: linear-gradient(135deg, #134e4a, #0891b2); color: #fff; }
+  .phase-num { font-size: 2.2em; font-weight: 800; opacity: 0.4; line-height: 1; }
+  .phase-info .month { font-size: 13px; opacity: 0.8; }
+  .phase-info .title { font-size: 1.2em; font-weight: 700; }
+  .phase-info .goal { font-size: 13px; opacity: 0.85; margin-top: 2px; }
+  .phase-body { padding: 24px; }
+
+  /* ── TABLE ── */
+  .data-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .data-table th { background: #f8fafc; color: var(--primary); font-weight: 700; padding: 12px 14px; text-align: left; border-bottom: 2px solid var(--border); }
+  .data-table td { padding: 11px 14px; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: top; }
+  .data-table tr:hover td { background: #f8fafc; }
+  .data-table .week-col { font-weight: 700; color: var(--accent); white-space: nowrap; }
+  .data-table .role-col { color: var(--muted); font-size: 13px; }
+
+  /* ── DELIVERABLE TAGS ── */
+  .deliverable-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .deliverable-tag { display: flex; align-items: center; gap: 6px; background: #f0fdf4; border: 1px solid #86efac; color: #166534; padding: 6px 14px; border-radius: 8px; font-size: 13px; font-weight: 600; }
+  .deliverable-tag::before { content: '✓'; }
+
+  /* ── METRIC CARDS ── */
+  .metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+  .metric-card { background: var(--card); border-radius: 12px; padding: 20px; text-align: center; border: 1px solid var(--border); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+  .metric-value { font-size: 2em; font-weight: 800; color: var(--accent); line-height: 1.2; }
+  .metric-unit { font-size: 0.5em; font-weight: 500; color: var(--muted); }
+  .metric-label { font-size: 13px; color: var(--muted); margin-top: 6px; }
+  .metric-method { font-size: 12px; color: #94a3b8; margin-top: 4px; font-style: italic; }
+
+  /* ── CODE BLOCK ── */
+  .code-block { background: var(--code-bg); color: #e2e8f0; border-radius: 10px; padding: 20px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; line-height: 1.6; overflow-x: auto; margin: 14px 0; }
+  .code-block .comment { color: #64748b; }
+  .code-block .key { color: #38bdf8; }
+  .code-block .val { color: #86efac; }
+  .code-block .str { color: #fbbf24; }
+
+  /* ── RISK TABLE ── */
+  .risk-level { display: inline-block; padding: 3px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; }
+  .risk-high { background: #fee2e2; color: #dc2626; }
+  .risk-mid { background: #fef3c7; color: #d97706; }
+  .risk-low { background: #d1fae5; color: #059669; }
+
+  /* ── TECH STACK ── */
+  .tech-stack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .tech-item { background: var(--card); border-radius: 12px; padding: 18px; border: 1px solid var(--border); display: flex; gap: 14px; align-items: flex-start; }
+  .tech-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+  .tech-icon.blue { background: #dbeafe; }
+  .tech-icon.green { background: #d1fae5; }
+  .tech-icon.orange { background: #fef3c7; }
+  .tech-icon.purple { background: #ede9fe; }
+  .tech-content .tech-name { font-weight: 700; color: var(--primary); font-size: 14px; }
+  .tech-content .tech-desc { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+  /* ── GANTT ── */
+  .gantt-wrap { overflow-x: auto; margin-top: 16px; }
+  .gantt { min-width: 700px; }
+  .gantt-header { display: grid; grid-template-columns: 200px repeat(6, 1fr); gap: 2px; margin-bottom: 4px; }
+  .gantt-header .gh { text-align: center; font-size: 12px; font-weight: 700; color: var(--muted); padding: 6px; }
+  .gantt-row { display: grid; grid-template-columns: 200px repeat(6, 1fr); gap: 2px; margin-bottom: 3px; align-items: center; }
+  .gantt-label { font-size: 13px; color: var(--text); padding: 6px 8px; }
+  .gantt-cell { height: 28px; border-radius: 4px; background: #f1f5f9; }
+  .gantt-bar { height: 28px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: #fff; }
+  .gb-blue { background: linear-gradient(90deg, #0e4a7a, #0e7fc7); }
+  .gb-green { background: linear-gradient(90deg, #065f46, #10b981); }
+  .gb-orange { background: linear-gradient(90deg, #92400e, #f59e0b); }
+  .gb-purple { background: linear-gradient(90deg, #4c1d95, #7c3aed); }
+  .gb-pink { background: linear-gradient(90deg, #831843, #ec4899); }
+  .gb-teal { background: linear-gradient(90deg, #134e4a, #0891b2); }
+
+  /* ── SUMMARY ── */
+  .summary-box { background: linear-gradient(135deg, #0a1f3c 0%, #0e4a7a 100%); color: #fff; border-radius: 16px; padding: 32px; margin-top: 40px; }
+  .summary-box h3 { font-size: 1.3em; margin-bottom: 16px; color: #7dd3fc; }
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+  .summary-item { text-align: center; }
+  .summary-item .sv { font-size: 2.4em; font-weight: 800; color: #38bdf8; line-height: 1; }
+  .summary-item .sl { font-size: 13px; color: #93c5fd; margin-top: 6px; }
+
+  /* ── FOOTER ── */
+  footer { background: #0a1f3c; color: #475569; text-align: center; padding: 24px; font-size: 13px; }
+  footer span { color: #38bdf8; }
+
+  @media (max-width: 768px) {
+    header h1 { font-size: 1.6em; }
+    .card-grid-2, .card-grid-3, .card-grid-4 { grid-template-columns: 1fr; }
+    .gantt-header, .gantt-row { grid-template-columns: 140px repeat(6, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════ HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="tag">技术规划报告 · 2026</div>
+    <h1>机器人行业 <span>EtherCAT 总线通信</span><br>开发团队组建与实施规划</h1>
+    <p>从零开始搭建工业级实时总线通信系统，覆盖团队岗位设计、工作职责、人员配置及六个月完整实施路径</p>
+    <div class="header-meta">
+      <div class="item"><span class="label">项目周期</span><span class="value">6 个月</span></div>
+      <div class="item"><span class="label">团队规模</span><span class="value">8 ～ 14 人</span></div>
+      <div class="item"><span class="label">目标总线周期</span><span class="value">≤ 1 ms</span></div>
+      <div class="item"><span class="label">DC 同步精度</span><span class="value">&lt; 1 μs</span></div>
+      <div class="item"><span class="label">调度延迟 P99.9</span><span class="value">&lt; 20 μs</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+<!-- ══════════════════════════════════════════════════════ SECTION 1: 背景 -->
+<div class="section">
+  <div class="section-title">
+    <div class="icon">①</div>
+    项目背景与技术目标
+  </div>
+
+  <div class="card-grid card-grid-2">
+    <div class="card">
+      <div class="subsection-title">为什么选择 EtherCAT</div>
+      <ul class="duty-list">
+        <li>基于标准以太网硬件，无需专用通信卡，降低硬件成本</li>
+        <li>分布式时钟（DC）机制实现全网纳秒级同步精度</li>
+        <li>支持线形、树形、星形等多种拓扑，最多 65535 个从站</li>
+        <li>100Mbit/s 全双工，数据更新时间可低至 100μs</li>
+        <li>IEC 61158/61784 国际标准，主流机器人/运动控制厂商广泛支持</li>
+        <li>开源主站栈（SOEM、IgH EtherMaster）降低开发门槛</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="subsection-title">核心技术挑战</div>
+      <ul class="duty-list">
+        <li><strong>实时性：</strong>Linux 默认内核调度抖动可达毫秒级，必须引入 RT-PREEMPT 或 Xenomai</li>
+        <li><strong>同步精度：</strong>多轴 DC 同步需消除主站时钟漂移与网络传播延迟</li>
+        <li><strong>拓扑鲁棒性：</strong>从站热插拔、掉站恢复不能影响其他轴运动</li>
+        <li><strong>协议兼容性：</strong>不同厂商从站 CoE/FoE/EoE 实现存在细节差异</li>
+        <li><strong>性能调优：</strong>CPU 隔离、IRQ 亲和性、内存锁定需要系统级深度配置</li>
+        <li><strong>安全集成：</strong>STO/SS1 等功能安全接口需与总线时序精确配合</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="metric-grid" style="margin-top:20px">
+    <div class="metric-card">
+      <div class="metric-value">≤1<span class="metric-unit">ms</span></div>
+      <div class="metric-label">总线通信周期</div>
+      <div class="metric-method">满足 6 轴机械臂实时控制</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value">&lt;1<span class="metric-unit">μs</span></div>
+      <div class="metric-label">DC 同步误差</div>
+      <div class="metric-method">多轴轨迹一致性保障</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value">&lt;20<span class="metric-unit">μs</span></div>
+      <div class="metric-label">实时任务调度延迟 P99.9</div>
+      <div class="metric-method">cyclictest 24h 连续测试</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value">±0.05<span class="metric-unit">mm</span></div>
+      <div class="metric-label">重复定位精度</div>
+      <div class="metric-method">激光跟踪仪验证</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value">72<span class="metric-unit">h+</span></div>
+      <div class="metric-label">连续稳定运行时长</div>
+      <div class="metric-method">无内存泄漏、无延迟异常</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value">&lt;10<span class="metric-unit">ms</span></div>
+      <div class="metric-label">急停响应时间</div>
+      <div class="metric-method">安全功能 STO 触发验证</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ SECTION 2: 团队构成 -->
+<div class="section">
+  <div class="section-title">
+    <div class="icon">②</div>
+    团队岗位构成与人员配置
+  </div>
+
+  <div class="card" style="margin-bottom:24px">
+    <div class="subsection-title">团队规模建议</div>
+    <p style="color:var(--muted);font-size:14px;margin-bottom:16px">根据项目阶段和预算，分为最小可行团队与完整团队两种配置。最小可行团队适合 MVP 验证阶段，完整团队适合产品化交付。</p>
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="metric-value">8<span class="metric-unit">人</span></div>
+        <div class="metric-label">最小可行团队</div>
+        <div class="metric-method">核心角色合并，适合初创项目</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">12～14<span class="metric-unit">人</span></div>
+        <div class="metric-label">完整产品团队</div>
+        <div class="metric-method">职责清晰，支撑产品化交付</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 核心技术岗位 -->
+  <div class="subsection-title">核心技术岗位（7～9 人）</div>
+  <div class="card-grid card-grid-2">
+
+    <div class="role-card">
+      <div class="role-header">
+        <div>
+          <div class="role-title">EtherCAT 协议栈工程师</div>
+          <div style="margin-top:6px"><span class="badge badge-blue">核心岗</span></div>
+        </div>
+        <div><div class="role-count">2<span>人</span></div></div>
+      </div>
+      <div class="tech-tags">
+        <span class="tech-tag">SOEM</span><span class="tech-tag">IgH EtherMaster</span>
+        <span class="tech-tag">CoE/FoE/EoE</span><span class="tech-tag">ESC ET1100</span>
+        <span class="tech-tag">LAN9252</span><span class="tech-tag">状态机</span>
+      </div>
+      <div class="duty-list">
+        <li>主站软件栈选型与移植：SOEM（轻量开源）或 IgH EtherMaster（功能完整）的编译、配置与内核集成</li>
+        <li>ENI 文件解析：读取 TwinCAT/EtherCAT 配置工具导出的 XML 网络描述文件，自动枚举网络中所有从站</li>
+        <li>状态机驱动：实现从 Init→PreOp→SafeOp→Op 全状态转换，包含超时检测与错误回退逻辑</li>
+        <li>PDO 映射配置：过程数据对象（位置指令、速度反馈、状态字、控制字）的动态映射与周期收发</li>
+        <li>SDO 读写接口：提供同步/异步服务数据对象访问 API，用于驱动器参数初始化与运行时调参</li>
+        <li>Mailbox 协议实现：CoE（CAN over EtherCAT）、FoE（文件传输，固件升级）、EoE（以太网透传）</li>
+        <li>分布式时钟（DC）配置：选定参考时钟从站，计算传播延迟，配置 SYNC0/SYNC1 信号周期</li>
+        <li>热插拔与断线恢复：监控从站在线状态，在拓扑变化后自动重新枚举和恢复通信</li>
+        <li>多拓扑支持：线形、环形（冗余）、树形拓扑的配置与切换逻辑</li>
+      </div>
+    </div>
+
+    <div class="role-card green-top">
+      <div class="role-header">
+        <div>
+          <div class="role-title">实时系统工程师</div>
+          <div style="margin-top:6px"><span class="badge badge-green">核心岗</span></div>
+        </div>
+        <div><div class="role-count" style="color:var(--green)">2<span>人</span></div></div>
+      </div>
+      <div class="tech-tags">
+        <span class="tech-tag">RT-PREEMPT</span><span class="tech-tag">Xenomai</span>
+        <span class="tech-tag">SCHED_FIFO</span><span class="tech-tag">CPU isolcpus</span>
+        <span class="tech-tag">IRQ affinity</span><span class="tech-tag">cyclictest</span>
+      </div>
+      <div class="duty-list">
+        <li>实时内核选型与编译：RT-PREEMPT 补丁（推荐，无需双内核）或 Xenomai 3.x（更硬实时），针对目标硬件平台裁剪配置</li>
+        <li>内核参数深度调优：禁用 CPU C-State 深度休眠（/dev/cpu_dma_latency=0），锁定 CPU 频率（performance governor），关闭 NUMA 均衡</li>
+        <li>CPU 隔离与亲和性：通过 isolcpus/nohz_full 隔离专用核，IRQ 亲和性绑定，实时线程 CPU 绑定（taskset/cpuset）</li>
+        <li>网卡驱动优化：禁用 GRO/GSO，关闭中断合并（ethtool -C），将 Intel I210 改为轮询模式（NAPI → busy-poll），DMA 缓冲区调优</li>
+        <li>内存锁定：实时进程调用 mlockall(MCL_CURRENT|MCL_FUTURE)，预分配内存页，防止缺页中断影响周期</li>
+        <li>延迟基线建立：cyclictest 24h 测试，统计最小/平均/最大延迟，形成平台能力基线报告</li>
+        <li>BIOS 层调优：禁用超线程（HyperThreading），关闭 SMM（系统管理中断），配置 UEFI 实时模式</li>
+        <li>性能监控体系：perf/ftrace 实时追踪，latency_tracer 分析中断源，建立长期运行监控仪表盘</li>
+      </div>
+    </div>
+
+    <div class="role-card orange-top">
+      <div class="role-header">
+        <div>
+          <div class="role-title">运动控制算法工程师</div>
+          <div style="margin-top:6px"><span class="badge badge-orange">核心岗</span></div>
+        </div>
+        <div><div class="role-count" style="color:var(--orange)">2<span>人</span></div></div>
+      </div>
+      <div class="tech-tags">
+        <span class="tech-tag">CiA 402</span><span class="tech-tag">CSP/CSV/CST</span>
+        <span class="tech-tag">插补算法</span><span class="tech-tag">PID/前馈</span>
+        <span class="tech-tag">6DOF 运动学</span><span class="tech-tag">轨迹规划</span>
+      </div>
+      <div class="duty-list">
+        <li>CiA 402 驱动器状态机：实现 Shutdown→Switch On→Operation Enabled 完整流程，故障复位（Fault Reset）与快速停止（Quick Stop）处理</li>
+        <li>运动模式配置：CSP（周期同步位置）、CSV（周期同步速度）、CST（周期同步力矩）、PP（点位）、PV（速度）各模式切换逻辑</li>
+        <li>控制器参数整定：位置环 PID + 速度前馈参数整定，振动频率分析（Bode 图），自适应增益调度</li>
+        <li>多轴同步插补：S 型速度曲线规划，直线/圆弧/样条曲线插补，FIFO 指令队列管理，插补周期与总线周期对齐</li>
+        <li>6DOF 运动学：正/逆运动学求解（DH 参数），奇异点检测与规避，工作空间边界保护</li>
+        <li>电子凸轮与齿轮：主从轴同步耦合算法，飞锯/飞剪等复杂同步场景实现</li>
+        <li>碰撞检测接口：基于力矩观测器的外力估计，碰撞发生后的安全回退策略</li>
+        <li>原点回零策略：CiA 402 Homing 模式 13 种方式实现，编码器零点校准流程</li>
+      </div>
+    </div>
+
+    <div class="role-card">
+      <div class="role-header">
+        <div>
+          <div class="role-title">嵌入式硬件工程师</div>
+          <div style="margin-top:6px"><span class="badge badge-purple">硬件岗</span></div>
+        </div>
+        <div><div class="role-count">1～2<span>人</span></div></div>
+      </div>
+      <div class="tech-tags">
+        <span class="tech-tag">PHY 选型</span><span class="tech-tag">PCB 信号完整性</span>
+        <span class="tech-tag">EMC/EMI</span><span class="tech-tag">ET1100</span>
+        <span class="tech-tag">LAN9252</span><span class="tech-tag">工业以太网</span>
+      </div>
+      <div class="duty-list">
+        <li>工业以太网 PHY 选型评估：100BASE-TX 物理层芯片（推荐低延迟变压器 + Marvel/TI PHY），传播延迟实测与分析</li>
+        <li>从站硬件平台评估：Beckhoff ET1100、Microchip LAN9252、TI AMIC110 等 ESC 芯片的功能对比、开发难度与量产成本</li>
+        <li>PCB 设计规范：差分线阻抗控制（100Ω±10%），磁珠/共模滤波器选型，屏蔽层叠设计</li>
+        <li>EMC 整改：传导/辐射骚扰测试（EN 55032），抗扰度测试（EN 61000-4 系列），整改方案设计</li>
+        <li>工控机选型：CPU 性能/功耗/温度平衡，PCIe 网卡插槽确认，Intel I210/I219 低延迟网卡验证</li>
+        <li>工作环境验证：工作温度范围（0～60°C 工业级），防护等级（IP54/IP65），振动冲击测试</li>
+        <li>硬件调试支撑：为软件团队提供示波器测量、逻辑分析仪抓取、JTAG 调试支持</li>
+      </div>
+    </div>
+
+    <div class="role-card" style="border-top-color:#8b5cf6">
+      <div class="role-header">
+        <div>
+          <div class="role-title">FPGA 工程师 <span style="font-size:12px;color:var(--muted);font-weight:400">（可选，高精度场景）</span></div>
+          <div style="margin-top:6px"><span class="badge badge-purple">选配岗</span></div>
+        </div>
+        <div><div class="role-count" style="color:#8b5cf6">1<span>人</span></div></div>
+      </div>
+      <div class="tech-tags">
+        <span class="tech-tag">Verilog/VHDL</span><span class="tech-tag">硬件时间戳</span>
+        <span class="tech-tag">DC IP核</span><span class="tech-tag">Xilinx/Intel FPGA</span>
+      </div>
+      <div class="duty-list">
+        <li>硬件时间戳：在 FPGA 中实现纳秒级时间戳打标，绕过 OS 调度引入的时间不确定性，DC 同步精度从 &lt;1μs 提升至 &lt;100ns</li>
+        <li>自研从站 IP 核：实现 EtherCAT 帧的硬件解析与生成，减少 CPU 参与，降低总线延迟</li>
+        <li>多轴编码器接口：高速 EnDat 2.2 / BiSS-C 绝对值编码器 FPGA 接口，支持多轴同时采样</li>
+        <li>抖动补偿：在 FPGA 中实现精确定时输出（SYNC0 脉冲生成），补偿 OS 调度带来的时钟漂移</li>
+      </div>
+    </div>
+
+    <div class="role-card red-top">
+      <div class="role-header">
+        <div>
+          <div class="role-title">测试与验证工程师</div>
+          <div style="margin-top:6px"><span class="badge badge-red">质量岗</span></div>
+        </div>
+        <div><div class="role-count" style="color:var(--red)">1～2<span>人</span></div></div>
+      </div>
+      <div class="tech-tags">
+        <span class="tech-tag">Wireshark</span><span class="tech-tag">ETG 一致性</span>
+        <span class="tech-tag">HIL 测试台</span><span class="tech-tag">故障注入</span>
+        <span class="tech-tag">示波器分析</span><span class="tech-tag">pytest</span>
+      </div>
+      <div class="duty-list">
+        <li>协议一致性测试：ETG（EtherCAT 技术组）官方一致性测试套件执行，覆盖帧格式、状态机、DC、CoE 等各层规范</li>
+        <li>网络抓包分析：Wireshark + EtherCAT 解析插件，分析帧间隔时序、PDU 内容、错误帧统计</li>
+        <li>实时性量化测试：示波器测量 SYNC0 脉冲抖动，逻辑分析仪采集 IRQ 响应时延，cyclictest 72h 压力测试</li>
+        <li>多轴同步误差统计：采集各轴 SYNC0 到达时间差，计算均值/标准差/最大值，绘制统计直方图</li>
+        <li>故障注入与鲁棒性测试：人工断线、延迟注入（netem）、从站掉电、CRC 错误注入，验证恢复时间与安全行为</li>
+        <li>HIL 测试台搭建：硬件在环仿真，用电机模拟器替代真实负载，支持自动化回归测试</li>
+        <li>自动化测试框架：基于 pytest + 自研测试库，实现每次代码提交触发自动化测试，生成测试报告</li>
+        <li>长期稳定性监控：72h+ 连续运行，监控内存占用、CPU 温度、延迟趋势，检测内存泄漏</li>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 支撑岗位 -->
+  <div class="subsection-title" style="margin-top:32px">支撑岗位（3～5 人）</div>
+  <div class="card-grid card-grid-3">
+
+    <div class="role-card" style="border-top-color:#0891b2">
+      <div class="role-header">
+        <div>
+          <div class="role-title">系统架构师 / 技术负责人</div>
+          <div style="margin-top:6px"><span class="badge" style="background:#cffafe;color:#164e63">领导岗</span></div>
+        </div>
+        <div><div class="role-count" style="color:#0891b2">1<span>人</span></div></div>
+      </div>
+      <ul class="duty-list">
+        <li>整体技术方案设计与评审，平衡实时性、可维护性、成本三者关系</li>
+        <li>主站/从站/中间件接口规范制定（API 设计、PDO/SDO 数据字典）</li>
+        <li>关键技术决策（主站选型、实时内核路线、是否引入 FPGA）</li>
+        <li>跨团队技术对齐，与机械/电气/算法团队协调接口</li>
+        <li>技术风险识别与预研计划，引入外部顾问或 ETG 技术支持</li>
+        <li>代码架构设计（分层解耦：HAL/协议层/运控层/应用层）</li>
+      </ul>
+    </div>
+
+    <div class="role-card" style="border-top-color:#059669">
+      <div class="role-header">
+        <div>
+          <div class="role-title">软件集成工程师</div>
+          <div style="margin-top:6px"><span class="badge badge-green">集成岗</span></div>
+        </div>
+        <div><div class="role-count" style="color:#059669">1<span>人</span></div></div>
+      </div>
+      <ul class="duty-list">
+        <li>ROS2 硬件抽象层（ros2_control）适配：实现 SystemInterface，对接 EtherCAT 驱动层</li>
+        <li>驱动 API 封装：为上层应用提供轴组管理、插补控制、状态查询等简洁接口</li>
+        <li>消息总线集成：与机器人控制器的任务调度、感知系统、HMI 界面对接</li>
+        <li>配置管理系统：YAML/JSON 格式的网络拓扑描述、驱动器参数库管理</li>
+        <li>日志与诊断系统：结构化日志、实时数据录制（rosbag2），故障诊断工具开发</li>
+      </ul>
+    </div>
+
+    <div class="role-card" style="border-top-color:#d97706">
+      <div class="role-header">
+        <div>
+          <div class="role-title">DevOps / 工具链工程师</div>
+          <div style="margin-top:6px"><span class="badge badge-orange">工具岗</span></div>
+        </div>
+        <div><div class="role-count" style="color:#d97706">0.5～1<span>人</span></div></div>
+      </div>
+      <ul class="duty-list">
+        <li>交叉编译环境：x86/ARM64（Cortex-A72/A55）双平台工具链（CMake + Yocto/Buildroot）</li>
+        <li>CI/CD 流水线：GitLab CI / GitHub Actions，代码提交触发自动构建、静态分析、单元测试</li>
+        <li>实时内核自动构建：RT-PREEMPT 内核 + 驱动的自动化打包，一键部署到目标硬件</li>
+        <li>版本管理规范：Git Flow，语义化版本号，CHANGELOG 自动生成</li>
+        <li>测试环境管理：HIL 测试台资源调度，测试结果数据库，性能趋势可视化（Grafana）</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ SECTION 3: 甘特图 -->
+<div class="section">
+  <div class="section-title">
+    <div class="icon">③</div>
+    六个月总体里程碑概览
+  </div>
+  <div class="card">
+    <div class="gantt-wrap">
+      <div class="gantt">
+        <div class="gantt-header">
+          <div class="gh" style="text-align:left;padding-left:8px">工作流</div>
+          <div class="gh">Month 1</div>
+          <div class="gh">Month 2</div>
+          <div class="gh">Month 3</div>
+          <div class="gh">Month 4</div>
+          <div class="gh">Month 5</div>
+          <div class="gh">Month 6</div>
+        </div>
+
+        <div class="gantt-row">
+          <div class="gantt-label">🏗 环境搭建 & 方案设计</div>
+          <div class="gantt-bar gb-blue">Phase 1</div>
+          <div class="gantt-cell"></div><div class="gantt-cell"></div>
+          <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+        </div>
+        <div class="gantt-row">
+          <div class="gantt-label">🔌 EtherCAT 协议基础</div>
+          <div class="gantt-cell"></div>
+          <div class="gantt-bar gb-green">Phase 2</div>
+          <div class="gantt-cell"></div><div class="gantt-cell"></div>
+          <div class="gantt-cell"></div><div class="gantt-cell"></div>
+        </div>
+        <div class="gantt-row">
+          <div class="gantt-label">⚡ 实时性深度优化</div>
+          <div class="gantt-cell"></div><div class="gantt-cell"></div>
+          <div class="gantt-bar gb-orange">Phase 3</div>
+          <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+        </div>
+        <div class="gantt-row">
+          <div class="gantt-label">🤖 多轴运控集成</div>
+          <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+          <div class="gantt-bar gb-purple">Phase 4</div>
+          <div class="gantt-cell"></div><div class="gantt-cell"></div>
+        </div>
+        <div class="gantt-row">
+          <div class="gantt-label">🧪 系统集成 & 故障测试</div>
+          <div class="gantt-cell"></div><div class="gantt-cell"></div>
+          <div class="gantt-cell"></div><div class="gantt-cell"></div>
+          <div class="gantt-bar gb-pink">Phase 5</div>
+          <div class="gantt-cell"></div>
+        </div>
+        <div class="gantt-row">
+          <div class="gantt-label">✅ 验证交付 & 文档</div>
+          <div class="gantt-cell"></div><div class="gantt-cell"></div>
+          <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+          <div class="gantt-bar gb-teal">Phase 6</div>
+        </div>
+
+        <div style="height:8px"></div>
+        <div class="gantt-row">
+          <div class="gantt-label" style="color:var(--muted);font-size:12px">并行：硬件采购 & EMC</div>
+          <div class="gantt-bar" style="background:#e2e8f0;color:#64748b;font-size:10px">采购启动</div>
+          <div class="gantt-bar" style="background:#e2e8f0;color:#64748b;font-size:10px">硬件交付</div>
+          <div class="gantt-cell"></div>
+          <div class="gantt-bar" style="background:#e2e8f0;color:#64748b;font-size:10px">EMC 摸底</div>
+          <div class="gantt-bar" style="background:#e2e8f0;color:#64748b;font-size:10px">整改验证</div>
+          <div class="gantt-cell"></div>
+        </div>
+        <div class="gantt-row">
+          <div class="gantt-label" style="color:var(--muted);font-size:12px">并行：文档 & 培训</div>
+          <div class="gantt-bar" style="background:#e2e8f0;color:#64748b;font-size:10px">ETG 培训</div>
+          <div class="gantt-cell"></div><div class="gantt-cell"></div>
+          <div class="gantt-bar" style="background:#e2e8f0;color:#64748b;font-size:10px">接口文档</div>
+          <div class="gantt-bar" style="background:#e2e8f0;color:#64748b;font-size:10px">调试手册</div>
+          <div class="gantt-bar" style="background:#e2e8f0;color:#64748b;font-size:10px">竣工文档</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ SECTION 4: 实施计划 -->
+<div class="section">
+  <div class="section-title">
+    <div class="icon">④</div>
+    六个月详细实施计划
+  </div>
+
+  <!-- Phase 1 -->
+  <div class="phase-card">
+    <div class="phase-header p1">
+      <div class="phase-num">01</div>
+      <div class="phase-info">
+        <div class="month">第 1 个月 · W1～W4</div>
+        <div class="title">环境搭建与技术方案冻结</div>
+        <div class="goal">目标：开发环境 100% 就绪，技术路线评审通过，基线延迟测试完成</div>
+      </div>
+    </div>
+    <div class="phase-body">
+      <table class="data-table">
+        <thead>
+          <tr><th width="80">周次</th><th>具体任务</th><th width="150">负责角色</th><th width="100">验收标准</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="week-col">W1</td>
+            <td>
+              <strong>团队组建与需求对齐：</strong>完成关键岗位招聘，召开 Kick-off 会议，明确交付范围。<br>
+              <strong>竞品调研：</strong>拆解 Beckhoff TwinCAT、KUKA KIOS、ABB IRC5 的 EtherCAT 实现方案，总结可借鉴经验。<br>
+              <strong>目标从站清单确认：</strong>与机械/电气团队确认所有需要对接的驱动器/IO模块型号，索取 ESI 文件（.xml）。
+            </td>
+            <td class="role-col">架构师 + 全体</td>
+            <td><span class="badge badge-blue">需求文档 v1.0</span></td>
+          </tr>
+          <tr>
+            <td class="week-col">W1～W2</td>
+            <td>
+              <strong>工控机选型与采购：</strong>评估 Intel NUC i7/i9、凌华 ATC-3260、研华 ARK 等平台，确认搭载 Intel I210/I219 网卡（低延迟性能最优）。<br>
+              <strong>开发环境搭建：</strong>Ubuntu 22.04 LTS 基础系统安装，GCC 12 工具链，CMake 3.26，Git，VSCode + CMake Tools 插件。<br>
+              <strong>实时内核预研：</strong>下载 Linux 6.1 + RT-PREEMPT 补丁，根据工控机型号编译定制内核，首次启动验证。
+            </td>
+            <td class="role-col">硬件工程师 + 实时系统</td>
+            <td><span class="badge badge-green">环境可用</span></td>
+          </tr>
+          <tr>
+            <td class="week-col">W2</td>
+            <td>
+              <strong>实时内核基线测试：</strong>在 RT-PREEMPT 内核上执行 cyclictest（优先级 99，运行 4h），记录延迟分布。同时在普通内核运行对比测试，量化 RT 收益。<br>
+              <strong>SOEM 编译与初运行：</strong>从 GitHub 拉取 SOEM 源码，编译示例程序 slaveinfo，扫描实验室现有从站设备，验证主从通信链路物理连通性。<br>
+              <strong>ETG 培训安排：</strong>联系 EtherCAT 技术组申请官方培训（EtherCAT Master/Slave 开发课程），协议栈工程师优先参加。
+            </td>
+            <td class="role-col">实时系统 + 协议栈</td>
+            <td><span class="badge badge-blue">基线报告</span></td>
+          </tr>
+          <tr>
+            <td class="week-col">W3</td>
+            <td>
+              <strong>DevOps 工具链搭建：</strong>Git 仓库初始化（GitLab/GitHub），Branching 策略制定（main/dev/feature），GitLab CI 基础流水线（编译检查），Doxygen 文档生成。<br>
+              <strong>接口规范草案：</strong>起草主站 API 设计（C++ 命名空间、错误码体系、线程安全要求），PDO 数据字典模板，CoE 对象索引规划。<br>
+              <strong>测试方案制定：</strong>确定验收测试指标（参考本报告第一节），测试用例模板，HIL 测试台需求清单。
+            </td>
+            <td class="role-col">架构师 + DevOps</td>
+            <td><span class="badge badge-orange">规范 v0.1</span></td>
+          </tr>
+          <tr>
+            <td class="week-col">W4</td>
+            <td>
+              <strong>技术方案评审：</strong>召开全团队评审会，确认：主站选型（SOEM vs IgH）、实时方案（RT-PREEMPT vs Xenomai）、是否引入 FPGA、目标硬件平台最终定型。<br>
+              <strong>硬件采购清单确认：</strong>工控机 × 3台（开发/集成/测试），目标从站驱动器 × 6轴，IO模块 × 若干，万用示波器 × 1，逻辑分析仪 × 1，工业交换机 × 2。<br>
+              <strong>接口规范冻结：</strong>发布技术方案文档 v1.0 和接口规范 v1.0，作为后续开发基准。
+            </td>
+            <td class="role-col">架构师 + 全体</td>
+            <td><span class="badge badge-green">方案冻结</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="deliverable-tags">
+        <span class="deliverable-tag">环境搭建手册</span>
+        <span class="deliverable-tag">技术方案文档 v1.0</span>
+        <span class="deliverable-tag">接口规范 v1.0</span>
+        <span class="deliverable-tag">基线延迟报告（P99.9 &lt;50μs）</span>
+        <span class="deliverable-tag">硬件采购清单</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 2 -->
+  <div class="phase-card">
+    <div class="phase-header p2">
+      <div class="phase-num">02</div>
+      <div class="phase-info">
+        <div class="month">第 2 个月 · W5～W8</div>
+        <div class="title">EtherCAT 协议基础实现</div>
+        <div class="goal">目标：主从站通信建立，PDO 数据稳定收发，单轴 CSP 模式联调成功</div>
+      </div>
+    </div>
+    <div class="phase-body">
+      <table class="data-table">
+        <thead>
+          <tr><th width="80">周次</th><th>具体任务</th><th width="150">负责角色</th><th width="100">验收标准</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="week-col">W5</td>
+            <td>
+              <strong>主站初始化框架：</strong>基于 SOEM 封装主站生命周期管理类（EcMaster），实现网卡枚举、Ethertype 过滤、从站扫描（ecx_config_init）。<br>
+              <strong>ENI 文件解析：</strong>实现 XML 解析器，读取 TwinCAT 或 ECAT Configurator 导出的网络配置文件，自动加载从站 PDO 映射、CoE 初始化参数列表。<br>
+              <strong>状态机驱动：</strong>实现 INIT→PREOP→SAFEOP→OP 全流程，每步骤含超时检测（2s）、错误状态读取（AL Status Code）、自动回退逻辑。
+            </td>
+            <td class="role-col">协议栈工程师</td>
+            <td><span class="badge badge-green">从站进 OP 态</span></td>
+          </tr>
+          <tr>
+            <td class="week-col">W5～W6</td>
+            <td>
+              <strong>PDO 映射配置：</strong>在 PREOP 态通过 CoE SDO 写入 PDO 配置（0x1600/0x1A00 对象），为每个从站配置：目标位置（0x607A）、实际位置（0x6064）、控制字（0x6040）、状态字（0x6041）、目标速度/力矩等。<br>
+              <strong>IOMap 分配：</strong>调用 ecx_config_map_group 分配 PDO 输入/输出缓冲区，建立逻辑地址到物理从站地址的映射表。<br>
+              <strong>周期收发基础：</strong>建立 1ms 实时线程（SCHED_FIFO，优先级 80），循环执行 ecx_send_processdata + ecx_receive_processdata，验证帧往返时延。
+            </td>
+            <td class="role-col">协议栈 + 运控</td>
+            <td><span class="badge badge-blue">PDO 数据正常</span></td>
+          </tr>
+          <tr>
+            <td class="week-col">W6</td>
+            <td>
+              <strong>SDO 访问封装：</strong>封装同步 SDO 读（ecx_SDOread）和写（ecx_SDOwrite）接口，含重试机制和超时处理。实现 CoE 对象字典浏览（OD Scan），用于调试阶段快速读取从站参数。<br>
+              <strong>驱动器初始化流程：</strong>通过 SDO 写入电机额定电流、编码器分辨率、加速度限制等关键参数，实现参数版本校验（防止参数错误启动）。<br>
+              <strong>错误处理框架：</strong>实现 AL Status Code 翻译、Working Counter 异常检测、帧丢失计数，建立统一错误事件回调机制。
+            </td>
+            <td class="role-col">协议栈工程师</td>
+            <td><span class="badge badge-orange">SDO 读写正常</span></td>
+          </tr>
+          <tr>
+            <td class="week-col">W6～W7</td>
+            <td>
+              <strong>分布式时钟（DC）使能：</strong>调用 ecx_configdc，选定延迟最小的从站作为参考时钟，测量并写入各从站传播延迟补偿值，使能 SYNC0 信号（周期 = 总线周期 = 1ms）。<br>
+              <strong>DC 同步验证：</strong>用示波器探头分别接触 2 个从站的 SYNC0 引脚（通常为 ESC GPIO 输出），观察上升沿时间差，初始阶段目标 &lt;10μs，后续优化至 &lt;1μs。
+            </td>
+            <td class="role-col">协议栈 + 实时系统</td>
+            <td><span class="badge badge-blue">SYNC0 可见</span></td>
+          </tr>
+          <tr>
+            <td class="week-col">W7</td>
+            <td>
+              <strong>单轴 CSP 模式联调：</strong>实现 CiA 402 状态机（Shutdown→Switch On→Enable Operation），进入 CSP 模式（运行模式 8），以 1ms 周期向驱动器写入目标位置（线性插值），读回实际位置，验证跟踪误差。<br>
+              <strong>使能/停止流程：</strong>实现软件急停（Quick Stop 指令）和硬件急停（EStop IO 接入），验证急停响应时间 &lt;10ms（从信号触发到电机停止）。
+            </td>
+            <td class="role-col">运控工程师</td>
+            <td><span class="badge badge-green">单轴运动正常</span></td>
+          </tr>
+          <tr>
+            <td class="week-col">W7～W8</td>
+            <td>
+              <strong>协议层单元测试：</strong>编写覆盖状态机、PDO 映射、SDO 读写、错误处理的单元测试，集成到 CI 流水线，目标代码覆盖率 &gt;70%。<br>
+              <strong>Wireshark 抓包分析：</strong>在并口镜像 PC 上抓取总线数据，验证 EtherCAT 帧格式（帧头 0x88A4、PDU 类型、从站地址、WKC），统计帧间隔一致性。<br>
+              <strong>协议评审：</strong>与目标从站厂商进行技术对接，确认 CoE 实现细节（部分厂商对 CiA 402 有非标扩展）。
+            </td>
+            <td class="role-col">测试 + 协议栈</td>
+            <td><span class="badge badge-orange">测试覆盖&gt;70%</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="deliverable-tags">
+        <span class="deliverable-tag">主站驱动库 v0.1</span>
+        <span class="deliverable-tag">单轴 CSP 运行 Demo</span>
+        <span class="deliverable-tag">协议层单元测试套件</span>
+        <span class="deliverable-tag">Wireshark 抓包分析报告</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 3 -->
+  <div class="phase-card">
+    <div class="phase-header p3">
+      <div class="phase-num">03</div>
+      <div class="phase-info">
+        <div class="month">第 3 个月 · W9～W12</div>
+        <div class="title">实时性深度优化</div>
+        <div class="goal">目标：总线周期 ≤1ms 稳定，DC 同步误差 &lt;1μs，调度延迟 P99.9 &lt;20μs</div>
+      </div>
+    </div>
+    <div class="phase-body">
+      <table class="data-table">
+        <thead>
+          <tr><th width="80">周次</th><th>具体任务</th><th width="150">负责角色</th><th width="100">验收标准</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="week-col">W9</td>
+            <td>
+              <strong>实时线程架构重构：</strong>将 EtherCAT 收发任务迁移至独立实时线程（pthread + SCHED_FIFO 优先级 99），绑定至隔离 CPU 核（如 core 3），禁止其他线程迁移到该核。<br>
+              <strong>优先级规划：</strong>建立优先级体系 —— EtherCAT 收发（99）> DC 补偿（95）> 运控插补（90）> 状态监控（80）> 日志（60），避免优先级反转。<br>
+              <strong>Timer FD 精确唤醒：</strong>用 timerfd_create(CLOCK_MONOTONIC) 替代 nanosleep，减少定时器精度误差，配合 clock_nanosleep 实现绝对时间唤醒。
+            </td>
+            <td class="role-col">实时系统工程师</td>
+            <td><span class="badge badge-green">线程结构正确</span></td>
+          </tr>
+          <tr>
+            <td class="week-col">W9～W10</td>
+            <td>
+              <strong>网卡驱动深度优化：</strong><br>
+              (1) 关闭中断合并：ethtool -C eth0 rx-usecs 0 tx-usecs 0<br>
+              (2) 禁用网卡节能：ethtool -s eth0 wol d；禁用 EEE（Energy Efficient Ethernet）<br>
+              (3) 调整 Ring Buffer：ethtool -G eth0 rx 256 tx 256（减小缓冲，降低延迟）<br>
+              (4) 禁用 GRO/GSO/TSO：ethtool -K eth0 gro off gso off tso off<br>
+              (5) IRQ 亲和性：将网卡中断绑定到专用 CPU 核，与实时线程同核心<br>
+              <strong>NAPI 轮询模式：</strong>评估 Intel I210 的 busy-poll 功能（SO_BUSY_POLL socket 选项），进一步降低网卡接收延迟。
+            </td>
+            <td class="role-col">实时系统 + 协议栈</td>
+            <td><span class="badge badge-blue">网卡优化完成</span></td>
+          </tr>
+          <tr>
+            <td class="week-col">W10</td>
+            <td>
+              <strong>系统级实时参数调优：</strong><br>
+              CPU 频率锁定：cpupower frequency-set -g performance<br>
+              禁用 CPU 节能：/dev/cpu_dma_latency 写入 0（保持 C0 状态）<br>
+              NUMA 感知：numactl 绑定进程与内存到同一 NUMA 节点<br>
+              透明大页关闭：echo never > /sys/kernel/mm/transparent_hugepage/enabled<br>
+              内存锁定：mlockall(MCL_CURRENT | MCL_FUTURE)<br>
+              <strong>BIOS 再确认：</strong>现场确认 Turbo Boost 关闭、C-States 关闭、SMI 抑制（有些工控机 BIOS 支持 SMI 最小化模式）。
+            </td>
+            <td class="role-col">实时系统工程师</td>
+            <td><span class="badge badge-orange">系统参数基线</span></td>
+          </tr>
+          <tr>
+            <td class="week-col">W10～W11</td>
+            <td>
+              <strong>DC 漂移补偿算法：</strong>实现主站侧 DC 补偿控制器 —— 读取 DCSYSTIME 寄存器（0x0910），计算与系统时钟差值，使用 PI 控制器调整 ecx_master.DCtime 偏移量，收敛后同步误差应 &lt;500ns。<br>
+              <strong>时钟同步精度验证：</strong>在两台从站的 SYNC0 引脚用双通道示波器同步采集，连续采集 10000 个周期，统计时间差均值和标准差，目标均值 &lt;200ns，标准差 &lt;500ns。<br>
+              <strong>多从站延迟补偿：</strong>精确测量每个从站的传播延迟（利用 DCTOF0/DCTOF1 寄存器），补偿长拓扑链路上的传播延迟不均匀。
+            </td>
+            <td class="role-col">协议栈 + 实时系统</td>
+            <td><span class="badge badge-green">DC 误差 &lt;1μs</span></td>
+          </tr>
+          <tr>
+            <td class="week-col">W11</td>
+            <td>
+              <strong>满载压力测试：</strong>配置 32 个虚拟从站（或真实从站，条件允许时），1ms 周期满载运行，观察：<br>
+              (1) 总线利用率（目标 &lt;60%，留余量）<br>
+              (2) Working Counter 连续正确率（目标 100%，持续 1h）<br>
+              (3) 主站 CPU 占用率（目标 &lt;30%）<br>
+              (4) EtherCAT 帧往返时延分布（目标 P99 &lt;500μs）<br>
+              <strong>周期缩短探索：</strong>在满足指标前提下，尝试将总线周期缩短至 500μs，评估可行性与余量。
+            </td>
+            <td class="role-col">测试 + 实时系统</td>
+            <td><span class="badge badge-blue">满载稳定 1h</span></td>
+          </tr>
+          <tr>
+            <td class="week-col">W11～W12</td>
+            <td>
+              <strong>延迟溯源分析：</strong>使用 Linux ftrace（function_graph tracer）和 perf-record 定位延迟超标的根因，常见问题：SMI 中断（100μs+）、内存页错误、文件系统同步。<br>
+              <strong>实时性测试报告：</strong>生成 24h cyclictest 统计报告，包含延迟直方图、最大延迟时间点与系统日志关联分析、与行业典型值对比。<br>
+              <strong>平台最终确认：</strong>基于测试结果，最终确认目标硬件平台，为量产选型提供依据。
+            </td>
+            <td class="role-col">实时系统 + 测试</td>
+            <td><span class="badge badge-orange">24h 延迟报告</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="subsection-title">本阶段关键验证指标</div>
+      <div class="metric-grid">
+        <div class="metric-card">
+          <div class="metric-value">±10<span class="metric-unit">μs</span></div>
+          <div class="metric-label">总线周期抖动</div>
+          <div class="metric-method">示波器测量帧间隔</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">&lt;1<span class="metric-unit">μs</span></div>
+          <div class="metric-label">DC 同步误差</div>
+          <div class="metric-method">SYNC0 脉冲相位差</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">&lt;20<span class="metric-unit">μs</span></div>
+          <div class="metric-label">调度延迟 P99.9</div>
+          <div class="metric-method">cyclictest 24h</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">&lt;30<span class="metric-unit">%</span></div>
+          <div class="metric-label">实时线程 CPU 占用</div>
+          <div class="metric-method">top/htop 监控</div>
+        </div>
+      </div>
+
+      <div class="deliverable-tags">
+        <span class="deliverable-tag">实时性调优手册</span>
+        <span class="deliverable-tag">24h 延迟测试报告</span>
+        <span class="deliverable-tag">DC 同步验证报告</span>
+        <span class="deliverable-tag">平台最终选型确认</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 4 -->
+  <div class="phase-card">
+    <div class="phase-header p4">
+      <div class="phase-num">04</div>
+      <div class="phase-info">
+        <div class="month">第 4 个月 · W13～W16</div>
+        <div class="title">多轴运动控制集成</div>
+        <div class="goal">目标：6 轴同步插补正常，ROS2 集成完成，轨迹精度达标</div>
+      </div>
+    </div>
+    <div class="phase-body">
+      <table class="data-table">
+        <thead>
+          <tr><th width="80">周次</th><th>具体任务</th><th width="150">负责角色</th><th width="100">验收标准</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="week-col">W13</td>
+            <td>
+              <strong>多轴同步框架设计：</strong>设计轴组管理架构（AxisGroup 类），支持 2/4/6/8 轴自由配置，统一插补周期与 EtherCAT 总线周期对齐（整数倍关系）。<br>
+              <strong>PDO 数据交换优化：</strong>实现零拷贝 PDO 数据访问（直接映射 IOMap 指针），避免多轴数据的额外内存复制，降低插补延迟。<br>
+              <strong>轴状态机统一管理：</strong>基于 CiA 402 实现统一的多轴状态机，支持轴组级别的使能/停止/故障处理，确保多轴状态一致性。
+            </td>
+            <td class="role-col">运控 + 协议栈</td>
+            <td><span class="badge badge-purple">框架设计完成</span></td>
+          </tr>
+          <tr>
+            <td class="week-col">W13～W14</td>
+            <td>
+              <strong>CiA 402 完整状态机：</strong>实现完整的电源状态机：Not Ready→Switch On Disabled→Ready→Switched On→Operation Enabled，支持 Fault、Fault Reset、Quick Stop 各分支。<br>
+              <strong>使能序列优化：</strong>实现多轴并行使能（同时发送所有轴的 Shutdown + Switch On + Enable Operation 指令序列），减少上电时间（目标 &lt;500ms 完成 6 轴使能）。<br>
+              <strong>故障信息解析：</strong>读取 Error Code（0x603F）并映射到人类可读错误描述，支持故障历史记录（0x1003 预定义错误寄存器）读取与清除。
+            </td>
+            <td class="role-col">运控工程师</td>
+            <td><span class="badge badge-green">6轴同步使能</span></td>
+          </tr>
+          <tr>
+            <td class="week-col">W14</td>
+            <td>
+              <strong>单轴控制器参数整定：</strong>在 CSP 模式下进行阶跃响应测试，使用 Bode 图分析工具（Python control 库）测量开环频率响应，整定位置环 KP、速度前馈 KFF，目标：阶跃响应超调 &lt;5%，稳态误差 0。<br>
+              <strong>速度规划算法：</strong>实现 S 型速度曲线（7 段规划：加加速/匀加速/减加速/匀速/加减速/匀减速/减减速），支持在线速度修调（Override），点位运动最大速度、加速度参数化配置。
+            </td>
+            <td class="role-col">运控工程师</td>
+            <td><span class="badge badge-blue">参数整定完成</span></td>
+          </tr>
+          <tr>
+            <td class="week-col">W14～W15</td>
+            <td>
+              <strong>6 轴空间插补：</strong>实现直线插补（起点终点位姿 → 笛卡尔空间分解 → 各轴角度插补），圆弧插补（3 点定圆，参数化扫掠角），关键帧连续路径（G0→G1 速度平滑过渡）。<br>
+              <strong>运动学集成：</strong>集成 KDL 或自研 DH 参数运动学库，实现 TCP（工具坐标系）轨迹到各轴角度的实时逆运动学（目标：单次 IK 计算 &lt;50μs）。<br>
+              <strong>FIFO 指令队列：</strong>设计预读 N 个段的 FIFO 缓冲，支持连续轨迹的在线衔接（Blend），消除段间停顿。<br>
+              <strong>奇异点处理：</strong>检测关节角速度趋向无穷的奇异构型，提前减速，实现安全通过或绕避策略。
+            </td>
+            <td class="role-col">运控工程师</td>
+            <td><span class="badge badge-purple">6轴插补正常</span></td>
+          </tr>
+          <tr>
+            <td class="week-col">W15</td>
+            <td>
+              <strong>CST 力矩模式联调：</strong>切换到 CST 模式，实现基于关节力矩传感器的力控制（阻抗控制），碰撞检测：通过广义动量观测器估计外部力矩，超过阈值时触发安全停止。<br>
+              <strong>安全功能接口：</strong>STO（Safe Torque Off）信号接入测试，验证 STO 触发后驱动器正确进入无力矩状态，响应时间 &lt;5ms。
+            </td>
+            <td class="role-col">运控工程师</td>
+            <td><span class="badge badge-green">力矩模式可用</span></td>
+          </tr>
+          <tr>
+            <td class="week-col">W15～W16</td>
+            <td>
+              <strong>ROS2 硬件抽象层：</strong>实现 ros2_control 的 SystemInterface（read/write 方法），将 EtherCAT PDO 数据映射到 ROS2 状态接口（position/velocity/effort）和命令接口。<br>
+              <strong>Controller Manager 集成：</strong>配置 JointTrajectoryController 和 JointGroupPositionController，验证 MoveIt2 规划轨迹通过 EtherCAT 执行的全链路。<br>
+              <strong>多轴同步精度验证：</strong>录制 6 轴同步圆弧运动数据，对比各轴实际位置与指令位置，统计同步误差（目标：最大轴间相位差 &lt;2 个插补周期）。
+            </td>
+            <td class="role-col">软件集成 + 运控</td>
+            <td><span class="badge badge-orange">ROS2 集成完成</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="deliverable-tags">
+        <span class="deliverable-tag">多轴运控库 v0.5</span>
+        <span class="deliverable-tag">ROS2 驱动包（ros2_ethercat）</span>
+        <span class="deliverable-tag">轨迹精度测试报告</span>
+        <span class="deliverable-tag">运动学参数手册</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 5 -->
+  <div class="phase-card">
+    <div class="phase-header p5">
+      <div class="phase-num">05</div>
+      <div class="phase-info">
+        <div class="month">第 5 个月 · W17～W20</div>
+        <div class="title">系统集成与鲁棒性验证</div>
+        <div class="goal">目标：全系统联调，故障注入通过，72h 稳定性测试无异常</div>
+      </div>
+    </div>
+    <div class="phase-body">
+      <table class="data-table">
+        <thead>
+          <tr><th width="80">周次</th><th>具体任务</th><th width="150">负责角色</th><th width="100">验收标准</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="week-col">W17</td>
+            <td>
+              <strong>本体控制器集成：</strong>与机器人本体控制器（上位机）完成接口对接，验证任务调度层→运控层→EtherCAT 层的完整调用链路，端到端延迟测试（用户指令 → 电机响应 &lt;5ms）。<br>
+              <strong>HMI 对接：</strong>提供操作面板/示教器所需的状态查询 API（各轴位置、速度、电流、温度、报警），支持 1kHz 状态刷新。<br>
+              <strong>配置管理系统：</strong>实现 YAML 配置文件的热加载（无需重启更新驱动器参数），版本化配置管理（支持回滚）。
+            </td>
+            <td class="role-col">软件集成 + 运控</td>
+            <td><span class="badge badge-pink">全链路联通</span></td>
+          </tr>
+          <tr>
+            <td class="week-col">W17～W18</td>
+            <td>
+              <strong>故障注入测试矩阵（8 类场景）：</strong><br>
+              ① 网线瞬断（50ms）：验证恢复时间 &lt;500ms，运动轨迹安全停止<br>
+              ② 网线拔除：验证 WKC 错误检测 &lt;2 个周期，触发 SafeOp 降级<br>
+              ③ 从站突然掉电：其余从站继续运行，掉站轴安全停止<br>
+              ④ 帧延迟注入（tc netem delay 500μs）：验证 DC 补偿自适应调整<br>
+              ⑤ CRC 错误注入：验证错误帧丢弃、WKC 检测、重传机制<br>
+              ⑥ 主站 CPU 满载（stress-ng）：验证实时线程优先级保障，总线周期不超差<br>
+              ⑦ 多轴碰撞模拟：验证碰撞检测触发时间和安全停止路径<br>
+              ⑧ 软件急停 + 硬件急停：验证响应时间和轴制动距离
+            </td>
+            <td class="role-col">测试工程师</td>
+            <td><span class="badge badge-green">8类场景通过</span></td>
+          </tr>
+          <tr>
+            <td class="week-col">W18</td>
+            <td>
+              <strong>安全功能完整验证：</strong>依据 IEC 62061 / ISO 13849，验证 STO（Safe Torque Off）、SS1（Safe Stop 1）、SLS（Safely Limited Speed）各功能的触发时间、响应行为和监控周期。<br>
+              <strong>安全 PLC 集成（如有）：</strong>验证安全 PLC 通过 FSoE（Fail-Safe over EtherCAT）协议向驱动器发送安全命令的完整流程。
+            </td>
+            <td class="role-col">运控 + 测试</td>
+            <td><span class="badge badge-red">安全功能达标</span></td>
+          </tr>
+          <tr>
+            <td class="week-col">W18～W19</td>
+            <td>
+              <strong>72 小时连续稳定性测试：</strong>运行完整的 6 轴连续运动轨迹（往复运动 + 随机点位），每小时自动采集：<br>
+              · 实时任务最大延迟（目标：持续不超过 100μs）<br>
+              · 内存占用趋势（目标：72h 增长 &lt;10MB，无内存泄漏）<br>
+              · Working Counter 错误计数（目标：0 错误）<br>
+              · CPU 温度、网卡温度（目标：不超热保护阈值）<br>
+              · 轨迹精度随时间的变化（目标：无漂移）
+            </td>
+            <td class="role-col">测试工程师</td>
+            <td><span class="badge badge-blue">72h 无异常</span></td>
+          </tr>
+          <tr>
+            <td class="week-col">W19</td>
+            <td>
+              <strong>EMC 摸底测试：</strong>在屏蔽室进行辐射发射（RE）摸底，评估 EtherCAT 网络的电磁辐射水平，根据结果指导 PCB 整改（磁珠、共模滤波、屏蔽罩）和线缆屏蔽方案。<br>
+              <strong>抗扰度测试：</strong>快速瞬变脉冲群（EFT，EN 61000-4-4）测试，验证 EtherCAT 在工业干扰环境下的通信可靠性。
+            </td>
+            <td class="role-col">硬件工程师</td>
+            <td><span class="badge badge-orange">EMC 摸底完成</span></td>
+          </tr>
+          <tr>
+            <td class="week-col">W19～W20</td>
+            <td>
+              <strong>性能调优冲刺：</strong>基于第 5 阶段发现的问题，进行针对性优化：内存池（预分配减少动态分配），PDO 零拷贝访问，日志异步化（无锁环形缓冲），避免在实时路径上调用 malloc/free。<br>
+              <strong>系统集成测试报告：</strong>整理所有测试结果，问题归零确认，生成系统集成测试报告。
+            </td>
+            <td class="role-col">协议栈 + 实时系统</td>
+            <td><span class="badge badge-purple">问题全归零</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="subsection-title">关键测试场景通过标准</div>
+      <table class="data-table">
+        <thead>
+          <tr><th>测试场景</th><th>通过标准</th><th>测试方法</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>网线瞬断重连（50ms）</td><td>500ms 内自动恢复通信，轨迹无突变</td><td>手动断线 + 示波器观察 SYNC0 恢复</td></tr>
+          <tr><td>从站掉电</td><td>检测时间 &lt;2 个总线周期，其余轴安全停止</td><td>突然切断从站电源</td></tr>
+          <tr><td>主站 CPU 80% 满载</td><td>总线周期抖动不超过 ±50μs</td><td>stress-ng --cpu 3 同时运行</td></tr>
+          <tr><td>温度范围 0～60°C</td><td>同步精度不退化（DC 误差仍 &lt;1μs）</td><td>温箱测试，全程监控 DC 误差</td></tr>
+          <tr><td>连续运行 72h</td><td>无内存泄漏，无延迟超标，WKC 错误计数 = 0</td><td>自动化监控脚本 + Valgrind 定期检查</td></tr>
+          <tr><td>EFT 抗扰度（Level 3）</td><td>通信不中断，WKC 不下降</td><td>EN 61000-4-4 快速脉冲群注入</td></tr>
+        </tbody>
+      </table>
+      <div class="deliverable-tags">
+        <span class="deliverable-tag">故障注入测试报告</span>
+        <span class="deliverable-tag">72h 稳定性报告</span>
+        <span class="deliverable-tag">安全功能验证记录</span>
+        <span class="deliverable-tag">EMC 摸底报告</span>
+        <span class="deliverable-tag">系统集成测试报告</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 6 -->
+  <div class="phase-card">
+    <div class="phase-header p6">
+      <div class="phase-num">06</div>
+      <div class="phase-info">
+        <div class="month">第 6 个月 · W21～W24</div>
+        <div class="title">验证交付与文档完善</div>
+        <div class="goal">目标：通过验收测试，发布 v1.0，完成全部技术文档，知识沉淀完毕</div>
+      </div>
+    </div>
+    <div class="phase-body">
+      <table class="data-table">
+        <thead>
+          <tr><th width="80">周次</th><th>具体任务</th><th width="150">负责角色</th><th width="100">验收标准</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="week-col">W21</td>
+            <td>
+              <strong>ETG 一致性测试（可选）：</strong>若产品需要 EtherCAT 认证，提交样品至 ETG 授权测试中心，执行 CTT（Conformance Test Tool）一致性测试，覆盖 EtherCAT 数据链路层、应用层、CoE、DC 等模块。认证周期约 4～8 周（需提前安排）。<br>
+              <strong>如不做认证：</strong>执行内部一致性验证，使用 ETG 公开的 CTT 工具（需 ETG 会员）进行自测，确保与市面主流从站的互操作性。
+            </td>
+            <td class="role-col">测试 + 协议栈</td>
+            <td><span class="badge badge-teal" style="background:#cffafe;color:#164e63">一致性验证</span></td>
+          </tr>
+          <tr>
+            <td class="week-col">W21～W22</td>
+            <td>
+              <strong>最终性能验收测试：</strong>按验收测试大纲，在客户代表/项目经理见证下，逐项测试并记录：<br>
+              · 总线周期 1ms 稳定运行（连续 4h）<br>
+              · DC 同步误差 &lt;1μs（100 次采样统计）<br>
+              · 调度延迟 P99.9 &lt;20μs（4h cyclictest）<br>
+              · 重复定位精度 ±0.05mm（激光跟踪仪测量 100 次）<br>
+              · 急停响应 &lt;10ms（示波器测量）<br>
+              · 故障恢复时间 &lt;500ms（网线断开测试）
+            </td>
+            <td class="role-col">测试 + 全体</td>
+            <td><span class="badge badge-green">验收通过</span></td>
+          </tr>
+          <tr>
+            <td class="week-col">W22～W23</td>
+            <td>
+              <strong>技术文档编写（4 本核心文档）：</strong><br>
+              ① 《架构设计文档》：系统分层架构、模块接口、数据流、线程模型、内存模型<br>
+              ② 《API 参考手册》：所有公开接口的函数说明、参数类型、返回值、错误码、使用示例<br>
+              ③ 《环境搭建与调试手册》：从零到运行的完整步骤，常见问题 FAQ，延迟调优 Checklist<br>
+              ④ 《从站接入指南》：如何为新从站创建 ESI 文件、配置 PDO 映射、整定控制参数的标准流程
+            </td>
+            <td class="role-col">全体（各写本职）</td>
+            <td><span class="badge badge-blue">文档齐全</span></td>
+          </tr>
+          <tr>
+            <td class="week-col">W23</td>
+            <td>
+              <strong>代码质量收尾：</strong>全量代码 Review（重点：实时路径无动态内存分配、无锁数据结构正确性、异常路径完整性），静态分析（cppcheck / clang-tidy）问题归零，单元测试覆盖率提升至 &gt;80%。<br>
+              <strong>发布 v1.0：</strong>打 Git Tag（v1.0.0），生成 CHANGELOG，构建发布包（二进制 + 源码 + 文档），归档至代码仓库。
+            </td>
+            <td class="role-col">架构师 + 全体</td>
+            <td><span class="badge badge-purple">v1.0 发布</span></td>
+          </tr>
+          <tr>
+            <td class="week-col">W24</td>
+            <td>
+              <strong>项目复盘与知识沉淀：</strong>召开复盘会议，总结：技术难点攻克过程、踩坑记录、性能调优关键经验，形成《EtherCAT 开发经验总结》内部文档。<br>
+              <strong>下阶段规划：</strong>基于 v1.0 成果，规划 v1.1 路线图（冗余网络支持、更多从站类型、250μs 超短周期、TSN 融合演进方向），提交技术委员会审批。
+            </td>
+            <td class="role-col">架构师 + 全体</td>
+            <td><span class="badge badge-orange">复盘完成</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="deliverable-tags">
+        <span class="deliverable-tag">验收测试报告（正式版）</span>
+        <span class="deliverable-tag">架构设计文档</span>
+        <span class="deliverable-tag">API 参考手册</span>
+        <span class="deliverable-tag">调试手册 & FAQ</span>
+        <span class="deliverable-tag">从站接入指南</span>
+        <span class="deliverable-tag">主站驱动库 v1.0 发布包</span>
+        <span class="deliverable-tag">开发经验总结</span>
+        <span class="deliverable-tag">v1.1 路线图</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ SECTION 5: 风险 -->
+<div class="section">
+  <div class="section-title">
+    <div class="icon">⑤</div>
+    关键风险识别与应对策略
+  </div>
+  <div class="card">
+    <table class="data-table">
+      <thead>
+        <tr><th>风险事项</th><th width="70">概率</th><th width="70">影响</th><th>具体风险描述</th><th>预防措施</th><th>应急预案</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>实时延迟不达标</strong></td>
+          <td><span class="risk-level risk-mid">中</span></td>
+          <td><span class="risk-level risk-high">高</span></td>
+          <td>工控机存在 SMI 中断（100μs+），或内核驱动存在不可抢占段，导致 P99.9 &gt;100μs</td>
+          <td>Phase 1 完成平台预研，选用 OSADL 认证平台；BIOS 层禁用 SMM</td>
+          <td>切换到 Xenomai 双内核方案；或引入 FPGA 硬件定时</td>
+        </tr>
+        <tr>
+          <td><strong>DC 同步精度不达标</strong></td>
+          <td><span class="risk-level risk-low">低</span></td>
+          <td><span class="risk-level risk-high">高</span></td>
+          <td>长拓扑链（&gt;16 个从站）传播延迟测量误差累积，DC 同步误差 &gt;5μs</td>
+          <td>精确测量链路延迟，使能 ESC 传播延迟自动测量；选用高精度 PHY</td>
+          <td>引入 FPGA 硬件时间戳，旁路 OS 时钟系统；缩短拓扑链</td>
+        </tr>
+        <tr>
+          <td><strong>从站兼容性问题</strong></td>
+          <td><span class="risk-level risk-mid">中</span></td>
+          <td><span class="risk-level risk-mid">中</span></td>
+          <td>目标驱动器厂商对 CiA 402 有非标扩展，或 CoE 对象字典存在差异，联调失败</td>
+          <td>W1 确认从站清单，W2 向厂商索取详细 CoE 对象描述，W5 提前单台联调</td>
+          <td>申请厂商技术支持；若实在不兼容则考虑替换从站型号</td>
+        </tr>
+        <tr>
+          <td><strong>团队 EtherCAT 经验不足</strong></td>
+          <td><span class="risk-level risk-high">高</span></td>
+          <td><span class="risk-level risk-high">高</span></td>
+          <td>招聘到的工程师无实际 EtherCAT 项目经验，导致 Phase 2/3 严重延期</td>
+          <td>Week 1 安排 ETG 官方培训；聘请外部顾问（2 周驻场指导）</td>
+          <td>评估引入外包团队承担协议栈核心部分，内部团队专注应用层</td>
+        </tr>
+        <tr>
+          <td><strong>硬件交期延误</strong></td>
+          <td><span class="risk-level risk-mid">中</span></td>
+          <td><span class="risk-level risk-mid">中</span></td>
+          <td>工控机、驱动器等硬件因供应链问题延期，导致 Phase 2 无法开展</td>
+          <td>W4 完成采购，预留 3 周缓冲；优先采购工控机用于环境搭建</td>
+          <td>准备低成本替代方案（普通 PC + 软实时）先开展协议栈开发</td>
+        </tr>
+        <tr>
+          <td><strong>EMC 测试不通过</strong></td>
+          <td><span class="risk-level risk-mid">中</span></td>
+          <td><span class="risk-level risk-mid">中</span></td>
+          <td>EtherCAT 高频信号导致辐射超标，或工业现场强电磁干扰影响通信稳定性</td>
+          <td>W4 在 PCB 设计阶段进行 EMC Pre-check；W19 提前摸底整改</td>
+          <td>整改周期加入项目缓冲时间；准备滤波、屏蔽备选方案</td>
+        </tr>
+        <tr>
+          <td><strong>关键人员离职</strong></td>
+          <td><span class="risk-level risk-low">低</span></td>
+          <td><span class="risk-level risk-high">高</span></td>
+          <td>协议栈或实时系统核心工程师在项目中期离职，导致进度严重滞后</td>
+          <td>代码强制 Review 制度，保持 2 人以上了解同一模块；知识文档实时更新</td>
+          <td>启动应急招聘；引入外部顾问短期填补</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ SECTION 6: 技术选型 -->
+<div class="section">
+  <div class="section-title">
+    <div class="icon">⑥</div>
+    推荐技术选型
+  </div>
+
+  <div class="tech-stack-grid">
+    <div class="tech-item">
+      <div class="tech-icon blue">🖥</div>
+      <div class="tech-content">
+        <div class="tech-name">主站软件栈</div>
+        <div class="tech-desc"><strong>SOEM</strong>（轻量开源，MIT 许可，适合产品集成）或 <strong>IgH EtherMaster</strong>（GPL，功能更完整，DC 支持更好）。建议先用 SOEM 快速验证，生产版考虑 IgH 或商业主站。</div>
+      </div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-icon green">⚡</div>
+      <div class="tech-content">
+        <div class="tech-name">实时操作系统</div>
+        <div class="tech-desc"><strong>Linux 6.x + RT-PREEMPT</strong>（推荐首选，单内核，调试生态完整）。备选 <strong>Xenomai 3.x</strong>（双内核，更硬实时，但维护成本高）。嵌入式场景可考虑 <strong>VxWorks 7</strong>。</div>
+      </div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-icon blue">💻</div>
+      <div class="tech-content">
+        <div class="tech-name">工控硬件平台</div>
+        <div class="tech-desc"><strong>Intel i7-12700 / i9-12900</strong> 工控机 + <strong>Intel I210-AT</strong> 千兆网卡（低延迟，开源驱动优化充分）。OSADL 实时性测试数据库中有大量该平台验证数据。</div>
+      </div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-icon orange">🔌</div>
+      <div class="tech-content">
+        <div class="tech-name">从站 ESC 芯片</div>
+        <div class="tech-desc"><strong>Beckhoff ET1100</strong>（官方芯片，文档完整，8 个 FMMU）；<strong>Microchip LAN9252</strong>（SPI/并行接口，集成 PHY，适合低成本方案）；<strong>TI AMIC110</strong>（ARM Cortex-M3 + EtherCAT IP，软从站方案）。</div>
+      </div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-icon purple">🤖</div>
+      <div class="tech-content">
+        <div class="tech-name">机器人中间件</div>
+        <div class="tech-desc"><strong>ROS2 Humble/Iron</strong> + <strong>ros2_control</strong>（硬件抽象层）+ <strong>MoveIt2</strong>（运动规划）。EtherCAT 驱动以 ros2_control SystemInterface 形式集成，标准化程度高。</div>
+      </div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-icon green">🔧</div>
+      <div class="tech-content">
+        <div class="tech-name">开发语言</div>
+        <div class="tech-desc"><strong>C++17</strong>（实时核心，协议栈，运控算法）；<strong>Python 3.10+</strong>（测试脚本，工具链，数据分析）；<strong>CMake 3.26</strong>（构建系统）；<strong>Verilog/VHDL</strong>（FPGA 模块，可选）。</div>
+      </div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-icon blue">🔬</div>
+      <div class="tech-content">
+        <div class="tech-name">测试与分析工具</div>
+        <div class="tech-desc"><strong>Wireshark + EtherCAT 插件</strong>（协议分析）；<strong>Tektronix MDO3000</strong> 示波器（SYNC0 测量）；<strong>IXXAT EtherCAT 分析仪</strong>（专业协议分析）；<strong>cyclictest</strong>（延迟测试）；<strong>Valgrind/ASan</strong>（内存检测）。</div>
+      </div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-icon orange">📦</div>
+      <div class="tech-content">
+        <div class="tech-name">DevOps 工具链</div>
+        <div class="tech-desc"><strong>GitLab / GitHub</strong>（代码托管）；<strong>GitLab CI / GitHub Actions</strong>（持续集成）；<strong>Docker</strong>（编译环境容器化）；<strong>Grafana + InfluxDB</strong>（实时性数据可视化监控）；<strong>Confluence</strong>（文档管理）。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ SUMMARY -->
+<div class="summary-box">
+  <h3>项目总结</h3>
+  <div class="summary-grid">
+    <div class="summary-item">
+      <div class="sv">8～14</div>
+      <div class="sl">团队规模（人）</div>
+    </div>
+    <div class="summary-item">
+      <div class="sv">6</div>
+      <div class="sl">实施周期（月）</div>
+    </div>
+    <div class="summary-item">
+      <div class="sv">≤1ms</div>
+      <div class="sl">总线通信周期</div>
+    </div>
+    <div class="summary-item">
+      <div class="sv">&lt;1μs</div>
+      <div class="sl">DC 同步精度</div>
+    </div>
+    <div class="summary-item">
+      <div class="sv">6</div>
+      <div class="sl">Phase 阶段数</div>
+    </div>
+    <div class="summary-item">
+      <div class="sv">v1.0</div>
+      <div class="sl">最终交付版本</div>
+    </div>
+  </div>
+  <div style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.15);color:#93c5fd;font-size:14px;line-height:1.8">
+    <strong style="color:#7dd3fc">关键成功因素：</strong>
+    技术负责人需具备 EtherCAT 实际工程经验；Week 1 尽早确认目标从站型号清单；实时性调优在 Phase 1 即开始基线建立；
+    测试工程师应从 Phase 2 起就介入，而非等到后期；硬件采购需在 Month 1 完成，否则 Phase 2/3 将无法如期开展。
+    建议预留 10% 缓冲时间，并在 Month 3 末进行全团队 Go/No-Go 评审，确认后续产品化路线。
+  </div>
+</div>
+
+</div><!-- end container -->
+
+<footer>
+  <p>机器人行业 EtherCAT 总线通信开发规划报告 &nbsp;·&nbsp; 技术规划版本 <span>v1.0</span> &nbsp;·&nbsp; <span>2026</span> 年</p>
+  <p style="margin-top:6px">基于 IEC 61158 / IEC 61784 / CiA 402 标准 &nbsp;·&nbsp; EtherCAT Technology Group (ETG) 规范</p>
+</footer>
+
+</body>
+</html>

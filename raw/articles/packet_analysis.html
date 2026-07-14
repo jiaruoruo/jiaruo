@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOEM 主站周期通信数据包统计</title>
+<style>
+  :root {
+    --bg:#0f1117; --surface:#1a1d27; --surface2:#222535; --border:#2e3347;
+    --accent:#4f8ef7; --accent2:#38c8a8; --warn:#f5a623; --danger:#e05c5c;
+    --text:#d4d8e8; --muted:#7a82a0; --code-bg:#141720;
+    --c-lrw:#4f8ef7; --c-frmw:#38c8a8; --c-fprd:#a78bfa;
+    --c-fpwr:#f59e0b; --c-bwr:#34d399; --c-brd:#fb923c;
+    --c-aprd:#60a5fa; --c-mbx:#f472b6;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;font-size:14px;line-height:1.7}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:100;background:rgba(15,17,23,.94);backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;gap:1.5rem;height:52px}
+  nav .brand{font-weight:700;color:var(--accent);font-size:.95rem;white-space:nowrap}
+  nav a{color:var(--muted);text-decoration:none;font-size:.82rem;white-space:nowrap}
+  nav a:hover{color:var(--text)}
+  nav .spacer{flex:1}
+  nav .badge{background:rgba(79,142,247,.15);border:1px solid var(--accent);color:var(--accent);font-size:.72rem;padding:2px 10px;border-radius:20px}
+
+  .page{max-width:1180px;margin:0 auto;padding:2rem 1.5rem 5rem}
+
+  /* hero */
+  .hero{background:linear-gradient(135deg,#1a1d27,#0f1117);border:1px solid var(--border);
+        border-radius:14px;padding:2.4rem 2rem;margin-bottom:2rem;position:relative;overflow:hidden}
+  .hero::before{content:'';position:absolute;top:-80px;right:-80px;width:360px;height:360px;
+                background:radial-gradient(circle,rgba(79,142,247,.1) 0%,transparent 65%);pointer-events:none}
+  .hero h1{font-size:1.7rem;font-weight:700;margin-bottom:.4rem}
+  .hero h1 span{color:var(--accent)}
+  .hero p{color:var(--muted);max-width:680px;font-size:.92rem}
+
+  /* section */
+  section{margin-bottom:3rem}
+  h2{font-size:1.2rem;font-weight:700;padding-bottom:.55rem;margin-bottom:1.2rem;
+     border-bottom:2px solid var(--border);display:flex;align-items:center;gap:.5rem}
+  h2 .num{background:var(--accent);color:#fff;width:26px;height:26px;border-radius:50%;
+           display:inline-flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0}
+  h3{font-size:1rem;font-weight:600;color:var(--accent2);margin:1.2rem 0 .6rem}
+
+  /* summary table */
+  .table-wrap{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:.8rem 0}
+  table{width:100%;border-collapse:collapse;font-size:.83rem}
+  th{background:var(--surface2);color:var(--accent);padding:.6rem .9rem;text-align:left;
+     border-bottom:1px solid var(--border);font-weight:600;white-space:nowrap}
+  td{padding:.55rem .9rem;border-bottom:1px solid var(--border);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:rgba(255,255,255,.02)}
+
+  /* packet type badge */
+  .cmd{display:inline-block;padding:2px 9px;border-radius:4px;font-size:.75rem;font-weight:700;letter-spacing:.03em;white-space:nowrap}
+  .cmd-lrw {background:rgba(79,142,247,.18);color:var(--c-lrw);border:1px solid rgba(79,142,247,.4)}
+  .cmd-lrd {background:rgba(79,142,247,.12);color:#82b4ff;border:1px solid rgba(79,142,247,.3)}
+  .cmd-lwr {background:rgba(79,142,247,.12);color:#82b4ff;border:1px solid rgba(79,142,247,.3)}
+  .cmd-frmw{background:rgba(56,200,168,.18);color:var(--c-frmw);border:1px solid rgba(56,200,168,.4)}
+  .cmd-fprd{background:rgba(167,139,250,.18);color:var(--c-fprd);border:1px solid rgba(167,139,250,.4)}
+  .cmd-fpwr{background:rgba(245,158,11,.18);color:var(--c-fpwr);border:1px solid rgba(245,158,11,.4)}
+  .cmd-bwr {background:rgba(52,211,153,.18);color:var(--c-bwr);border:1px solid rgba(52,211,153,.4)}
+  .cmd-brd {background:rgba(251,146,60,.18);color:var(--c-brd);border:1px solid rgba(251,146,60,.4)}
+  .cmd-aprd{background:rgba(96,165,250,.18);color:var(--c-aprd);border:1px solid rgba(96,165,250,.4)}
+  .cmd-apwr{background:rgba(96,165,250,.12);color:#93c5fd;border:1px solid rgba(96,165,250,.3)}
+  .cmd-mbx {background:rgba(244,114,182,.18);color:var(--c-mbx);border:1px solid rgba(244,114,182,.4)}
+  .tag-cycle{background:rgba(56,200,168,.12);color:var(--accent2);border:1px solid rgba(56,200,168,.3);display:inline-block;padding:1px 8px;border-radius:12px;font-size:.72rem}
+  .tag-init {background:rgba(245,166,35,.1); color:var(--warn);   border:1px solid rgba(245,166,35,.3);display:inline-block;padding:1px 8px;border-radius:12px;font-size:.72rem}
+
+  /* frame anatomy */
+  .frame-wrap{background:var(--code-bg);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:.8rem 0}
+  .frame-title{background:var(--surface2);padding:.4rem 1rem;font-size:.8rem;color:var(--muted);
+               display:flex;align-items:center;justify-content:space-between}
+  .frame-body{padding:1rem 1.2rem;overflow-x:auto}
+
+  /* byte layout strip */
+  .byte-row{display:flex;gap:0;margin:.4rem 0;font-family:'Consolas',monospace;font-size:.75rem}
+  .byte-cell{border:1px solid var(--border);padding:4px 0;text-align:center;min-width:36px;flex:1;
+             background:var(--surface);color:var(--text);position:relative}
+  .byte-cell .label{font-size:.62rem;color:var(--muted);display:block;margin-top:1px}
+  .byte-cell.eth  {background:rgba(79,142,247,.12);border-color:rgba(79,142,247,.4)}
+  .byte-cell.ec   {background:rgba(56,200,168,.10);border-color:rgba(56,200,168,.35)}
+  .byte-cell.dg   {background:rgba(167,139,250,.12);border-color:rgba(167,139,250,.4)}
+  .byte-cell.data {background:rgba(245,158,11,.10);border-color:rgba(245,158,11,.35)}
+  .byte-cell.wkc  {background:rgba(244,114,182,.12);border-color:rgba(244,114,182,.4)}
+  .byte-cell.fcs  {background:rgba(107,114,128,.15);border-color:rgba(107,114,128,.4)}
+  .byte-cell.span2{min-width:72px;flex:2}
+  .byte-cell.span3{min-width:108px;flex:3}
+  .byte-cell.span4{min-width:144px;flex:4}
+  .byte-cell.span6{min-width:216px;flex:6}
+  .byte-cell.span-var{min-width:120px;flex:5}
+
+  /* field table inside frame */
+  .field-table{width:100%;border-collapse:collapse;font-size:.8rem;margin-top:.5rem}
+  .field-table th{background:rgba(255,255,255,.04);color:var(--muted);padding:.3rem .6rem;
+                  font-weight:600;border-bottom:1px solid var(--border)}
+  .field-table td{padding:.3rem .6rem;border-bottom:1px solid rgba(46,51,71,.7)}
+  .field-table tr:last-child td{border-bottom:none}
+  .off{color:var(--accent);font-family:'Consolas',monospace;font-size:.78rem}
+  .sz {color:var(--accent2);font-family:'Consolas',monospace}
+  .desc{color:var(--text)}
+
+  /* info box */
+  .info-box{border-left:3px solid;border-radius:0 8px 8px 0;padding:.75rem 1rem;margin:.7rem 0;font-size:.88rem}
+  .info-box.info {border-color:var(--accent); background:rgba(79,142,247,.07)}
+  .info-box.warn {border-color:var(--warn);   background:rgba(245,166,35,.07)}
+  .info-box.tip  {border-color:var(--accent2);background:rgba(56,200,168,.07)}
+  .info-box .t{font-weight:600;margin-bottom:.15rem}
+  .info-box.info .t{color:var(--accent)}
+  .info-box.warn .t{color:var(--warn)}
+  .info-box.tip  .t{color:var(--accent2)}
+
+  /* timeline */
+  .timeline{border-left:2px solid var(--border);margin-left:.8rem;padding-left:1.4rem}
+  .tl-item{position:relative;margin-bottom:1.2rem}
+  .tl-item::before{content:'';position:absolute;left:-1.78rem;top:.45rem;
+                   width:10px;height:10px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+  .tl-item.cycle::before{background:var(--accent2)}
+  .tl-item h4{font-size:.9rem;font-weight:600;margin-bottom:.25rem}
+  .tl-item .sub{font-size:.82rem;color:var(--muted)}
+
+  /* code */
+  code{background:var(--code-bg);border:1px solid var(--border);padding:1px 6px;border-radius:4px;
+       font-family:'Consolas',monospace;font-size:.8rem;color:#abb2c0}
+
+  footer{text-align:center;color:var(--muted);font-size:.78rem;padding:2rem;border-top:1px solid var(--border)}
+
+  @media(max-width:700px){nav a{display:none}.hero h1{font-size:1.3rem}.page{padding:1rem 1rem 4rem}}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="brand">📡 SOEM 主站通信包统计</span>
+  <a href="#overview">总览</a>
+  <a href="#frame">以太网帧结构</a>
+  <a href="#ecat">EtherCAT 数据报</a>
+  <a href="#cycle">周期通信</a>
+  <a href="#init">初始化通信</a>
+  <a href="#aperiodic">非周期通信</a>
+  <a href="#timeline">时序</a>
+  <span class="spacer"></span>
+  <span class="badge">SOEM 2.0  |  IEC 61158-4-12</span>
+</nav>
+
+<div class="page">
+
+<!-- Hero -->
+<div class="hero">
+  <h1>Windows <span>SOEM</span> EtherCAT 主站 — 周期通信数据包统计</h1>
+  <p>基于 SOEM 2.0 源码分析，统计主站软件在不同阶段（初始化、周期运行、故障恢复）发送的全部
+     EtherCAT 数据报类型，附完整帧格式字段说明。</p>
+</div>
+
+<!-- ─── 0. 总览 ─────────────────────────────────────────── -->
+<section id="overview">
+  <h2><span class="num">1</span>数据包类型总览</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th><th>命令类型</th><th>Code</th><th>寻址方式</th>
+          <th>读/写</th><th>使用阶段</th><th>SOEM 调用来源</th><th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><span class="cmd cmd-lrw">LRW</span></td>
+          <td><code>0x0C</code></td>
+          <td>逻辑地址</td>
+          <td>读写同帧</td>
+          <td><span class="tag-cycle">周期</span></td>
+          <td><code>ecx_send/receive_processdata</code></td>
+          <td>过程数据主帧，携带所有从站 PDO 输入+输出，效率最高</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><span class="cmd cmd-lrd">LRD</span></td>
+          <td><code>0x0A</code></td>
+          <td>逻辑地址</td>
+          <td>只读</td>
+          <td><span class="tag-cycle">周期</span></td>
+          <td><code>ecx_send_processdata</code>（仅输入）</td>
+          <td>当从站仅有输入 PDO（blockLRW=1）时使用</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><span class="cmd cmd-lwr">LWR</span></td>
+          <td><code>0x0B</code></td>
+          <td>逻辑地址</td>
+          <td>只写</td>
+          <td><span class="tag-cycle">周期</span></td>
+          <td><code>ecx_send_processdata</code>（仅输出）</td>
+          <td>当从站仅有输出 PDO（blockLRW=1）时使用</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><span class="cmd cmd-frmw">FRMW</span></td>
+          <td><code>0x0E</code></td>
+          <td>固定地址</td>
+          <td>读+多播写</td>
+          <td><span class="tag-cycle">周期</span></td>
+          <td><code>ecx_send_processdata</code>（DC 使能时附加）</td>
+          <td>分布式时钟同步：主站读取参考从站系统时间并广播更新所有从站</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><span class="cmd cmd-fprd">FPRD</span></td>
+          <td><code>0x04</code></td>
+          <td>固定地址</td>
+          <td>只读</td>
+          <td><span class="tag-init">初始化</span> <span class="tag-cycle">周期</span></td>
+          <td><code>ecx_readstate / ecx_statecheck</code></td>
+          <td>读从站 AL Status (0x0130)、AL Status Code (0x0134)、DC 时间寄存器</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td><span class="cmd cmd-fpwr">FPWR</span></td>
+          <td><code>0x05</code></td>
+          <td>固定地址</td>
+          <td>只写</td>
+          <td><span class="tag-init">初始化</span> <span class="tag-cycle">周期</span></td>
+          <td><code>ecx_writestate / ecx_configdc / ecx_mbxsend</code></td>
+          <td>写 AL Control (0x120)、FMMU/SM 配置、DC 参数、邮箱数据</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td><span class="cmd cmd-bwr">BWR</span></td>
+          <td><code>0x08</code></td>
+          <td>广播</td>
+          <td>广播写</td>
+          <td><span class="tag-init">初始化</span></td>
+          <td><code>ecx_configdc</code></td>
+          <td>DC 初始化：锁存所有从站接收时间戳 (0x0900)，一次性写全网络</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td><span class="cmd cmd-brd">BRD</span></td>
+          <td><code>0x07</code></td>
+          <td>广播</td>
+          <td>广播读</td>
+          <td><span class="tag-init">初始化</span></td>
+          <td><code>ecx_init</code>（冗余模式心跳）</td>
+          <td>冗余链路探测帧，读 WKC 确认从站数量</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td><span class="cmd cmd-aprd">APRD</span></td>
+          <td><code>0x01</code></td>
+          <td>自增地址</td>
+          <td>只读</td>
+          <td><span class="tag-init">初始化</span></td>
+          <td><code>ecx_config_init</code></td>
+          <td>拓扑发现：按位置 0,−1,−2… 枚举总线上从站，读取类型/SII 信息</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td><span class="cmd cmd-apwr">APWR</span></td>
+          <td><code>0x02</code></td>
+          <td>自增地址</td>
+          <td>只写</td>
+          <td><span class="tag-init">初始化</span></td>
+          <td><code>ecx_config_init</code></td>
+          <td>分配固定站地址 (ECT_REG_STADR 0x0010) 给各从站</td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td><span class="cmd cmd-mbx">CoE SDO</span><br><small>via FPRD/FPWR</small></td>
+          <td>Mailbox</td>
+          <td>固定地址</td>
+          <td>读写</td>
+          <td><span class="tag-init">初始化</span></td>
+          <td><code>ecx_SDOread / ecx_SDOwrite</code></td>
+          <td>CANopen over EtherCAT 邮箱协议，配置 PDO 映射 (0x1C12/0x1C13) 等</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td><span class="cmd cmd-frmw">ARMW</span></td>
+          <td><code>0x0D</code></td>
+          <td>自增地址</td>
+          <td>读+多播写</td>
+          <td><span class="tag-init">初始化</span></td>
+          <td><code>ecx_configdc</code>（DC 传播延迟测量）</td>
+          <td>DC 延迟测量：沿总线传播，各从站记录接收时刻用于计算传播延迟</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="info-box info">
+    <div class="t">统计说明</div>
+    正常 OP 运行时每个周期只发送 <strong>1 个以太网帧</strong>，该帧内包含
+    <strong>1个 LRW 数据报</strong>（+可选 FRMW DC 附加）；其余命令仅出现在初始化阶段或故障恢复时。
+  </div>
+</section>
+
+<!-- ─── 1. 以太网帧结构 ──────────────────────────────────── -->
+<section id="frame">
+  <h2><span class="num">2</span>以太网帧总体结构</h2>
+  <p style="color:var(--muted);margin-bottom:.8rem;font-size:.88rem">
+    EtherCAT 复用标准以太网帧，EtherType = <code>0x88A4</code>，
+    帧内紧跟 EtherCAT 帧头和一个或多个数据报（Datagram）。
+  </p>
+
+  <div class="frame-wrap">
+    <div class="frame-title">
+      <span>完整以太网帧布局（不含 FCS，线路上由 NIC 附加）</span>
+      <span style="color:var(--accent)">最大 1514 字节有效载荷</span>
+    </div>
+    <div class="frame-body">
+      <div class="byte-row">
+        <div class="byte-cell eth span6">目的 MAC<span class="label">6 字节  Byte 0–5</span></div>
+        <div class="byte-cell eth span6">源 MAC<span class="label">6 字节  Byte 6–11</span></div>
+        <div class="byte-cell eth span2">EtherType<br><b style="color:var(--accent)">0x88A4</b><span class="label">2 字节  Byte 12–13</span></div>
+        <div class="byte-cell ec span2">EC 帧头<span class="label">2 字节  Byte 14–15</span></div>
+        <div class="byte-cell dg span-var">数据报 #1<span class="label">10 + N + 2 字节</span></div>
+        <div class="byte-cell dg span4">数据报 #2 … #n<span class="label">可选，多报文拼接</span></div>
+        <div class="byte-cell fcs span2">FCS<span class="label">4 字节（NIC 追加）</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="frame-wrap">
+    <div class="frame-title"><span>EtherCAT 帧头 (2 字节)</span></div>
+    <div class="frame-body">
+      <table class="field-table">
+        <tr><th>位</th><th>字段</th><th>大小</th><th>说明</th></tr>
+        <tr><td class="off">bit 0–10</td><td>Length</td><td class="sz">11 bit</td><td class="desc">后续全部数据报的总字节数</td></tr>
+        <tr><td class="off">bit 11</td><td>Reserved</td><td class="sz">1 bit</td><td class="desc">保留，置 0</td></tr>
+        <tr><td class="off">bit 12–15</td><td>Type</td><td class="sz">4 bit</td><td class="desc">固定 = 1（EtherCAT 命令帧）</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="frame-wrap">
+    <div class="frame-title"><span>单个 EtherCAT 数据报 (Datagram) 格式</span></div>
+    <div class="frame-body">
+      <div class="byte-row">
+        <div class="byte-cell dg">Cmd<span class="label">1 B</span></div>
+        <div class="byte-cell dg">Idx<span class="label">1 B</span></div>
+        <div class="byte-cell dg span4">ADP / Addr (取决于 Cmd)<span class="label">4 字节</span></div>
+        <div class="byte-cell dg span2">Len + M + R<span class="label">2 字节</span></div>
+        <div class="byte-cell dg span2">IRQ<span class="label">2 字节</span></div>
+        <div class="byte-cell data span-var">Data<span class="label">N 字节（Len 指定）</span></div>
+        <div class="byte-cell wkc span2">WKC<span class="label">2 字节</span></div>
+      </div>
+      <table class="field-table" style="margin-top:.8rem">
+        <tr><th>字段</th><th>偏移</th><th>大小</th><th>说明</th></tr>
+        <tr><td><b>Cmd</b></td><td class="off">+0</td><td class="sz">1 B</td><td class="desc">命令类型，见下表</td></tr>
+        <tr><td><b>Idx</b></td><td class="off">+1</td><td class="sz">1 B</td><td class="desc">帧索引（0–15），用于匹配 TX/RX 缓冲区</td></tr>
+        <tr><td><b>ADP</b></td><td class="off">+2</td><td class="sz">2 B</td><td class="desc">地址高字：AP→自增位置；FP→从站固定地址；B→广播=0；L→逻辑地址低16位</td></tr>
+        <tr><td><b>ADO</b></td><td class="off">+4</td><td class="sz">2 B</td><td class="desc">地址低字：寄存器偏移（AP/FP/B）或逻辑地址高16位（L类）</td></tr>
+        <tr><td><b>Len</b></td><td class="off">+6</td><td class="sz">11 bit</td><td class="desc">Data 字段字节数（0–1486）</td></tr>
+        <tr><td><b>M</b></td><td class="off">+6 bit11</td><td class="sz">1 bit</td><td class="desc">More = 1 表示帧中还有后续数据报</td></tr>
+        <tr><td><b>R</b></td><td class="off">+6 bit12-15</td><td class="sz">4 bit</td><td class="desc">保留</td></tr>
+        <tr><td><b>IRQ</b></td><td class="off">+8</td><td class="sz">2 B</td><td class="desc">中断请求，通常为 0</td></tr>
+        <tr><td><b>Data</b></td><td class="off">+10</td><td class="sz">N B</td><td class="desc">实际载荷（PDO 数据 / 寄存器值 / 邮箱数据）</td></tr>
+        <tr><td><b>WKC</b></td><td class="off">+10+N</td><td class="sz">2 B</td><td class="desc">工作计数器：每个从站成功处理后 +1（输出+2，输入+1）</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 2. 各命令详细帧格式 ──────────────────────────────── -->
+<section id="ecat">
+  <h2><span class="num">3</span>各命令类型帧格式详解</h2>
+
+  <!-- LRW -->
+  <h3><span class="cmd cmd-lrw">LRW</span> &nbsp;逻辑读写 (0x0C) — 核心周期帧</h3>
+  <div class="frame-wrap">
+    <div class="frame-title"><span>LRW 数据报布局</span><span style="color:var(--accent2)">Cmd=0x0C</span></div>
+    <div class="frame-body">
+      <div class="byte-row">
+        <div class="byte-cell dg" style="background:rgba(79,142,247,.25)">0x0C<span class="label">Cmd=LRW</span></div>
+        <div class="byte-cell dg">Idx<span class="label">1 B</span></div>
+        <div class="byte-cell dg span4">LogAddr[31:0]<span class="label">32-bit 逻辑地址，FMMU 映射</span></div>
+        <div class="byte-cell dg span2">Len|M<span class="label">2 B</span></div>
+        <div class="byte-cell dg span2">IRQ=0<span class="label">2 B</span></div>
+        <div class="byte-cell data span-var">PDO 数据<br>（主→从=Output，从→主=Input）<span class="label">N 字节（IO Map 大小）</span></div>
+        <div class="byte-cell wkc span2">WKC<span class="label">2 B</span></div>
+      </div>
+      <div class="info-box tip" style="margin-top:.6rem">
+        <div class="t">LRW 特性</div>
+        主站发送时 Data 填写输出 PDO；帧经过每个从站时，从站将自身输出寄存器写入对应逻辑地址，
+        并把输入寄存器覆盖写回帧内同一 Data 区域，实现单帧双向传输。WKC 预期值 = Σ(输出WKC×2 + 输入WKC×1)。
+      </div>
+    </div>
+  </div>
+
+  <!-- FRMW -->
+  <h3><span class="cmd cmd-frmw">FRMW</span> &nbsp;固定地址读写多播 (0x0E) — DC 时钟同步附加帧</h3>
+  <div class="frame-wrap">
+    <div class="frame-title"><span>FRMW 数据报布局</span><span style="color:var(--accent2)">Cmd=0x0E，与 LRW 同帧拼接（M=1）</span></div>
+    <div class="frame-body">
+      <div class="byte-row">
+        <div class="byte-cell dg" style="background:rgba(56,200,168,.25)">0x0E<span class="label">Cmd=FRMW</span></div>
+        <div class="byte-cell dg">Idx<span class="label">1 B</span></div>
+        <div class="byte-cell dg span2">DC 从站地址<span class="label">ADP 2 B</span></div>
+        <div class="byte-cell dg span2">0x0910<br>DCsystime<span class="label">ADO 2 B</span></div>
+        <div class="byte-cell dg span2">Len=8<span class="label">2 B</span></div>
+        <div class="byte-cell dg span2">IRQ=0<span class="label">2 B</span></div>
+        <div class="byte-cell data span4">System Time<span class="label">8 字节 int64 纳秒</span></div>
+        <div class="byte-cell wkc span2">WKC<span class="label">2 B</span></div>
+      </div>
+      <div class="info-box tip" style="margin-top:.6rem">
+        <div class="t">FRMW 特性</div>
+        主站读取参考从站 DC 系统时间寄存器（0x0910），然后该时间值由后续每个从站读取后写入
+        自己的系统时间寄存器，实现全网时钟同步。此帧追加在 LRW 帧尾，上一帧 M=1。
+      </div>
+    </div>
+  </div>
+
+  <!-- FPRD -->
+  <h3><span class="cmd cmd-fprd">FPRD</span> &nbsp;固定地址读 (0x04) — 状态轮询</h3>
+  <div class="frame-wrap">
+    <div class="frame-title"><span>FPRD 数据报布局</span><span style="color:var(--accent2)">Cmd=0x04</span></div>
+    <div class="frame-body">
+      <div class="byte-row">
+        <div class="byte-cell dg" style="background:rgba(167,139,250,.25)">0x04<span class="label">Cmd=FPRD</span></div>
+        <div class="byte-cell dg">Idx</div>
+        <div class="byte-cell dg span2">从站固定地址<span class="label">ADP 2 B（1001–1064）</span></div>
+        <div class="byte-cell dg span2">寄存器地址<span class="label">ADO 2 B</span></div>
+        <div class="byte-cell dg span2">Len<span class="label">读取字节数</span></div>
+        <div class="byte-cell dg span2">IRQ=0</div>
+        <div class="byte-cell data span4">从站填入数据<span class="label">AL Status / DC时间等</span></div>
+        <div class="byte-cell wkc span2">WKC</div>
+      </div>
+      <table class="field-table" style="margin-top:.6rem">
+        <tr><th>典型用途</th><th>ADO（寄存器地址）</th><th>Data 大小</th><th>说明</th></tr>
+        <tr><td>读 AL 状态</td><td class="off">0x0130</td><td class="sz">2 B</td><td>AL Status：0x01=Init 0x02=PreOp 0x04=SafeOp 0x08=Op</td></tr>
+        <tr><td>读 AL 错误码</td><td class="off">0x0134</td><td class="sz">2 B</td><td>AL Status Code，0x0000=无错误</td></tr>
+        <tr><td>读 DL 状态</td><td class="off">0x0110</td><td class="sz">2 B</td><td>端口链路状态、通信错误计数</td></tr>
+        <tr><td>读 DC 系统时间</td><td class="off">0x0910</td><td class="sz">8 B</td><td>64-bit 纳秒时间戳</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- FPWR -->
+  <h3><span class="cmd cmd-fpwr">FPWR</span> &nbsp;固定地址写 (0x05) — 状态控制 / DC 配置</h3>
+  <div class="frame-wrap">
+    <div class="frame-title"><span>FPWR 数据报布局</span><span style="color:var(--accent2)">Cmd=0x05</span></div>
+    <div class="frame-body">
+      <div class="byte-row">
+        <div class="byte-cell dg" style="background:rgba(245,158,11,.25)">0x05<span class="label">Cmd=FPWR</span></div>
+        <div class="byte-cell dg">Idx</div>
+        <div class="byte-cell dg span2">从站固定地址<span class="label">ADP</span></div>
+        <div class="byte-cell dg span2">寄存器地址<span class="label">ADO</span></div>
+        <div class="byte-cell dg span2">Len</div>
+        <div class="byte-cell dg span2">IRQ=0</div>
+        <div class="byte-cell data span4">写入数据<span class="label">AL Ctrl / FMMU / SM / DC 等</span></div>
+        <div class="byte-cell wkc span2">WKC</div>
+      </div>
+      <table class="field-table" style="margin-top:.6rem">
+        <tr><th>典型用途</th><th>ADO</th><th>Data 大小</th><th>说明</th></tr>
+        <tr><td>写 AL 控制</td><td class="off">0x0120</td><td class="sz">2 B</td><td>请求状态迁移：0x01=Init, 0x02=PreOp, 0x04=SafeOp, 0x08=Op</td></tr>
+        <tr><td>配置 FMMU</td><td class="off">0x0600+n×16</td><td class="sz">16 B</td><td>FMMU 条目：逻辑起始地址、长度、物理起始地址、方向（R/W）</td></tr>
+        <tr><td>配置 SM</td><td class="off">0x0800+n×8</td><td class="sz">8 B</td><td>同步管理器：物理地址、长度、控制字节、使能</td></tr>
+        <tr><td>写 DC 偏移</td><td class="off">0x0920</td><td class="sz">8 B</td><td>系统时间偏移（主站计算补偿延迟后写入）</td></tr>
+        <tr><td>写 DC SYNC0 起始</td><td class="off">0x0990</td><td class="sz">8 B</td><td>SYNC0 首次触发时刻（绝对时间）</td></tr>
+        <tr><td>写 DC SYNC0 周期</td><td class="off">0x09A0</td><td class="sz">4 B</td><td>SYNC0 周期（纳秒），与通信周期对齐</td></tr>
+        <tr><td>写 DC 激活</td><td class="off">0x0981</td><td class="sz">1 B</td><td>bit0=SYNC0使能, bit1=SYNC1使能</td></tr>
+        <tr><td>邮箱写（SDO/CoE）</td><td class="off">SM0 物理地址</td><td class="sz">6+N B</td><td>CoE 邮箱头 + SDO 请求/响应数据</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- BWR -->
+  <h3><span class="cmd cmd-bwr">BWR</span> &nbsp;广播写 (0x08) — DC 初始化</h3>
+  <div class="frame-wrap">
+    <div class="frame-title"><span>BWR 数据报布局</span><span style="color:var(--accent2)">Cmd=0x08，ADP=0（广播）</span></div>
+    <div class="frame-body">
+      <div class="byte-row">
+        <div class="byte-cell dg" style="background:rgba(52,211,153,.25)">0x08<span class="label">Cmd=BWR</span></div>
+        <div class="byte-cell dg">Idx</div>
+        <div class="byte-cell dg span2">ADP=0<span class="label">广播</span></div>
+        <div class="byte-cell dg span2">ADO=0x0900<span class="label">DC 接收时间</span></div>
+        <div class="byte-cell dg span2">Len=4</div>
+        <div class="byte-cell dg span2">IRQ=0</div>
+        <div class="byte-cell data span4">0x00000000<span class="label">触发所有从站锁存接收时刻</span></div>
+        <div class="byte-cell wkc span2">WKC<span class="label">=从站数</span></div>
+      </div>
+      <div class="info-box tip" style="margin-top:.5rem">
+        <div class="t">DC 延迟测量原理</div>
+        BWR 触发后，每个从站在自身端口记录该帧的精确接收时刻（DCrecvTimeA/B/C/D），
+        主站随后通过 FPRD 逐一读回这些时刻，计算出各段传播延迟，用于补偿 FRMW 同步误差。
+      </div>
+    </div>
+  </div>
+
+  <!-- APRD/APWR -->
+  <h3><span class="cmd cmd-aprd">APRD</span> / <span class="cmd cmd-apwr">APWR</span> &nbsp;自增地址读写 (0x01/0x02) — 拓扑发现</h3>
+  <div class="frame-wrap">
+    <div class="frame-title"><span>APRD / APWR 数据报布局</span><span style="color:var(--accent2)">Cmd=0x01 / 0x02</span></div>
+    <div class="frame-body">
+      <div class="byte-row">
+        <div class="byte-cell dg" style="background:rgba(96,165,250,.25)">0x01/02<span class="label">Cmd</span></div>
+        <div class="byte-cell dg">Idx</div>
+        <div class="byte-cell dg span2">ADP=0,−1,−2…<span class="label">初始位置计数器</span></div>
+        <div class="byte-cell dg span2">ADO=寄存器<span class="label">目标寄存器地址</span></div>
+        <div class="byte-cell dg span2">Len</div>
+        <div class="byte-cell dg span2">IRQ=0</div>
+        <div class="byte-cell data span4">读出/写入数据<span class="label">从站类型、固定地址等</span></div>
+        <div class="byte-cell wkc span2">WKC</div>
+      </div>
+      <div class="info-box tip" style="margin-top:.5rem">
+        <div class="t">自增地址原理</div>
+        帧从主站出发时 ADP=0，每经过一个从站 ADP 递减 1。当 ADP=0 时该从站响应，
+        其余从站忽略。SOEM 以此枚举 0、−1、−2… 位置的从站，完成拓扑发现后用 APWR 写入固定地址。
+      </div>
+    </div>
+  </div>
+
+  <!-- CoE SDO Mailbox -->
+  <h3><span class="cmd cmd-mbx">CoE SDO</span> &nbsp;邮箱协议 (via FPRD/FPWR) — 非周期 SDO 读写</h3>
+  <div class="frame-wrap">
+    <div class="frame-title"><span>邮箱帧 = FPWR（写请求） + FPRD（读响应）</span></div>
+    <div class="frame-body">
+      <p style="color:var(--muted);font-size:.82rem;margin-bottom:.6rem">
+        外层使用 FPWR 帧将邮箱数据写入从站 SM0（OutMailbox），再用 FPRD 轮询 SM1（InMailbox）读取响应。
+      </p>
+      <div class="byte-row">
+        <div class="byte-cell data span2">MbxLen<span class="label">2 B</span></div>
+        <div class="byte-cell data span2">MbxAddr<span class="label">2 B</span></div>
+        <div class="byte-cell data">Prio<span class="label">1 B</span></div>
+        <div class="byte-cell data">Type=3<br><small>CoE</small><span class="label">1 B</span></div>
+        <div class="byte-cell dg span2">CoE Header<span class="label">2 B</span></div>
+        <div class="byte-cell dg span2">SDO Cmd<span class="label">1 B</span></div>
+        <div class="byte-cell dg span2">Index<span class="label">2 B</span></div>
+        <div class="byte-cell dg">SubIdx<span class="label">1 B</span></div>
+        <div class="byte-cell wkc span-var">SDO Data<span class="label">0–4 B (Expedited) / N B (Segmented)</span></div>
+      </div>
+      <table class="field-table" style="margin-top:.6rem">
+        <tr><th>字段</th><th>偏移（邮箱内）</th><th>大小</th><th>说明</th></tr>
+        <tr><td>Mailbox Length</td><td class="off">+0</td><td class="sz">2 B</td><td>后续邮箱载荷总字节数</td></tr>
+        <tr><td>Mailbox Address</td><td class="off">+2</td><td class="sz">2 B</td><td>通常为 0</td></tr>
+        <tr><td>Priority / Type</td><td class="off">+4/+5</td><td class="sz">各1 B</td><td>Type=3 表示 CoE，Type=1=EoE，Type=5=FoE，Type=8=SoE</td></tr>
+        <tr><td>CoE Header</td><td class="off">+6</td><td class="sz">2 B</td><td>bit0-8=Number, bit9-11=Reserved, bit12-15=ServiceType(3=SDO请求)</td></tr>
+        <tr><td>SDO Command</td><td class="off">+8</td><td class="sz">1 B</td><td>0x23=下载4B, 0x27=下载3B, 0x2F=下载1B, 0x40=上传请求</td></tr>
+        <tr><td>Object Index</td><td class="off">+9</td><td class="sz">2 B</td><td>对象字典索引（小端），如 0x6040 控制字</td></tr>
+        <tr><td>SubIndex</td><td class="off">+11</td><td class="sz">1 B</td><td>子索引</td></tr>
+        <tr><td>SDO Data</td><td class="off">+12</td><td class="sz">0–4 B</td><td>Expedited 传输数据，超过 4 B 使用分段传输</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 3. 周期通信 ─────────────────────────────────────── -->
+<section id="cycle">
+  <h2><span class="num">4</span>周期通信（OP 状态，每 1 ms）</h2>
+
+  <div class="info-box info">
+    <div class="t">每周期实际发送的帧构成</div>
+    正常 OP 运行时，<code>ecx_send_processdata()</code> 每次构造 <strong>1 个以太网帧</strong>，
+    其中包含 <strong>LRW 数据报</strong>（携带所有组的 PDO 数据），
+    若启用了分布式时钟（DC）则在同一帧尾追加 <strong>FRMW 数据报</strong>（M=1 链接）。
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>帧内数据报</th><th>Cmd</th><th>Data 大小</th><th>WKC 期望</th><th>发送函数</th><th>频率</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="cmd cmd-lrw">LRW</span> 过程数据</td>
+          <td><code>0x0C</code></td>
+          <td>= IO Map 大小（典型 8–512 B）</td>
+          <td>Σ(outputsWKC×2 + inputsWKC)</td>
+          <td><code>ecx_send_processdata</code></td>
+          <td>每周期 1 次</td>
+        </tr>
+        <tr>
+          <td><span class="cmd cmd-frmw">FRMW</span> DC 同步（可选）</td>
+          <td><code>0x0E</code></td>
+          <td>8 B（int64 时间戳）</td>
+          <td>从站数</td>
+          <td><code>ecx_send_processdata</code>（内部判断）</td>
+          <td>每周期 1 次（DC 使能时）</td>
+        </tr>
+        <tr>
+          <td>状态轮询 <span class="cmd cmd-fprd">FPRD</span></td>
+          <td><code>0x04</code></td>
+          <td>2 B (AL Status)</td>
+          <td>1</td>
+          <td><code>ecx_readstate</code>（每1万周期调用一次）</td>
+          <td>低频（周期/10000）</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>周期帧在总线上的时序（以 1 ms 周期、2 个从站为例）</h3>
+  <div style="background:var(--code-bg);border:1px solid var(--border);border-radius:10px;padding:1.2rem 1.4rem;font-family:'Consolas',monospace;font-size:.8rem;line-height:2">
+    <span style="color:var(--muted)">t=0.000ms  </span><span style="color:var(--c-lrw)">▶ ETH Frame 发出</span>  <span style="color:var(--muted)">[DA=FF:FF:FF:FF:FF:FF | EType=88A4 | LRW(Output PDO) | FRMW(DC时间)]</span><br>
+    <span style="color:var(--muted)">t=0.001ms  </span><span style="color:var(--c-fprd)">  ↘ 从站#1 处理 LRW</span>  <span style="color:var(--muted)">写入自身输出寄存器，将输入寄存器覆盖回帧，WKC+=3</span><br>
+    <span style="color:var(--muted)">t=0.002ms  </span><span style="color:var(--c-fprd)">  ↘ 从站#2 处理 LRW</span>  <span style="color:var(--muted)">同上，WKC+=3，帧继续向末端传播</span><br>
+    <span style="color:var(--muted)">t=0.003ms  </span><span style="color:var(--c-frmw)">  ↩ 末端帧折返回主站</span><br>
+    <span style="color:var(--muted)">t=0.100ms  </span><span style="color:var(--accent2)">◀ ETH Frame 回到主站 NIC</span>  <span style="color:var(--muted)">[Input PDO 已更新，WKC=6，DC时间已同步]</span><br>
+    <span style="color:var(--muted)">t=0.100ms  </span><span style="color:var(--accent)">  ecx_receive_processdata() 返回 wkc=6</span><br>
+    <span style="color:var(--muted)">t=0.100ms  </span><span style="color:var(--warn)">  用户控制逻辑执行（读取 Input PDO，计算，写 Output PDO）</span><br>
+    <span style="color:var(--muted)">t=1.000ms  </span><span style="color:var(--c-lrw)">▶ 下一周期帧发出 ...</span>
+  </div>
+</section>
+
+<!-- ─── 4. 初始化通信 ─────────────────────────────────────── -->
+<section id="init">
+  <h2><span class="num">5</span>初始化阶段通信序列</h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <h4>① <code>ecx_init()</code> — 网卡初始化</h4>
+      <div class="sub">发送一帧 <span class="cmd cmd-brd">BRD</span>(ADO=0x0000, Len=2)
+        探测总线，WKC 返回即为在线从站数。同时为冗余链路准备 BRD 心跳帧。</div>
+    </div>
+    <div class="tl-item">
+      <h4>② <code>ecx_config_init()</code> — 拓扑发现</h4>
+      <div class="sub">循环发送 <span class="cmd cmd-aprd">APRD</span>(ADP=0,−1,…, ADO=0x0000 类型)
+        读取各从站类型信息；然后用 <span class="cmd cmd-apwr">APWR</span>(ADO=0x0010)
+        写入固定站地址（1001、1002…）；再用 <span class="cmd cmd-fprd">FPRD</span>
+        读取 EEPROM（SII）获取 VendorID、ProductCode、SM/FMMU 配置等。</div>
+    </div>
+    <div class="tl-item">
+      <h4>③ <code>ecx_config_map_group()</code> — PDO 映射</h4>
+      <div class="sub">对每个从站发送 <span class="cmd cmd-fpwr">FPWR</span> 配置 FMMU 条目
+        （物理↔逻辑地址映射）和 SM 条目；若从站支持 CoE 则通过
+        <span class="cmd cmd-mbx">SDO 邮箱</span> 写 0x1C12/0x1C13 完成 PDO 映射。</div>
+    </div>
+    <div class="tl-item">
+      <h4>④ <code>ecx_configdc()</code> — 分布式时钟</h4>
+      <div class="sub">
+        步骤 1: <span class="cmd cmd-bwr">BWR</span>(0x0900) 锁存全网接收时间<br>
+        步骤 2: <span class="cmd cmd-armw">ARMW</span>(自增地址) 测量总线传播延迟<br>
+        步骤 3: <span class="cmd cmd-fprd">FPRD</span> 逐站读回时间戳，计算偏移<br>
+        步骤 4: <span class="cmd cmd-fpwr">FPWR</span> 写系统时间偏移(0x0920) + SYNC0 参数(0x0990/0x09A0) + 激活(0x0981)
+      </div>
+    </div>
+    <div class="tl-item">
+      <h4>⑤ 状态迁移 INIT→PreOP→SafeOP→OP</h4>
+      <div class="sub">每次迁移：<span class="cmd cmd-fpwr">FPWR</span>(0x0120) 写 AL Control 请求目标状态
+        → 循环 <span class="cmd cmd-fprd">FPRD</span>(0x0130) 查询 AL Status 直到达到目标状态。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 5. 非周期通信 ─────────────────────────────────────── -->
+<section id="aperiodic">
+  <h2><span class="num">6</span>非周期通信（故障恢复 / SDO 访问）</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>场景</th><th>使用命令</th><th>触发条件</th><th>说明</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>从站状态巡检</td>
+          <td><span class="cmd cmd-fprd">FPRD</span> ×N 从站</td>
+          <td>每 10000 个周期（<code>checkAndRecoverSlaves</code>）</td>
+          <td>读所有从站 AL Status，发现非 OP 状态则触发恢复</td>
+        </tr>
+        <tr>
+          <td>从站状态恢复</td>
+          <td><span class="cmd cmd-fpwr">FPWR</span></td>
+          <td>检测到从站退出 OP 时</td>
+          <td>写 AL Control 重新请求 OP 状态</td>
+        </tr>
+        <tr>
+          <td>SDO 读取 <code>ecx_SDOread</code></td>
+          <td><span class="cmd cmd-fpwr">FPWR</span>（写邮箱）<br><span class="cmd cmd-fprd">FPRD</span>（轮询响应）</td>
+          <td>应用层调用（初始化或运行时诊断）</td>
+          <td>通过 SM0/SM1 邮箱传输 CoE SDO 上传请求/响应，超时 EC_TIMEOUTRXM=700ms</td>
+        </tr>
+        <tr>
+          <td>SDO 写入 <code>ecx_SDOwrite</code></td>
+          <td><span class="cmd cmd-fpwr">FPWR</span> × 2</td>
+          <td>同上</td>
+          <td>写邮箱 + 确认响应，用于参数配置（速度环增益、限位等）</td>
+        </tr>
+        <tr>
+          <td>WKC 不匹配告警</td>
+          <td>无额外帧</td>
+          <td><code>Diagnostics::update()</code> 检测</td>
+          <td>仅软件统计，不发额外帧；WKC < expectedWKC 说明至少一个从站未响应</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ─── 6. 完整时序图 ─────────────────────────────────────── -->
+<section id="timeline">
+  <h2><span class="num">7</span>全生命周期通信时序总览</h2>
+  <div style="background:var(--code-bg);border:1px solid var(--border);border-radius:10px;padding:1.4rem;overflow-x:auto">
+    <pre style="font-family:'Consolas',monospace;font-size:.78rem;line-height:2;color:var(--text)">
+<span style="color:var(--muted)">阶段              命令序列</span>
+
+<span style="color:var(--warn)">【初始化阶段】</span>
+  ecx_init()     → <span style="color:var(--c-brd)">BRD</span>(0x0000, 2B)  ← 探测从站数
+  config_init()  → <span style="color:var(--c-aprd)">APRD</span>(0,  ECT_REG_TYPE, 2B)    ← 读从站类型
+                 → <span style="color:var(--c-aprd)">APRD</span>(-1, ECT_REG_TYPE, 2B)
+                 → ... × N从站
+                 → <span style="color:var(--c-apwr)">APWR</span>(0,  ECT_REG_STADR, 2B=1001)  ← 写固定地址
+                 → <span style="color:var(--c-apwr)">APWR</span>(-1, ECT_REG_STADR, 2B=1002)
+                 → <span style="color:var(--c-fprd)">FPRD</span>(1001, ECT_REG_EEPSTAT, N B)  ← 读 SII/EEPROM
+                 → <span style="color:var(--c-fprd)">FPRD</span>(1002, ECT_REG_EEPSTAT, N B)
+  config_map()   → <span style="color:var(--c-fpwr)">FPWR</span>(1001, 0x0600, 16B)  ← 配置 FMMU
+                 → <span style="color:var(--c-fpwr)">FPWR</span>(1001, 0x0800, 8B)   ← 配置 SM
+                 → [CoE] <span style="color:var(--c-mbx)">FPWR</span>+<span style="color:var(--c-mbx)">FPRD</span>  × M   ← SDO 邮箱（PDO 映射）
+  configdc()     → <span style="color:var(--c-bwr)">BWR</span> (0x0000, 0x0900, 4B)  ← 锁存 DC 时间
+                 → <span style="color:var(--c-frmw)">ARMW</span>(0, 0x0900, 8B) × 多次  ← 延迟测量
+                 → <span style="color:var(--c-fprd)">FPRD</span>(each, 0x0900, 8B)       ← 读各站时间
+                 → <span style="color:var(--c-fpwr)">FPWR</span>(each, 0x0920, 8B)       ← 写时间偏移
+                 → <span style="color:var(--c-fpwr)">FPWR</span>(each, 0x0990/0x09A0/0x0981, ...)  ← SYNC0配置
+  状态迁移        → <span style="color:var(--c-fpwr)">FPWR</span>(0, 0x0120, 2B=0x02)   ← → PreOP
+                 → <span style="color:var(--c-fprd)">FPRD</span>(0, 0x0130, 2B) × poll  ← 等待 PreOP
+                 → <span style="color:var(--c-fpwr)">FPWR</span>(0, 0x0120, 2B=0x04)   ← → SafeOP
+                 → <span style="color:var(--c-fprd)">FPRD</span>(0, 0x0130, 2B) × poll
+                 → <span style="color:var(--c-lrw)">LRW</span> (首帧, 空数据)          ← 进入OP前预发
+                 → <span style="color:var(--c-fpwr)">FPWR</span>(0, 0x0120, 2B=0x08)   ← → OP
+                 → <span style="color:var(--c-fprd)">FPRD</span>(0, 0x0130, 2B) × poll
+
+<span style="color:var(--accent2)">【周期运行阶段】 （每 1 ms 重复）</span>
+  send_pd()      → <span style="color:var(--c-lrw)">LRW</span>(LogAddr, IO Map size) [+ <span style="color:var(--c-frmw)">FRMW</span>(DC时间, 8B)]
+  receive_pd()   ← 同一帧回来，Input PDO 已更新，WKC 已计算
+  [每1万周期]    → <span style="color:var(--c-fprd)">FPRD</span>(each, 0x0130, 2B)  ← 巡检状态
+                 → <span style="color:var(--c-fpwr)">FPWR</span>(异常站, 0x0120, OP)  ← 恢复异常从站
+
+<span style="color:var(--c-mbx)">【SDO 访问（任意时刻，非周期）】</span>
+  SDOwrite()     → <span style="color:var(--c-mbx)">FPWR</span>(slave, SM0_addr, 6+N B)  ← 写请求邮箱
+                 ← <span style="color:var(--c-mbx)">FPRD</span>(slave, SM1_addr, 6+N B)  ← 读响应邮箱
+  SDOread()      → <span style="color:var(--c-mbx)">FPWR</span>(slave, SM0_addr, 6 B)     ← 上传请求
+                 ← <span style="color:var(--c-mbx)">FPRD</span>(slave, SM1_addr, 6+N B)  ← 读上传数据
+    </pre>
+  </div>
+</section>
+
+</div>
+<footer>
+  SOEM EtherCAT 主站通信包统计  |  基于 SOEM 2.0 源码（IEC 61158-4-12）  |  2026-05
+</footer>
+</body>
+</html>

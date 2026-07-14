@@ -8,7 +8,7 @@ author: "Henrik I Christensen (UCSD)"
 tags: [robotics, roadmap, embodied-ai, vla, humanoid, soft-robotics, geopolitics, tess]
 processed: true
 raw_file: "raw/clippings/全球机器人技术路线图 2025–2035.md"
-raw_sha256: fdef2bedc48722936ebf58bf7d6435352cdd63bbd9a50fa0dc4c4cd4b0e2326a
+raw_sha256: 51a16972284b938d584c5dce3abd084cea42f50f9a94ace9cb6dac62462de2a2
 last_verified: 2026-07-13
 possibly_outdated: false
 language: "zh"

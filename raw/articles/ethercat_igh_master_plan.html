@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EtherCAT IgH 主站搭建方案</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --text: #1f2d3d;
+      --sub: #5b6b7a;
+      --primary: #2563eb;
+      --primary-light: #e8f0ff;
+      --border: #dbe3ee;
+      --code-bg: #0f172a;
+      --code-text: #e5eefc;
+      --ok: #0f9d58;
+      --warn: #d97706;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #fff;
+      border-radius: 18px;
+      padding: 36px 32px;
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.18);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      margin: 0 0 12px;
+      font-size: 34px;
+    }
+
+    .hero p {
+      margin: 0;
+      font-size: 16px;
+      opacity: 0.95;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0 28px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--primary);
+      background: #fff;
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04);
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 24px;
+      color: var(--primary);
+      border-left: 5px solid var(--primary);
+      padding-left: 12px;
+    }
+
+    h3 {
+      margin-top: 24px;
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: #1d4ed8;
+    }
+
+    p, li {
+      font-size: 15px;
+    }
+
+    ul {
+      padding-left: 22px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 12px;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .mini {
+      background: #fbfdff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .mini h4 {
+      margin: 0 0 10px;
+      font-size: 16px;
+      color: #0f172a;
+    }
+
+    .code {
+      background: var(--code-bg);
+      color: var(--code-text);
+      padding: 14px 16px;
+      border-radius: 12px;
+      overflow-x: auto;
+      font-family: Consolas, Monaco, monospace;
+      font-size: 14px;
+      white-space: pre-wrap;
+    }
+
+    .note {
+      border-left: 4px solid var(--ok);
+      background: #eefaf3;
+      padding: 12px 14px;
+      border-radius: 8px;
+      margin: 12px 0;
+      color: #1f5133;
+    }
+
+    .warn {
+      border-left: 4px solid var(--warn);
+      background: #fff7ed;
+      padding: 12px 14px;
+      border-radius: 8px;
+      margin: 12px 0;
+      color: #7c4a03;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #eef4ff;
+      color: #1e40af;
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--sub);
+      font-size: 13px;
+      margin-top: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 26px;
+      }
+      .container {
+        padding: 20px 14px 40px;
+      }
+      .card {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <section class="hero">
+      <h1>EtherCAT IgH 主站搭建方案</h1>
+      <p>
+        面向 Linux 平台的 EtherCAT IgH Master 部署与开发方案，适用于入门验证、设备联调、
+        自研控制器开发与后续实时化扩展。
+      </p>
+    </section>
+
+    <div class="nav">
+      <a href="#overview">方案概述</a>
+      <a href="#hardware">硬件建议</a>
+      <a href="#software">软件建议</a>
+      <a href="#steps">搭建步骤</a>
+      <a href="#commands">命令示例</a>
+      <a href="#realtime">实时化建议</a>
+      <a href="#issues">常见问题</a>
+      <a href="#roadmap">实施路径</a>
+    </div>
+
+    <section id="overview" class="card">
+      <h2>1. 方案概述</h2>
+      <p>
+        IgH EtherCAT Master 是 Linux 下常见的开源 EtherCAT 主站实现，适合用于：
+      </p>
+      <ul>
+        <li>EtherCAT 从站联调</li>
+        <li>IO 模块测试</li>
+        <li>伺服驱动器通信验证</li>
+        <li>自研控制器原型开发</li>
+        <li>Linux 实时通信方案构建</li>
+      </ul>
+
+      <div>
+        <span class="tag">Linux</span>
+        <span class="tag">IgH EtherCAT Master</span>
+        <span class="tag">Intel NIC</span>
+        <span class="tag">PREEMPT_RT 可选</span>
+        <span class="tag">ecrt API</span>
+      </div>
+
+      <div class="note">
+        推荐起步方案：<b>Ubuntu / Debian + Intel 网卡 + IgH Master + EtherCAT 从站</b>
+      </div>
+    </section>
+
+    <section id="hardware" class="card">
+      <h2>2. 硬件建议</h2>
+      <div class="grid">
+        <div class="mini">
+          <h4>主机平台</h4>
+          <ul>
+            <li>x86 PC</li>
+            <li>工控机</li>
+            <li>后续可迁移到嵌入式 Linux 平台</li>
+          </ul>
+        </div>
+        <div class="mini">
+          <h4>网卡建议</h4>
+          <ul>
+            <li>优先推荐 Intel 网卡</li>
+            <li>如 i210 / i211 / i350</li>
+            <li>尽量使用独立物理网口</li>
+          </ul>
+        </div>
+        <div class="mini">
+          <h4>从站设备</h4>
+          <ul>
+            <li>EtherCAT IO 模块</li>
+            <li>伺服驱动器</li>
+            <li>从站评估板</li>
+            <li>远程耦合器</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="warn">
+        不建议新手一开始使用 USB 网卡、虚拟机网卡或办公网络共用网口。
+      </div>
+    </section>
+
+    <section id="software" class="card">
+      <h2>3. 软件建议</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>项目</th>
+            <th>推荐方案</th>
+            <th>说明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>操作系统</td>
+            <td>Ubuntu 22.04 / Debian Stable</td>
+            <td>先用普通内核跑通，后续再加实时补丁</td>
+          </tr>
+          <tr>
+            <td>主站软件</td>
+            <td>IgH EtherCAT Master</td>
+            <td>开源，适合原型开发和工程验证</td>
+          </tr>
+          <tr>
+            <td>开发接口</td>
+            <td>ecrt API</td>
+            <td>用于应用层进行 PDO/SDO 和周期通信开发</td>
+          </tr>
+          <tr>
+            <td>验证工具</td>
+            <td>ethercat 命令行</td>
+            <td>用于扫描从站、查看 PDO/SDO、状态诊断</td>
+          </tr>
+          <tr>
+            <td>实时化</td>
+            <td>PREEMPT_RT（可选）</td>
+            <td>适合后续提升周期稳定性和降低抖动</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="steps" class="card">
+      <h2>4. 搭建步骤</h2>
+
+      <h3>4.1 准备 Linux 环境</h3>
+      <ul>
+        <li>安装 Ubuntu 或 Debian</li>
+        <li>准备专用 EtherCAT 网口</li>
+        <li>EtherCAT 从站上电并连接</li>
+      </ul>
+
+      <h3>4.2 安装编译依赖</h3>
+      <div class="code">sudo apt update
+sudo apt install -y git build-essential autoconf automake libtool pkg-config
+sudo apt install -y linux-headers-$(uname -r)
+sudo apt install -y flex bison</div>
+
+      <h3>4.3 获取 IgH Master 源码</h3>
+      <p>建议固定一个稳定版本，用于后续项目维护和版本一致性控制。</p>
+
+      <h3>4.4 编译与安装</h3>
+      <div class="code">./bootstrap
+./configure --enable-generic
+make -j$(nproc)
+sudo make install
+sudo ldconfig</div>
+
+      <h3>4.5 配置 EtherCAT 主站</h3>
+      <p>常见配置文件为：</p>
+      <div class="code">/etc/ethercat.conf</div>
+      <p>可在配置中指定主站使用的网卡、MAC 地址或驱动绑定方式。</p>
+
+      <h3>4.6 加载模块并启动服务</h3>
+      <div class="code">sudo modprobe ec_master
+sudo modprobe ec_generic
+sudo systemctl start ethercat</div>
+
+      <div class="note">
+        某些系统可能使用 <code>/etc/init.d/ethercat start</code> 启动。
+      </div>
+    </section>
+
+    <section id="commands" class="card">
+      <h2>5. 常用验证命令</h2>
+
+      <h3>5.1 查看主站状态</h3>
+      <div class="code">ethercat master</div>
+
+      <h3>5.2 扫描从站</h3>
+      <div class="code">ethercat slaves</div>
+
+      <h3>5.3 查看从站详细信息</h3>
+      <div class="code">ethercat slaves -v</div>
+
+      <h3>5.4 查看 PDO / SDO</h3>
+      <div class="code">ethercat pdos
+ethercat sdos</div>
+
+      <div class="note">
+        如果 <b>ethercat slaves</b> 能看到从站，说明主站、网卡和物理连接基本已经打通。
+      </div>
+    </section>
+
+    <section id="realtime" class="card">
+      <h2>6. 实时化建议</h2>
+      <p>如果项目后续需要更稳定的周期通信，建议逐步引入以下优化：</p>
+      <ul>
+        <li>PREEMPT_RT 实时内核</li>
+        <li>EtherCAT 周期线程绑核</li>
+        <li>关闭 CPU 节能与频率动态调节</li>
+        <li>专用网口独占，不参与普通网络通信</li>
+        <li>应用线程使用 SCHED_FIFO 高优先级调度</li>
+      </ul>
+
+      <div class="warn">
+        普通 Linux 内核适合验证与联调；若进行高稳定性 1ms 甚至更低周期控制，建议使用 PREEMPT_RT。
+      </div>
+    </section>
+
+    <section id="issues" class="card">
+      <h2>7. 常见问题</h2>
+
+      <h3>7.1 看不到从站</h3>
+      <ul>
+        <li>检查从站是否上电</li>
+        <li>检查网线和拓扑</li>
+        <li>确认使用的是专用 EtherCAT 网口</li>
+        <li>确认网卡是否已被 EtherCAT Master 绑定</li>
+      </ul>
+
+      <h3>7.2 编译模块失败</h3>
+      <ul>
+        <li>检查内核头文件版本是否匹配</li>
+        <li>确认当前系统内核版本与编译环境一致</li>
+        <li>建议固定 Linux 版本和 IgH 版本</li>
+      </ul>
+
+      <h3>7.3 普通网络抢占网卡</h3>
+      <ul>
+        <li>不要给 EtherCAT 口配置普通 IP</li>
+        <li>将该接口从 NetworkManager 管理中排除</li>
+        <li>EtherCAT 口专口专用</li>
+      </ul>
+
+      <h3>7.4 进不了 OP</h3>
+      <ul>
+        <li>检查 PDO 映射</li>
+        <li>检查从站启动要求</li>
+        <li>伺服设备可能需要 CiA402 状态机控制</li>
+        <li>检查 DC 配置与同步状态</li>
+      </ul>
+    </section>
+
+    <section id="roadmap" class="card">
+      <h2>8. 项目实施路径</h2>
+      <div class="grid">
+        <div class="mini">
+          <h4>阶段 1：环境验证</h4>
+          <p>目标：主站编译通过，命令行可识别从站。</p>
+        </div>
+        <div class="mini">
+          <h4>阶段 2：IO 通信</h4>
+          <p>目标：实现简单 PDO 周期收发，验证输入输出。</p>
+        </div>
+        <div class="mini">
+          <h4>阶段 3：参数访问</h4>
+          <p>目标：实现 SDO 读取与配置操作。</p>
+        </div>
+        <div class="mini">
+          <h4>阶段 4：周期任务</h4>
+          <p>目标：实现固定周期线程，监控抖动与稳定性。</p>
+        </div>
+        <div class="mini">
+          <h4>阶段 5：伺服控制</h4>
+          <p>目标：接入 CiA402，使能驱动器并进行运动控制。</p>
+        </div>
+        <div class="mini">
+          <h4>阶段 6：实时优化</h4>
+          <p>目标：引入 PREEMPT_RT、绑核和系统优化，形成工程方案。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>9. 方案总结</h2>
+      <p>
+        EtherCAT IgH 主站搭建的核心思路是：
+      </p>
+      <div class="code">Linux + 专用 Intel 网卡 + IgH EtherCAT Master + EtherCAT 从站</div>
+      <p>
+        在此基础上，通过 <b>ethercat</b> 命令行工具完成从站扫描和诊断，
+        再通过 <b>ecrt API</b> 开发用户态或实时应用程序。
+      </p>
+      <div class="note">
+        建议先完成“能扫到从站、能读 PDO/SDO”的基础验证，再逐步推进到实时任务和伺服控制。
+      </div>
+    </section>
+
+    <div class="footer">
+      EtherCAT IgH 主站搭建方案页面 · 适用于内部技术分享 / 项目方案展示
+    </div>
+  </div>
+</body>
+</html>

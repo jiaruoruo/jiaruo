@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GPAN 对 ETHCAT 替代可行性说明</title>
+<style>
+:root{
+--primary:#1a73e8;--primary-dark:#0d47a1;--accent:#34a853;--warning:#fbbc04;--danger:#ea4335;
+--bg:#f8f9fa;--card-bg:#fff;--text:#202124;--text-light:#5f6368;--border:#dadce0;
+--shadow:0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.08);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans SC",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px}
+.header{background:linear-gradient(135deg,#0d47a1,#1a73e8);color:#fff;padding:48px 24px;text-align:center}
+.header h1{font-size:28px;font-weight:700;margin-bottom:8px}
+.header .meta{font-size:14px;opacity:.85}
+.header .meta span{margin:0 12px}
+.container{max-width:960px;margin:0 auto;padding:0 16px}
+.toc-wrapper{position:sticky;top:0;z-index:100;background:var(--card-bg);border-bottom:1px solid var(--border);box-shadow:var(--shadow);padding:12px 0}
+.toc-toggle{display:none;background:var(--primary);color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:14px;width:100%;text-align:center}
+.toc{display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:center;list-style:none}
+.toc a{color:var(--primary);text-decoration:none;font-size:13px;font-weight:500;padding:4px 8px;border-radius:4px;transition:background .2s;white-space:nowrap}
+.toc a:hover{background:#e8f0fe}
+.content{padding:32px 0 64px}
+.section{background:var(--card-bg);border-radius:8px;box-shadow:var(--shadow);margin-bottom:24px;padding:32px;scroll-margin-top:60px}
+.section h2{font-size:22px;color:var(--primary-dark);margin-bottom:20px;padding-bottom:10px;border-bottom:2px solid var(--primary)}
+.section h3{font-size:17px;color:var(--primary);margin:20px 0 12px}
+.section h4{font-size:15px;color:var(--text);margin:16px 0 8px}
+.section p{margin-bottom:12px}
+.section ul,.section ol{margin:8px 0 12px 24px}
+.section li{margin-bottom:4px}
+.table-wrap{overflow-x:auto;margin:16px 0;border-radius:6px;border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:14px;table-layout:auto}
+th{background:#1a73e8;color:#fff;font-weight:600;text-align:center;padding:10px 12px;white-space:nowrap;position:relative}
+td{padding:9px 12px;border:1px solid var(--border);vertical-align:top}
+tr:nth-child(even) td{background:#f8f9fa}
+tr:hover td{background:#e8f0fe}
+.resize-handle{position:absolute;top:0;right:-5px;width:10px;height:100%;cursor:col-resize;z-index:20;user-select:none}
+.resize-handle:hover,.resize-handle.active{background:rgba(255,255,255,.4)}
+.resize-ghost{position:fixed;top:0;height:100vh;width:2px;background:#1a73e8;z-index:9999;pointer-events:none;display:none}
+.resize-ghost.show{display:block}
+body.resizing{cursor:col-resize;user-select:none}
+blockquote{background:#e8f0fe;border-left:4px solid var(--primary);padding:14px 18px;margin:16px 0;border-radius:0 6px 6px 0;font-size:14px}
+blockquote strong{color:var(--primary-dark)}
+.tag{display:inline-block;padding:2px 10px;border-radius:12px;font-size:12px;font-weight:600;margin:0 2px}
+.tag-green{background:#e6f4ea;color:#137333}
+.badge{display:inline-block;padding:3px 12px;border-radius:14px;font-size:13px;font-weight:700}
+.badge-pass{background:#e6f4ea;color:#137333}
+.callout{padding:16px 20px;border-radius:8px;margin:16px 0;border-left:4px solid}
+.callout-info{background:#e8f0fe;border-color:#1a73e8}
+.callout-success{background:#e6f4ea;border-color:#34a853}
+.stars{color:#fbbc04;letter-spacing:2px}
+.feasibility-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.check-yes{color:#34a853;font-size:18px}
+.risk-high{color:#ea4335;font-weight:600}
+.risk-mid{color:#f9ab00;font-weight:600}
+.risk-low{color:#34a853;font-weight:600}
+.conclusion-box{background:linear-gradient(135deg,#0d47a1,#1a73e8);color:#fff;padding:24px 32px;border-radius:8px;margin:20px 0;text-align:center}
+.conclusion-box .level{font-size:36px;font-weight:800;margin:8px 0}
+.conclusion-box .desc{font-size:16px;opacity:.9}
+.compare-diagram{width:100%;margin:16px 0;border-radius:8px;overflow:hidden}
+.compare-diagram svg{display:block;width:100%;height:auto}
+.footer{text-align:center;padding:24px;color:var(--text-light);font-size:13px;border-top:1px solid var(--border)}
+@media(max-width:768px){
+.header h1{font-size:22px}
+.section{padding:20px}
+.toc{display:none}
+.toc-toggle{display:block}
+.toc.open{display:flex;flex-direction:column;align-items:stretch}
+.toc.open a{white-space:normal;text-align:center}
+table{font-size:13px}
+th,td{padding:6px 8px}
+.compare-diagram svg{min-height:180px}
+}
+html{scroll-behavior:smooth}
+@media print{
+.toc-wrapper{display:none}
+.section{break-inside:avoid;box-shadow:none;border:1px solid #ddd}
+.header{padding:24px}
+.resize-handle{display:none}
+}
+</style>
+</head>
+<body>
+<div class=header>
+<h1>GPAN 对 ETHCAT 替代可行性说明</h1>
+<div class=meta><span>📄 V1.0</span><span>📅 2026年6月15日</span><span>🏷️ 技术可行性分析报告</span></div>
+</div>
+<div class=toc-wrapper>
+<button class=toc-toggle onclick="document.querySelector('.toc').classList.toggle('open')">📑 目录导航</button>
+<ul class=toc id=toc></ul>
+</div>
+<div class="content container">
+
+<section class="section" data-toc="1. 背景与概述">
+<h2>1. 背景与概述</h2>
+<h3>1.1 编写目的</h3>
+<p>本文档旨在系统分析 <strong>GPAN（General Purpose Access Network）</strong> 对 <strong>EtherCAT</strong> 进行替代的技术可行性与经济可行性。从 EtherCAT 当前在机器人/工业控制场景中存在的技术痛点与成本痛点出发，逐一对比 GPAN 的核心能力，论证 GPAN 作为 EtherCAT 替代方案的完整性与优越性，为决策层提供技术选型参考。</p>
+</section>
+
+<div class="resize-ghost" id="resizeGhost"></div>
+
+<script>
+(function(){
+  var toc=document.getElementById('toc');
+  document.querySelectorAll('.section').forEach(function(s){
+    var t=s.getAttribute('data-toc');
+    if(!t)return;
+    var a=document.createElement('a');
+    a.textContent=t;
+    a.href='#'+s.id;
+    var li=document.createElement('li');
+    li.appendChild(a);
+    toc.appendChild(li);
+  });
+})();
+
+(function(){
+  var ghost=document.getElementById('resizeGhost');
+  var curH=null,curT=null,nxtT=null,sX=0,sW=0,nW=0;
+  document.querySelectorAll('.table-wrap table').forEach(function(tbl){
+    var h=tbl.rows[0];
+    if(!h)return;
+    for(var c=0;c<h.cells.length-1;c++){
+      var th=h.cells[c];
+      var hd=document.createElement('div');
+      hd.className='resize-handle';
+      th.appendChild(hd);
+      hd.onmousedown=function(e){
+        e.preventDefault();e.stopPropagation();
+        curH=this;curT=this.parentElement;
+        sX=e.clientX;sW=curT.offsetWidth;
+        nxtT=curT.nextElementSibling;
+        nW=nxtT?nxtT.offsetWidth:0;
+        document.body.classList.add('resizing');
+        ghost.style.left=e.clientX+'px';
+        ghost.classList.add('show');
+        this.classList.add('active');
+      };
+    }
+  });
+  document.onmousemove=function(e){
+    if(!curH)return;
+    ghost.style.left=e.clientX+'px';
+  };
+  document.onmouseup=function(e){
+    if(!curH)return;
+    var d=e.clientX-sX,nw=sW+d;
+    if(nw<30)nw=30;
+    if(curT){
+      curT.style.width=nw+'px';curT.style.minWidth=nw+'px';curT.style.maxWidth=nw+'px';
+      var ci=curT.cellIndex,tb=curT.closest('table');
+      if(tb)for(var r=0;r<tb.rows.length;r++){var cl=tb.rows[r].cells[ci];if(cl&&cl!==curT){cl.style.width=nw+'px';cl.style.minWidth=nw+'px';cl.style.maxWidth=nw+'px'}}
+    }
+    if(nxtT&&d!==0){
+      var nn=nW-d;if(nn<30)nn=30;
+      nxtT.style.width=nn+'px';nxtT.style.minWidth=nn+'px';nxtT.style.maxWidth=nn+'px';
+      var ci2=nxtT.cellIndex,tb2=nxtT.closest('table');
+      if(tb2)for(var r2=0;r2<tb2.rows.length;r2++){var cl2=tb2.rows[r2].cells[ci2];if(cl2&&cl2!==nxtT){cl2.style.width=nn+'px';cl2.style.minWidth=nn+'px';cl2.style.maxWidth=nn+'px'}}
+    }
+    document.body.classList.remove('resizing');
+    ghost.classList.remove('show');
+    if(curH)curH.classList.remove('active');
+    curH=null;curT=null;nxtT=null;sX=0;sW=0;nW=0;
+  };
+})();
+</script>
+
+<footer class=footer>
+<p>本文档基于《GPAN 机器人应用介绍》PDF 文档内容编制，数据来源为 GPAN 技术规格说明书。</p>
+<p>文档最终解释权归技术团队所有。</p>
+</footer>
+
+</body>

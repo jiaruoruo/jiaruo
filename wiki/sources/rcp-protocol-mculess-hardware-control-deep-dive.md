@@ -6,7 +6,7 @@ author: "汽车电子老登"
 date: "2026-05-05"
 tags: [rcp, mculess-architecture, 10baset1s, plca, gptp, automotive-ethernet]
 raw_file: "raw/clippings/2026-05-05RCP协议深度解析：MCU-less架构下如何实现远程硬件控制.md"
-raw_sha256: 9ec79d794f06b69ec710c01336cbbbf4caf47008aa304113abf1b69dfe8b9f05
+raw_sha256: b796da158e61eec6783769c12209a56cad3fb2c7c723c8a0fae486fc2c0f3737
 last_verified: 2026-06-27
 ---
 

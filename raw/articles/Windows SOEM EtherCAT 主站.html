@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Windows SOEM EtherCAT 主站搭建方案</title>
+<style>
+  :root {
+    --bg:       #0f1117;
+    --surface:  #1a1d27;
+    --surface2: #222535;
+    --border:   #2e3347;
+    --accent:   #4f8ef7;
+    --accent2:  #38c8a8;
+    --warn:     #f5a623;
+    --danger:   #e05c5c;
+    --text:     #d4d8e8;
+    --muted:    #7a82a0;
+    --code-bg:  #141720;
+    --tag-blue: rgba(79,142,247,0.15);
+    --tag-green:rgba(56,200,168,0.15);
+    --tag-warn: rgba(245,166,35,0.15);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── 顶部导航 ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(15,17,23,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; gap: 2rem;
+    height: 56px;
+  }
+  nav .brand { font-weight: 700; font-size: 1rem; color: var(--accent); white-space: nowrap; }
+  nav a {
+    color: var(--muted); text-decoration: none; font-size: 0.85rem;
+    padding: 4px 8px; border-radius: 4px; transition: color .2s;
+    white-space: nowrap;
+  }
+  nav a:hover { color: var(--text); }
+  nav .spacer { flex: 1; }
+  nav .badge {
+    background: var(--tag-blue); border: 1px solid var(--accent);
+    color: var(--accent); font-size: 0.75rem; padding: 2px 10px; border-radius: 20px;
+  }
+
+  /* ── 页面布局 ── */
+  .page { max-width: 1100px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+
+  /* ── Hero ── */
+  .hero {
+    background: linear-gradient(135deg, #1a1d27 0%, #0f1117 100%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 3rem 2.5rem;
+    margin-bottom: 2.5rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(79,142,247,.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero h1 { font-size: 2rem; font-weight: 700; margin-bottom: .5rem; }
+  .hero h1 span { color: var(--accent); }
+  .hero .sub {
+    color: var(--muted); font-size: 1rem; margin-bottom: 1.5rem;
+    max-width: 640px;
+  }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .tag {
+    display: inline-flex; align-items: center; gap: .35rem;
+    padding: 3px 12px; border-radius: 20px; font-size: .78rem; font-weight: 500;
+  }
+  .tag.blue  { background: var(--tag-blue);  border: 1px solid rgba(79,142,247,.4);  color: var(--accent); }
+  .tag.green { background: var(--tag-green); border: 1px solid rgba(56,200,168,.4);  color: var(--accent2); }
+  .tag.warn  { background: var(--tag-warn);  border: 1px solid rgba(245,166,35,.4);  color: var(--warn); }
+
+  /* ── 章节标题 ── */
+  h2 {
+    font-size: 1.35rem; font-weight: 700;
+    padding-bottom: .6rem; margin-bottom: 1.2rem;
+    border-bottom: 2px solid var(--border);
+    display: flex; align-items: center; gap: .5rem;
+  }
+  h2 .num {
+    background: var(--accent); color: #fff;
+    width: 28px; height: 28px; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: .8rem; font-weight: 700; flex-shrink: 0;
+  }
+  h3 { font-size: 1.05rem; font-weight: 600; color: var(--accent2); margin: 1.2rem 0 .6rem; }
+
+  section { margin-bottom: 3rem; }
+
+  /* ── 卡片 ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.4rem 1.6rem;
+    margin-bottom: 1rem;
+  }
+  .card-row {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem; margin-bottom: 1rem;
+  }
+
+  /* ── 架构图 ── */
+  .arch-diagram {
+    background: var(--code-bg); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.5rem;
+    overflow-x: auto; margin-bottom: 1rem;
+  }
+  .arch-diagram pre {
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: .82rem; line-height: 1.9; color: var(--text);
+  }
+  .arch-diagram .hl-blue  { color: #4f8ef7; }
+  .arch-diagram .hl-green { color: #38c8a8; }
+  .arch-diagram .hl-warn  { color: #f5a623; }
+  .arch-diagram .hl-red   { color: #e05c5c; }
+  .arch-diagram .hl-gray  { color: #7a82a0; }
+
+  /* ── 代码块 ── */
+  .code-block {
+    background: var(--code-bg); border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden; margin: .8rem 0;
+  }
+  .code-block .code-header {
+    background: var(--surface2); padding: .4rem 1rem;
+    font-size: .78rem; color: var(--muted);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .code-block pre {
+    padding: 1rem 1.2rem; font-family: 'Consolas', monospace;
+    font-size: .82rem; line-height: 1.8; overflow-x: auto;
+    color: #abb2c0;
+  }
+  .code-block .kw   { color: #c678dd; }
+  .code-block .fn   { color: #61afef; }
+  .code-block .str  { color: #98c379; }
+  .code-block .cmt  { color: #5c6370; font-style: italic; }
+  .code-block .num  { color: #d19a66; }
+  .code-block .type { color: #e5c07b; }
+
+  /* ── 步骤列表 ── */
+  .steps { list-style: none; counter-reset: step; }
+  .steps li {
+    counter-increment: step;
+    position: relative; padding: .9rem 1rem .9rem 3.2rem;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; margin-bottom: .7rem;
+  }
+  .steps li::before {
+    content: counter(step);
+    position: absolute; left: .9rem; top: 50%; transform: translateY(-50%);
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    font-size: .78rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .steps li strong { color: var(--accent2); }
+
+  /* ── 信息框 ── */
+  .info-box {
+    border-left: 3px solid;
+    border-radius: 0 8px 8px 0;
+    padding: .85rem 1.1rem;
+    margin: .8rem 0;
+    font-size: .9rem;
+  }
+  .info-box.info  { border-color: var(--accent);  background: rgba(79,142,247,.08); }
+  .info-box.warn  { border-color: var(--warn);    background: rgba(245,166,35,.08); }
+  .info-box.danger{ border-color: var(--danger);  background: rgba(224,92,92,.08); }
+  .info-box .title{ font-weight: 600; margin-bottom: .2rem; }
+  .info-box.info  .title { color: var(--accent); }
+  .info-box.warn  .title { color: var(--warn); }
+  .info-box.danger .title { color: var(--danger); }
+
+  /* ── 表格 ── */
+  table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+  th {
+    background: var(--surface2); color: var(--accent);
+    padding: .65rem 1rem; text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+  }
+  td {
+    padding: .6rem 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,.02); }
+  .table-wrap {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden; margin: .8rem 0;
+  }
+
+  /* ── 流程图 ── */
+  .flow {
+    display: flex; align-items: center; flex-wrap: wrap; gap: .4rem;
+    padding: 1rem; background: var(--code-bg);
+    border: 1px solid var(--border); border-radius: 10px; margin: .8rem 0;
+  }
+  .flow-item {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 8px; padding: .4rem .9rem;
+    font-size: .82rem; font-weight: 600; color: var(--text);
+    white-space: nowrap;
+  }
+  .flow-item.highlight { border-color: var(--accent); color: var(--accent); }
+  .flow-arrow { color: var(--muted); font-size: 1.1rem; }
+
+  /* ── 性能对比 ── */
+  .perf-bar { margin: .3rem 0; }
+  .perf-bar .label { font-size: .82rem; color: var(--muted); margin-bottom: .2rem; }
+  .perf-bar .bar-bg {
+    background: var(--surface2); border-radius: 4px; height: 8px; overflow: hidden;
+  }
+  .perf-bar .bar-fill { height: 100%; border-radius: 4px; transition: width .4s; }
+
+  /* ── 目录结构 ── */
+  .file-tree {
+    background: var(--code-bg); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1.2rem 1.4rem;
+    font-family: 'Consolas', monospace; font-size: .82rem; line-height: 1.9;
+  }
+  .file-tree .dir  { color: var(--accent2); }
+  .file-tree .file { color: #abb2c0; }
+  .file-tree .note { color: var(--muted); font-size: .78rem; }
+
+  /* ── 底部 ── */
+  footer {
+    text-align: center; color: var(--muted); font-size: .8rem;
+    padding: 2rem; border-top: 1px solid var(--border);
+    margin-top: 2rem;
+  }
+
+  /* ── 响应式 ── */
+  @media (max-width: 700px) {
+    nav a { display: none; }
+    .hero h1 { font-size: 1.4rem; }
+    .hero { padding: 1.8rem 1.2rem; }
+    .page { padding: 1rem 1rem 4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── 导航 ─────────────────────────────────────────────── -->
+<nav>
+  <span class="brand">⚡ Windows SOEM EtherCAT 主站</span>
+  <a href="#overview">概述</a>
+  <a href="#arch">架构</a>
+  <a href="#env">环境依赖</a>
+  <a href="#build">构建步骤</a>
+  <a href="#code">代码结构</a>
+  <a href="#realtime">实时优化</a>
+  <a href="#diag">诊断调试</a>
+  <a href="#faq">常见问题</a>
+  <span class="spacer"></span>
+  <span class="badge">v1.0  2025-05</span>
+</nav>
+
+<!-- ─── 页面主体 ─────────────────────────────────────────── -->
+<div class="page">
+
+  <!-- Hero -->
+  <div class="hero" id="overview">
+    <h1>Windows 平台 <span>SOEM</span> EtherCAT 主站搭建方案</h1>
+    <p class="sub">基于 Simple Open EtherCAT Master (SOEM) + Npcap + Visual Studio 2022，
+      在 Windows 10/11 上实现工业级 EtherCAT 主站通信，覆盖环境搭建、编译、实时优化到诊断调试全流程。</p>
+    <div class="hero-tags">
+      <span class="tag blue">SOEM 开源主站</span>
+      <span class="tag blue">Visual Studio 2022</span>
+      <span class="tag blue">CMake</span>
+      <span class="tag green">Npcap（WinPcap 兼容）</span>
+      <span class="tag green">CiA402 伺服支持</span>
+      <span class="tag green">分布式时钟 DC</span>
+      <span class="tag warn">需管理员权限</span>
+      <span class="tag warn">非硬实时（软实时）</span>
+    </div>
+  </div>
+
+  <!-- ─── 1. 整体架构 ─────────────────────────────────────── -->
+  <section id="arch">
+    <h2><span class="num">1</span>整体架构设计</h2>
+
+    <p style="color:var(--muted);margin-bottom:1.2rem;">
+      方案采用四层架构，从硬件网卡到用户应用层层解耦，便于替换任意层的实现。
+    </p>
+
+    <div class="arch-diagram">
+      <pre>
+┌─────────────────────────────────────────────────────────────────┐
+│                  <span class="hl-blue">应用层 (Application Layer)</span>                    │
+│   ┌──────────────┐  ┌──────────────┐  ┌─────────────────────┐  │
+│   │  控制逻辑     │  │  HMI / GUI   │  │  日志 / 数据记录    │  │
+│   │ (main.cpp)   │  │ (可选 Qt)    │  │  (diagnostics.cpp)  │  │
+│   └──────┬───────┘  └──────┬───────┘  └──────────┬──────────┘  │
+└──────────┼─────────────────┼────────────────────── ┼────────────┘
+           │                 │                        │
+┌──────────▼─────────────────▼────────────────────── ▼────────────┐
+│                <span class="hl-green">主站中间层 (SOEM Master Layer)</span>                  │
+│  ┌─────────────────────┐  ┌─────────────────────────────────┐   │
+│  │  EthercatMaster      │  │       RealtimeThread             │   │
+│  │  - 拓扑扫描          │  │  - THREAD_PRIORITY_TIME_CRITICAL │   │
+│  │  - 状态机管理        │  │  - SetThreadAffinityMask(core=2) │   │
+│  │  - PDO 映射          │  │  - QueryPerformanceCounter       │   │
+│  │  - SDO 读写          │  │  - timeBeginPeriod(1)            │   │
+│  │  - 分布式时钟        │  │  周期：默认 1000 μs (1 ms)       │   │
+│  └─────────┬───────────┘  └─────────────────────────────────┘   │
+└────────────┼────────────────────────────────────────────────────┘
+             │
+┌────────────▼────────────────────────────────────────────────────┐
+│               <span class="hl-warn">SOEM 协议栈 (Protocol Layer)</span>                   │
+│  ┌─────────────┐  ┌──────────────┐  ┌─────────────────────┐    │
+│  │  EtherCAT   │  │  ethercat.h  │  │  osal (win32)        │    │
+│  │  状态机      │  │  帧构造/解析  │  │  系统抽象层          │    │
+│  └─────────────┘  └──────────────┘  └─────────────────────┘    │
+└────────────────────────────────────────┬────────────────────────┘
+                                         │
+┌────────────────────────────────────────▼────────────────────────┐
+│               <span class="hl-red">驱动层 (Driver Layer)</span>                          │
+│  ┌────────────────────────────────┐  ┌────────────────────────┐ │
+│  │  Npcap (WinPcap API 兼容模式)  │  │  物理网卡 (Intel NIC)  │ │
+│  │  nicdrv.c  →  wpcap.lib        │  │  Intel I210 / I219     │ │
+│  │  原始以太网帧收发               │  │  推荐 避免 Realtek     │ │
+│  └────────────────────────────────┘  └────────────────────────┘ │
+└─────────────────────────────────────────────────────────────────┘
+         │
+         ▼  <span class="hl-gray">EtherCAT 总线（标准以太网物理层，100BASE-TX）</span>
+┌────────────────────────────────────────────────────────────────┐
+│  从站1 (Slave)  →  从站2 (Slave)  →  …  →  从站N (Slave)      │
+│  伺服驱动器 / IO 模块 / 传感器 / 编码器接口                     │
+└────────────────────────────────────────────────────────────────┘
+      </pre>
+    </div>
+
+    <div class="card-row">
+      <div class="card">
+        <h3>数据流（每个周期）</h3>
+        <div class="flow">
+          <span class="flow-item highlight">ec_send_processdata()</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-item">EtherCAT 帧发送</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-item">从站处理</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-item">ec_receive_processdata()</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-item highlight">用户控制逻辑</span>
+        </div>
+        <p style="font-size:.85rem;color:var(--muted);margin-top:.5rem;">
+          单个 EtherCAT 帧携带所有从站的输入/输出数据，总线利用率极高。
+        </p>
+      </div>
+      <div class="card">
+        <h3>典型性能指标（Windows）</h3>
+        <div class="perf-bar">
+          <div class="label">通信周期（目标 1 ms）</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:95%;background:var(--accent2)"></div></div>
+        </div>
+        <div class="perf-bar">
+          <div class="label">周期抖动（≈ 100–500 µs，需优化）</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:60%;background:var(--warn)"></div></div>
+        </div>
+        <div class="perf-bar">
+          <div class="label">最大从站数（受 IO Map 限制）</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:80%;background:var(--accent)"></div></div>
+        </div>
+        <p style="font-size:.8rem;color:var(--muted);margin-top:.6rem;">
+          * 通过 CPU 绑定 + 优先级提升可将抖动改善至 ≈ 100 µs 以内
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 2. 环境依赖 ─────────────────────────────────────── -->
+  <section id="env">
+    <h2><span class="num">2</span>环境依赖与安装</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>依赖项</th>
+            <th>版本要求</th>
+            <th>说明</th>
+            <th>获取方式</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Windows</strong></td>
+            <td>10 / 11 (x64)</td>
+            <td>建议专用工控机，禁用自动更新</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Visual Studio 2022</strong></td>
+            <td>≥ 17.x</td>
+            <td>选择「C++ 桌面开发」工作负载，包含 MSVC + CMake</td>
+            <td><code>visualstudio.microsoft.com</code></td>
+          </tr>
+          <tr>
+            <td><strong>CMake</strong></td>
+            <td>≥ 3.16</td>
+            <td>VS 2022 已内置，或单独安装</td>
+            <td><code>cmake.org/download</code></td>
+          </tr>
+          <tr>
+            <td><strong>Npcap</strong></td>
+            <td>≥ 1.70</td>
+            <td>安装时必须勾选 WinPcap API 兼容模式</td>
+            <td><code>npcap.com</code></td>
+          </tr>
+          <tr>
+            <td><strong>Npcap SDK</strong></td>
+            <td>与 Npcap 版本匹配</td>
+            <td>解压到 <code>C:\npcap-sdk</code>（含 wpcap.lib）</td>
+            <td><code>npcap.com/#download</code></td>
+          </tr>
+          <tr>
+            <td><strong>SOEM 源码</strong></td>
+            <td>latest main</td>
+            <td>克隆到 <code>third_party/SOEM</code></td>
+            <td><code>github.com/OpenEtherCATsociety/SOEM</code></td>
+          </tr>
+          <tr>
+            <td><strong>Git</strong></td>
+            <td>任意</td>
+            <td>用于克隆 SOEM</td>
+            <td><code>git-scm.com</code></td>
+          </tr>
+          <tr>
+            <td><strong>物理网卡</strong></td>
+            <td>Intel I210 / I219</td>
+            <td>强烈推荐 Intel；避免 Realtek / Broadcom</td>
+            <td>工控机标配或 PCIe 扩展卡</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="info-box warn">
+      <div class="title">⚠ Npcap 安装关键步骤</div>
+      运行 Npcap 安装程序时，<strong>必须勾选</strong>"Install Npcap in WinPcap API-compatible Mode"。
+      SOEM 的 <code>nicdrv.c</code> 依赖 WinPcap API，不启用此选项将导致 <code>ec_init()</code> 失败。
+    </div>
+
+    <div class="info-box info">
+      <div class="title">💡 推荐网卡选型</div>
+      Intel I210-T1 (PCIe 单口千兆)、I219-LM（板载）是社区验证最稳定的选择。
+      Realtek 虽然也能工作，但驱动层中断延迟较高，抖动会明显增大。
+    </div>
+  </section>
+
+  <!-- ─── 3. 构建步骤 ─────────────────────────────────────── -->
+  <section id="build">
+    <h2><span class="num">3</span>构建步骤</h2>
+
+    <ol class="steps">
+      <li>
+        <strong>克隆 SOEM 源码</strong>（或运行 <code>scripts\setup_env.bat</code> 自动完成）
+        <div class="code-block" style="margin-top:.5rem">
+          <div class="code-header"><span>PowerShell / Git Bash</span></div>
+          <pre><span class="cmt"># 在项目根目录执行</span>
+git clone --depth=1 https://github.com/OpenEtherCATsociety/SOEM.git third_party/SOEM</pre>
+        </div>
+      </li>
+      <li>
+        <strong>安装 Npcap + 下载 SDK</strong>
+        <br>将 SDK 解压到 <code>C:\npcap-sdk</code>，确保存在 <code>C:\npcap-sdk\Include\pcap.h</code>
+        和 <code>C:\npcap-sdk\Lib\x64\wpcap.lib</code>
+      </li>
+      <li>
+        <strong>打开 VS 2022 开发者命令提示符</strong>
+        <br>Start Menu → "Developer Command Prompt for VS 2022"（确保编译器环境变量已设置）
+      </li>
+      <li>
+        <strong>运行 CMake 配置</strong>
+        <div class="code-block" style="margin-top:.5rem">
+          <div class="code-header"><span>Developer Command Prompt</span></div>
+          <pre><span class="kw">mkdir</span> build && <span class="kw">cd</span> build
+cmake .. <span class="str">-G "Visual Studio 17 2022"</span> -A x64 ^
+         -DNPCAP_SDK_DIR=<span class="str">"C:/npcap-sdk"</span></pre>
+        </div>
+      </li>
+      <li>
+        <strong>编译（Release 模式）</strong>
+        <div class="code-block" style="margin-top:.5rem">
+          <div class="code-header"><span>Developer Command Prompt</span></div>
+          <pre>cmake --build . --config Release --parallel</pre>
+        </div>
+        输出文件：<code>build\bin\Release\soem_master.exe</code>
+      </li>
+      <li>
+        <strong>以管理员权限运行</strong>
+        <div class="code-block" style="margin-top:.5rem">
+          <div class="code-header"><span>管理员 CMD</span></div>
+          <pre><span class="cmt"># 列出所有网卡</span>
+soem_master.exe list
+
+<span class="cmt"># 用指定网卡启动主站（将 GUID 替换为实际值）</span>
+soem_master.exe <span class="str">"\Device\NPF_{12345678-ABCD-EFGH-IJKL-000000000000}"</span></pre>
+        </div>
+      </li>
+    </ol>
+
+    <div class="info-box danger">
+      <div class="title">🔒 必须以管理员权限运行</div>
+      Npcap 访问原始以太网帧需要管理员权限。普通用户权限下 <code>ec_init()</code> 会静默失败，
+      表现为找不到从站。右键 → 以管理员身份运行，或在快捷方式属性中勾选"以管理员身份运行"。
+    </div>
+  </section>
+
+  <!-- ─── 4. 代码结构 ─────────────────────────────────────── -->
+  <section id="code">
+    <h2><span class="num">4</span>代码结构说明</h2>
+
+    <div class="file-tree">
+      <span class="dir">windows_soem_main_site/</span><br>
+      ├── <span class="file">CMakeLists.txt</span>          <span class="note">— 主构建脚本，自动查找 SOEM / Npcap</span><br>
+      ├── <span class="dir">src/</span><br>
+      │   ├── <span class="file">main.cpp</span>            <span class="note">— 程序入口，解析参数，驱动整个流程</span><br>
+      │   ├── <span class="file">ethercat_master.h/.cpp</span>  <span class="note">— 主站封装：init / scan / goOp / PDO 交换</span><br>
+      │   ├── <span class="file">realtime_thread.h/.cpp</span>  <span class="note">— 高精度实时周期线程</span><br>
+      │   ├── <span class="file">slave_manager.h/.cpp</span>    <span class="note">— SDO 读写 / PDO 地址助手</span><br>
+      │   ├── <span class="file">process_data.h</span>       <span class="note">— CiA402 PDO 结构体定义</span><br>
+      │   └── <span class="file">diagnostics.h/.cpp</span>   <span class="note">— 通信质量统计与告警</span><br>
+      ├── <span class="dir">scripts/</span><br>
+      │   ├── <span class="file">setup_env.bat</span>        <span class="note">— 一键初始化环境（克隆 SOEM、检查依赖）</span><br>
+      │   └── <span class="file">build.bat</span>            <span class="note">— 一键构建（自动查找 VS + CMake）</span><br>
+      ├── <span class="dir">config/</span><br>
+      │   └── <span class="file">master_config.json</span>   <span class="note">— 主站配置（网卡、周期、从站列表）</span><br>
+      └── <span class="dir">third_party/</span><br>
+          └── <span class="dir">SOEM/</span>               <span class="note">— 由 setup_env.bat 自动克隆</span>
+    </div>
+
+    <h3>核心模块关系</h3>
+    <div class="card">
+      <div class="flow" style="flex-direction:column;align-items:flex-start;gap:.6rem;">
+        <div style="display:flex;align-items:center;gap:.4rem;">
+          <span class="flow-item highlight">main.cpp</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-item">EthercatMaster::init() + scanSlaves() + configureAndGoOp()</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:.4rem;">
+          <span class="flow-item highlight">RealtimeThread</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-item">每周期调用 EthercatMaster::exchangeProcessData()</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-item">Diagnostics::update(wkc)</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:.4rem;">
+          <span class="flow-item highlight">ProcessData</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-item">读写 ec_slave[n].inputs / .outputs 指针（PDO 缓冲区）</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:.4rem;">
+          <span class="flow-item highlight">SlaveManager</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-item">ec_SDOread / ec_SDOwrite（初始化阶段配置参数）</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 5. 实时优化 ─────────────────────────────────────── -->
+  <section id="realtime">
+    <h2><span class="num">5</span>Windows 实时性优化</h2>
+
+    <div class="info-box warn">
+      <div class="title">⚠ Windows 实时性限制说明</div>
+      Windows 是通用操作系统，默认情况下周期抖动可达 500 µs–2 ms。
+      以下优化措施可将抖动改善至 ≈ 50–200 µs，满足大多数运动控制（周期 ≥ 2 ms）需求。
+      若需亚毫秒级硬实时，建议使用 Linux + PREEMPT_RT 或 IntervalZero RTX64。
+    </div>
+
+    <div class="card-row">
+      <div class="card">
+        <h3>① 定时器分辨率</h3>
+        <div class="code-block">
+          <div class="code-header"><span>realtime_thread.cpp</span></div>
+          <pre><span class="cmt">// 将 Windows 最小定时器周期降到 1 ms</span>
+<span class="fn">timeBeginPeriod</span>(<span class="num">1</span>);
+<span class="cmt">// 退出时恢复</span>
+<span class="fn">timeEndPeriod</span>(<span class="num">1</span>);</pre>
+        </div>
+        <p style="font-size:.85rem;color:var(--muted)">
+          Windows 默认定时器分辨率为 15.6 ms，调用后降至 1 ms，
+          是周期循环精确等待的基础。
+        </p>
+      </div>
+      <div class="card">
+        <h3>② 线程优先级</h3>
+        <div class="code-block">
+          <div class="code-header"><span>realtime_thread.cpp</span></div>
+          <pre>HANDLE hThread = <span class="fn">GetCurrentThread</span>();
+<span class="fn">SetThreadPriority</span>(hThread,
+  THREAD_PRIORITY_TIME_CRITICAL);</pre>
+        </div>
+        <p style="font-size:.85rem;color:var(--muted)">
+          TIME_CRITICAL 是 Windows 最高线程优先级（31 级），
+          可抢占几乎所有系统进程。
+        </p>
+      </div>
+      <div class="card">
+        <h3>③ CPU 核心绑定</h3>
+        <div class="code-block">
+          <div class="code-header"><span>realtime_thread.cpp</span></div>
+          <pre>DWORD_PTR mask = (<span class="type">DWORD_PTR</span>)<span class="num">1</span> &lt;&lt; cpuCore;
+<span class="fn">SetThreadAffinityMask</span>(hThread, mask);</pre>
+        </div>
+        <p style="font-size:.85rem;color:var(--muted)">
+          将 RT 线程固定到专用核心（如 Core 2），
+          避免 OS 调度器将其在多核间迁移产生缓存失效延迟。
+        </p>
+      </div>
+      <div class="card">
+        <h3>④ 高精度等待</h3>
+        <div class="code-block">
+          <div class="code-header"><span>realtime_thread.cpp</span></div>
+          <pre><span class="cmt">// 粗等：Sleep 到接近目标时刻</span>
+<span class="kw">while</span> (remaining > <span class="num">1000</span>) <span class="fn">Sleep</span>(<span class="num">0</span>);
+<span class="cmt">// 忙等精调最后 50 µs</span>
+<span class="kw">do</span> { <span class="fn">QueryPerformanceCounter</span>(&now); }
+<span class="kw">while</span> (now.QuadPart &lt; target.QuadPart);</pre>
+        </div>
+        <p style="font-size:.85rem;color:var(--muted)">
+          两阶段等待策略：粗等节省 CPU 资源，
+          忙等保证末段精度，平衡功耗与精确性。
+        </p>
+      </div>
+    </div>
+
+    <h3>BIOS / OS 级优化（可选但推荐）</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>优化项</th><th>操作方法</th><th>效果</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>禁用 CPU C-State 睡眠</td>
+            <td>BIOS → CPU Power Management → C-States = Disabled</td>
+            <td>消除 CPU 从深度睡眠唤醒延迟（≈ 100–300 µs）</td>
+          </tr>
+          <tr>
+            <td>禁用超线程（可选）</td>
+            <td>BIOS → Hyper-Threading = Disabled</td>
+            <td>减少共享执行单元竞争</td>
+          </tr>
+          <tr>
+            <td>隔离 CPU 核心</td>
+            <td><code>bcdedit /set isolatecpus 2,3</code>（需重启）</td>
+            <td>将 Core 2,3 从 Windows 调度池中移除</td>
+          </tr>
+          <tr>
+            <td>禁用 Windows Defender 实时保护</td>
+            <td>Windows 安全中心 → 病毒和威胁防护 → 关闭实时保护</td>
+            <td>避免 Defender 扫描进程占用 RT 核心</td>
+          </tr>
+          <tr>
+            <td>关闭自动更新</td>
+            <td>组策略 → 计算机配置 → 禁止自动更新</td>
+            <td>避免后台下载/安装抢占带宽和 CPU</td>
+          </tr>
+          <tr>
+            <td>高性能电源计划</td>
+            <td>控制面板 → 电源选项 → 高性能</td>
+            <td>防止动态频率调节引入延迟</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ─── 6. EtherCAT 状态机 ──────────────────────────────── -->
+  <section>
+    <h2><span class="num">6</span>EtherCAT 状态机流程</h2>
+
+    <div class="flow" style="justify-content:center;">
+      <span class="flow-item">上电</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-item">INIT</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-item">PRE-OP</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-item">SAFE-OP</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-item highlight">OP（过程数据交换）</span>
+    </div>
+
+    <div class="card-row" style="margin-top:1rem;">
+      <div class="card">
+        <h3>INIT → PRE-OP</h3>
+        <p style="font-size:.88rem;color:var(--muted)">
+          主站发现从站，读取 EEPROM 基本信息（VendorID、ProductCode），
+          通过邮箱通信配置 PDO 映射（SDO 写 0x1C12 / 0x1C13）。
+        </p>
+      </div>
+      <div class="card">
+        <h3>PRE-OP → SAFE-OP</h3>
+        <p style="font-size:.88rem;color:var(--muted)">
+          配置 FMMU / SM，建立过程数据通道。
+          从站开始接收主站输出数据（但驱动器未使能）。
+        </p>
+      </div>
+      <div class="card">
+        <h3>SAFE-OP → OP</h3>
+        <p style="font-size:.88rem;color:var(--muted)">
+          主站发送有效过程数据帧，从站确认后进入 OP。
+          驱动器进入可使能状态，过程数据实时交换正式开始。
+        </p>
+      </div>
+    </div>
+
+    <div class="info-box info">
+      <div class="title">💡 SOEM 对应 API</div>
+      <code>ec_config_init()</code> → 扫描从站 &nbsp;|&nbsp;
+      <code>ec_config_map()</code> → 配置 PDO 映射 &nbsp;|&nbsp;
+      <code>ec_configdc()</code> → 分布式时钟 &nbsp;|&nbsp;
+      <code>ec_statecheck()</code> → 等待状态转换 &nbsp;|&nbsp;
+      <code>ec_writestate()</code> → 写状态请求
+    </div>
+  </section>
+
+  <!-- ─── 7. 诊断调试 ─────────────────────────────────────── -->
+  <section id="diag">
+    <h2><span class="num">7</span>诊断与调试</h2>
+
+    <h3>工作计数器（WKC）说明</h3>
+    <p style="font-size:.9rem;color:var(--muted);margin-bottom:.8rem;">
+      WKC 是 EtherCAT 帧经过每个从站后的累计计数器。
+      主站根据拓扑计算出预期 WKC，若实际 WKC 不匹配说明有从站未正确处理帧。
+    </p>
+    <div class="code-block">
+      <div class="code-header"><span>WKC 期望值计算</span></div>
+      <pre><span class="cmt">// 每个从站：输出 WKC+2，输入 WKC+1</span>
+expectedWKC = (ec_group[0].<span class="fn">outputsWKC</span> * <span class="num">2</span>) + ec_group[0].<span class="fn">inputsWKC</span>;
+
+<span class="cmt">// 每个周期检查：</span>
+<span class="kw">if</span> (wkc &lt; expectedWKC) {
+    <span class="cmt">// 存在从站未响应 → 检查网线 / 从站状态</span>
+}</pre>
+    </div>
+
+    <h3>常用 SOEM 诊断函数</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>函数</th><th>说明</th><th>典型用途</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code>ec_readstate()</code></td>
+            <td>读取所有从站当前 AL 状态</td>
+            <td>定期巡检，发现异常从站</td>
+          </tr>
+          <tr>
+            <td><code>ec_statecheck(slaveNo, state, timeout)</code></td>
+            <td>等待指定从站进入目标状态</td>
+            <td>状态迁移确认</td>
+          </tr>
+          <tr>
+            <td><code>ec_slave[n].ALstatuscode</code></td>
+            <td>从站 AL 状态错误码</td>
+            <td>分析从站拒绝状态迁移原因</td>
+          </tr>
+          <tr>
+            <td><code>ec_iserror()</code></td>
+            <td>检查错误队列是否非空</td>
+            <td>快速判断是否有通信错误</td>
+          </tr>
+          <tr>
+            <td><code>ec_poperror(&err)</code></td>
+            <td>弹出一条错误信息</td>
+            <td>读取详细错误描述</td>
+          </tr>
+          <tr>
+            <td><code>ec_find_adapters()</code></td>
+            <td>枚举所有可用网络适配器</td>
+            <td>程序首次运行时列出网卡</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>抖动测量示例</h3>
+    <div class="code-block">
+      <div class="code-header"><span>realtime_thread.cpp — 抖动统计核心逻辑</span></div>
+      <pre>LARGE_INTEGER freq, now, last;
+<span class="fn">QueryPerformanceFrequency</span>(&amp;freq);
+<span class="fn">QueryPerformanceCounter</span>(&amp;last);
+
+<span class="kw">while</span> (running) {
+    <span class="fn">QueryPerformanceCounter</span>(&amp;now);
+    <span class="type">int64_t</span> actualUs =
+        ((now.QuadPart - last.QuadPart) * <span class="num">1000000LL</span>) / freq.QuadPart;
+
+    <span class="cmt">// 执行 EtherCAT 过程数据交换</span>
+    <span class="fn">exchangeProcessData</span>();
+
+    <span class="cmt">// 统计抖动</span>
+    <span class="type">int64_t</span> jitter = actualUs - periodUs;
+    <span class="kw">if</span> (jitter > jitterAlarmUs)
+        std::cerr &lt;&lt; <span class="str">"[抖动告警] "</span> &lt;&lt; jitter &lt;&lt; <span class="str">" us\n"</span>;
+
+    last = now;
+    <span class="cmt">// 精确等待到下一个周期...</span>
+}</pre>
+    </div>
+  </section>
+
+  <!-- ─── 8. 常见问题 ─────────────────────────────────────── -->
+  <section id="faq">
+    <h2><span class="num">8</span>常见问题 FAQ</h2>
+
+    <div class="card">
+      <h3>Q: ec_init() 返回 0（失败），没有任何报错</h3>
+      <p style="font-size:.9rem;color:var(--muted)">
+        <strong>原因 1：</strong>没有以管理员权限运行。右键 → 以管理员身份运行。<br>
+        <strong>原因 2：</strong>Npcap 安装时未勾选 WinPcap API 兼容模式。重新安装 Npcap 并勾选该选项。<br>
+        <strong>原因 3：</strong>传入的适配器名称不正确。先运行 <code>soem_master.exe list</code> 获取正确的 NPF_{GUID} 字符串。
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Q: CMake 找不到 pcap.h</h3>
+      <p style="font-size:.9rem;color:var(--muted)">
+        确认 Npcap SDK 已解压到 <code>C:\npcap-sdk</code>，或通过 CMake 参数指定路径：
+        <br><code>cmake .. -DNPCAP_SDK_DIR="D:\npcap-sdk"</code>
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Q: 编译时出现 wpcap.lib: cannot open</h3>
+      <p style="font-size:.9rem;color:var(--muted)">
+        检查 SDK 目录结构：x64 库应在 <code>Lib\x64\wpcap.lib</code>，x86 在 <code>Lib\wpcap.lib</code>。
+        CMakeLists.txt 根据 <code>CMAKE_SIZEOF_VOID_P</code> 自动选择，确保使用 x64 构建。
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Q: 扫描到从站但无法进入 OP 状态</h3>
+      <p style="font-size:.9rem;color:var(--muted)">
+        <strong>1.</strong> 打印 <code>ec_slave[n].ALstatuscode</code>，查阅从站手册对应错误码。<br>
+        <strong>2.</strong> 确认从站 PDO 映射与代码中 <code>ServoOutputPDO / ServoInputPDO</code> 结构体一致。<br>
+        <strong>3.</strong> 如从站使用默认 PDO 映射，确保未在代码中强制写 0x1C12/0x1C13（SOEM 的 <code>ec_config_map</code> 会自动配置）。
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Q: 运行一段时间后从站丢失（WKC 不匹配）</h3>
+      <p style="font-size:.9rem;color:var(--muted)">
+        <strong>1.</strong> 检查以太网线缆质量和接头，EtherCAT 对线缆质量敏感。<br>
+        <strong>2.</strong> 主站 PC 是否进入了休眠/屏保，导致网卡驱动暂停。设置高性能电源计划。<br>
+        <strong>3.</strong> 启用 <code>checkAndRecoverSlaves()</code> 定期检查并尝试恢复。<br>
+        <strong>4.</strong> 查看 <code>ec_slave[n].state</code>，若为 <code>EC_STATE_SAFE_OP + EC_STATE_ERROR</code>，
+        说明从站检测到过程数据超时，需降低周期频率或改善实时性。
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Q: 周期抖动太大（> 1 ms），如何继续改善？</h3>
+      <p style="font-size:.9rem;color:var(--muted)">
+        1. 在 BIOS 中关闭 C-State 和 SpeedStep/TurboBoost。<br>
+        2. 使用 <code>bcdedit /set isolatecpus &lt;核心号&gt;</code> 隔离 RT 核心。<br>
+        3. 关闭 Windows Defender 实时保护和所有后台服务。<br>
+        4. 考虑升级为 <strong>Linux + PREEMPT_RT</strong>，可将抖动降至 &lt; 20 µs。<br>
+        5. 商业方案：<strong>IntervalZero RTX64</strong> 可在 Windows 上实现硬实时（抖动 &lt; 10 µs）。
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── 9. 技术路线对比 ──────────────────────────────────── -->
+  <section>
+    <h2><span class="num">9</span>技术路线横向对比</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>方案</th><th>实时性</th><th>开发难度</th><th>成本</th><th>适用场景</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>本方案：Windows + SOEM + Npcap</strong></td>
+            <td><span class="tag warn">软实时 ≈ 100–500 µs 抖动</span></td>
+            <td>低</td>
+            <td>免费</td>
+            <td>原型验证、测试工具、慢速过程控制</td>
+          </tr>
+          <tr>
+            <td>Linux + SOEM + PREEMPT_RT</td>
+            <td><span class="tag green">≈ 20–50 µs 抖动</span></td>
+            <td>中</td>
+            <td>免费</td>
+            <td>运动控制、工业机器人</td>
+          </tr>
+          <tr>
+            <td>Windows + RTX64 + SOEM</td>
+            <td><span class="tag green">&lt; 10 µs 硬实时</span></td>
+            <td>中</td>
+            <td>高（商业授权）</td>
+            <td>高速运动控制、CNC</td>
+          </tr>
+          <tr>
+            <td>Beckhoff TwinCAT 3</td>
+            <td><span class="tag green">&lt; 1 µs 硬实时</span></td>
+            <td>低（图形化）</td>
+            <td>高（商业授权）</td>
+            <td>工厂自动化、高端运动控制</td>
+          </tr>
+          <tr>
+            <td>CODESYS + EtherCAT 插件</td>
+            <td><span class="tag green">≈ 250 µs–1 ms</span></td>
+            <td>低（IEC 61131-3）</td>
+            <td>中</td>
+            <td>PLC 替代、机器控制</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</div><!-- .page -->
+
+<footer>
+  Windows SOEM EtherCAT 主站搭建方案 &nbsp;|&nbsp;
+  基于 SOEM 开源项目 (Apache 2.0) &nbsp;|&nbsp;
+  生成于 2025-05
+</footer>
+
+</body>
+</html>
