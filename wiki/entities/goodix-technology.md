@@ -3,7 +3,7 @@ type: entity
 entity_type: institution
 title: "Goodix Technology（汇顶科技）"
 date: 2026-04-27
-updated: 2026-04-27
+updated: 2026-07-14
 tags:
   - semiconductor
   - automotive
@@ -77,6 +77,18 @@ Goodix Technology（汇顶科技，股票代码：603160.SH）是中国领先的
 - [[sources/gpan-seat-project-discussion]]
 - [[sources/gpan-bom-cost-analysis]]
 - [[sources/mculess-vendor-research-report]]
+- [[sources/mculess-technology-insight-full-2026-05]]
+- [[sources/gpan-mculess-distributed-audio-v1-8]]
+- [[sources/gpan-mculess-application-analysis-v0-8]]
+- [[sources/gpan-vs-ethercat-architecture-comparison]]
+- [[sources/gpan-mculess-validation-report]]
+- [[sources/gpan-ethercat-replacement-feasibility]]
+- [[sources/gpan-spec-introduction-v0-2]]
+- [[sources/gpan-function-clarification-v4-1]]
+- [[sources/gpan-application-scenario-vsdx]]
+- [[sources/mcu-less-seats-project-2026-03]]
+- [[sources/mcu-less-auto-robot-insight]]
+- [[sources/cost-analysis-public-v0-4]]
 
 ## Evolution Log
 
@@ -84,3 +96,16 @@ Goodix Technology（汇顶科技，股票代码：603160.SH）是中国领先的
 - 2026-04-27（15 sources）：raw/articles 批次新增 5 个来源（MCU-LESS 技术对比分析、EtherCAT-GPAN 伺服验证设计、GPAN MCULess 完整验证报告、GPAN 芯片规格 V0.2、GPAN 功能澄清 V4.1），补充 GE1101 完整 IO 规格表、7 大应用场景、72-bit 帧头格式、两种初始化模式及 Force Sleep 机制等底层技术细节
 - 2026-04-27（20 sources）：raw/articles 二进制文件解析批次新增 5 个来源（PPTX V1.8/V0.8/V0.6 市场推广文件、座椅项目三方讨论 PPTX、BOM 成本核算 XLSX），补充芯片路线图（Tapeout 2026-04-15 / 工程样片 2026-08-01 / 量产 2027-03 / AECQ-100 2027-10）、完整封装矩阵（BGA196/BGA144/QFN64/QFN32 及 5G/2.5G/1G 路线图）、48V 平台综合节约约 476 元/车
 - 2026-04-28（21 sources）：raw/clippings 批次新增 1 个来源，提供行业竞品视角（ADI $1.3/12路IO/10BaseT1S；TI $0.487/13路IO；ST/Infineon LED 驱动为主）；外部调研确认 GE1101 在 IO 数量（64路）和速率（100BaseT1 vs 10BaseT1S）上具备显著竞争优势；2026 Q2 量产计划与内部 Roadmap 文件一致
+
+- 2026-07-14：强化——新来源 [MCU-less 技术洞察（详尽版）：机会分析 · 技术方案 · 执行策略] 补充描述信息
+- 2026-07-14：强化——新来源 [GPAN 车载 MCU-less 和分布式音频介绍（V1.8）] 补充描述信息
+- 2026-07-14：强化——新来源 [GPAN 车载通信应用场景价值分析（V0.8）] 补充描述信息
+- 2026-07-14：强化——新来源 [GPAN vs EtherCAT 全维度架构对比] 补充描述信息
+- 2026-07-14：强化——新来源 [GPAN MCU-less 验证报告] 补充描述信息
+- 2026-07-14：强化——新来源 [GPAN 对 EtherCAT 替代可行性说明] 补充描述信息
+- 2026-07-14：强化——新来源 [GPAN 芯片规格介绍文档（V0.2）] 补充描述信息
+- 2026-07-14：强化——新来源 [GPAN 部分功能澄清文档（V4.1）] 补充描述信息
+- 2026-07-14：强化——新来源 [GPAN 应用场景架构图（Visio）] 补充描述信息
+- 2026-07-14：强化——新来源 [MCU-Less 座椅项目讨论（V0.5）] 补充描述信息
+- 2026-07-14：强化——新来源 [MCU-less 技术在汽车和机器人领域的应用洞察] 补充描述信息
+- 2026-07-14：强化——新来源 [成本核算（V0.4 公共版）] 补充描述信息

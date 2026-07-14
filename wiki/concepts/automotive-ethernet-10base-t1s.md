@@ -2,7 +2,7 @@
 type: concept
 title: "10BASE-T1S 车载以太网"
 date: 2026-07-13
-updated: 2026-07-13
+updated: 2026-07-14
 tags:
   - automotive-ethernet
   - 10base-t1s
@@ -10,10 +10,10 @@ tags:
   - plca
   - mculess
   - rcp
-source_count: 2
+source_count: 7
 confidence: medium
 domain_volatility: medium
-last_reviewed: 2026-07-13
+last_reviewed: 2026-07-14
 aliases:
   - "10BASE-T1S 车载以太网"
   - "10BASE-T1S"
@@ -49,7 +49,18 @@ aliases:
 
 - [[sources/mculess-tech-industry-current-state]]
 - [[sources/10baset1s-automotive-ethernet-technical-analysis]]
+- [[sources/mculess-technology-insight-full-2026-05]]
+- [[sources/gpan-mculess-distributed-audio-v1-8]]
+- [[sources/gpan-mculess-application-analysis-v0-8]]
+- [[sources/gpan-spec-introduction-v0-2]]
+- [[sources/mcu-less-auto-robot-insight]]
 
 ## Evolution Log
 
 - 2026-07-13（2 sources）：概念初建，融合内部笔记「MCU-LESS 技术行业现状」（RCP/10Base-T1S 路线：ADI AD330x、NXP TJA1415，PLCA 确定性调度，最小周期 1ms，TSN 802.1AS/IEEE1588）与 10BASE-T1S 技术深度解析文章（IEEE 802.3cg 标准、PLCA、总线 25m/分支<0.1m、≥255 从节点）
+
+- 2026-07-14（7 sources）：强化——[MCU-less 技术洞察（详尽版）：机会分析 · 技术方案 · 执行策略] 与现有定义一致
+- 2026-07-14（7 sources）：强化——[GPAN 车载 MCU-less 和分布式音频介绍（V1.8）] 与现有定义一致
+- 2026-07-14（7 sources）：强化——[GPAN 车载通信应用场景价值分析（V0.8）] 与现有定义一致
+- 2026-07-14（7 sources）：强化——[GPAN 芯片规格介绍文档（V0.2）] 与现有定义一致
+- 2026-07-14（7 sources）：强化——[MCU-less 技术在汽车和机器人领域的应用洞察] 与现有定义一致

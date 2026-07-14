@@ -2,16 +2,16 @@
 type: concept
 title: "车载域控制器"
 date: 2026-07-13
-updated: 2026-07-13
+updated: 2026-07-14
 tags:
   - vehicle-domain-controller
   - eea-architecture
   - autonomous-driving
   - automotive
-source_count: 2
+source_count: 6
 confidence: low
 domain_volatility: high
-last_reviewed: 2026-07-13
+last_reviewed: 2026-07-14
 aliases:
   - "车载域控"
   - "域控制器"
@@ -46,7 +46,16 @@ aliases:
 
 - [[sources/ai-robot-vehicle-dc-data-sources]]
 - [[sources/ai-robot-vehicle-dc-tech-quick-reference]]
+- [[sources/mculess-technology-insight-full-2026-05]]
+- [[sources/gpan-mculess-distributed-audio-v1-8]]
+- [[sources/mcu-less-seats-project-2026-03]]
+- [[sources/mcu-less-technology-overview]]
 
 ## Evolution Log
 
 - 2026-07-13（2 sources）：概念初建，来源为 AI·机器人·车载域控前瞻技术数据源推荐 + 速查表（内部参考文档，2026-05），提炼域控定义、关键标准、开源生态、四维信息矩阵与跨域功能安全关注点；confidence 设为 low（来源为数据源清单而非深度技术文档）
+
+- 2026-07-14（6 sources）：强化——[MCU-less 技术洞察（详尽版）：机会分析 · 技术方案 · 执行策略] 与现有定义一致
+- 2026-07-14（6 sources）：强化——[GPAN 车载 MCU-less 和分布式音频介绍（V1.8）] 与现有定义一致
+- 2026-07-14（6 sources）：强化——[MCU-Less 座椅项目讨论（V0.5）] 与现有定义一致
+- 2026-07-14（6 sources）：强化——[MCU-less 技术概述] 与现有定义一致

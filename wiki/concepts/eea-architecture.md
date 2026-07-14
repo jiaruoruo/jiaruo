@@ -2,17 +2,17 @@
 type: concept
 title: "整车EEA架构"
 date: 2026-04-16
-updated: 2026-04-16
+updated: 2026-07-14
 tags:
   - automotive
   - eea
   - electrical-architecture
   - zonal
   - centralized-computing
-source_count: 1
+source_count: 10
 confidence: low
 domain_volatility: medium
-last_reviewed: 2026-04-16
+last_reviewed: 2026-07-14
 aliases:
   - "整车EEA架构"
   - "电子电气架构"
@@ -46,7 +46,26 @@ aliases:
 ## Sources
 
 - [[sources/distributed-gateway-communication-tdt]]
+- [[sources/mculess-technology-insight-full-2026-05]]
+- [[sources/gpan-mculess-distributed-audio-v1-8]]
+- [[sources/gpan-mculess-application-analysis-v0-8]]
+- [[sources/gpan-application-scenario-vsdx]]
+- [[sources/mcu-less-technology-insight-core]]
+- [[sources/mcu-less-application-opportunities]]
+- [[sources/mcu-less-technology-overview]]
+- [[sources/mcu-less-auto-robot-insight]]
+- [[sources/cost-analysis-public-v0-4]]
 
 ## Evolution Log
 
 - 2026-04-16（1 sources）：概念初建，来源为分布式网关通信TDT内部预研立项文档
+
+- 2026-07-14（10 sources）：强化——[MCU-less 技术洞察（详尽版）：机会分析 · 技术方案 · 执行策略] 与现有定义一致
+- 2026-07-14（10 sources）：强化——[GPAN 车载 MCU-less 和分布式音频介绍（V1.8）] 与现有定义一致
+- 2026-07-14（10 sources）：强化——[GPAN 车载通信应用场景价值分析（V0.8）] 与现有定义一致
+- 2026-07-14（10 sources）：强化——[GPAN 应用场景架构图（Visio）] 与现有定义一致
+- 2026-07-14（10 sources）：强化——[MCU-less 技术应用洞察-核心观点解读] 与现有定义一致
+- 2026-07-14（10 sources）：强化——[MCU-less 应用机会点汇总] 与现有定义一致
+- 2026-07-14（10 sources）：强化——[MCU-less 技术概述] 与现有定义一致
+- 2026-07-14（10 sources）：强化——[MCU-less 技术在汽车和机器人领域的应用洞察] 与现有定义一致
+- 2026-07-14（10 sources）：强化——[成本核算（V0.4 公共版）] 与现有定义一致

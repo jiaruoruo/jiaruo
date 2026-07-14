@@ -2,17 +2,17 @@
 type: concept
 title: "时间敏感网络"
 date: 2026-04-16
-updated: 2026-04-16
+updated: 2026-07-14
 tags:
   - networking
   - tsn
   - real-time
   - automotive
   - ethernet
-source_count: 1
+source_count: 7
 confidence: low
 domain_volatility: low
-last_reviewed: 2026-04-16
+last_reviewed: 2026-07-14
 aliases:
   - "时间敏感网络"
   - "Time-Sensitive Networking"
@@ -44,7 +44,20 @@ aliases:
 ## Sources
 
 - [[sources/distributed-gateway-communication-tdt]]
+- [[sources/mculess-technology-insight-full-2026-05]]
+- [[sources/ethercat-gpan-validation-design-2026-04]]
+- [[sources/ethercat-industry-report-2025]]
+- [[sources/gpan-mculess-distributed-audio-v1-8]]
+- [[sources/gpan-mculess-application-analysis-v0-8]]
+- [[sources/packet-analysis-ethercat-gpan]]
 
 ## Evolution Log
 
 - 2026-04-16（1 sources）：概念初建，来源为分布式网关通信TDT内部预研立项文档
+
+- 2026-07-14（7 sources）：强化——[MCU-less 技术洞察（详尽版）：机会分析 · 技术方案 · 执行策略] 与现有定义一致
+- 2026-07-14（7 sources）：强化——[EtherCAT 与 GPAN 多伺服电机同步控制技术验证方案] 与现有定义一致
+- 2026-07-14（7 sources）：强化——[EtherCAT 行业应用与实现方案调研报告 2025] 与现有定义一致
+- 2026-07-14（7 sources）：强化——[GPAN 车载 MCU-less 和分布式音频介绍（V1.8）] 与现有定义一致
+- 2026-07-14（7 sources）：强化——[GPAN 车载通信应用场景价值分析（V0.8）] 与现有定义一致
+- 2026-07-14（7 sources）：强化——[EtherCAT/GPAN 抓包分析] 与现有定义一致

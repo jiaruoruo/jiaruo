@@ -2,17 +2,17 @@
 type: concept
 title: "人形机器人供应链"
 date: 2026-05-17
-updated: 2026-05-17
+updated: 2026-07-14
 tags:
   - humanoid-robot
   - supply-chain
   - bom
   - actuator
   - manufacturing
-source_count: 1
+source_count: 2
 confidence: low
 domain_volatility: high
-last_reviewed: 2026-05-17
+last_reviewed: 2026-07-14
 aliases:
   - "人形机器人供应链"
   - "Humanoid Robot Supply Chain"
@@ -60,7 +60,10 @@ aliases:
 ## Sources
 
 - [[sources/mckinsey-humanoid-robot-bom-supply-chain]]
+- [[sources/humanoid-robot-oem-supplier-opportunities]]
 
 ## Evolution Log
 
 - 2026-05-17（1 sources）：概念初建，来源为麦肯锡《人形机器人 BOM 与供应链》研究报告；提出执行器成本占比 40-60%、前模块化阶段 OEM 垂直整合逻辑、供应链三级风险分层框架
+
+- 2026-07-14（2 sources）：强化——[人形机器人 OEM/供应商机会分析] 与现有定义一致

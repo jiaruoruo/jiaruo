@@ -2,7 +2,7 @@
 type: entity
 title: "特斯拉 Optimus"
 date: 2026-04-15
-updated: 2026-05-17
+updated: 2026-07-14
 tags:
   - company
   - humanoid-robot
@@ -45,9 +45,16 @@ aliases:
 - [[sources/tesla-optimus-dexterous-hand-patents-2026]]
 - [[sources/honor-robot-china-suppliers-2026]]
 - [[sources/mckinsey-humanoid-robot-bom-supply-chain]]
+- [[sources/mculess-technology-insight-full-2026-05]]
+- [[sources/mcu-less-auto-robot-insight]]
+- [[sources/humanoid-robot-oem-supplier-opportunities]]
 
 ## Evolution Log
 
 - 2026-04-15（1 sources）：实体页初建，来源为人形机器人技术研究及快速原型建设报告
 - 2026-05-04（3 sources）：更新——专利来源补充 Gen V3 灵巧手 5 项 PCT 专利（WO 2026/080701 等）25 DoF 执行器全前移/腱绳驱动/柔性复合材料无轴承关节；荣耀机器人报告补充中国供应商生态背景
 - 2026-05-17（4 sources）：强化——麦肯锡 BOM 报告新增：Gen 3 手部 50+ 执行器（>全身 28 个关节执行器）、BOM $46,000（中国供应商）vs $131,000（无中国供应商）定量成本对比、永磁体供应约束已影响实际生产的公开声明
+
+- 2026-07-14：强化——新来源 [MCU-less 技术洞察（详尽版）：机会分析 · 技术方案 · 执行策略] 补充描述信息
+- 2026-07-14：强化——新来源 [MCU-less 技术在汽车和机器人领域的应用洞察] 补充描述信息
+- 2026-07-14：强化——新来源 [人形机器人 OEM/供应商机会分析] 补充描述信息

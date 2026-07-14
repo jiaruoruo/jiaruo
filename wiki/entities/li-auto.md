@@ -2,7 +2,7 @@
 type: entity
 title: "理想汽车"
 date: 2026-04-16
-updated: 2026-04-25
+updated: 2026-07-14
 tags:
   - automotive
   - chinese-oem
@@ -42,9 +42,12 @@ aliases:
 - [[sources/distributed-gateway-communication-tdt]]
 - [[sources/li-auto-mach-m100-deep-dive]]
 - [[sources/li-auto-m100-paper-translation]]
+- [[sources/mculess-technology-insight-full-2026-05]]
 
 ## Evolution Log
 
 - 2026-04-16（1 sources）：实体页初建，来源为分布式网关通信TDT内部预研立项文档；记录理想汽车 EEA 3.0 架构详细数据
 - 2026-04-25（2 sources）：新增维度——自研芯片 M100 深度剖析，补充理想汽车在芯片自研方向的布局；"AI算力无关紧要，编排调度才是核心"的设计哲学值得关注
 - 2026-04-25（3 sources）：强化——M100 论文全文翻译（图片版）与现有定义一致
+
+- 2026-07-14：强化——新来源 [MCU-less 技术洞察（详尽版）：机会分析 · 技术方案 · 执行策略] 补充描述信息

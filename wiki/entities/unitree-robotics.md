@@ -2,7 +2,7 @@
 type: entity
 title: "宇树机器人"
 date: 2026-04-15
-updated: 2026-05-17
+updated: 2026-07-14
 tags:
   - company
   - robotics
@@ -45,9 +45,16 @@ aliases:
 - [[sources/humanoid-robot-research-rapid-prototyping]]
 - [[sources/honor-robot-china-suppliers-2026]]
 - [[sources/mckinsey-humanoid-robot-bom-supply-chain]]
+- [[sources/mculess-technology-insight-full-2026-05]]
+- [[sources/mcu-less-auto-robot-insight]]
+- [[sources/humanoid-robot-oem-supplier-opportunities]]
 
 ## Evolution Log
 
 - 2026-04-15（1 sources）：实体页初建，来源为人形机器人技术研究及快速原型建设报告
 - 2026-05-04（2 sources）：更新——荣耀机器人报告补充国产供应商生态背景，宇树作为中国机器人代表企业
 - 2026-05-17（3 sources）：强化——麦肯锡 BOM 报告新增：G1 起售价约 $13,500 定量数据、中国产业集群结构性成本优势（EV 溢出效应、供应商集群、永磁体/轴承/电机全球份额）的战略定位
+
+- 2026-07-14：强化——新来源 [MCU-less 技术洞察（详尽版）：机会分析 · 技术方案 · 执行策略] 补充描述信息
+- 2026-07-14：强化——新来源 [MCU-less 技术在汽车和机器人领域的应用洞察] 补充描述信息
+- 2026-07-14：强化——新来源 [人形机器人 OEM/供应商机会分析] 补充描述信息

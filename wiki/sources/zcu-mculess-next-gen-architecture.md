@@ -7,7 +7,7 @@ source_url: https://mp.weixin.qq.com/s/9zGF6DsvKbQ2lS0woBb6tA
 author: 奔宙
 published: 2026-04-28
 ingested: 2026-04-28
-raw_sha256: fb0822785a21530964f99f95de033a9ba18714576cd55af309f23d3397e97771
+raw_sha256: d10b2374e3204ac24d13871962b8a08b481de22e7d8488385770aca62c23aab6
 raw_file: "raw/clippings/2026-04-28下一代汽车电子架构革命：MCU Less技术如何重塑区域控制器设计？.md"
 tags: [mculess, zcu, eea, soa, automotive]
 concepts: [mculess-architecture, eea-architecture, zonal-gateway]

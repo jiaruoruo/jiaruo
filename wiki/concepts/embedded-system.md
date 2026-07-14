@@ -2,14 +2,14 @@
 type: concept
 title: "嵌入式系统"
 date: 2026-06-27
-updated: 2026-06-27
+updated: 2026-07-14
 tags:
   - embedded
   - system
-source_count: 2
+source_count: 6
 confidence: low
 domain_volatility: low
-last_reviewed: 2026-06-27
+last_reviewed: 2026-07-14
 aliases:
   - "嵌入式系统"
   - "Embedded System"
@@ -41,7 +41,16 @@ aliases:
 
 - [[sources/arm-architecture-course-notes-buaa]]
 - [[sources/arm-chip-selection-guide-embedded]]
+- [[sources/ethercat-industry-report-2025]]
+- [[sources/ethercat-igh-master-plan]]
+- [[sources/ethercat-team-planning-report-2026]]
+- [[sources/windows-soem-ethercat-master]]
 
 ## Evolution Log
 
 - 2026-06-27（2 sources）：概念初建，从芯片设计/制造来源批量提取，消除 source 页断链
+
+- 2026-07-14（6 sources）：强化——[EtherCAT 行业应用与实现方案调研报告 2025] 与现有定义一致
+- 2026-07-14（6 sources）：强化——[EtherCAT IgH 主站搭建方案] 与现有定义一致
+- 2026-07-14（6 sources）：强化——[机器人行业 EtherCAT 总线通信开发团队规划报告] 与现有定义一致
+- 2026-07-14（6 sources）：强化——[Windows SOEM EtherCAT 主站搭建] 与现有定义一致

@@ -2,7 +2,7 @@
 type: concept
 title: "GPAN 通信协议"
 date: 2026-04-15
-updated: 2026-04-27
+updated: 2026-07-14
 tags:
   - gpan
   - industrial-network
@@ -10,10 +10,10 @@ tags:
   - robotics
   - automotive
   - mculess
-source_count: 24
+source_count: 40
 confidence: medium
 domain_volatility: medium
-last_reviewed: 2026-07-13
+last_reviewed: 2026-07-14
 aliases:
   - "GPAN 通信协议"
   - "GPAN"
@@ -97,6 +97,22 @@ GPAN（通用精密自动化网络，General Precision Automation Network）是�
 - [[sources/gpan-seat-project-discussion]]
 - [[sources/gpan-bom-cost-analysis]]
 - [[sources/mculess-tech-industry-current-state]]
+- [[sources/mculess-technology-insight-full-2026-05]]
+- [[sources/ethercat-gpan-validation-design-2026-04]]
+- [[sources/gpan-mculess-distributed-audio-v1-8]]
+- [[sources/gpan-mculess-application-analysis-v0-8]]
+- [[sources/gpan-vs-ethercat-architecture-comparison]]
+- [[sources/gpan-mculess-validation-report]]
+- [[sources/gpan-ethercat-replacement-feasibility]]
+- [[sources/gpan-spec-introduction-v0-2]]
+- [[sources/gpan-function-clarification-v4-1]]
+- [[sources/gpan-application-scenario-vsdx]]
+- [[sources/mcu-less-seats-project-2026-03]]
+- [[sources/mcu-less-application-opportunities]]
+- [[sources/mcu-less-auto-robot-insight]]
+- [[sources/packet-analysis-ethercat-gpan]]
+- [[sources/humanoid-robot-oem-supplier-opportunities]]
+- [[sources/cost-analysis-public-v0-4]]
 
 ## Evolution Log
 
@@ -106,3 +122,20 @@ GPAN（通用精密自动化网络，General Precision Automation Network）是�
 - 2026-04-27（13 sources）：新增 Goodix GPAN 车载通信完整资料集（GE1101 芯片手册/MCULess 方案调研/验证报告/硬件设计/理想汽车座椅售前方案），更新 GE1101 芯片具体规格（BGA144/BGA196 封装、PTP 硬件精度 ≤40ns）、MCULess 实测延迟（CAN→CAN 21~62μs / CAN→ETH 43~63μs / 音频 40μs）、ADI 10BaseT1S 竞品对比表；confidence 由 low 提升为 medium
 - 2026-04-27（18 sources）：raw/articles 批次新增 5 个来源（MCU-LESS 技术对比文档、EtherCAT-GPAN 验证设计 HTML、GPAN MCULess 验证报告 HTML、GPAN 芯片规格 V0.2、GPAN 功能澄清文档 V4.1），补充帧格式（72-bit 头 + 音频 + 子块 + HACK）、两种初始化模式（MCU 软件 ~190μs vs 硬件自动组网 <15ms）、Force Sleep/TC10 唤醒机制等细节
 - 2026-04-27（23 sources）：raw/articles 二进制文件解析批次新增 5 个来源（PPTX V1.8 MCULess+分布式音频介绍/PPTX V0.8 应用场景分析/PPTX V0.6 早期草稿/PPTX 座椅项目讨论/XLSX BOM 成本核算），新增分布式音频 ANC/RNC 完整对比表（Jitter GPAN <1.2ns normal/~100ps perf vs A2B S1:1.57ns/S10:5.5ns）、线束节省 65%、芯片路线图（Tapeout 2026-04-15/送样 2026-08-01/量产 2027-03）、座椅项目 4 种拓扑方案对比、TSN 5 大痛点分析、48V 音频方案节约 315 元量化数据
+
+- 2026-07-14（40 sources）：强化——[MCU-less 技术洞察（详尽版）：机会分析 · 技术方案 · 执行策略] 与现有定义一致
+- 2026-07-14（40 sources）：强化——[EtherCAT 与 GPAN 多伺服电机同步控制技术验证方案] 与现有定义一致
+- 2026-07-14（40 sources）：强化——[GPAN 车载 MCU-less 和分布式音频介绍（V1.8）] 与现有定义一致
+- 2026-07-14（40 sources）：强化——[GPAN 车载通信应用场景价值分析（V0.8）] 与现有定义一致
+- 2026-07-14（40 sources）：强化——[GPAN vs EtherCAT 全维度架构对比] 与现有定义一致
+- 2026-07-14（40 sources）：强化——[GPAN MCU-less 验证报告] 与现有定义一致
+- 2026-07-14（40 sources）：强化——[GPAN 对 EtherCAT 替代可行性说明] 与现有定义一致
+- 2026-07-14（40 sources）：强化——[GPAN 芯片规格介绍文档（V0.2）] 与现有定义一致
+- 2026-07-14（40 sources）：强化——[GPAN 部分功能澄清文档（V4.1）] 与现有定义一致
+- 2026-07-14（40 sources）：强化——[GPAN 应用场景架构图（Visio）] 与现有定义一致
+- 2026-07-14（40 sources）：强化——[MCU-Less 座椅项目讨论（V0.5）] 与现有定义一致
+- 2026-07-14（40 sources）：强化——[MCU-less 应用机会点汇总] 与现有定义一致
+- 2026-07-14（40 sources）：强化——[MCU-less 技术在汽车和机器人领域的应用洞察] 与现有定义一致
+- 2026-07-14（40 sources）：强化——[EtherCAT/GPAN 抓包分析] 与现有定义一致
+- 2026-07-14（40 sources）：强化——[人形机器人 OEM/供应商机会分析] 与现有定义一致
+- 2026-07-14（40 sources）：强化——[成本核算（V0.4 公共版）] 与现有定义一致

@@ -2,17 +2,17 @@
 type: concept
 title: "区域网关"
 date: 2026-04-16
-updated: 2026-04-28
+updated: 2026-07-14
 tags:
   - automotive
   - eea
   - gateway
   - zcu
   - distributed-control
-source_count: 3
+source_count: 6
 confidence: medium
 domain_volatility: medium
-last_reviewed: 2026-04-28
+last_reviewed: 2026-07-14
 aliases:
   - "区域网关"
   - "分布式网关"
@@ -55,8 +55,15 @@ aliases:
 - [[sources/distributed-gateway-communication-tdt]]
 - [[sources/zcu-market-research-2025]]
 - [[sources/zcu-mculess-next-gen-architecture]]
+- [[sources/mculess-technology-insight-full-2026-05]]
+- [[sources/gpan-mculess-distributed-audio-v1-8]]
+- [[sources/mcu-less-technology-overview]]
 
 ## Evolution Log
 
 - 2026-04-16（1 sources）：概念初建，来源为分布式网关通信TDT内部预研立项文档
 - 2026-04-28（3 sources）：新增佐思汽研市场报告和架构分析文章，补充中国市场 ZCU 渗透率（8.83%）、搭载量（>200 万辆）、六大技术趋势、主要 OEM/Tier1 方案对比；补充 ZCU 向 MCU-less 演进趋势
+
+- 2026-07-14（6 sources）：强化——[MCU-less 技术洞察（详尽版）：机会分析 · 技术方案 · 执行策略] 与现有定义一致
+- 2026-07-14（6 sources）：强化——[GPAN 车载 MCU-less 和分布式音频介绍（V1.8）] 与现有定义一致
+- 2026-07-14（6 sources）：强化——[MCU-less 技术概述] 与现有定义一致

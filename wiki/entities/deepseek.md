@@ -2,7 +2,7 @@
 type: entity
 title: "DeepSeek"
 date: 2026-04-25
-updated: 2026-04-25
+updated: 2026-07-14
 tags:
   - llm
   - open-source
@@ -39,8 +39,11 @@ DeepSeek 是幻方量化（High-Flyer）旗下的 AI 研究机构，以开源大
 
 - [[sources/deepseek-v4-technical-analysis]]
 - [[sources/llm-benchmark-comparison-2026]]
+- [[sources/llm-benchmark-comparison-2026-04]]
 
 ## Evolution Log
 
 - 2026-04-25（1 sources）：实体页初建，来源为 DeepSeek V4 技术分析文章；记录 V4 系列的架构创新与 DeepSeek 一贯的效率优先路线
 - 2026-04-27（2 sources）：强化——benchmark 横向对比数据补充 DeepSeek V4 竞争力量化数据：Codeforces 3206（全球第 23 名）、LiveCodeBench 93.5 第一、Apex Shortlist 90.2 第一；同时标注 HLE（37.7）和 SimpleQA（57.9）相对弱项
+
+- 2026-07-14：强化——新来源 [顶级大模型 Benchmark 全面对比解析（2026 年 4 月）] 补充描述信息

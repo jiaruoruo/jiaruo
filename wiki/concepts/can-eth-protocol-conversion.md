@@ -2,17 +2,17 @@
 type: concept
 title: "CAN-ETH 协议转换"
 date: 2026-04-16
-updated: 2026-04-16
+updated: 2026-07-14
 tags:
   - automotive
   - can-bus
   - ethernet
   - protocol
   - gateway
-source_count: 1
-confidence: low
+source_count: 3
+confidence: medium
 domain_volatility: medium
-last_reviewed: 2026-04-16
+last_reviewed: 2026-07-14
 aliases:
   - "CAN-ETH 协议转换"
   - "CAN to Ethernet Protocol Conversion"
@@ -45,7 +45,12 @@ CAN-ETH 协议转换是指在整车骨干网由 CAN 总线向以太网（Etherne
 ## Sources
 
 - [[sources/distributed-gateway-communication-tdt]]
+- [[sources/gpan-mculess-distributed-audio-v1-8]]
+- [[sources/gpan-spec-introduction-v0-2]]
 
 ## Evolution Log
 
 - 2026-04-16（1 sources）：概念初建，来源为分布式网关通信TDT内部预研立项文档
+
+- 2026-07-14（3 sources）：强化——[GPAN 车载 MCU-less 和分布式音频介绍（V1.8）] 与现有定义一致
+- 2026-07-14（3 sources）：强化——[GPAN 芯片规格介绍文档（V0.2）] 与现有定义一致

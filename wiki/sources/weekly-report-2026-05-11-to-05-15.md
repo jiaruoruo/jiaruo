@@ -8,7 +8,7 @@ author: "internal-note"
 tags: ["weekly-report", "notes"]
 processed: true
 raw_file: "raw/notes/weekly-report-2026-05-11-to-05-15.md"
-raw_sha256: "b10119d7c49d3b6dbb24dd225265518cc312c89a7e78acdd591c54318ba32263"
+raw_sha256: "c86821af7bd7e28cf07f650bf2ea7bd983ae8bed36390499c1bbda1186fceddb"
 last_verified: 2026-07-13
 possibly_outdated: false
 language: "zh"

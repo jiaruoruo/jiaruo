@@ -12,7 +12,7 @@ related_concepts:
 related_entities:
   - entities/tesla-optimus
 raw_file: "raw/clippings/2026-05-02特斯拉公开五份灵巧手专利，“最难部分”难在哪里？.md"
-raw_sha256: 4f28febffaf5cb32769688eaf9cf86a8722e92af7a7a0e984ce3225595cfd501
+raw_sha256: 42487fed689b8151d6e44a56d1a63c554dcb0d1c9dc6577419f0856578cca83d
 last_verified: 2026-06-27
 ---
 

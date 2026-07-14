@@ -2,7 +2,7 @@
 type: entity
 title: "Claude Opus 4"
 date: 2026-07-13
-updated: 2026-07-13
+updated: 2026-07-14
 tags:
   - llm
   - anthropic
@@ -41,7 +41,10 @@ Claude Opus 4 是 Anthropic 于 2025 年发布的旗舰大模型，属 Opus 系�
 ## Sources
 
 - [[sources/agent-six-layer-architecture]]
+- [[sources/llm-benchmark-comparison-2026-04]]
 
 ## Evolution Log
 
 - 2026-07-13（1 sources）：实体初建，来源为 Knock「Agent 6 层架构」感知层技术栈推荐
+
+- 2026-07-14：强化——新来源 [顶级大模型 Benchmark 全面对比解析（2026 年 4 月）] 补充描述信息

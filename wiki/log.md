@@ -7,6 +7,8 @@ graph-excluded: true
 
 > 仅追加，禁止修改已有记录。格式：`YYYY-MM-DD HH:MM | 操作类型 | 说明`
 
+2026-07-14 17:10 | ingest | 批量摄入 raw/articles 全部 25 个文件（去重后 23 个 source 页），覆盖三大主题簇：①GPAN/MCU-less 车载通信（汇顶 V1.8/V0.8 PPT + 规格文档 + 功能澄清 + 验证报告 + 替代可行性 + 成本核算 + 应用架构图 + 座椅项目 + 机会点汇总 + 技术概述/洞察/核心解读 共 14 源）②EtherCAT 工业总线（行业报告 + IgH 主站方案 + 团队规划 + SOEM Windows 搭建 + GPAN 验证设计 + GPAN vs EtherCAT 对比 + 抓包分析 共 7 源）③LLM Benchmark 对比（6 模型 22 项基准 1 源）④人形机器人 OEM 机会（1 源）。安装 python-docx/python-pptx/openpyxl/bs4 抽取二进制文本。更新 17 个已有概念页（gpan-communication 24→40、mculess-architecture 28→44、ethercat-realtime-communication 9→18 等）和 8 个已有实体页（goodix-technology +12、tesla-optimus +3、unitree-robotics +3 等）。无新概念/实体页创建——全部命中已有概念。Sources 205→228，ratio 23:1→25:1。
+
 <!-- 日志条目从此行之后追加 -->
 2026-07-13 22:50 | synthesis | 按 gap-report 第六节建议落地「Agent 主题归一」为 `wiki/synthesis/agent-theme-synthesis.md`：将 agent-architecture（6层认知-行动闭环）/ agent-harness（Model+Harness 基础设施）/ agent-security-governance（生产安全治理）归并为三层抽象栈，并纳入 agent-planning/agent-memory/agent-feedback-loop/tool-use-mcp/model-context-protocol 支撑概念与 MCP 连接层；含 Stage0 反向检验（6层架构单来源回音室、安全治理仅1源、三层归并属编辑性框架）；confidence: low。同步更新 agent-architecture 概念页 My Position 指向本综合，overview/index 同步（Synthesis 8→9，比 23:1）。注：用户选择不执行 MERGE（重定向合并），改走 synthesis。
 2026-07-13 21:00 | reflect | REFLECT 四阶段：Stage1 模式扫描（脚本提取 74 概念/8 synthesis，来源-综合比 34:1→26:1，仍超 30 阈值的已回落）；Stage0+2 新增 2 篇 synthesis：①vehicle-comms-protocols-synthesis（GPAN/EtherCAT/10BASE-T1S/ZCU 三路线互补共存，medium；Counter-evidence 显式标注 GPAN 单一方来源回音室风险、供应集中、工具链未成熟）；②sdv-vla-agent-convergence-synthesis（端到端自动驾驶×具身智能×域控架构收敛，方法论同构，low；标注薄证据/低置信简报共现回音室风险）。Stage3 输出 gap-report-2026-07-13.md（孤立概念 16 个待深化、TSN/CAN-ETH 薄覆盖、端到端自动驾驶深度缺失）。更新 overview/index/log。

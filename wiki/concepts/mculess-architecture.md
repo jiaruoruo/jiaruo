@@ -2,17 +2,17 @@
 type: concept
 title: "MCULess 架构"
 date: 2026-04-27
-updated: 2026-04-28
+updated: 2026-07-14
 tags:
   - mculess
   - automotive
   - eea
   - zonal-gateway
   - bom-cost
-source_count: 28
+source_count: 44
 confidence: high
 domain_volatility: high
-last_reviewed: 2026-07-13
+last_reviewed: 2026-07-14
 aliases:
   - "MCULess 架构"
   - "MCULess"
@@ -124,6 +124,22 @@ MCULess 架构是 EEA 3.0 向 EEA 4.0（软件定义汽车）演进的重要过�
 - [[sources/zcu-market-research-2025]]
 - [[sources/sdv-architecture-revolution]]
 - [[sources/mculess-tech-industry-current-state]]
+- [[sources/mculess-technology-insight-full-2026-05]]
+- [[sources/gpan-mculess-distributed-audio-v1-8]]
+- [[sources/gpan-mculess-application-analysis-v0-8]]
+- [[sources/gpan-vs-ethercat-architecture-comparison]]
+- [[sources/gpan-mculess-validation-report]]
+- [[sources/gpan-ethercat-replacement-feasibility]]
+- [[sources/gpan-spec-introduction-v0-2]]
+- [[sources/gpan-function-clarification-v4-1]]
+- [[sources/gpan-application-scenario-vsdx]]
+- [[sources/mcu-less-seats-project-2026-03]]
+- [[sources/mcu-less-technology-insight-core]]
+- [[sources/mcu-less-application-opportunities]]
+- [[sources/mcu-less-technology-overview]]
+- [[sources/mcu-less-auto-robot-insight]]
+- [[sources/humanoid-robot-oem-supplier-opportunities]]
+- [[sources/cost-analysis-public-v0-4]]
 
 ## Evolution Log
 
@@ -133,3 +149,20 @@ MCULess 架构是 EEA 3.0 向 EEA 4.0（软件定义汽车）演进的重要过�
 - 2026-04-27（17 sources）：raw/articles 二进制文件解析批次新增 5 个来源，补充 SDV 演进 4 阶段路线（现有→ZCU含音频→逐步去MCU→全车集中）、座椅项目 4 种拓扑候选方案（推荐大环方案 D）、ZCU 5 层软件架构（GPAN SDK→RCP抽象层→设备抽象层→原子服务→应用）、BOM 三级网络节约 20 元/车、48V 音频节约 315 元/车、ASIL-B 安全支持
 - 2026-04-28（18 sources）：raw/clippings 批次新增 1 个来源，补充全行业 MCU-less 竞品对比表（ADI/TI/NXP/ST/Infineon/汇顶科技 GE1101）；GE1101 以 64 路 IO + 100BaseT1 + ~14 RMB 价格在规格上最全；确认 2026 Q2 量产计划
 - 2026-04-28（27 sources）：raw/clippings 批次新增 9 个来源（多篇深度技术文章），重大知识更新：①三大技术流派（10BASE-T1S+RCP / CAN FD Light / UART over CAN）完整对比；②RCP 协议标准化历史（宝马 2023 TC14 提案→2024 TC18 Draft 0.2）；③RCP 芯片选型对比表（ADI AD3301/AD3304/AD3305、Onsemi T30HM1TS3600/T30HM1TS3610、Microchip LAN8660、汇顶 GE1101、ST 1991dlh32）；④量化成本数据（传统 ECU BOM $15–25 → MCU-less $8–12，PCB 25×35mm→15×20mm，线束减重 50–60%）；⑤中国市场 ZCU 2024 渗透率 8.83%、搭载量>200 万辆；⑥Onsemi T30HM1TS3600 芯片完整架构（PHY/MAC/RCP CORE/管理模块/PIN MUX、全接口规格、多级电源管理）；⑦易冲半导体 CPSQ5355 车灯 MCU-less 案例（ASIL-B，65V，2A/ch，UART 2Mbps，OTP）；⑧双重解耦概念（软硬解耦+软软解耦）
+
+- 2026-07-14（44 sources）：强化——[MCU-less 技术洞察（详尽版）：机会分析 · 技术方案 · 执行策略] 与现有定义一致
+- 2026-07-14（44 sources）：强化——[GPAN 车载 MCU-less 和分布式音频介绍（V1.8）] 与现有定义一致
+- 2026-07-14（44 sources）：强化——[GPAN 车载通信应用场景价值分析（V0.8）] 与现有定义一致
+- 2026-07-14（44 sources）：强化——[GPAN vs EtherCAT 全维度架构对比] 与现有定义一致
+- 2026-07-14（44 sources）：强化——[GPAN MCU-less 验证报告] 与现有定义一致
+- 2026-07-14（44 sources）：强化——[GPAN 对 EtherCAT 替代可行性说明] 与现有定义一致
+- 2026-07-14（44 sources）：强化——[GPAN 芯片规格介绍文档（V0.2）] 与现有定义一致
+- 2026-07-14（44 sources）：强化——[GPAN 部分功能澄清文档（V4.1）] 与现有定义一致
+- 2026-07-14（44 sources）：强化——[GPAN 应用场景架构图（Visio）] 与现有定义一致
+- 2026-07-14（44 sources）：强化——[MCU-Less 座椅项目讨论（V0.5）] 与现有定义一致
+- 2026-07-14（44 sources）：强化——[MCU-less 技术应用洞察-核心观点解读] 与现有定义一致
+- 2026-07-14（44 sources）：强化——[MCU-less 应用机会点汇总] 与现有定义一致
+- 2026-07-14（44 sources）：强化——[MCU-less 技术概述] 与现有定义一致
+- 2026-07-14（44 sources）：强化——[MCU-less 技术在汽车和机器人领域的应用洞察] 与现有定义一致
+- 2026-07-14（44 sources）：强化——[人形机器人 OEM/供应商机会分析] 与现有定义一致
+- 2026-07-14（44 sources）：强化——[成本核算（V0.4 公共版）] 与现有定义一致

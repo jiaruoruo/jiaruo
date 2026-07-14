@@ -2,16 +2,16 @@
 type: concept
 title: "EtherCAT 实时通信"
 date: 2026-04-15
-updated: 2026-04-15
+updated: 2026-07-14
 tags:
   - ethercat
   - real-time-communication
   - robotics
   - fieldbus
-source_count: 9
+source_count: 18
 confidence: low
 domain_volatility: low
-last_reviewed: 2026-04-15
+last_reviewed: 2026-07-14
 aliases:
   - "EtherCAT 实时通信"
   - "EtherCAT"
@@ -57,6 +57,15 @@ EtherCAT（Ethernet for Control Automation Technology）是一种基于以太网
 - [[sources/humanoid-robot-research-rapid-prototyping]]
 - [[sources/ethercat-gpan-servo-validation]]
 - [[sources/robot-sensor-actuator-communication]]
+- [[sources/ethercat-gpan-validation-design-2026-04]]
+- [[sources/ethercat-industry-report-2025]]
+- [[sources/ethercat-igh-master-plan]]
+- [[sources/ethercat-team-planning-report-2026]]
+- [[sources/gpan-vs-ethercat-architecture-comparison]]
+- [[sources/gpan-ethercat-replacement-feasibility]]
+- [[sources/windows-soem-ethercat-master]]
+- [[sources/packet-analysis-ethercat-gpan]]
+- [[sources/humanoid-robot-oem-supplier-opportunities]]
 
 ## Evolution Log
 
@@ -64,3 +73,13 @@ EtherCAT（Ethernet for Control Automation Technology）是一种基于以太网
 - 2026-04-15（2 sources）：修正：分布式时钟精度从「<1μs」更新为「<100ns（IEEE 1588增强版）」，依据瑞萨官方技术文档；补充市场份额数据（35%，2024年）、芯片级实现细节及最小周期（0.5ms/2kHz）
 - 2026-04-15（4 sources）：强化——EtherCAT & GPAN 验证方案与传感器沙盘与现有定义一致；新增 GPAN 对比数据（时钟同步目标≤2μs、最小周期31.25μs）及状态估计延迟需求背景
 - 2026-04-15（9 sources）：强化——瑞萨多款产品（RA8T2/RZT2H/RZT2N/RobotPlatform/Guide）一致印证 EtherCAT 在机器人伺服中的核心地位；补充最低电机控制周期0.8μs（瑞萨 robotic platform）
+
+- 2026-07-14（18 sources）：强化——[EtherCAT 与 GPAN 多伺服电机同步控制技术验证方案] 与现有定义一致
+- 2026-07-14（18 sources）：强化——[EtherCAT 行业应用与实现方案调研报告 2025] 与现有定义一致
+- 2026-07-14（18 sources）：强化——[EtherCAT IgH 主站搭建方案] 与现有定义一致
+- 2026-07-14（18 sources）：强化——[机器人行业 EtherCAT 总线通信开发团队规划报告] 与现有定义一致
+- 2026-07-14（18 sources）：强化——[GPAN vs EtherCAT 全维度架构对比] 与现有定义一致
+- 2026-07-14（18 sources）：强化——[GPAN 对 EtherCAT 替代可行性说明] 与现有定义一致
+- 2026-07-14（18 sources）：强化——[Windows SOEM EtherCAT 主站搭建] 与现有定义一致
+- 2026-07-14（18 sources）：强化——[EtherCAT/GPAN 抓包分析] 与现有定义一致
+- 2026-07-14（18 sources）：强化——[人形机器人 OEM/供应商机会分析] 与现有定义一致

@@ -2,17 +2,17 @@
 type: concept
 title: "机器人软件架构"
 date: 2026-04-25
-updated: 2026-04-25
+updated: 2026-07-14
 tags:
   - robot
   - software-architecture
   - ros
   - real-time
   - embodied-ai
-source_count: 1
+source_count: 7
 confidence: low
 domain_volatility: medium
-last_reviewed: 2026-04-25
+last_reviewed: 2026-07-14
 aliases:
   - "机器人软件架构"
   - "Robot Software Architecture"
@@ -45,7 +45,20 @@ aliases:
 ## Sources
 
 - [[sources/robot-software-architecture-intro]]
+- [[sources/ethercat-gpan-validation-design-2026-04]]
+- [[sources/ethercat-industry-report-2025]]
+- [[sources/ethercat-igh-master-plan]]
+- [[sources/ethercat-team-planning-report-2026]]
+- [[sources/gpan-vs-ethercat-architecture-comparison]]
+- [[sources/gpan-ethercat-replacement-feasibility]]
 
 ## Evolution Log
 
 - 2026-04-25（1 sources）：概念初建，来源为具身智能研发基础入门文章；建立5层架构+两大路线+人形机器人适配的完整认知框架
+
+- 2026-07-14（7 sources）：强化——[EtherCAT 与 GPAN 多伺服电机同步控制技术验证方案] 与现有定义一致
+- 2026-07-14（7 sources）：强化——[EtherCAT 行业应用与实现方案调研报告 2025] 与现有定义一致
+- 2026-07-14（7 sources）：强化——[EtherCAT IgH 主站搭建方案] 与现有定义一致
+- 2026-07-14（7 sources）：强化——[机器人行业 EtherCAT 总线通信开发团队规划报告] 与现有定义一致
+- 2026-07-14（7 sources）：强化——[GPAN vs EtherCAT 全维度架构对比] 与现有定义一致
+- 2026-07-14（7 sources）：强化——[GPAN 对 EtherCAT 替代可行性说明] 与现有定义一致

@@ -2,17 +2,17 @@
 type: concept
 title: "功能安全"
 date: 2026-06-27
-updated: 2026-06-27
+updated: 2026-07-14
 tags:
   - functional-safety
   - automotive
   - iso26262
   - asil
   - robotics
-source_count: 10
+source_count: 14
 confidence: medium
 domain_volatility: low
-last_reviewed: 2026-07-13
+last_reviewed: 2026-07-14
 aliases:
   - "功能安全"
   - "Functional Safety"
@@ -62,8 +62,17 @@ aliases:
 - [[sources/mckinsey-humanoid-robot-bom-supply-chain]]
 - [[sources/iso-26262-exam-review-notes]]
 - [[sources/iso-26262-exam-practice-questions]]
+- [[sources/mculess-technology-insight-full-2026-05]]
+- [[sources/ethercat-team-planning-report-2026]]
+- [[sources/mcu-less-seats-project-2026-03]]
+- [[sources/mcu-less-application-opportunities]]
 
 ## Evolution Log
 
 - 2026-06-27（8 sources）：概念初建（REFLECT gap 回填）。横跨汽车 EEA、MCULess、机器人半导体三大簇，从已有 8 个来源提炼 ASIL 分级、Limp-Home 降级机制、MCULess 域适用边界（ASIL-D 禁用）、安全 MCU 积累等核心内容；confidence 设为 medium。
 - 2026-07-13（10 sources）：强化——内部 ISO 26262 考试复习要点与模拟题库补充认证备考视角：故障链、ASIL(HARA 三维度)、安全生命周期、随机硬件三指标(SPF/LatF/PMHF)、安全机制四类型；并链接 [[robot-safety]] 概念（机器人物理安全方法学，ISO/TS 15066 协作安全）
+
+- 2026-07-14（14 sources）：强化——[MCU-less 技术洞察（详尽版）：机会分析 · 技术方案 · 执行策略] 与现有定义一致
+- 2026-07-14（14 sources）：强化——[机器人行业 EtherCAT 总线通信开发团队规划报告] 与现有定义一致
+- 2026-07-14（14 sources）：强化——[MCU-Less 座椅项目讨论（V0.5）] 与现有定义一致
+- 2026-07-14（14 sources）：强化——[MCU-less 应用机会点汇总] 与现有定义一致

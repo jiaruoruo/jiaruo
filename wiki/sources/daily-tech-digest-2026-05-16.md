@@ -8,7 +8,7 @@ author: "internal-note"
 tags: ["daily-digest", "notes"]
 processed: true
 raw_file: "raw/notes/daily-tech-digest-2026-05-16.md"
-raw_sha256: "33924c801bb64a30e472ef2776d50ccd68ed2df52d36aa7cac353d3cd4f25ec9"
+raw_sha256: "60b956e2504e1734bef4574f9b59a635b70adcc5427149e9364ab920fd8d9c0c"
 last_verified: 2026-07-13
 possibly_outdated: false
 language: "zh"

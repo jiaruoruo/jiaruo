@@ -2,16 +2,16 @@
 type: concept
 title: "模型上下文协议"
 date: 2026-04-13
-updated: 2026-04-13
+updated: 2026-07-14
 tags:
   - mcp
   - protocol
   - llm
   - tooling
-source_count: 2
-confidence: low
+source_count: 3
+confidence: medium
 domain_volatility: medium
-last_reviewed: 2026-07-13
+last_reviewed: 2026-07-14
 aliases:
   - "模型上下文协议"
   - "Model Context Protocol"
@@ -43,8 +43,11 @@ aliases:
 
 - [[sources/minimax-api-overview]]
 - [[sources/agent-six-layer-architecture]]
+- [[sources/llm-benchmark-comparison-2026-04]]
 
 ## Evolution Log
 
 - 2026-04-13（1 sources）：概念初建，来源为 MiniMax 开放平台接口概览文档
 - 2026-07-13（2 sources）：强化——Knock「Agent 6 层架构」文章明确 MCP 在工具层的标准地位与四项核心价值，补充 stdio/HTTP SSE/WebSocket 传输方式
+
+- 2026-07-14（3 sources）：强化——[顶级大模型 Benchmark 全面对比解析（2026 年 4 月）] 与现有定义一致

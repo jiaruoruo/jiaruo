@@ -5,17 +5,17 @@ graph-excluded: true
 
 # Knowledge Base Health Dashboard
 
-_最后更新：2026-07-13_
+_最后更新：2026-07-14_
 
 ## 健康状态总览
 
 | 指标 | 数值 | 说明 |
 |---|---|---|
-| 总来源数（Sources） | 205 | wiki/sources/ 下的页面总数（本次 +59） |
+| 总来源数（Sources） | 228 | wiki/sources/ 下的页面总数（本次 +23） |
 | 总 Concept 页数 | 74 | wiki/concepts/ 下的页面总数 |
 | 总 Entity 页数 | 31 | wiki/entities/ 下的页面总数（不变） |
 | 总 Synthesis 页数 | 9 | wiki/synthesis/ 下的页面总数（REFLECT +2、Agent 主题综合 +1） |
-| 来源/综合比 | 23:1 | 205/9，**已低于阈值（30）**——Agent 主题综合 +1 后进一步降到 23:1 |
+| 来源/综合比 | 25:1 | 228/9，**低于阈值（30）**——articles 批次 +23 后略升至 25:1 |
 | 高置信度概念数（High Confidence） | 2 | confidence: high 的 concept 页数 |
 | 中置信度概念数（Medium Confidence） | 16 | confidence: medium 的 concept 页数 |
 | 低置信度概念数（Low Confidence） | 56 | confidence: low 的 concept 页数 |
@@ -67,6 +67,7 @@ _最后更新：2026-07-13_
 | 2026-07-13（ingest notes 59 文件） | 205 | 74 | 31 | 6 |
 | 2026-07-13（reflect 2 synthesis） | 205 | 74 | 31 | 8 |
 | 2026-07-13（agent 主题综合 +1 synthesis） | 205 | 74 | 31 | 9 |
+| 2026-07-14（ingest articles 23 文件） | 228 | 74 | 31 | 9 |
 
 ## 待办（下一步建议）
 

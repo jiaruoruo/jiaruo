@@ -7,7 +7,7 @@ source_url: https://mp.weixin.qq.com/s/WGUfaNgrwpW3HlrgquOGGQ
 author: 易冲半导体
 published: 2026-04-28
 ingested: 2026-04-28
-raw_sha256: 3c48e27b7757969f3b5009622eab21b2525d3cc247017807dabb9d5585581765
+raw_sha256: f28dd641fc666e162848434f60e8b857d4f4665c9c04597c87ddbec874a457bb
 raw_file: "raw/clippings/2026-04-28车灯技术迎来新变革？MCU-Less方案正在重新定义智能车灯.md"
 tags: [mculess, smart-lighting, afs, adb, led-driver, asil, aec-q100, automotive]
 concepts: [mculess-architecture, eea-architecture]
