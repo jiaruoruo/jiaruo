@@ -39,6 +39,7 @@ scripts/      ← 工具脚本
 - **你完全拥有 `wiki/` 目录的读取和写入权限**，可自由创建、修改、组织其中的文件。
 - **`raw/` 目录由人类拥有，你只能读取，绝不修改任何 raw/ 下的文件。**
 - 所有操作必须在 `wiki/log.md` 末尾追加日志记录（只追加，不修改已有记录）。
+- 并行安全：每段日志以 `YYYY-MM-DD HH:MM` 时间戳前缀起头，保证行唯一；git 纯追加通常能自动合并，若冲突保留双方变更（见多助手约定第 6 条）。
 - 所有 wiki/ 下的 .md 文件必须有合法 YAML frontmatter，包含 `type` 和 `date` 字段。
 
 ### 多助手并行维护约定
@@ -51,6 +52,26 @@ scripts/      ← 工具脚本
 4. **读取 `wiki/log.md` 最新条目**：开始工作前快速浏览最近的日志，了解另一边已经做了什么。
 5. **MERGE 操作全局唯一**：第 6 节规定 MERGE 必须等用户确认，天然避免了双边同时合并的冲突。
 6. **遇到 git 冲突时保留双方变更**：不要静默覆盖，向用户呈现差异，等待决策。
+
+### 工具链依赖与降级路径
+
+本知识库的脚本与 `qmd` 检索引擎的依赖关系如下，跨机器维护时必须明确：
+
+- **`scripts/lint.py` / `scripts/fix-sha256.py`（仓库自带，常驻）**：仅依赖 PyYAML（见根目录 `requirements.txt`）。`pip install -r requirements.txt` 即可复现。
+- **`scripts/tools/wiki_index.py`（仓库自带，常驻）**：qmd 缺席时的关键词检索引擎，纯 stdlib + PyYAML。提供 `query / multi-get / status`（及 `update / add / embed` 占位）。
+- **`qmd`（可选外部工具，本仓库不分发）**：带嵌入向量的语义检索引擎，子命令 `embed / update / query / status / multi-get / add`。**当前维护环境未安装 qmd**，所有依赖 qmd 的步骤自动降级到 `wiki_index.py`（关键词级，非语义）。若需恢复语义检索，须在原始安装环境确认 qmd 来源后安装，并同步 `requirements.txt` 注释。
+
+**降级对照（qmd 缺席 = 本仓库默认状态）：**
+
+| 原 qmd 步骤 | 降级实现 |
+|---|---|
+| `qmd update` / `qmd add` | 无需操作（文件树即实时索引）；`wiki_index.py status` 可校验 |
+| `qmd query "<q>" --json` | `python scripts/tools/wiki_index.py query "<q>" --json --top 5` |
+| `qmd multi-get "glob" -l N` | `python scripts/tools/wiki_index.py multi-get "glob" --lines N` |
+| `qmd status` | `python scripts/tools/wiki_index.py status` |
+| `qmd embed` | 不支持（语义嵌入需 qmd） |
+
+**索引权威说明**：`wiki/index.md` 是「人类可读导航视图」（按类型手动维护，含 Processed/Unprocessed 分区），可由 `wiki_index.py status` 校验但不自动覆盖；`wiki_index.py` / `qmd` 的实时文件树扫描是「检索权威」。两者职责不同，互不替代。lint Check 3 已校验 index.md 引用一致性。
 
 ---
 
@@ -189,10 +210,9 @@ INGEST 结束前**必须**按顺序完成以下收尾，不得跳过：
    ```
    - 关键检查（frontmatter / 孤儿断链 / index 一致性 / SHA）任一失败 → **必须先修复再继续**，不得带病提交。
    - 若 source 页引用了尚未创建的 concept/entity（孤儿 wikilink），说明 Step 7–9 未完成，回头补建对应页面。
-2. **更新 qmd 索引**：
-   ```bash
-   qmd update
-   ```
+2. **更新索引**：
+   - 若已安装 `qmd`（可选外部语义引擎）：`qmd update`
+   - 若 `qmd` 未安装（本仓库默认状态）：无需操作，文件树即为实时索引；可运行 `python scripts/tools/wiki_index.py status` 校验一致性
 3. **更新 `wiki/overview.md`** 的 Health Dashboard 数据（Sources/Concepts/Entities/Synthesis 计数与增长趋势行）。
 4. 追加日志：
    ```
@@ -224,8 +244,9 @@ INGEST 结束前**必须**按顺序完成以下收尾，不得跳过：
 ### 执行步骤
 
 **Step Q1：检索相关页面**
-执行：`qmd query "<用户问题>" --json`，获取 top 5 相关页面。
-若 qmd 报错则降级：读取 `wiki/index.md`，从 Sources/Concepts 列表中手动选取最相关的 5 个页面。
+- 首选：`qmd query "<用户问题>" --json`（需安装可选外部语义引擎 qmd），获取 top 5 相关页面。
+- qmd 缺席时（本仓库默认）：`python scripts/tools/wiki_index.py query "<用户问题>" --json --top 5`，基于 frontmatter（title/aliases/tags）+ 正文关键词排名返回 top 5。
+- 若两者皆不可用：读取 `wiki/index.md`，从 Sources/Concepts 列表中手动选取最相关的 5 个页面。
 
 **Step Q2：完整读取文件**
 逐一完整读取 top 5 文件内容，不跳过任何节。
@@ -260,10 +281,11 @@ INGEST 结束前**必须**按顺序完成以下收尾，不得跳过：
 
 ### 执行步骤
 
-1. 运行 `python scripts/lint.py`（包含 9 项检查，见下方说明）
+1. 运行 `python scripts/lint.py`（包含 10 项检查，见下方说明）
 2. 报告自动写入 `wiki/outputs/lint-YYYY-MM-DD.md`（frontmatter 含 `graph-excluded: true`）
-3. 执行 `qmd status`，对比索引文件数与 `wiki/` 实际 `.md` 文件数（排除系统文件）
-   - 若索引落后：执行 `qmd add wiki/`，在报告中记录「索引已更新」
+3. 执行 `python scripts/tools/wiki_index.py status`，统计 `wiki/` 下各类型 `.md` 文件数（排除 graph-excluded 系统文件）
+   - 若与 `wiki/index.md` / `wiki/overview.md` 登记数不一致：在报告中记录「索引登记待核对」，并提示用户
+   - （若已安装 qmd：`qmd status` 可作补充，但 `wiki_index.py status` 为权威文件树统计）
 4. 向用户展示摘要，询问是否立即修复发现的问题
 
 ### 门禁模式（`--gate`）
@@ -274,7 +296,7 @@ INGEST 结束前**必须**按顺序完成以下收尾，不得跳过：
 - **质量提示（不阻断）**：Check 4 stub、Check 5 近重复、Check 7 stale、Check 8 跨语言、Check 9 格式。
   - 之所以不把 Check 5 列为阻断项：同族概念（如 `chip-design` ↔ `rf-chip-design`）会触发 Jaccard 误报，若阻断会卡死每次提交。
 
-### 9 项检查说明
+### 10 项检查说明
 
 | # | 检查项 | 说明 |
 |---|---|---|
@@ -287,6 +309,7 @@ INGEST 结束前**必须**按顺序完成以下收尾，不得跳过：
 | 7 | Stale 页面 | 超过 domain_volatility 时效阈值（high=90天, medium=180天, low=365天） |
 | 8 | 跨语言重复 | source URL 相似度检测 + 不同 concept 页的 aliases 字段重叠检测 |
 | 9 | Wikilink 格式规范 | 检测非英文小写连字符格式的 wikilink（如中文词汇、驼峰、下划线）及别名断链 |
+| 10 | Overview 计数一致性 | 比对 `wiki/overview.md` 健康仪表盘的 Sources/Concepts/Entities/Synthesis 计数与 `wiki/` 实际文件数（质量提示，不阻断） |
 
 ---
 
@@ -313,11 +336,12 @@ LINT 报告与 `overview.md` 应据此给出 REFLECT 建议。
   > ⚠ 回音室风险：未找到反驳来源，结论可能存在确认偏差。
 
 **Stage 1：模式扫描**
-使用 qmd 批量扫描（若 qmd 不可用则逐一读取）：
+- 首选：`qmd multi-get ...`（需安装可选外部 qmd）
+- qmd 缺席时（本仓库默认）：
 ```bash
-qmd multi-get "wiki/concepts/*.md" -l 40
-qmd multi-get "wiki/entities/*.md" -l 40
-qmd multi-get "wiki/synthesis/*.md" -l 60
+python scripts/tools/wiki_index.py multi-get "wiki/concepts/*.md" --lines 40
+python scripts/tools/wiki_index.py multi-get "wiki/entities/*.md" --lines 40
+python scripts/tools/wiki_index.py multi-get "wiki/synthesis/*.md" --lines 60
 ```
 识别：
 - 跨来源的重复模式
@@ -432,6 +456,23 @@ qmd multi-get "wiki/synthesis/*.md" -l 60
 - 所有 **slug（文件名）** 统一用英文小写连字符，不使用中文文件名
 - `aliases` 字段覆盖中英文所有叫法
 
+### 主题域标签（tags）受控词表
+
+每个 concept/entity/synthesis 页的 `tags` 字段**必须至少包含 1 个主域标签**，取自以下受控词表（禁止自由发挥，避免跨簇统计/导航失效）：
+
+| 主域标签 | 覆盖范围 |
+|---|---|
+| `embodied-ai` | 具身智能、人形机器人、运动控制、灵巧手、机器人半导体 |
+| `automotive-eea` | 汽车电子电气架构、MCU-less、区域控制器、车载通信（GPAN/EtherCAT/10BASE-T1S）、功能安全 |
+| `chip` | 芯片设计、制造、封装、EDA、功率器件（GaN 等） |
+| `edge-ai` | 端侧推理、TinyML、NPU/MCU 趋势、端侧不可能三角 |
+| `agent` | Agent 架构、Harness、MCP、规划/记忆/反馈回路、安全治理 |
+| `finance` | 金融数据、量化、市场结构（neodata/westock 相关） |
+
+附加标签（非主域，建议复用既有小写连字符词）：如 `gpan`、`ethercat`、`zonal-gateway`、`mculess`、`vla`、`tsn` 等。
+
+INGEST Step 7/8 创建或更新 concept 页时，若 `tags` 缺失主域标签，按来源主题补打；REFLECT 阶段发现 `tags` 为空或仅含非受控词的概念，应在 Evolution Log 记录并补齐。
+
 ---
 
 ## 十、Confidence 更新规则
@@ -483,6 +524,12 @@ qmd multi-get "wiki/synthesis/*.md" -l 60
 - `wiki/QUESTIONS.md`
 - `wiki/outputs/` 下**所有**文件
 
+### synthesis/ 与 outputs/ 的边界
+
+- `wiki/synthesis/` 存放**可复用的跨来源综合结论**（参与 Obsidian 图谱，可被 QUERY/REFLECT 引用），如各主题簇 synthesis 页。
+- `wiki/outputs/` 存放**过程产物与一次性报告**（lint 报告、gap-report、单次 QUERY 答案、架构审计等），`graph-excluded` 不参与图谱。
+- 判定原则：**可复用、会被未来查询引用的结论 → `synthesis/`；一次性过程/报告 → `outputs/`**。不得把可复用综合塞进 outputs/ 以免脱离图谱。
+
 ---
 
 ## 十三、文档维护规则
@@ -516,4 +563,4 @@ git commit --no-verify
 
 ---
 
-_最后更新：2026-06-27_
+_最后更新：2026-07-14_

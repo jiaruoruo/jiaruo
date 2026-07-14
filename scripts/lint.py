@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 lint.py - Knowledge Base Health Checker
-Performs 9 checks on the wiki/ directory and writes a report to wiki/outputs/lint-YYYY-MM-DD.md
+Performs 10 checks on the wiki/ directory and writes a report to wiki/outputs/lint-YYYY-MM-DD.md
 
 Usage:
     python scripts/lint.py [--wiki-root PATH]
@@ -32,7 +32,7 @@ RAW_ROOT = Path(__file__).parent.parent / "raw"
 OUTPUTS_DIR = WIKI_ROOT / "outputs"
 
 # System files excluded from most checks (they intentionally lack full frontmatter)
-SYSTEM_FILES = {"index.md", "log.md", "overview.md", "QUESTIONS.md"}
+SYSTEM_FILES = {"index.md", "log.md", "overview.md", "QUESTIONS.md", "domains.md"}
 
 # 关键检查（--gate 硬门禁）：失败即阻断提交。
 # 这些破坏知识库结构完整性：frontmatter 非法、孤儿/断链 wikilink、
@@ -552,6 +552,48 @@ def check_wikilink_format(wiki_root: Path) -> list[str]:
 
 
 # ---------------------------------------------------------------------------
+# Check 10: Overview Count Consistency
+# ---------------------------------------------------------------------------
+
+def check_overview_counts(wiki_root: Path) -> list[str]:
+    """Verify overview.md health-dashboard counts match actual file counts.
+
+    Catches manual-entry drift in wiki/overview.md (Sources/Concepts/Entities/
+    Synthesis). Quality hint only — does NOT block --gate.
+    """
+    issues = []
+    overview_path = wiki_root / "overview.md"
+    if not overview_path.exists():
+        return ["- ❌ `wiki/overview.md` 不存在"]
+
+    text = overview_path.read_text(encoding="utf-8")
+
+    def real_count(sub: str) -> int:
+        d = wiki_root / sub
+        return len(list(d.glob("*.md"))) if d.exists() else 0
+
+    expected = {
+        "sources": ("总来源数（Sources）", real_count("sources")),
+        "concepts": ("总 Concept 页数", real_count("concepts")),
+        "entities": ("总 Entity 页数", real_count("entities")),
+        "synthesis": ("总 Synthesis 页数", real_count("synthesis")),
+    }
+
+    for label, real in expected.values():
+        m = re.search(label + r"\s*\|\s*(\d+)", text)
+        if not m:
+            issues.append(f"- ⚠ `wiki/overview.md`：未找到「{label}」计数行")
+            continue
+        recorded = int(m.group(1))
+        if recorded != real:
+            issues.append(
+                f"- ⚠ overview 计数漂移「{label}」：记录 {recorded}，实际文件数 {real}"
+            )
+
+    return issues
+
+
+# ---------------------------------------------------------------------------
 # Report Writer
 # ---------------------------------------------------------------------------
 
@@ -592,6 +634,7 @@ def write_report(wiki_root: Path, results: dict[str, list[str]]) -> Path:
         "check7_stale": "Check 7：Stale 页面",
         "check8_cross_language": "Check 8：跨语言重复",
         "check9_wikilink_format": "Check 9：Wikilink 格式规范",
+        "check_overview": "Check 10：Overview 计数一致性",
     }
 
     for key, label in check_labels.items():
@@ -682,6 +725,9 @@ def main():
 
     print("Check 9: Wikilink Format Compliance...")
     results["check9_wikilink_format"] = check_wikilink_format(wiki_root)
+
+    print("Check 10: Overview Count Consistency...")
+    results["check_overview"] = check_overview_counts(wiki_root)
 
     print()
     if not args.gate:

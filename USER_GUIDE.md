@@ -3,7 +3,7 @@
 > 本文件是面向用户的操作手册，与 CLAUDE.md 保持同步。
 > 当 CLAUDE.md 规则更新时，本文件对应章节必须同步更新。
 
-_最后同步：2026-06-27_
+_最后同步：2026-07-14_
 
 ---
 
@@ -48,7 +48,7 @@ outputs/      ← 最终对外输出产物
 9. 处理提取到的每个实体
 10. 更新 `wiki/index.md`
 11. 检查 `wiki/QUESTIONS.md`，看是否能回答已有问题
-12. **收尾自检（强制）**：运行 `python scripts/lint.py --gate`（关键检查失败必须先修）→ 更新 qmd 索引 → 更新 `wiki/overview.md` 仪表盘 → 追加日志
+12. **收尾自检（强制）**：运行 `python scripts/lint.py --gate`（关键检查失败必须先修）→ 更新索引（qmd 为可选外部引擎，缺席时无需操作）→ 更新 `wiki/overview.md` 仪表盘 → 追加日志
 
 **个人写作**（`raw/personal/` 下的文件）：
 - 不生成客观摘要，核心论点写入 concept 页的 `My Position` 节
@@ -61,7 +61,7 @@ outputs/      ← 最终对外输出产物
 **触发词：** 直接提问，或「根据我的知识库……」
 
 AI 会：
-1. 用 `qmd query` 语义搜索（若不可用则降级为手动索引匹配）
+1. 用检索获取相关页面：首选 `qmd query`（可选外部语义引擎）；qmd 缺席时（本仓库默认）用 `python scripts/tools/wiki_index.py query "<问题>" --json --top 5`（关键词级）；若皆不可用则读 `wiki/index.md` 手动选取
 2. 完整读取最相关的 5 个页面
 3. 合成答案，每条结论溯源到具体 `wiki/sources/` 页面
 4. 标注各来源的置信度级别
@@ -80,7 +80,7 @@ AI 会：
 
 **触发词：** `lint`、`检查`、`健康检查`
 
-运行 `python scripts/lint.py`，执行 9 项检查：
+运行 `python scripts/lint.py`，执行 10 项检查：
 
 | # | 检查项 |
 |---|---|
@@ -93,6 +93,7 @@ AI 会：
 | 7 | Stale 页面（超过时效阈值） |
 | 8 | 跨语言重复（URL + aliases 重叠） |
 | 9 | Wikilink 格式规范（禁止中文/驼峰/下划线） |
+| 10 | Overview 计数一致性（仪表盘计数 vs 实际文件数，质量提示） |
 
 报告自动保存至 `wiki/outputs/lint-YYYY-MM-DD.md`。AI 会展示摘要并询问是否立即修复。
 
@@ -160,15 +161,23 @@ AI 将问题规范化后写入 `wiki/QUESTIONS.md`，后续 INGEST 时会自动�
 
 ---
 
-## 五、qmd 索引维护
+### 主题域标签（concept 页）
 
-qmd 提供语义搜索能力。若搜索结果为空或质量差，执行：
+每个概念页的 `tags` 字段由 AI 在 INGEST 时自动打上**主域标签**，取自 6 大受控词表：`embodied-ai` / `automotive-eea` / `chip` / `edge-ai` / `agent` / `finance`。你无需手动维护；这是 AI 做跨主题综合与导航的依据。完整定义见 CLAUDE.md「主题域标签（tags）受控词表」。
+
+---
+
+## 五、索引与检索
+
+检索依赖 `qmd`（可选外部语义检索引擎，本仓库不分发）。**当前环境未安装 qmd**，自动降级到仓库自带的 `scripts/tools/wiki_index.py`（关键词级，非语义）：
 
 ```bash
-qmd embed        # 生成嵌入向量（首次使用或新增文件后需执行）
-qmd update       # 更新索引（INGEST 后 AI 会自动执行）
-qmd status       # 查看索引状态
+python scripts/tools/wiki_index.py query "问题" --json --top 5   # 检索相关页面
+python scripts/tools/wiki_index.py multi-get "wiki/concepts/*.md" --lines 40  # REFLECT 扫描
+python scripts/tools/wiki_index.py status                        # 统计各类型文件数
 ```
+
+若需恢复语义检索（嵌入向量），须在原始安装环境确认 `qmd` 来源后安装，并同步 `requirements.txt` 注释。详见 CLAUDE.md「工具链依赖与降级路径」。
 
 ---
 
@@ -218,12 +227,12 @@ A：先区分真假。①若是 raw 文件确实改了内容，执行 `ingest` �
 **Q：为什么我 commit 被拦下来了？**
 A：pre-commit 门禁发现了关键问题（多半是引用了不存在的概念页，即孤儿断链）。按提示修复后重新提交；确需绕过用 `git commit --no-verify`（见第六节）。
 
-**Q：qmd query 返回 No results？**
-A：执行 `qmd embed` 生成嵌入向量后重试。
+**Q：检索返回 No results / 质量差？**
+A：当前默认用 `wiki_index.py` 关键词检索。若结果不佳，可换更精确的关键词，或安装可选外部 `qmd` 获得语义检索（需先 `qmd embed` 生成嵌入向量）。
 
 **Q：concept 页的 confidence 何时能升到 high？**
 A：需要 5+ 个来源且无重大矛盾，AI 会展示证据请你确认，你回复「确认」或「ok」后才升级。AI 不会自动升级。
 
 ---
 
-_本文档与 CLAUDE.md 保持同步，最后更新：2026-06-27_
+_本文档与 CLAUDE.md 保持同步，最后更新：2026-07-14_

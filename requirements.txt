@@ -1,0 +1,21 @@
+# 知识库运行依赖（知微 / Claude Code 跨机器维护时 `pip install -r requirements.txt`）
+# 最后核对：2026-07-14（基于 d:\AI\jiaruo 当前环境）
+
+# ── 基础（scripts/lint.py、scripts/fix-sha256.py 常驻脚本所需）──
+PyYAML==6.0.2
+
+# ── INGEST 二进制文件抽取（摄入 raw/ 下 docx/pptx/xlsx/html/vsdx 时需要）──
+# 这些是「摄入能力」依赖：常驻脚本不直接 import，但 INGEST 二进制文件时必须可用。
+python-docx==1.2.0
+python-pptx==1.0.2
+openpyxl==3.1.5
+beautifulsoup4==4.15.0
+
+# ── 可选增强：qmd 语义检索引擎（外部工具，本仓库不分发）──
+# 提供 `qmd embed/update/query/status/multi-get/add`（带嵌入向量的语义搜索）。
+# 未安装时，CLAUDE.md 各操作规范的降级路径会自动启用：
+#   - QUERY 检索 → `python scripts/tools/wiki_index.py query`（关键词级）
+#   - REFLECT 批量扫描 → `python scripts/tools/wiki_index.py multi-get`
+# 详见 CLAUDE.md 第二节 / 第三节 / 第四节 / 第五节 的「qmd 缺席时」说明。
+# 若需恢复语义检索能力，请在与原安装相同的环境中确认 qmd 的来源后安装，
+# 并同步更新本文件与该段注释。
