@@ -23,6 +23,15 @@ import sys
 import json
 import glob
 import argparse
+
+# 强制 stdout/stderr 为 UTF-8，避免 GBK 终端在打印含特殊字符（如 ™）时发生
+# UnicodeEncodeError（CLAUDE.md 多助手并行维护，终端编码环境不统一）。
+try:
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
+        sys.stderr.reconfigure(encoding="utf-8")
+except Exception:
+    pass
 from pathlib import Path
 
 try:

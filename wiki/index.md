@@ -387,6 +387,7 @@ graph-excluded: true
 ## Outputs
 
 <!-- 所有输出文件列表，格式：- YYYY-MM-DD [[outputs/filename]] -->
+- 2026-07-14 wiki/outputs/2026-07-14-dexterous-hand-technical-route-analysis.md
 - 2026-07-14 wiki/outputs/2026-07-14-architecture-audit.md
 - 2026-04-28 wiki/outputs/2026-04-28-mculess-technology-trend-analysis.md
 - 2026-04-28 wiki/outputs/lint-2026-04-28.md
