@@ -9,10 +9,10 @@ tags:
   - react
   - tree-of-thought
   - hierarchical-planning
-source_count: 1
+source_count: 2
 confidence: low
 domain_volatility: medium
-last_reviewed: 2026-07-13
+last_reviewed: 2026-07-21
 aliases:
   - "智能体规划"
   - "Agent Planning"
@@ -49,7 +49,9 @@ aliases:
 ## Sources
 
 - [[sources/agent-six-layer-architecture]]
+- [[sources/workbuddy-harness-engineering-case-study]]
 
 ## Evolution Log
 
 - 2026-07-13（1 sources）：概念初建，来源为 Knock「Agent 6 层架构」文章规划层章节
+- 2026-07-21（2 sources）：强化——WorkBuddy 万字复盘中 ReAct 循环（推理→行动→观察）作为 Agent 执行任务的基础模式，验证了 Plan-then-Execute 范式在产品侧的落地形态

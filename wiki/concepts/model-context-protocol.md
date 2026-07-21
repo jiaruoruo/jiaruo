@@ -8,10 +8,10 @@ tags:
   - protocol
   - llm
   - tooling
-source_count: 3
+source_count: 4
 confidence: medium
 domain_volatility: medium
-last_reviewed: 2026-07-14
+last_reviewed: 2026-07-21
 aliases:
   - "模型上下文协议"
   - "Model Context Protocol"
@@ -44,6 +44,7 @@ aliases:
 - [[sources/minimax-api-overview]]
 - [[sources/agent-six-layer-architecture]]
 - [[sources/llm-benchmark-comparison-2026-04]]
+- [[sources/workbuddy-harness-engineering-case-study]]
 
 ## Evolution Log
 
@@ -51,3 +52,4 @@ aliases:
 - 2026-07-13（2 sources）：强化——Knock「Agent 6 层架构」文章明确 MCP 在工具层的标准地位与四项核心价值，补充 stdio/HTTP SSE/WebSocket 传输方式
 
 - 2026-07-14（3 sources）：强化——[顶级大模型 Benchmark 全面对比解析（2026 年 4 月）] 与现有定义一致
+- 2026-07-21（4 sources）：强化——WorkBuddy 万字复盘从产品视角详述 MCP 三原语（Resources/Tools/Prompts）、按用户意图组织工具的设计原则、MCP Apps 交互 UI 扩展，以及 MCP/Skill/Plugin 四层概念体系

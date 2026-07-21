@@ -1,0 +1,32 @@
+📰 每日前沿技术简报 — 2026-07-16（周四）
+
+🧠 AI 领域：
+• E3: AI Agent 任务复杂度感知 — 成本降85%、token降91% arXiv 2607.13034
+• PalmClaw: 手机端原生 Agent 框架 — 完成时间减少94.9% arXiv 2607.13027
+• Win by Silence: LLM 计划评估删除非单调性 arXiv 2607.12986
+• Audio-Native 语音识别：冻结扩散语言模型 — WER 6.6% arXiv 2607.13013
+• Dynamic Resource Allocation for Ensemble MCTS arXiv 2607.13007
+
+🤖 机器人：
+• DenseReward: 失败合成密集奖励学习 arXiv 2607.13033
+• FlowWAM: 光流作为 WAM 统一动作表示 — 成功率92.9% arXiv 2607.13017
+• ChunkFlow: 一致性分块策略学习 — 解决VLA边界抖动 arXiv 2607.12992
+• MAMMOTH: 多模态越野导航鲁棒于模态缺失 arXiv 2607.12965
+
+🚗 汽车/域控：
+• TerraZero: 过程式驾驶仿真+零演示自博弈 — 1.3M steps/秒！ arXiv 2607.13028
+• ViCo3D: 视觉基础模型赋能 LiDAR 协同 3D 检测 arXiv 2607.12959
+• X-Lens: 异构相机实时度量深度估计 — 0.04B参数/41FPS arXiv 2607.12993
+
+📊 GitHub Trending：
+• OpenCut 开源CapCut替代 +1664⭐ (71.7k)
+• Hallmark 反AI-slop设计技能 +1277⭐ (8.5k)
+• AI/ML速查手册 +725⭐ (5.9k)
+• Destructive Command Guard +471⭐ (4.8k)
+
+🔍 亮点：
+1. TerraZero — 自动驾驶仿真新范式，1.3M steps/秒 + 零演示RL
+2. E3 框架 — Agent 任务复杂度感知，直击Agent浪费问题
+3. DenseReward — 自动化失败数据合成，解决 RL 密集奖励瓶颈
+
+完整报告：daily-tech-digest-2026-07-16.md

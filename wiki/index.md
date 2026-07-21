@@ -9,6 +9,10 @@ graph-excluded: true
 
 ### Processed
 
+- 2026-07-21 [[sources/ai-agent-evaluation-framework-four-layers]]
+- 2026-07-21 [[sources/langchain-harness-tuning-nemotron-playbook]]
+- 2026-07-21 [[sources/workbuddy-harness-engineering-case-study]]
+- 2026-07-21 [[sources/nvidia-harness-replaces-workflow]]
 - 2026-07-14 [[sources/llm-benchmark-comparison-2026-04]]
 - 2026-07-14 [[sources/mculess-technology-insight-full-2026-05]]
 - 2026-07-14 [[sources/ethercat-gpan-validation-design-2026-04]]

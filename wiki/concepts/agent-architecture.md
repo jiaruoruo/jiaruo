@@ -12,10 +12,10 @@ tags:
   - tool-use
   - execution
   - feedback
-source_count: 1
+source_count: 2
 confidence: low
 domain_volatility: high
-last_reviewed: 2026-07-13
+last_reviewed: 2026-07-21
 aliases:
   - "智能体系统架构"
   - "Agent Architecture"
@@ -53,7 +53,9 @@ aliases:
 ## Sources
 
 - [[sources/agent-six-layer-architecture]]
+- [[sources/workbuddy-harness-engineering-case-study]]
 
 ## Evolution Log
 
 - 2026-07-13（1 sources）：概念初建，来源为 Knock「Agent 6 层架构」微信公众号文章
+- 2026-07-21（2 sources）：强化——WorkBuddy 万字复盘详细描述了 ReAct 循环、工具调用/MCP/Skill/Plugin 概念体系和 Context Engineering 五类动作，验证了 6 层架构中工具层/执行层/反馈层的实践形态

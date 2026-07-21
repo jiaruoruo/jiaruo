@@ -9,10 +9,10 @@ tags:
   - vector-db
   - context-management
   - long-term-memory
-source_count: 1
+source_count: 2
 confidence: low
 domain_volatility: medium
-last_reviewed: 2026-07-13
+last_reviewed: 2026-07-21
 aliases:
   - "智能体记忆系统"
   - "Agent Memory"
@@ -49,7 +49,9 @@ aliases:
 ## Sources
 
 - [[sources/agent-six-layer-architecture]]
+- [[sources/workbuddy-harness-engineering-case-study]]
 
 ## Evolution Log
 
 - 2026-07-13（1 sources）：概念初建，来源为 Knock「Agent 6 层架构」文章记忆层章节
+- 2026-07-21（2 sources）：强化——WorkBuddy 万字复盘从产品视角描述了记忆在产品侧的实现（对话连续性、Memory 和用户偏好由产品侧维护状态再注入），以及 Memory 在完整任务流中的角色（读取用户偏好、表达方式、文章结构等）

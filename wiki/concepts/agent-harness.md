@@ -9,10 +9,10 @@ tags:
   - llm
   - infrastructure
   - context-engineering
-source_count: 5
+source_count: 7
 confidence: low
 domain_volatility: high
-last_reviewed: 2026-04-25
+last_reviewed: 2026-07-21
 aliases:
   - "Agent Harness"
   - "agent-harness"
@@ -83,3 +83,5 @@ Agent Harness 是包裹模型运行的外围基础设施，定义式公式为：
 - 2026-04-19 个人写作 [[sources/ai-collaboration-practices]] 确立了对此概念的明确立场
 - 2026-04-25（5 sources）：强化——三条路线比较文章从竞争格局视角补充 Agent 基础设施"执行层+学习层+安全层"分层卡位逻辑，丰富 Harness 架构的安全治理维度
 - 2026-05-14 个人写作 [[sources/ecc-architecture-design]] / [[sources/automotive-agents-reference]] 补充：ECC 对多 Agent 隔离/文档过期/验收偏差三大难题的工程回应；垂直化 Harness 可复制模式
+- 2026-07-21（6 sources）：强化——LangChain Harness 调优 Playbook（只改 Harness 不改模型，Nemotron 3 Ultra 以 1/10 成本逼近 Opus）、黄仁勋×LangChain 对话（Harness 取代 Workflow 成为企业核心架构）、WorkBuddy Harness 工程万字复盘（Context Engineering 五类动作 + MCP/Skill/Plugin 完整体系），补充 Harness Engineering 的量化方法论和企业架构视角
+- 2026-07-21（7 sources）：强化——AI Agent 四层质量评估框架（评测维度/指标/标准/方法），补充 Agent 评测体系视角
