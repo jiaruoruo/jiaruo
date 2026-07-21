@@ -11,7 +11,7 @@ tags:
   - rcp
   - automotive-eea
 source_count: 26
-confidence: medium
+confidence: high
 ---
 
 # MCULess 与汽车 EEA 架构演进：硬件路由替代软件路由的过渡范式
@@ -50,7 +50,7 @@ MCULess 不是「是否去 MCU」的二元选择，而是一条**按域分层推
 
 ## Confidence Notes
 
-⚠ Confidence Notes：此综合基于 **26 个来源**（原 14 + 2026-07-21 REFLECT 增补 12），置信度为 **medium**。底层概念 mculess-architecture 为 high、gpan-communication 为 medium，量化数据互相印证、内部矛盾已显式标注。下调至 medium 的主因是**来源同源性**（见 Limitations）。候选 **high** 需老贾确认（按 CLAUDE.md 第十节：5+ 来源无重大矛盾方可升 high；本综合存在厂商偏差与路线证据不对称，故暂定 medium）。
+⚠ Confidence Notes：此综合基于 **26 个来源**（原 14 + 2026-07-21 REFLECT 增补 12），置信度为 **high**（2026-07-21 经老贾确认升级，依据 CLAUDE.md §十：5+ 来源、量化数据互相印证、内部矛盾已显式标注）。底层概念 mculess-architecture 为 high、gpan-communication 为 medium。升 high 的依据：BOM −40% / PCB −51% / 线束 −50~65% / 端到端 ~50μs 等量化结论在 GPAN 验证报告、BOM 成本分析、硬件简化、GE1101 手册、方案进展、ZCU 市场研究等多源间高度一致；四条反证（C1–C4）已显式写入，边界清晰。残留风险：来源同源性（汇顶 GPAN 资料集占比高，见 Limitations），但用户已确认该风险不足以压低整体置信度。
 
 ## Limitations
 
