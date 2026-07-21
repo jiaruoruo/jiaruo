@@ -2,14 +2,14 @@
 type: concept
 title: "Agent Harness"
 date: 2026-04-19
-updated: 2026-04-25
+updated: 2026-07-21
 tags:
   - agent
   - harness
   - llm
   - infrastructure
   - context-engineering
-source_count: 7
+source_count: 8
 confidence: low
 domain_volatility: high
 last_reviewed: 2026-07-21
@@ -62,6 +62,7 @@ Agent Harness 是包裹模型运行的外围基础设施，定义式公式为：
 - 验收偏差 → Rules 层常驻约束 + Test-Driven 设计原则内嵌测试要求
 
 **垂直化 Harness 的价值**：[[entities/automotive-claude-code-agents]] 将 Harness 工程能力垂直化到汽车软件领域——507+ 行业知识库 + 40+ 专业 Agent + 合规检查 Hooks，证明了"通用 Harness + 领域知识库 + 行业规则层"是可复制的垂直化模式。
+- **参考实现与工程全景（yeasy《Harness》, 2026-07）**：MiniHarness 给出 Python 版 Agent Harness 参考框架；横向对比 Claude Code（Rust+Starlark execpolicy+sandbox）/ OpenClaw（TypeScript Gateway+ClawHub）/ OpenAI Codex（Rust harness）的生产级 Harness；落地要素含 MCP 集成、Bubblewrap/seccomp/Landlock 沙箱、skills/hooks/subagents/memory(compact)、OpenTelemetry 可观测、execpolicy 三态权限
 
 ## Contradictions
 
@@ -75,6 +76,7 @@ Agent Harness 是包裹模型运行的外围基础设施，定义式公式为：
 - [[sources/agent-route-comparison-2026]]
 - [[sources/ecc-architecture-design]]（个人写作）
 - [[sources/automotive-agents-reference]]（个人写作）
+- [[sources/harness-engineering-guide]]
 
 ## Evolution Log
 
@@ -85,3 +87,4 @@ Agent Harness 是包裹模型运行的外围基础设施，定义式公式为：
 - 2026-05-14 个人写作 [[sources/ecc-architecture-design]] / [[sources/automotive-agents-reference]] 补充：ECC 对多 Agent 隔离/文档过期/验收偏差三大难题的工程回应；垂直化 Harness 可复制模式
 - 2026-07-21（6 sources）：强化——LangChain Harness 调优 Playbook（只改 Harness 不改模型，Nemotron 3 Ultra 以 1/10 成本逼近 Opus）、黄仁勋×LangChain 对话（Harness 取代 Workflow 成为企业核心架构）、WorkBuddy Harness 工程万字复盘（Context Engineering 五类动作 + MCP/Skill/Plugin 完整体系），补充 Harness Engineering 的量化方法论和企业架构视角
 - 2026-07-21（7 sources）：强化——AI Agent 四层质量评估框架（评测维度/指标/标准/方法），补充 Agent 评测体系视角
+- 2026-07-21（8 sources）：强化——yeasy《Harness》技术书（MiniHarness Python 参考框架 + Claude Code/OpenClaw/OpenAI Codex 生产级 Harness 横向对比 + MCP 集成 + Bubblewrap/seccomp/Landlock 沙箱 + OpenTelemetry 可观测 + execpolicy 权限），补充 Harness 的工程实现与全景视角

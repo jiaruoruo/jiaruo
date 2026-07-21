@@ -11,11 +11,11 @@ _最后更新：2026-07-21_
 
 | 指标 | 数值 | 说明 |
 |---|---|---|
-| 总来源数（Sources） | 232 | wiki/sources/ 下的页面总数（+4 clippings 剪藏） |
+| 总来源数（Sources） | 233 | wiki/sources/ 下的页面总数（+1 PDF: yeasy《Harness》技术书） |
 | 总 Concept 页数 | 74 | wiki/concepts/ 下的页面总数（不变） |
 | 总 Entity 页数 | 31 | wiki/entities/ 下的页面总数（不变） |
 | 总 Synthesis 页数 | 9 | wiki/synthesis/ 下的页面总数（不变） |
-| 来源/综合比 | 26:1 | 232/9，**低于阈值（30）** |
+| 来源/综合比 | 26:1 | 233/9，**低于阈值（30）** |
 | 高置信度概念数（High Confidence） | 2 | confidence: high 的 concept 页数 |
 | 中置信度概念数（Medium Confidence） | 16 | confidence: medium 的 concept 页数 |
 | 低置信度概念数（Low Confidence） | 56 | confidence: low 的 concept 页数 |
@@ -68,6 +68,7 @@ _最后更新：2026-07-21_
 | 2026-07-13（reflect 2 synthesis） | 205 | 74 | 31 | 8 |
 | 2026-07-13（agent 主题综合 +1 synthesis） | 205 | 74 | 31 | 9 |
 | 2026-07-14（ingest articles 23 文件） | 228 | 74 | 31 | 9 |
+| 2026-07-21（ingest pdf 1 文件） | 233 | 74 | 31 | 9 |
 
 ## 待办（下一步建议）
 

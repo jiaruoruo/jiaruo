@@ -80,3 +80,5 @@ graph-excluded: true
 2026-06-29 02:06 | reflect | 存量复检：上轮 P0 盲区已消除；新盲区 ota-update/thermal-management/cybersecurity-automotive（见 wiki/outputs/gap-report-2026-06-29.md）
 2026-06-29 02:06 | lint | 9/9 通过，0 问题（wiki/outputs/lint-2026-06-29.md）
 2026-06-29 02:06 | merge | 定时任务：lint Check5 近重复 0，无可合并候选；未执行合并（合并需用户确认）
+2026-07-21 22:37 | ingest | yeasy《Harness》PDF（slug: harness-engineering-guide；PDF 文本层 mdPress 损坏，摘要基于 TOC+片段；提取 5 概念：agent-harness/MCP/agent-memory/agent-architecture/tool-use-mcp，2 实体：openclaw/claude-code）
+2026-07-21 22:37 | fix | 修正 nvidia-harness-replaces-workflow.md 的 raw_file 引号（直引号→弯引号）以匹配真实文件名，恢复完整性引用
