@@ -8,6 +8,7 @@ tags:
   - protocol
   - llm
   - tooling
+  - agent
 source_count: 5
 confidence: medium
 domain_volatility: medium
@@ -55,3 +56,4 @@ aliases:
 - 2026-07-14（3 sources）：强化——[顶级大模型 Benchmark 全面对比解析（2026 年 4 月）] 与现有定义一致
 - 2026-07-21（4 sources）：强化——WorkBuddy 万字复盘从产品视角详述 MCP 三原语（Resources/Tools/Prompts）、按用户意图组织工具的设计原则、MCP Apps 交互 UI 扩展，以及 MCP/Skill/Plugin 四层概念体系
 - 2026-07-21（5 sources）：强化——yeasy《Harness》给出 HarnessMCP / MiniHarnessMCP 的接入实现（stdio + Streamable HTTP），印证 MCP 在 Harness 工具层的落地形态
+- 2026-07-21（5 sources）：REFLECT 补齐主域标签：agent

@@ -8,6 +8,7 @@ tags:
   - robotics
   - reinforcement-learning
   - mujoco
+  - embodied-ai
 source_count: 2
 confidence: low
 domain_volatility: high
@@ -50,3 +51,4 @@ aliases:
 ## Evolution Log
 
 - 2026-04-15（2 sources）：概念初建，来源为 OpenClaw×Simulation×RL 文章和 robosuite 快速入门教程
+- 2026-07-21（2 sources）：REFLECT 补齐主域标签：embodied-ai

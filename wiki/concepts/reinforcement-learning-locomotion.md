@@ -8,6 +8,7 @@ tags:
   - locomotion
   - robotics
   - ppo
+  - embodied-ai
 source_count: 1
 confidence: low
 domain_volatility: high
@@ -46,3 +47,4 @@ aliases:
 ## Evolution Log
 
 - 2026-04-15（1 sources）：概念初建，来源为人形机器人技术研究及快速原型建设报告
+- 2026-07-21（1 sources）：REFLECT 补齐主域标签：embodied-ai

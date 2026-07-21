@@ -3,7 +3,11 @@ type: entity
 entity_type: institution
 title: "KPMG（毕马威）"
 date: 2026-05-17
-tags: [consulting, big-four, market-research]
+tags:
+  - consulting
+  - big-four
+  - market-research
+  - embodied-ai
 source_count: 1
 ---
 

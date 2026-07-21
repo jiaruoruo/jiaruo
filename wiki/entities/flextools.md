@@ -8,6 +8,7 @@ tags:
   - toolchain
   - automotive-software
   - devtools
+  - automotive-eea
 entity_type: tool
 aliases:
   - "FlexTools"
@@ -40,3 +41,4 @@ FlexTools是一款面向AUTOSAR复杂驱动（CDD）开发的可视化配置工�
 ## Evolution Log
 
 - 2026-05-14（1 sources）：实体页初建，来源为FlexTools AUTOSAR复杂驱动开发工具介绍文章
+- 2026-07-21（? sources）：REFLECT 补齐主域标签：automotive-eea

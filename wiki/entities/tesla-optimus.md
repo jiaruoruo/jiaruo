@@ -8,6 +8,7 @@ tags:
   - humanoid-robot
   - end-to-end
   - tesla
+  - embodied-ai
 entity_type: institution
 aliases:
   - "特斯拉 Optimus"
@@ -58,3 +59,4 @@ aliases:
 - 2026-07-14：强化——新来源 [MCU-less 技术洞察（详尽版）：机会分析 · 技术方案 · 执行策略] 补充描述信息
 - 2026-07-14：强化——新来源 [MCU-less 技术在汽车和机器人领域的应用洞察] 补充描述信息
 - 2026-07-14：强化——新来源 [人形机器人 OEM/供应商机会分析] 补充描述信息
+- 2026-07-21（? sources）：REFLECT 补齐主域标签：embodied-ai

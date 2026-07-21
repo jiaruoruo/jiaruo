@@ -9,6 +9,8 @@ tags:
   - wide-bandgap
   - robotics
   - datacenter
+  - chip
+  - embodied-ai
 source_count: 8
 confidence: medium
 domain_volatility: medium
@@ -61,3 +63,4 @@ aliases:
 ## Evolution Log
 
 - 2026-06-27（8 sources）：概念初建（REFLECT gap 回填，2026-04-25 gap report 已标记）。从英飞凌深圳论坛系列 + 氮化镓专题来源提炼材料优势、GaN/Si/SiC 分工、机器人电机驱动与 AI 数据中心两大应用、300mm 产业化拐点；confidence 设为 medium，已在 Contradictions 标注厂商单一性局限。
+- 2026-07-21（8 sources）：REFLECT 补齐主域标签：chip、embodied-ai

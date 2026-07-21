@@ -14,6 +14,8 @@ tags:
   - iso26262
   - autosar
   - functional-safety
+  - agent
+  - automotive-eea
 ---
 
 # Automotive Claude Code Agents
@@ -79,3 +81,4 @@ tags:
 ## Evolution Log
 
 - 2026-05-14 个人写作 [[sources/automotive-agents-tutorial]] 建立实体页，确认为作者汽车软件 AI 工程化工具
+- 2026-07-21（? sources）：REFLECT 补齐主域标签：agent、automotive-eea

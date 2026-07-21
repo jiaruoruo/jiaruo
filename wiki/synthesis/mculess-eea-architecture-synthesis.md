@@ -9,7 +9,8 @@ tags:
   - zonal-gateway
   - gpan
   - rcp
-source_count: 12
+  - automotive-eea
+source_count: 26
 confidence: medium
 ---
 
@@ -49,13 +50,14 @@ MCULess 不是「是否去 MCU」的二元选择，而是一条**按域分层推
 
 ## Confidence Notes
 
-⚠ Confidence Notes：此综合基于约 12 个核心来源（背后关联 mculess-architecture 27 源、gpan-communication 23 源），置信度为 **medium**。底层概念 mculess-architecture 为 high、gpan-communication 为 medium，量化数据互相印证、内部矛盾已显式标注。下调至 medium 的主因是**来源同源性**（见 Limitations）。
+⚠ Confidence Notes：此综合基于 **26 个来源**（原 14 + 2026-07-21 REFLECT 增补 12），置信度为 **medium**。底层概念 mculess-architecture 为 high、gpan-communication 为 medium，量化数据互相印证、内部矛盾已显式标注。下调至 medium 的主因是**来源同源性**（见 Limitations）。候选 **high** 需老贾确认（按 CLAUDE.md 第十节：5+ 来源无重大矛盾方可升 high；本综合存在厂商偏差与路线证据不对称，故暂定 medium）。
 
 ## Limitations
 
 - **回音室风险（关键）**：本簇来源高度集中于汇顶（Goodix）GPAN 资料集与 MCULess 倡导方视角，缺乏独立第三方实测、竞品厂商（ADI/NXP/Onsemi）原始口径与持反对意见的 OEM 量产复盘。GPAN vs 10BASE-T1S 的对比数据多由 GPAN 方提供，可能存在选择性呈现。
 - **时效与阶段性**：GE1101 量产、RCP 标准（Draft 0.2）、OEM POC 均处进行时，2026–2027 结论可能快速变化。
 - **覆盖盲区**：缺少 MCULess 在功能安全认证（ISO 26262 全链路）、EMC、长期可靠性方面的独立验证数据；域控制器侧因集中化而增加的算力/安全/OTA 成本未被定量纳入「降本」核算。
+- **盲点误报已排除（2026-07-21 REFLECT）**：初步扫描曾将 `rcp-protocol-mculess-hardware-control-deep-dive` 误判为「无页面盲点」，经核查该 source 页实际存在，系扫描脚本仅比对 concept/entity slug、漏算 source slug 所致，非真实缺口。
 
 ## Sources
 
@@ -73,3 +75,15 @@ MCULess 不是「是否去 MCU」的二元选择，而是一条**按域分层推
 - [[sources/zcu-market-research-2025]]
 - [[sources/sdv-architecture-revolution]]
 - [[sources/mculess-solution-progress]]
+- [[sources/mculess-technology-insight-full-2026-05]]
+- [[sources/rcp-protocol-automotive-architecture-paradigm-shift]]
+- [[sources/10baset1s-automotive-ethernet-technical-analysis]]
+- [[sources/mculess-tech-industry-current-state]]
+- [[sources/cost-analysis-public-v0-4]]
+- [[sources/mculess-smart-lighting-innovation]]
+- [[sources/automotive-ethernet-evolution-10baset1s-to-1gbase]]
+- [[sources/distributed-gateway-communication-tdt]]
+- [[sources/li-auto-mach-m100-deep-dive]]
+- [[sources/renesas-rh850-u2b-introduction]]
+- [[sources/gpan-vs-ethercat-architecture-comparison]]
+- [[sources/mculess-bzcu-hardware-design]]

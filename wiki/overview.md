@@ -25,6 +25,7 @@ _最后更新：2026-07-21_
 
 ## 最近 Lint 报告
 
+- 2026-07-21 `wiki/outputs/lint-2026-07-21.md`（**9/10 项通过，6 问题**：Check7 Stale 6 条 high-volatility 历史遗留页；关键项全过）
 - 2026-07-13 `wiki/outputs/lint-2026-07-13.md`（**9/9 项通过，0 问题**；clippings + notes 两批次 ingest 后复检，已刷新）
 - 2026-06-29 `wiki/outputs/lint-2026-06-29.md`（**9/9 项通过，0 问题**；定时任务运行）
 - 2026-06-27 `wiki/outputs/lint-2026-06-27.md`（**9/9 项通过，0 问题**；近重复白名单已豁免同族概念误报）
@@ -42,12 +43,13 @@ _最后更新：2026-07-21_
 - 2026-06-27 `wiki/synthesis/embodied-ai-humanoid-robot-synthesis.md`（人形机器人约束下移到「身体层」三大瓶颈：BFM 接口/真机数据/灵巧手供应链，confidence: medium）
 - 2026-06-27 `wiki/synthesis/edge-ai-on-device-inference-synthesis.md`（边缘AI：推理下沉设备端、重塑 MCU 角色、不可能三角，confidence: medium）
 - 2026-06-27 `wiki/synthesis/chip-design-manufacturing-flow-synthesis.md`（芯片设计制造全流程地图 + 与前沿簇割裂的孤岛诊断，confidence: medium）
-- 2026-06-27 `wiki/synthesis/mculess-eea-architecture-synthesis.md`（MCULess 与汽车 EEA 架构演进，硬件路由 vs 软件路由，confidence: medium）
+- 2026-06-27 `wiki/synthesis/mculess-eea-architecture-synthesis.md`（MCULess 与汽车 EEA 架构演进，硬件路由 vs 软件路由，confidence: medium；**2026-07-21 REFLECT 补 automotive-eea 标签 + 增补 12 源**）
 - 2026-04-25 `wiki/synthesis/robot-semiconductor-competitive-synthesis.md`（机器人半导体竞争格局，confidence: medium）
 - 2026-04-25 `wiki/synthesis/agent-architecture-landscape-synthesis.md`（Agent 框架三条路线，confidence: low）
 
 ## 最近 Reflect 报告
 
+- 2026-07-21 `wiki/outputs/gap-report-2026-07-21.md`（REFLECT：补 84 文件主域标签（automotive-eea 0→22 / chip 4→32 / agent 8→32 / embodied-ai 6→38）；既有 mculess-eea 综合增补；11 孤立概念 + 9 覆盖稀薄 hub 待 ingest）
 - 2026-07-13 `wiki/outputs/gap-report-2026-07-13.md`（REFLECT 新增 2 篇 synthesis，比 34:1→26:1；孤立概念 16 个待深化；GPAN/SDV 收敛均标回音室风险）
 - 2026-06-29 `wiki/outputs/gap-report-2026-06-29.md`（上轮 P0 已消除；新盲区：ota-update 14 源无页 / thermal-management 9 源 / cybersecurity-automotive 4 源；单源积压 32）
 - 2026-06-27 `wiki/outputs/gap-report-2026-06-27.md`（P0 盲区：functional-safety 23 源无页 / gan-power-devices 11 源无页；eea-architecture 顶层框架单源失衡）
@@ -72,6 +74,7 @@ _最后更新：2026-07-21_
 
 ## 待办（下一步建议）
 
+- **标签治理（2026-07-21 REFLECT 已完成）**：84 个概念/实体/synthesis 补主域标签，修复集群导航与统计失效（CLAUDE.md §九）；automotive-eea 0→22、chip 4→32、agent 8→32、embodied-ai 6→38（finance 0 属正常，无金融内容摄入）。
 - **补充 Synthesis（已完成本轮）**：来源/综合比从 34:1 拉回 **23:1**（低于 30 阈值）。本轮 REFLECT 新增 2 篇 synthesis；随后按用户指示把 gap-report 第六节的「Agent 主题归一」落地为 `agent-theme-synthesis.md`（6层架构×Harness×安全治理三层抽象栈，low），闭环该建议。下一步可针对「芯片设计全流程深化」「人形机器人供应链」补综合（见 gap-report-2026-07-13.md 第六节）。
 - **横向连通补桥**：芯片簇仍是相对孤岛（concept↔concept 链接稀疏），后续 ingest 现代芯片内容时应优先连到 advanced-packaging / gan-power-devices / mobile-soc / functional-safety 四个桥接点（见 chip-design-manufacturing-flow-synthesis）。
 - **单源概念深化**：仍有大量 `source_count=1` 概念（如 agent-architecture / soft-robotics / neuromorphic-computing / vision-language-action-model / robot-safety / vehicle-domain-controller 等），可在后续摄入中强化定义、补充矛盾点。

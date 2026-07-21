@@ -8,6 +8,7 @@ tags:
   - functional-safety
   - humanoid-robot
   - safety
+  - embodied-ai
 source_count: 1
 confidence: medium
 domain_volatility: high
@@ -49,3 +50,4 @@ aliases:
 ## Evolution Log
 
 - 2026-07-13（1 sources）：概念初建，来源为机器人团队安全需求软/硬件实现方案（内部工程文档 v1.0，2026-07-02），提炼 L1-L4 分层架构、灵巧手防夹、基础保护分级、整机姿态安全、功能安全故障上报、电气安全合规六大块
+- 2026-07-21（1 sources）：REFLECT 补齐主域标签：embodied-ai

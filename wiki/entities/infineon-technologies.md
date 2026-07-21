@@ -8,6 +8,7 @@ tags:
   - semiconductor
   - germany
   - motor-control
+  - chip
 entity_type: institution
 aliases:
   - "英飞凌科技"
@@ -60,3 +61,4 @@ aliases:
 
 - 2026-04-15（2 sources）：实体页初建，来源为英飞凌人形机器人市场分析报告（Jun 2025 + Feb 2026 两版）
 - 2026-04-20（16 sources）：批量新增 14 个深圳/北京技术论坛演讲（We Accelerate Robotics / We Enable AI / We Power AI / 主论坛）；涵盖 XENSIV 传感、CoolGaN™ 功率器件、PSOC C3 MCU、AIROC 无线、OPTIGA 安全、AI 数据中心供电等完整产品线
+- 2026-07-21（? sources）：REFLECT 补齐主域标签：chip

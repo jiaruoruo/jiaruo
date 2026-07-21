@@ -8,6 +8,7 @@ tags:
   - real-time-communication
   - robotics
   - fieldbus
+  - embodied-ai
 source_count: 18
 confidence: low
 domain_volatility: low
@@ -83,3 +84,4 @@ EtherCAT（Ethernet for Control Automation Technology）是一种基于以太网
 - 2026-07-14（18 sources）：强化——[Windows SOEM EtherCAT 主站搭建] 与现有定义一致
 - 2026-07-14（18 sources）：强化——[EtherCAT/GPAN 抓包分析] 与现有定义一致
 - 2026-07-14（18 sources）：强化——[人形机器人 OEM/供应商机会分析] 与现有定义一致
+- 2026-07-21（18 sources）：REFLECT 补齐主域标签：embodied-ai

@@ -10,6 +10,7 @@ tags:
   - mculess
   - zonal-gateway
   - real-time-communication
+  - automotive-eea
 source_count: 38
 confidence: medium
 ---

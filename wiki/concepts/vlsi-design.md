@@ -7,6 +7,7 @@ tags:
   - semiconductor
   - vlsi
   - ic-design
+  - chip
 source_count: 4
 confidence: medium
 domain_volatility: low
@@ -49,3 +50,4 @@ aliases:
 ## Evolution Log
 
 - 2026-06-27（4 sources）：概念初建，从芯片设计/制造来源批量提取，消除 source 页断链
+- 2026-07-21（4 sources）：REFLECT 补齐主域标签：chip

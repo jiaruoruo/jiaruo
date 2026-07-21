@@ -9,6 +9,7 @@ tags:
   - real-time
   - automotive
   - ethernet
+  - automotive-eea
 source_count: 7
 confidence: low
 domain_volatility: low
@@ -61,3 +62,4 @@ aliases:
 - 2026-07-14（7 sources）：强化——[GPAN 车载 MCU-less 和分布式音频介绍（V1.8）] 与现有定义一致
 - 2026-07-14（7 sources）：强化——[GPAN 车载通信应用场景价值分析（V0.8）] 与现有定义一致
 - 2026-07-14（7 sources）：强化——[EtherCAT/GPAN 抓包分析] 与现有定义一致
+- 2026-07-21（7 sources）：REFLECT 补齐主域标签：automotive-eea

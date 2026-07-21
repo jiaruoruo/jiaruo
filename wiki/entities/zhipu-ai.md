@@ -8,6 +8,7 @@ tags:
   - chinese-ai
   - software-engineering
   - reasoning
+  - agent
 entity_type: institution
 aliases:
   - "智谱AI"
@@ -45,3 +46,4 @@ aliases:
 - 2026-04-27（1 sources）：实体页初建，来源为 2026 年 4 月顶级模型 benchmark 横向对比；记录 GLM-5.1 在软件工程上的优势以及综合推理和工具链上的明显短板
 
 - 2026-07-14：强化——新来源 [顶级大模型 Benchmark 全面对比解析（2026 年 4 月）] 补充描述信息
+- 2026-07-21（? sources）：REFLECT 补齐主域标签：agent

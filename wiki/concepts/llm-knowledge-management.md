@@ -9,6 +9,7 @@ tags:
   - second-brain
   - obsidian
   - personal-knowledge
+  - agent
 source_count: 1
 confidence: low
 domain_volatility: medium
@@ -56,3 +57,4 @@ LLM 驱动知识库管理是由 Andrej Karpathy 推广的知识管理范式，�
 ## Evolution Log
 
 - 2026-04-25（1 sources）：概念初建，来源为 Karpathy LLM 知识库管理方法论文章；Karpathy 背书为本知识库架构提供了独立外部验证
+- 2026-07-21（1 sources）：REFLECT 补齐主域标签：agent

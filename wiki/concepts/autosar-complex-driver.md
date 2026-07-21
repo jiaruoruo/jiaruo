@@ -9,6 +9,7 @@ tags:
   - cdd
   - automotive-software
   - mcal
+  - automotive-eea
 source_count: 2
 confidence: low
 domain_volatility: low
@@ -75,3 +76,4 @@ AUTOSAR复杂驱动（ComplexDriver，CDD）是AUTOSAR BSW（基础软件）四�
 
 - 2026-05-14（2 sources）：概念初建，来源为AUTOSAR CDD实践文章与FlexTools工具文章；两篇来源对CDD定义与工程价值的描述高度一致，相互强化
 - 2026-05-14 个人写作 [[sources/automotive-agents-tutorial]] 确立了对此概念的明确立场（CDD是AI辅助价值最高的AUTOSAR工程节点）
+- 2026-07-21（2 sources）：REFLECT 补齐主域标签：automotive-eea

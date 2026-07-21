@@ -9,6 +9,7 @@ tags:
   - ethernet
   - protocol
   - gateway
+  - automotive-eea
 source_count: 3
 confidence: medium
 domain_volatility: medium
@@ -54,3 +55,4 @@ CAN-ETH 协议转换是指在整车骨干网由 CAN 总线向以太网（Etherne
 
 - 2026-07-14（3 sources）：强化——[GPAN 车载 MCU-less 和分布式音频介绍（V1.8）] 与现有定义一致
 - 2026-07-14（3 sources）：强化——[GPAN 芯片规格介绍文档（V0.2）] 与现有定义一致
+- 2026-07-21（3 sources）：REFLECT 补齐主域标签：automotive-eea

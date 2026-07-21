@@ -8,6 +8,7 @@ tags:
   - imitation-learning
   - open-source
   - kitchen-manipulation
+  - embodied-ai
 entity_type: tool
 aliases:
   - "RoboCasa"
@@ -40,3 +41,4 @@ MIT/Stanford 联合开发的厨房日常操作仿真平台，提供丰富的家�
 ## Evolution Log
 
 - 2026-04-15（1 sources）：实体页初建，来源为 OpenClaw × Simulation × RL 文章
+- 2026-07-21（? sources）：REFLECT 补齐主域标签：embodied-ai

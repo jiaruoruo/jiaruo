@@ -7,6 +7,7 @@ tags:
   - api
   - multimodal
   - llm
+  - agent
 source_count: 1
 confidence: low
 domain_volatility: high
@@ -44,3 +45,4 @@ aliases:
 
 - 2026-04-13（1 sources）：概念初建，来源为 MiniMax 开放平台接口概览文档
 - 2026-04-15（1 sources）：修正：来源文件更新（SHA-256 变更），补充 M2.7 / M2.7-highspeed 为当前旗舰文本模型
+- 2026-07-21（1 sources）：REFLECT 补齐主域标签：agent

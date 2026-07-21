@@ -8,6 +8,7 @@ tags:
   - reinforcement-learning
   - nvidia
   - tool
+  - embodied-ai
 entity_type: tool
 aliases:
   - "Isaac Gym"
@@ -42,3 +43,4 @@ NVIDIA 开发的 GPU 加速物理仿真器，专为强化学习训练设计（�
 ## Evolution Log
 
 - 2026-04-15（1 sources）：实体页初建，来源为人形机器人技术研究及快速原型建设报告
+- 2026-07-21（? sources）：REFLECT 补齐主域标签：embodied-ai

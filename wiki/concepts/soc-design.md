@@ -6,6 +6,7 @@ updated: 2026-06-27
 tags:
   - soc
   - ic-design
+  - chip
 source_count: 1
 confidence: low
 domain_volatility: low
@@ -46,3 +47,4 @@ SoC 设计（System-on-Chip Design，片上系统设计）是将处理器、存�
 ## Evolution Log
 
 - 2026-06-27（1 sources）：概念初建，从芯片设计/制造来源批量提取，消除 source 页断链
+- 2026-07-21（1 sources）：REFLECT 补齐主域标签：chip

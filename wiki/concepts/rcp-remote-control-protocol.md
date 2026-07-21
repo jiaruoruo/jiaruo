@@ -10,6 +10,7 @@ tags:
   - automotive
   - eea
   - ieee
+  - automotive-eea
 source_count: 8
 confidence: medium
 domain_volatility: high
@@ -121,3 +122,4 @@ RCP 是 MCU-less 架构的核心使能协议，其标准化进程（Draft 0.2）
 
 - 2026-07-14（8 sources）：强化——[MCU-less 技术洞察（详尽版）：机会分析 · 技术方案 · 执行策略] 与现有定义一致
 - 2026-07-14（8 sources）：强化——[MCU-less 技术在汽车和机器人领域的应用洞察] 与现有定义一致
+- 2026-07-21（8 sources）：REFLECT 补齐主域标签：automotive-eea

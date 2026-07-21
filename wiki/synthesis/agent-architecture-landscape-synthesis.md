@@ -8,6 +8,7 @@ tags:
   - hermes-agent
   - superagent
   - agent-architecture
+  - agent
 source_count: 7
 confidence: low
 ---

@@ -9,6 +9,7 @@ tags:
   - ai-workflow
   - agents
   - developer-tools
+  - agent
 source_count: 1
 confidence: low
 domain_volatility: high
@@ -76,3 +77,4 @@ ECC（Everything Claude Code）是我对"Claude Code工程工作流"概念的完
 
 - 2026-05-14（1 sources）：概念初建，来源为 everything-claude-code 项目介绍文章
 - 2026-05-14 个人写作 [[sources/ecc-architecture-design]] / [[sources/ecc-detailed-design]] / [[sources/ecc-tutorial-and-extension]] 确立了对此概念的明确立场（ECC 生产级实现 + Immutability + 专业化 Agent 原则）
+- 2026-07-21（1 sources）：REFLECT 补齐主域标签：agent
