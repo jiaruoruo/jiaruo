@@ -5,17 +5,17 @@ graph-excluded: true
 
 # Knowledge Base Health Dashboard
 
-_最后更新：2026-07-21_
+_最后更新：2026-07-22_
 
 ## 健康状态总览
 
 | 指标 | 数值 | 说明 |
 |---|---|---|
-| 总来源数（Sources） | 233 | wiki/sources/ 下的页面总数（+1 PDF: yeasy《Harness》技术书） |
-| 总 Concept 页数 | 74 | wiki/concepts/ 下的页面总数（不变） |
+| 总来源数（Sources） | 269 | wiki/sources/ 下的页面总数（含 36 份 SGS AFSP 培训扫描件） |
+| 总 Concept 页数 | 83 | wiki/concepts/ 下的页面总数（新增 9 个 ISO 26262 相关概念） |
 | 总 Entity 页数 | 31 | wiki/entities/ 下的页面总数（不变） |
-| 总 Synthesis 页数 | 9 | wiki/synthesis/ 下的页面总数（不变） |
-| 来源/综合比 | 26:1 | 233/9，**低于阈值（30）** |
+| 总 Synthesis 页数 | 10 | wiki/synthesis/ 下的页面总数（新增 ISO 26262 AFSP 复习指南） |
+| 来源/综合比 | 27:1 | 269/10，**低于阈值（30）** |
 | 高置信度概念数（High Confidence） | 2 | confidence: high 的 concept 页数 |
 | 中置信度概念数（Medium Confidence） | 16 | confidence: medium 的 concept 页数 |
 | 低置信度概念数（Low Confidence） | 56 | confidence: low 的 concept 页数 |
@@ -37,6 +37,7 @@ _最后更新：2026-07-21_
 
 ## 最近 Synthesis
 
+- 2026-07-22 `wiki/synthesis/iso26262-afsp-study-guide.md`（SGS TÜV Saar ISO 26262 AFSP 培训案例全景：Day1 Item Definition/HARA → Day2 FSC/TSC → Day3 HW 分析与 SN 29500 查表，confidence: medium）
 - 2026-07-13 `wiki/synthesis/agent-theme-synthesis.md`（Agent 主题综合：6层架构×Harness×安全治理三层抽象栈，含 MCP 连接层，confidence: low）
 - 2026-07-13 `wiki/synthesis/vehicle-comms-protocols-synthesis.md`（车载实时通信 GPAN/EtherCAT/10BASE-T1S/ZCU 三路线互补共存，confidence: medium）
 - 2026-07-13 `wiki/synthesis/sdv-vla-agent-convergence-synthesis.md`（端到端自动驾驶×具身智能×域控架构收敛，方法论同构，confidence: low）
@@ -71,6 +72,7 @@ _最后更新：2026-07-21_
 | 2026-07-13（agent 主题综合 +1 synthesis） | 205 | 74 | 31 | 9 |
 | 2026-07-14（ingest articles 23 文件） | 228 | 74 | 31 | 9 |
 | 2026-07-21（ingest pdf 1 文件） | 233 | 74 | 31 | 9 |
+| 2026-07-22（ingest SGS AFSP 36 源 + 1 synthesis + 9 concepts） | 269 | 83 | 31 | 10 |
 
 ## 待办（下一步建议）
 

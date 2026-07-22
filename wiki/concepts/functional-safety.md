@@ -2,7 +2,7 @@
 type: concept
 title: "功能安全"
 date: 2026-06-27
-updated: 2026-07-14
+updated: 2026-07-22
 tags:
   - functional-safety
   - automotive
@@ -11,10 +11,10 @@ tags:
   - robotics
   - automotive-eea
   - embodied-ai
-source_count: 14
+source_count: 50
 confidence: medium
 domain_volatility: low
-last_reviewed: 2026-07-14
+last_reviewed: 2026-07-22
 aliases:
   - "功能安全"
   - "Functional Safety"
@@ -68,6 +68,42 @@ aliases:
 - [[sources/ethercat-team-planning-report-2026]]
 - [[sources/mcu-less-seats-project-2026-03]]
 - [[sources/mcu-less-application-opportunities]]
+- [[sources/sgs-afsp-day1-item-definition-purpose-function]]
+- [[sources/sgs-afsp-day1-item-definition-context]]
+- [[sources/sgs-afsp-day1-hara-exercise-p1]]
+- [[sources/sgs-afsp-day1-hara-exercise-p2]]
+- [[sources/sgs-afsp-day1-hara-exercise-p1-duplicate]]
+- [[sources/sgs-afsp-day1-hara-exercise-p3]]
+- [[sources/sgs-afsp-day1-hara-exercise-p4]]
+- [[sources/sgs-afsp-day1-hara-exercise-p5]]
+- [[sources/sgs-afsp-day1-hara-exercise-p6]]
+- [[sources/sgs-afsp-day1-hara-exercise-p7]]
+- [[sources/sgs-afsp-day1-hara-exercise-p8]]
+- [[sources/sgs-afsp-day2-fsc-safety-goal-characteristics]]
+- [[sources/sgs-afsp-day2-fsc-requirements-architecture]]
+- [[sources/sgs-afsp-day2-tsc-system-draft]]
+- [[sources/sgs-afsp-day2-tsc-system-draft-duplicate]]
+- [[sources/sgs-afsp-day2-tsc-system-level-requirements]]
+- [[sources/sgs-afsp-day2-tsc-system-design-allocation]]
+- [[sources/sgs-afsp-day2-tsc-system-element-requirements]]
+- [[sources/sgs-afsp-day2-tsc-component-design-hw-sw-allocation]]
+- [[sources/sgs-afsp-day3-hw-safety-requirements-design-example]]
+- [[sources/sgs-afsp-day3-hw-analysis-circuit-diagram]]
+- [[sources/sgs-afsp-day3-hw-analysis-bom-fault-rates]]
+- [[sources/sgs-afsp-day3-hw-analysis-fault-distribution-components]]
+- [[sources/sgs-afsp-day3-hw-analysis-fault-distribution-amp-motor]]
+- [[sources/sgs-afsp-day3-hw-analysis-safety-mechanisms-dc]]
+- [[sources/sgs-afsp-day3-hw-analysis-metrics-calculation-p6]]
+- [[sources/sgs-afsp-day3-hw-analysis-metrics-calculation-p7]]
+- [[sources/sgs-afsp-day3-hw-analysis-metrics-results-p8]]
+- [[sources/sgs-afsp-sn29500-transistor-fit-rates]]
+- [[sources/sgs-afsp-sn29500-diode-power-semiconductor-fit-rates]]
+- [[sources/sgs-afsp-sn29500-temperature-correction-factors]]
+- [[sources/sgs-afsp-sn29500-capacitor-fit-rates]]
+- [[sources/sgs-afsp-sn29500-resistor-inductor-passive-fit-rates]]
+- [[sources/sgs-afsp-sn29500-capacitor-voltage-correction]]
+- [[sources/sgs-afsp-sn29500-capacitor-temperature-correction]]
+- [[sources/sgs-afsp-sn29500-resistor-temperature-quality-factor]]
 
 ## Evolution Log
 
@@ -79,3 +115,4 @@ aliases:
 - 2026-07-14（14 sources）：强化——[MCU-Less 座椅项目讨论（V0.5）] 与现有定义一致
 - 2026-07-14（14 sources）：强化——[MCU-less 应用机会点汇总] 与现有定义一致
 - 2026-07-21（14 sources）：REFLECT 补齐主域标签：automotive-eea、embodied-ai
+- 2026-07-22（50 sources）：强化——全量摄入 SGS TÜV Saar ISO 26262 AFSP 培训案例 36 页扫描件，覆盖 Day 1 Item Definition/HARA、Day 2 FSC/TSC、Day 3 硬件分析/SPFM/LFM/PMHF 与 SN 29500 元器件 FIT/πT/πU/πQ 查表；新建综合页 [[synthesis/iso26262-afsp-study-guide]]；functional-safety source_count 14→50，confidence 维持 medium（单一培训机构来源+扫描转录风险）

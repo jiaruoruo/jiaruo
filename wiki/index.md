@@ -9,6 +9,42 @@ graph-excluded: true
 
 ### Processed
 
+- 2026-07-22 [[sources/sgs-afsp-day1-item-definition-purpose-function]]
+- 2026-07-22 [[sources/sgs-afsp-day1-item-definition-context]]
+- 2026-07-22 [[sources/sgs-afsp-day1-hara-exercise-p1]]
+- 2026-07-22 [[sources/sgs-afsp-day1-hara-exercise-p2]]
+- 2026-07-22 [[sources/sgs-afsp-day1-hara-exercise-p1-duplicate]]
+- 2026-07-22 [[sources/sgs-afsp-day1-hara-exercise-p3]]
+- 2026-07-22 [[sources/sgs-afsp-day1-hara-exercise-p4]]
+- 2026-07-22 [[sources/sgs-afsp-day1-hara-exercise-p5]]
+- 2026-07-22 [[sources/sgs-afsp-day1-hara-exercise-p6]]
+- 2026-07-22 [[sources/sgs-afsp-day1-hara-exercise-p7]]
+- 2026-07-22 [[sources/sgs-afsp-day1-hara-exercise-p8]]
+- 2026-07-22 [[sources/sgs-afsp-day2-fsc-safety-goal-characteristics]]
+- 2026-07-22 [[sources/sgs-afsp-day2-fsc-requirements-architecture]]
+- 2026-07-22 [[sources/sgs-afsp-day2-tsc-system-draft]]
+- 2026-07-22 [[sources/sgs-afsp-day2-tsc-system-draft-duplicate]]
+- 2026-07-22 [[sources/sgs-afsp-day2-tsc-system-level-requirements]]
+- 2026-07-22 [[sources/sgs-afsp-day2-tsc-system-design-allocation]]
+- 2026-07-22 [[sources/sgs-afsp-day2-tsc-system-element-requirements]]
+- 2026-07-22 [[sources/sgs-afsp-day2-tsc-component-design-hw-sw-allocation]]
+- 2026-07-22 [[sources/sgs-afsp-day3-hw-safety-requirements-design-example]]
+- 2026-07-22 [[sources/sgs-afsp-day3-hw-analysis-circuit-diagram]]
+- 2026-07-22 [[sources/sgs-afsp-day3-hw-analysis-bom-fault-rates]]
+- 2026-07-22 [[sources/sgs-afsp-day3-hw-analysis-fault-distribution-components]]
+- 2026-07-22 [[sources/sgs-afsp-day3-hw-analysis-fault-distribution-amp-motor]]
+- 2026-07-22 [[sources/sgs-afsp-day3-hw-analysis-safety-mechanisms-dc]]
+- 2026-07-22 [[sources/sgs-afsp-day3-hw-analysis-metrics-calculation-p6]]
+- 2026-07-22 [[sources/sgs-afsp-day3-hw-analysis-metrics-calculation-p7]]
+- 2026-07-22 [[sources/sgs-afsp-day3-hw-analysis-metrics-results-p8]]
+- 2026-07-22 [[sources/sgs-afsp-sn29500-transistor-fit-rates]]
+- 2026-07-22 [[sources/sgs-afsp-sn29500-diode-power-semiconductor-fit-rates]]
+- 2026-07-22 [[sources/sgs-afsp-sn29500-temperature-correction-factors]]
+- 2026-07-22 [[sources/sgs-afsp-sn29500-capacitor-fit-rates]]
+- 2026-07-22 [[sources/sgs-afsp-sn29500-resistor-inductor-passive-fit-rates]]
+- 2026-07-22 [[sources/sgs-afsp-sn29500-capacitor-voltage-correction]]
+- 2026-07-22 [[sources/sgs-afsp-sn29500-capacitor-temperature-correction]]
+- 2026-07-22 [[sources/sgs-afsp-sn29500-resistor-temperature-quality-factor]]
 - 2026-07-21 [[sources/ai-agent-evaluation-framework-four-layers]]
 - 2026-07-21 [[sources/langchain-harness-tuning-nemotron-playbook]]
 - 2026-07-21 [[sources/workbuddy-harness-engineering-case-study]]
@@ -324,6 +360,15 @@ graph-excluded: true
 - [[concepts/automotive-ethernet-10base-t1s]]
 - [[concepts/robot-safety]]
 - [[concepts/vehicle-domain-controller]]
+- [[concepts/item-definition]]
+- [[concepts/hara]]
+- [[concepts/fsc]]
+- [[concepts/tsc]]
+- [[concepts/sn29500]]
+- [[concepts/fit-rate]]
+- [[concepts/hardware-metrics]]
+- [[concepts/component-reliability]]
+- [[concepts/pmhf]]
 
 ---
 
@@ -377,6 +422,7 @@ graph-excluded: true
 ## Recent Synthesis
 
 <!-- 最近生成的综合分析页，格式：- YYYY-MM-DD [[synthesis/slug]] -->
+- 2026-07-22 [[synthesis/iso26262-afsp-study-guide]]（SGS TÜV Saar ISO 26262 AFSP 培训案例 36 源，confidence: medium）
 - 2026-07-21 [[synthesis/mculess-eea-architecture-synthesis]]（REFLECT 增补 12 源）
 - 2026-07-13 [[synthesis/agent-theme-synthesis]]
 - 2026-07-13 [[synthesis/vehicle-comms-protocols-synthesis]]
