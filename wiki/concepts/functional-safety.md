@@ -11,7 +11,7 @@ tags:
   - robotics
   - automotive-eea
   - embodied-ai
-source_count: 74
+source_count: 72
 confidence: medium
 domain_volatility: low
 last_reviewed: 2026-07-22
@@ -70,7 +70,6 @@ aliases:
 - [[sources/sgs-afsp-day1-item-definition-context]]
 - [[sources/sgs-afsp-day1-hara-exercise-p1]]
 - [[sources/sgs-afsp-day1-hara-exercise-p2]]
-- [[sources/sgs-afsp-day1-hara-exercise-p1-duplicate]]
 - [[sources/sgs-afsp-day1-hara-exercise-p3]]
 - [[sources/sgs-afsp-day1-hara-exercise-p4]]
 - [[sources/sgs-afsp-day1-hara-exercise-p5]]
@@ -80,7 +79,6 @@ aliases:
 - [[sources/sgs-afsp-day2-fsc-safety-goal-characteristics]]
 - [[sources/sgs-afsp-day2-fsc-requirements-architecture]]
 - [[sources/sgs-afsp-day2-tsc-system-draft]]
-- [[sources/sgs-afsp-day2-tsc-system-draft-duplicate]]
 - [[sources/sgs-afsp-day2-tsc-system-level-requirements]]
 - [[sources/sgs-afsp-day2-tsc-system-design-allocation]]
 - [[sources/sgs-afsp-day2-tsc-system-element-requirements]]
@@ -140,3 +138,4 @@ aliases:
 - 2026-07-22（50 sources）：强化——全量摄入 SGS TÜV Saar ISO 26262 AFSP 培训案例 36 页扫描件，覆盖 Day 1 Item Definition/HARA、Day 2 FSC/TSC、Day 3 硬件分析/SPFM/LFM/PMHF 与 SN 29500 元器件 FIT/πT/πU/πQ 查表；新建综合页 [[synthesis/iso26262-afsp-study-guide]]；functional-safety source_count 14→50，confidence 维持 medium（单一培训机构来源+扫描转录风险）
 - 2026-07-22（74 sources）：强化——全量摄入 raw/pdfs/功能安全/ 下 ISO 26262:2018 第 1–12 部分正式标准（12 源）+ GB/T 34590 征求意见稿第 1–12 部分（12 源）；新建枢纽概念 [[iso-26262]]、[[gbt-34590]]；functional-safety source_count 50→74，confidence 维持 medium
 - 2026-07-22（REFLECT）：新建跨来源综合 [[synthesis/functional-safety-landscape-synthesis]]（74 源，medium），消解功能安全簇「广而不深」；反向检验标注回音室风险（AFSP 单机构、规范来源非批判性、机器人迁移未验证、国标草稿时效）
+- 2026-07-22（MERGE）：去重——两份 SGS AFSP 重复扫描源页（day1-hara-exercise-p1-duplicate、day2-tsc-system-draft-duplicate）改为重定向至各自主键；Sources 列表移除重复条目，source_count 74→72（唯一来源）

@@ -9,7 +9,7 @@ tags:
   - gbt-34590
   - automotive
   - mculess
-source_count: 74
+source_count: 72
 confidence: medium
 ---
 
@@ -49,7 +49,7 @@ Part 1 术语、Part 2 功能安全管理、Part 3 概念阶段（Item Definitio
 
 ## Synthesis
 
-把功能安全主题簇的 74 个来源归并为一个可操作的认知框架：
+把功能安全主题簇的 72 个来源（去重后）归并为一个可操作的认知框架：
 
 1. **规范层（What is required）**：ISO 26262:2018 第 2 版 12 部分 + GB/T 34590（国标版）构成强制/准强制骨架；Part 10–12 为信息性指南，不增约束力。
 2. **方法层（How to do it）**：安全生命周期 = 概念(Part3) → 系统(Part4) → 硬件(Part5) → 软件(Part6) → 生产(Part7)；ASIL 是贯穿各层的统一需求标尺；Part 8/9 是支撑与剪裁手段。
@@ -61,7 +61,7 @@ Part 1 术语、Part 2 功能安全管理、Part 3 概念阶段（Item Definitio
 
 ## Confidence Notes
 
-⚠ Confidence Notes：此综合基于 **74** 个来源（ISO 26262 标准 12 + GB/T 34590 征求意见稿 12 + SGS AFSP 培训 36 + MCULess/半导体/机器人延伸 14），置信度为 **medium**。
+⚠ Confidence Notes：此综合基于 **72** 个来源（去重后：ISO 26262 标准 12 + GB/T 34590 征求意见稿 12 + SGS AFSP 培训 34 + MCULess/半导体/机器人延伸 14），置信度为 **medium**。
 
 - **支撑 medium 的因素**：来源数量远超 5+ 阈值；标准文本与培训案例在 ASIL 定级、硬件度量计算链上内部自洽；MCULess 边界、车规芯片案例有独立行业报道交叉印证。
 - **维持 medium、未升 high 的原因（按 CLAUDE.md §十需用户确认）**：AFSP 子簇高度同源（单一培训机构），且核心规范来源为「规定性」而非「批判性」，反向检验未找到独立反驳来源——存在确认偏差风险。若将本综合置信度升至 high，须经老贾明确确认。

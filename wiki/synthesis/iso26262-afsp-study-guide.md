@@ -9,7 +9,7 @@ tags:
   - sgs-afsp
   - automotive
   - exam-prep
-source_count: 36
+source_count: 34
 confidence: medium
 ---
 
@@ -68,7 +68,6 @@ AFSP 考试的核心能力不是“知道标准条文”，而是 **能在给定
 - [[sources/sgs-afsp-day1-item-definition-context]]
 - [[sources/sgs-afsp-day1-hara-exercise-p1]]
 - [[sources/sgs-afsp-day1-hara-exercise-p2]]
-- [[sources/sgs-afsp-day1-hara-exercise-p1-duplicate]]
 - [[sources/sgs-afsp-day1-hara-exercise-p3]]
 - [[sources/sgs-afsp-day1-hara-exercise-p4]]
 - [[sources/sgs-afsp-day1-hara-exercise-p5]]
@@ -78,7 +77,6 @@ AFSP 考试的核心能力不是“知道标准条文”，而是 **能在给定
 - [[sources/sgs-afsp-day2-fsc-safety-goal-characteristics]]
 - [[sources/sgs-afsp-day2-fsc-requirements-architecture]]
 - [[sources/sgs-afsp-day2-tsc-system-draft]]
-- [[sources/sgs-afsp-day2-tsc-system-draft-duplicate]]
 - [[sources/sgs-afsp-day2-tsc-system-level-requirements]]
 - [[sources/sgs-afsp-day2-tsc-system-design-allocation]]
 - [[sources/sgs-afsp-day2-tsc-system-element-requirements]]
