@@ -8,6 +8,7 @@ tags:
   - open-source
   - mujoco
   - reinforcement-learning
+  - embodied-ai
 entity_type: tool
 aliases:
   - "robosuite"
@@ -41,3 +42,4 @@ aliases:
 ## Evolution Log
 
 - 2026-04-15（1 sources）：实体页初建，来源为 robosuite 快速入门教程
+- 2026-07-21（? sources）：REFLECT 补齐主域标签：embodied-ai

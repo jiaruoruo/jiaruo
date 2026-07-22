@@ -8,6 +8,7 @@ tags:
   - speech
   - audio
   - ai
+  - agent
 source_count: 1
 confidence: low
 domain_volatility: high
@@ -49,3 +50,4 @@ aliases:
 
 - 2026-04-13（1 sources）：概念初建，来源为 MiniMax 开放平台接口概览文档
 - 2026-04-15（1 sources）：强化——来源文件更新（SHA-256 变更），speech-2.8 系列已在现有定义中正确记录，内容一致
+- 2026-07-21（1 sources）：REFLECT 补齐主域标签：agent

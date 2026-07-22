@@ -3,7 +3,14 @@ type: concept
 title: "Automotive Sensor（汽车传感器）"
 date: 2026-05-17
 updated: 2026-05-17
-tags: [sensor, automotive, lidar, radar, camera]
+tags:
+  - sensor
+  - automotive
+  - lidar
+  - radar
+  - camera
+  - automotive-eea
+  - embodied-ai
 source_count: 1
 confidence: low
 domain_volatility: medium

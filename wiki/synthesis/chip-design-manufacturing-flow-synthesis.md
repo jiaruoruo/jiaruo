@@ -8,6 +8,7 @@ tags:
   - ic-packaging
   - ic-testing
   - knowledge-graph
+  - chip
 source_count: 14
 confidence: medium
 ---

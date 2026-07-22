@@ -9,6 +9,7 @@ tags:
   - anthropic
   - coding-assistant
   - ai-engineering
+  - agent
 entity_type: tool
 aliases:
   - "Claude Code"
@@ -44,3 +45,4 @@ Claude Code是Anthropic官方发布的CLI编程助手，以命令行工具形式
 ## Evolution Log
 
 - 2026-05-14（1 sources）：实体页初建，来源为 everything-claude-code 工程工作流组件库介绍文章
+- 2026-07-21（? sources）：REFLECT 补齐主域标签：agent

@@ -8,6 +8,7 @@ tags:
   - eea-architecture
   - autonomous-driving
   - automotive
+  - automotive-eea
 source_count: 6
 confidence: low
 domain_volatility: high
@@ -59,3 +60,4 @@ aliases:
 - 2026-07-14（6 sources）：强化——[GPAN 车载 MCU-less 和分布式音频介绍（V1.8）] 与现有定义一致
 - 2026-07-14（6 sources）：强化——[MCU-Less 座椅项目讨论（V0.5）] 与现有定义一致
 - 2026-07-14（6 sources）：强化——[MCU-less 技术概述] 与现有定义一致
+- 2026-07-21（6 sources）：REFLECT 补齐主域标签：automotive-eea

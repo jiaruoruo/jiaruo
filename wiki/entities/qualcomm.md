@@ -7,6 +7,7 @@ tags:
   - company
   - semiconductor
   - mobile-soc
+  - chip
 entity_type: company
 aliases:
   - "高通"
@@ -39,3 +40,4 @@ aliases:
 ## Evolution Log
 
 - 2026-06-27（2 sources）：实体页初建，从芯片来源批量提取，消除 source 页断链
+- 2026-07-21（? sources）：REFLECT 补齐主域标签：chip

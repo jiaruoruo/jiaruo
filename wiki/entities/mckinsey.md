@@ -7,6 +7,7 @@ tags:
   - consulting
   - strategy
   - research-institution
+  - embodied-ai
 entity_type: institution
 aliases:
   - "麦肯锡咨询"
@@ -41,3 +42,4 @@ aliases:
 ## Evolution Log
 
 - 2026-05-17（1 sources）：实体页初建，来源为麦肯锡《人形机器人 BOM 与供应链》研究报告
+- 2026-07-21（? sources）：REFLECT 补齐主域标签：embodied-ai

@@ -9,6 +9,7 @@ tags:
   - sparse-activation
   - transformer
   - efficiency
+  - agent
 source_count: 2
 confidence: medium
 domain_volatility: high
@@ -53,3 +54,4 @@ aliases:
 
 - 2026-04-25（1 sources）：概念初建，来源为 MoE 一文看懂入门教程
 - 2026-04-25（2 sources）：强化——DeepSeek V4 技术分析文章补充了 MoE 在超大规模模型中的工程演进细节（DeepSeekMoE + CSA/HCA + Muon 优化器组合）
+- 2026-07-21（2 sources）：REFLECT 补齐主域标签：agent

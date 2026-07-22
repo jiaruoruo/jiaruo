@@ -7,6 +7,7 @@ tags:
   - video
   - generative-ai
   - multimodal
+  - agent
 source_count: 1
 confidence: low
 domain_volatility: high
@@ -46,3 +47,4 @@ AI 视频生成（Video Generation）是指利用深度学习模型，根据文�
 
 - 2026-04-13（1 sources）：概念初建，来源为 MiniMax 开放平台接口概览文档
 - 2026-04-15（1 sources）：强化——来源文件更新（SHA-256 变更），Hailuo-2.3 / Hailuo-2.3-Fast 已在现有定义中正确记录，内容一致
+- 2026-07-21（1 sources）：REFLECT 补齐主域标签：agent

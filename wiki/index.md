@@ -13,6 +13,7 @@ graph-excluded: true
 - 2026-07-21 [[sources/langchain-harness-tuning-nemotron-playbook]]
 - 2026-07-21 [[sources/workbuddy-harness-engineering-case-study]]
 - 2026-07-21 [[sources/nvidia-harness-replaces-workflow]]
+- 2026-07-21 [[sources/harness-engineering-guide]]
 - 2026-07-14 [[sources/llm-benchmark-comparison-2026-04]]
 - 2026-07-14 [[sources/mculess-technology-insight-full-2026-05]]
 - 2026-07-14 [[sources/ethercat-gpan-validation-design-2026-04]]
@@ -376,13 +377,13 @@ graph-excluded: true
 ## Recent Synthesis
 
 <!-- 最近生成的综合分析页，格式：- YYYY-MM-DD [[synthesis/slug]] -->
+- 2026-07-21 [[synthesis/mculess-eea-architecture-synthesis]]（REFLECT 增补 12 源）
 - 2026-07-13 [[synthesis/agent-theme-synthesis]]
 - 2026-07-13 [[synthesis/vehicle-comms-protocols-synthesis]]
 - 2026-07-13 [[synthesis/sdv-vla-agent-convergence-synthesis]]
 - 2026-06-27 [[synthesis/embodied-ai-humanoid-robot-synthesis]]
 - 2026-06-27 [[synthesis/edge-ai-on-device-inference-synthesis]]
 - 2026-06-27 [[synthesis/chip-design-manufacturing-flow-synthesis]]
-- 2026-06-27 [[synthesis/mculess-eea-architecture-synthesis]]
 - 2026-04-25 [[synthesis/robot-semiconductor-competitive-synthesis]]
 - 2026-04-25 [[synthesis/agent-architecture-landscape-synthesis]]
 

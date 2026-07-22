@@ -12,6 +12,7 @@ tags:
   - claude-code
   - agent-orchestration
   - open-source
+  - agent
 ---
 
 # Everything Claude Code (ECC)
@@ -67,3 +68,4 @@ tags:
 ## Evolution Log
 
 - 2026-05-14 个人写作 [[sources/ecc-architecture-design]] 建立实体页，确认 ECC 为作者核心 AI 工程化工具
+- 2026-07-21（? sources）：REFLECT 补齐主域标签：agent

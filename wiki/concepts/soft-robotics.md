@@ -9,6 +9,7 @@ tags:
   - actuators
   - wearable
   - medical
+  - embodied-ai
 source_count: 1
 confidence: low
 domain_volatility: medium
@@ -54,3 +55,4 @@ aliases:
 ## Evolution Log
 
 - 2026-07-13（1 sources）：概念初建，来源为 Christensen 全球机器人路线图材料科学与工程章节
+- 2026-07-21（1 sources）：REFLECT 补齐主域标签：embodied-ai

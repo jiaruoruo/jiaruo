@@ -10,6 +10,7 @@ tags:
   - vla
   - humanoid
   - geopolitics
+  - embodied-ai
 source_count: 1
 confidence: low
 domain_volatility: medium
@@ -51,3 +52,4 @@ aliases:
 ## Evolution Log
 
 - 2026-07-13（1 sources）：概念初建，来源为 Henrik I Christensen（UCSD）全球机器人技术路线图 2025–2035
+- 2026-07-21（1 sources）：REFLECT 补齐主域标签：embodied-ai

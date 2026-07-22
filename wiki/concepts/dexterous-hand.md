@@ -8,6 +8,7 @@ tags:
   - manipulation
   - tactile-sensor
   - robotics
+  - embodied-ai
 source_count: 9
 confidence: low
 domain_volatility: high
@@ -67,3 +68,4 @@ aliases:
 - 2026-04-15（5 sources）：强化——英飞凌/ST 多份文档补充：手掌5-15伺服电机/滚珠丝杠/触觉传感器/扭矩传感器；ST 整机 BOM 估算（灵巧手触觉000，扭矩50，电机200）
 - 2026-05-17（6 sources）：强化——麦肯锡 BOM 报告补充供应链视角：Optimus Gen 3 手部 50+ 执行器（>身体 28 个）、触觉传感无主导架构判断（供应链风险定性）、六轴力矩传感器供应瓶颈分析、手部作为整机规模化最难突破子系统的战略定位
 - 2026-07-13（9 sources）：强化——内部灵巧手三文档（控制器详细设计/处理器选型/需求规格 v1.0）补充工程实现视角：STM32H743+分布式G474 FOC协处理器架构、FreeRTOS+裸机状态机、1kHz/10kHz双环、EtherCAT PDO 数据流；需求规格量化指标（闭环<2ms、>1kHz、48V/<250W、安全SAF-01..05）；异构双核选型与三方案成本（$12-$24/只手）
+- 2026-07-21（9 sources）：REFLECT 补齐主域标签：embodied-ai

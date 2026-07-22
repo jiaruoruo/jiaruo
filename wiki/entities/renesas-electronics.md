@@ -8,6 +8,7 @@ tags:
   - semiconductor
   - mcu
   - japan
+  - chip
 entity_type: institution
 aliases:
   - "瑞萨电子"
@@ -50,3 +51,4 @@ aliases:
 ## Evolution Log
 
 - 2026-04-15（1 sources）：实体页初建，来源为瑞萨电子机器人伺服控制与EtherCAT应用技术文档
+- 2026-07-21（? sources）：REFLECT 补齐主域标签：chip

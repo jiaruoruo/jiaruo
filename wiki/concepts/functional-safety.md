@@ -9,6 +9,8 @@ tags:
   - iso26262
   - asil
   - robotics
+  - automotive-eea
+  - embodied-ai
 source_count: 14
 confidence: medium
 domain_volatility: low
@@ -76,3 +78,4 @@ aliases:
 - 2026-07-14（14 sources）：强化——[机器人行业 EtherCAT 总线通信开发团队规划报告] 与现有定义一致
 - 2026-07-14（14 sources）：强化——[MCU-Less 座椅项目讨论（V0.5）] 与现有定义一致
 - 2026-07-14（14 sources）：强化——[MCU-less 应用机会点汇总] 与现有定义一致
+- 2026-07-21（14 sources）：REFLECT 补齐主域标签：automotive-eea、embodied-ai

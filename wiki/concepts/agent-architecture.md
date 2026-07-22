@@ -2,7 +2,7 @@
 type: concept
 title: "智能体系统架构"
 date: 2026-07-13
-updated: 2026-07-13
+updated: 2026-07-21
 tags:
   - agent
   - agent-architecture
@@ -12,7 +12,7 @@ tags:
   - tool-use
   - execution
   - feedback
-source_count: 2
+source_count: 3
 confidence: low
 domain_volatility: high
 last_reviewed: 2026-07-21
@@ -54,8 +54,10 @@ aliases:
 
 - [[sources/agent-six-layer-architecture]]
 - [[sources/workbuddy-harness-engineering-case-study]]
+- [[sources/harness-engineering-guide]]
 
 ## Evolution Log
 
 - 2026-07-13（1 sources）：概念初建，来源为 Knock「Agent 6 层架构」微信公众号文章
 - 2026-07-21（2 sources）：强化——WorkBuddy 万字复盘详细描述了 ReAct 循环、工具调用/MCP/Skill/Plugin 概念体系和 Context Engineering 五类动作，验证了 6 层架构中工具层/执行层/反馈层的实践形态
+- 2026-07-21（3 sources）：强化——yeasy《Harness》以 MiniHarness 给出 Harness 的分层组件（引导/约束/编排/反馈）与生产级 Harness 对比（Claude Code/OpenClaw/OpenAI Codex），为 6 层架构提供"基础设施视角"的参考实现

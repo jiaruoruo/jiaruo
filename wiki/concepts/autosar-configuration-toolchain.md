@@ -9,6 +9,7 @@ tags:
   - cdd
   - automotive-software
   - devtools
+  - automotive-eea
 source_count: 1
 confidence: low
 domain_volatility: medium
@@ -53,3 +54,4 @@ AUTOSAR配置工具链是用于简化和规范化AUTOSAR BSW模块（尤其是�
 ## Evolution Log
 
 - 2026-05-14（1 sources）：概念初建，来源为FlexTools AUTOSAR工具链介绍文章
+- 2026-07-21（1 sources）：REFLECT 补齐主域标签：automotive-eea

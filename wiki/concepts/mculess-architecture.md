@@ -9,6 +9,7 @@ tags:
   - eea
   - zonal-gateway
   - bom-cost
+  - automotive-eea
 source_count: 44
 confidence: high
 domain_volatility: high
@@ -166,3 +167,4 @@ MCULess 架构是 EEA 3.0 向 EEA 4.0（软件定义汽车）演进的重要过�
 - 2026-07-14（44 sources）：强化——[MCU-less 技术在汽车和机器人领域的应用洞察] 与现有定义一致
 - 2026-07-14（44 sources）：强化——[人形机器人 OEM/供应商机会分析] 与现有定义一致
 - 2026-07-14（44 sources）：强化——[成本核算（V0.4 公共版）] 与现有定义一致
+- 2026-07-21（44 sources）：REFLECT 补齐主域标签：automotive-eea

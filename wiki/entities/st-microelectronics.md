@@ -8,6 +8,8 @@ tags:
   - semiconductor
   - stm32
   - robotics
+  - chip
+  - embodied-ai
 entity_type: institution
 aliases:
   - "意法半导体"
@@ -43,3 +45,4 @@ aliases:
 ## Evolution Log
 
 - 2026-04-15（1 sources）：实体页初建，来源为 ST Smart Industry Robotics Solutions V9
+- 2026-07-21（? sources）：REFLECT 补齐主域标签：chip、embodied-ai

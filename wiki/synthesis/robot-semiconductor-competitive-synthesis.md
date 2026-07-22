@@ -9,6 +9,7 @@ tags:
   - infineon
   - renesas
   - st-microelectronics
+  - embodied-ai
 source_count: 24
 confidence: medium
 ---

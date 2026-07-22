@@ -9,6 +9,8 @@ tags:
   - automotive
   - gpan
   - china
+  - automotive-eea
+  - chip
 source_count: 21
 aliases:
   - "汇顶科技"
@@ -109,3 +111,4 @@ Goodix Technology（汇顶科技，股票代码：603160.SH）是中国领先的
 - 2026-07-14：强化——新来源 [MCU-Less 座椅项目讨论（V0.5）] 补充描述信息
 - 2026-07-14：强化——新来源 [MCU-less 技术在汽车和机器人领域的应用洞察] 补充描述信息
 - 2026-07-14：强化——新来源 [成本核算（V0.4 公共版）] 补充描述信息
+- 2026-07-21（21 sources）：REFLECT 补齐主域标签：automotive-eea、chip

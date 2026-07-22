@@ -8,6 +8,7 @@ tags:
   - chinese-oem
   - eea
   - new-energy-vehicle
+  - automotive-eea
 entity_type: institution
 aliases:
   - "理想汽车"
@@ -51,3 +52,4 @@ aliases:
 - 2026-04-25（3 sources）：强化——M100 论文全文翻译（图片版）与现有定义一致
 
 - 2026-07-14：强化——新来源 [MCU-less 技术洞察（详尽版）：机会分析 · 技术方案 · 执行策略] 补充描述信息
+- 2026-07-21（? sources）：REFLECT 补齐主域标签：automotive-eea

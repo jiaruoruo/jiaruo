@@ -10,6 +10,7 @@ tags:
   - plca
   - mculess
   - rcp
+  - automotive-eea
 source_count: 7
 confidence: medium
 domain_volatility: medium
@@ -64,3 +65,4 @@ aliases:
 - 2026-07-14（7 sources）：强化——[GPAN 车载通信应用场景价值分析（V0.8）] 与现有定义一致
 - 2026-07-14（7 sources）：强化——[GPAN 芯片规格介绍文档（V0.2）] 与现有定义一致
 - 2026-07-14（7 sources）：强化——[MCU-less 技术在汽车和机器人领域的应用洞察] 与现有定义一致
+- 2026-07-21（7 sources）：REFLECT 补齐主域标签：automotive-eea

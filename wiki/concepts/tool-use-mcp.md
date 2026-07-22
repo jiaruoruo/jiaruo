@@ -8,7 +8,7 @@ tags:
   - tool-use
   - mcp
   - function-calling
-source_count: 2
+source_count: 3
 confidence: low
 domain_volatility: high
 last_reviewed: 2026-07-21
@@ -46,8 +46,10 @@ aliases:
 
 - [[sources/agent-six-layer-architecture]]
 - [[sources/workbuddy-harness-engineering-case-study]]
+- [[sources/harness-engineering-guide]]
 
 ## Evolution Log
 
 - 2026-07-13（1 sources）：概念初建，来源为 Knock「Agent 6 层架构」文章工具层章节
 - 2026-07-21（2 sources）：强化——WorkBuddy 万字复盘从产品视角详述工具调用/Function Call 流程、外接能力形态选择矩阵（内置 Tool vs Skill/MCP/Plugin），以及 Tool/Skill/MCP/Plugin 四层概念体系
+- 2026-07-21（3 sources）：强化——yeasy《Harness》以 HarnessMCP / MiniHarnessMCP 展示 Tool 层的 MCP 接入实现（stdio + Streamable HTTP），与 WorkBuddy 产品视角互为补充

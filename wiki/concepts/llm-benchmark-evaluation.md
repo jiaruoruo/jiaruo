@@ -9,6 +9,7 @@ tags:
   - benchmark
   - 模型评测
   - evaluation
+  - agent
 domain_volatility: high
 source_count: 2
 confidence: low
@@ -77,3 +78,4 @@ aliases:
 - 2026-04-27（1 sources）：概念页初建，来源为 2026 年 4 月顶级模型 benchmark 横向对比内部整理文章
 
 - 2026-07-14（2 sources）：强化——[顶级大模型 Benchmark 全面对比解析（2026 年 4 月）] 与现有定义一致
+- 2026-07-21（2 sources）：REFLECT 补齐主域标签：agent

@@ -9,6 +9,7 @@ tags:
   - electrical-architecture
   - zonal
   - centralized-computing
+  - automotive-eea
 source_count: 10
 confidence: low
 domain_volatility: medium
@@ -69,3 +70,4 @@ aliases:
 - 2026-07-14（10 sources）：强化——[MCU-less 技术概述] 与现有定义一致
 - 2026-07-14（10 sources）：强化——[MCU-less 技术在汽车和机器人领域的应用洞察] 与现有定义一致
 - 2026-07-14（10 sources）：强化——[成本核算（V0.4 公共版）] 与现有定义一致
+- 2026-07-21（10 sources）：REFLECT 补齐主域标签：automotive-eea

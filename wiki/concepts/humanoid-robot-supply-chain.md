@@ -9,6 +9,8 @@ tags:
   - bom
   - actuator
   - manufacturing
+  - chip
+  - embodied-ai
 source_count: 2
 confidence: low
 domain_volatility: high
@@ -67,3 +69,4 @@ aliases:
 - 2026-05-17（1 sources）：概念初建，来源为麦肯锡《人形机器人 BOM 与供应链》研究报告；提出执行器成本占比 40-60%、前模块化阶段 OEM 垂直整合逻辑、供应链三级风险分层框架
 
 - 2026-07-14（2 sources）：强化——[人形机器人 OEM/供应商机会分析] 与现有定义一致
+- 2026-07-21（2 sources）：REFLECT 补齐主域标签：chip、embodied-ai

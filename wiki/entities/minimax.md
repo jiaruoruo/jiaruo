@@ -8,6 +8,7 @@ tags:
   - ai
   - llm
   - multimodal
+  - agent
 entity_type: institution
 aliases:
   - "MiniMax"
@@ -44,3 +45,4 @@ MiniMax 是一家中国 AI 公司，专注于开发多模态大模型及对外�
 ## Evolution Log
 
 - 2026-04-13（1 sources）：实体页初建，来源为 [[sources/minimax-api-overview]]
+- 2026-07-21（? sources）：REFLECT 补齐主域标签：agent

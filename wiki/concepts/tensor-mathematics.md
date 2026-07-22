@@ -9,6 +9,7 @@ tags:
   - vector
   - scalar
   - ai-fundamentals
+  - agent
 source_count: 1
 confidence: high
 domain_volatility: low
@@ -76,3 +77,4 @@ aliases:
 ## Evolution Log
 
 - 2026-04-28（1 source）：概念初建，来源为博客园基础解释文章；覆盖标量/向量/张量定义与阶数层级关系
+- 2026-07-21（1 sources）：REFLECT 补齐主域标签：agent

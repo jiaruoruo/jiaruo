@@ -10,6 +10,8 @@ tags:
   - robotics
   - automotive
   - mculess
+  - automotive-eea
+  - embodied-ai
 source_count: 40
 confidence: medium
 domain_volatility: medium
@@ -139,3 +141,4 @@ GPAN（通用精密自动化网络，General Precision Automation Network）是�
 - 2026-07-14（40 sources）：强化——[EtherCAT/GPAN 抓包分析] 与现有定义一致
 - 2026-07-14（40 sources）：强化——[人形机器人 OEM/供应商机会分析] 与现有定义一致
 - 2026-07-14（40 sources）：强化——[成本核算（V0.4 公共版）] 与现有定义一致
+- 2026-07-21（40 sources）：REFLECT 补齐主域标签：automotive-eea、embodied-ai

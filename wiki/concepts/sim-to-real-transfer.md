@@ -8,6 +8,7 @@ tags:
   - reinforcement-learning
   - robotics
   - domain-randomization
+  - embodied-ai
 source_count: 2
 confidence: low
 domain_volatility: high
@@ -51,3 +52,4 @@ Sim-to-Real 迁移是指将在仿真环境中训练的机器人策略（神经�
 
 - 2026-04-15（1 sources）：概念初建，来源为人形机器人技术研究及快速原型建设报告
 - 2026-04-15（2 sources）：强化——OpenClaw 文章补充 Sim-to-Real 的工程本质：接口一致性（action/obs schema）+ 行为可回放（case_id），而非仅靠域随机化
+- 2026-07-21（2 sources）：REFLECT 补齐主域标签：embodied-ai

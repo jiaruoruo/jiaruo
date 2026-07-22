@@ -6,6 +6,7 @@ updated: 2026-07-14
 tags:
   - embedded
   - system
+  - edge-ai
 source_count: 6
 confidence: low
 domain_volatility: low
@@ -54,3 +55,4 @@ aliases:
 - 2026-07-14（6 sources）：强化——[EtherCAT IgH 主站搭建方案] 与现有定义一致
 - 2026-07-14（6 sources）：强化——[机器人行业 EtherCAT 总线通信开发团队规划报告] 与现有定义一致
 - 2026-07-14（6 sources）：强化——[Windows SOEM EtherCAT 主站搭建] 与现有定义一致
+- 2026-07-21（6 sources）：REFLECT 补齐主域标签：edge-ai
