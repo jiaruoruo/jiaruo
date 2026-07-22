@@ -15,7 +15,10 @@ last_reviewed: 2026-07-22
 aliases:
   - "Hardware Metrics"
   - "硬件架构度量"
-  - "SPFM LFM PMHF"
+  - "SPFM"
+  - "LFM"
+  - "Single-Point Fault Metric"
+  - "Latent-Fault Metric"
   - "随机硬件指标"
 ---
 
@@ -33,11 +36,12 @@ aliases:
 
 ## Key Points
 
-- **SPFM**：关注未被安全机制覆盖的单点故障比例；ASIL-D 通常要求 ≥ 99%。
-- **LFM**：关注双点故障中第一个故障未被检测到的比例；ASIL-D 通常要求 ≥ 90%。
-- **PMHF**：以 FIT 为单位累加残余失效率；ASIL-D 通常要求 < 10 FIT（具体目标值依项目而定）。
-- **计算链路**：BOM/FIT → 故障模式分布 → 安全机制与 DC → 单点/残余/潜伏故障分类 → SPFM/LFM/PMHF。
-- **与 SN 29500 的关系**：元器件基准 FIT 及 πT/πU/πQ 修正因子是 PMHF 计算的输入。
+- **SPFM（单点故障度量）**：关注未被安全机制覆盖的单点故障比例；目标阈值由 [[asil]] 等级驱动，ASIL-D 通常要求 ≥ 99%。
+- **LFM（潜伏故障度量）**：关注双点故障中第一个故障未被检测到的比例；ASIL-D 通常要求 ≥ 90%。
+- **PMHF（硬件失效概率度量）**：以 FIT 为单位累加残余失效率；ASIL-D 通常要求 < 10 FIT（具体目标值依项目而定）。独立概念页见 [[pmhf]]。
+- **计算链路**：BOM/FIT（见 [[fit-rate]]）→ 故障模式分布 → 安全机制与 DC → 单点/残余/潜伏故障分类 → SPFM/LFM/PMHF。
+- **与 SN 29500 的关系**：元器件基准 FIT 及 πT/πU/πQ 修正因子（见 [[sn29500]]）是 PMHF 计算的输入；具体查表见 SN 29500 系列源页。
+- **SPFM/LFM 合并说明**：二者作为本页的一级小节承载（非独立概念页），以消除「高频提及却无节点」的盲区；相关 wikilink 经本页 aliases 解析。
 
 ## My Position
 
@@ -58,3 +62,4 @@ aliases:
 ## Evolution Log
 
 - 2026-07-22（5 sources）：基于 SGS TÜV Saar AFSP Day 3 硬件分析练习建立。
+- 2026-07-22（REFLECT 盲区消解）：将 SPFM / LFM 作为本页一级小节正式承载并加入 aliases（Single-Point Fault Metric / Latent-Fault Metric），使二者可解析、消盲区；补强与 [[asil]] / [[pmhf]] / [[sn29500]] / [[fit-rate]] 的交叉链接。source_count 维持 5（结构性合并，未新增来源）。

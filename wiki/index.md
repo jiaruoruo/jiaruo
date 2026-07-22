@@ -332,6 +332,7 @@ graph-excluded: true
 - [[concepts/mixture-of-experts]]
 - [[concepts/robot-software-architecture]]
 - [[concepts/llm-knowledge-management]]
+- [[concepts/asil]]
 - [[concepts/automotive-ai-chip]]
 - [[concepts/agent-security-governance]]
 - [[concepts/llm-benchmark-evaluation]]

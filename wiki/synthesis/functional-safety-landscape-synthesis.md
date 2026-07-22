@@ -70,7 +70,7 @@ Part 1 术语、Part 2 功能安全管理、Part 3 概念阶段（Item Definitio
 
 - **同源性偏差**：AFSP 子簇 36 源来自单一机构；标准子簇为规范性文本。结论的「正确性」建立在 ISO 26262 体系本身有效的前提上，本库未收录其学术/产业质疑。
 - **扫描转录误差**：AFSP 部分 FIT/πT/πU/πQ 数值来自扫描件视觉读取，密集表格可能行/列错位；工程计算须以标准原文或元器件手册为准。
-- **覆盖盲区**：现有概念页**缺少 ASIL、SPFM、LFM 的独立概念页**——三者分别在 62/18/17 个文件中被提及却无专属节点（见 `wiki/outputs/gap-report-2026-07-22.md`），目前仅以 `functional-safety` 子项或 `hardware-metrics`/`pmhf` 间接承载。
+- **覆盖盲区（已消解）**：ASIL 原仅在 `functional-safety` 子项承载、SPFM/LFM 原仅间接提及；经 2026-07-22 后续处理，已新建独立概念页 [[concepts/asil]]（13 源），并将 SPFM/LFM 作为一级小节并入 [[concepts/hardware-metrics]] 并加入 aliases，三者均可解析、盲区消除（详见 `wiki/outputs/gap-report-2026-07-22.md` 行动清单第 1–4 项）。
 - **版本时效**：GB/T 34590 为征求意见稿，正式发布后需复核差异。
 - **机器人迁移待验证**：E6 为趋势判断，非已认证落地事实。
 

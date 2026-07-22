@@ -12,7 +12,7 @@ _最后更新：2026-07-22_
 | 指标 | 数值 | 说明 |
 |---|---|---|
 | 总来源数（Sources） | 293 | wiki/sources/ 下的页面总数（含 24 份 ISO 26262:2018 与 GB/T 34590 标准分册） |
-| 总 Concept 页数 | 85 | wiki/concepts/ 下的页面总数（新增 iso-26262 / gbt-34590 两枢纽概念） |
+| 总 Concept 页数 | 86 | wiki/concepts/ 下的页面总数（新增 iso-26262 / gbt-34590 两枢纽概念 + asil 从 functional-safety 析出） |
 | 总 Entity 页数 | 31 | wiki/entities/ 下的页面总数（不变） |
 | 总 Synthesis 页数 | 11 | wiki/synthesis/ 下的页面总数（+1：功能安全全景综合） |
 | 来源/综合比 | 26.6:1 | 293/11，**低于阈值（30）** |
@@ -25,6 +25,7 @@ _最后更新：2026-07-22_
 
 ## 最近 Lint 报告
 
+- 2026-07-22 `wiki/outputs/lint-2026-07-22.md`（**9/10 项通过，6 问题**：Check7 Stale 6 条 high-volatility 历史遗留页；关键项全过；asil 新建 + SPFM/LFM 并入 hardware-metrics 后 Check8/Check10 复检通过）
 - 2026-07-21 `wiki/outputs/lint-2026-07-21.md`（**9/10 项通过，6 问题**：Check7 Stale 6 条 high-volatility 历史遗留页；关键项全过）
 - 2026-07-13 `wiki/outputs/lint-2026-07-13.md`（**9/9 项通过，0 问题**；clippings + notes 两批次 ingest 后复检，已刷新）
 - 2026-06-29 `wiki/outputs/lint-2026-06-29.md`（**9/9 项通过，0 问题**；定时任务运行）

@@ -19,8 +19,6 @@ aliases:
   - "功能安全"
   - "Functional Safety"
   - "FuSa"
-  - "ASIL"
-  - "汽车安全完整性等级"
 ---
 
 # 功能安全（Functional Safety / FuSa）
