@@ -448,6 +448,7 @@ graph-excluded: true
 ## Recent Synthesis
 
 <!-- 最近生成的综合分析页，格式：- YYYY-MM-DD [[synthesis/slug]] -->
+- 2026-07-22 [[synthesis/functional-safety-landscape-synthesis]]（功能安全全景综合：ISO 26262/GB/T 34590 标准骨架 + ASIL + MCULess 边界 + 半导体/机器人延伸，74 源，confidence: medium）
 - 2026-07-22 [[synthesis/iso26262-afsp-study-guide]]（SGS TÜV Saar ISO 26262 AFSP 培训案例 36 源，confidence: medium）
 - 2026-07-21 [[synthesis/mculess-eea-architecture-synthesis]]（REFLECT 增补 12 源）
 - 2026-07-13 [[synthesis/agent-theme-synthesis]]

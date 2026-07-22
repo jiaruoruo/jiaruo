@@ -14,8 +14,8 @@ _最后更新：2026-07-22_
 | 总来源数（Sources） | 293 | wiki/sources/ 下的页面总数（含 24 份 ISO 26262:2018 与 GB/T 34590 标准分册） |
 | 总 Concept 页数 | 85 | wiki/concepts/ 下的页面总数（新增 iso-26262 / gbt-34590 两枢纽概念） |
 | 总 Entity 页数 | 31 | wiki/entities/ 下的页面总数（不变） |
-| 总 Synthesis 页数 | 10 | wiki/synthesis/ 下的页面总数（不变） |
-| 来源/综合比 | 29:1 | 293/10，**低于阈值（30）** |
+| 总 Synthesis 页数 | 11 | wiki/synthesis/ 下的页面总数（+1：功能安全全景综合） |
+| 来源/综合比 | 26.6:1 | 293/11，**低于阈值（30）** |
 | 高置信度概念数（High Confidence） | 2 | confidence: high 的 concept 页数 |
 | 中置信度概念数（Medium Confidence） | 16 | confidence: medium 的 concept 页数 |
 | 低置信度概念数（Low Confidence） | 56 | confidence: low 的 concept 页数 |
@@ -37,6 +37,7 @@ _最后更新：2026-07-22_
 
 ## 最近 Synthesis
 
+- 2026-07-22 `wiki/synthesis/functional-safety-landscape-synthesis.md`（功能安全全景综合：ISO 26262/GB/T 34590 标准骨架 + ASIL 量化 + 安全生命周期 + MCULess 边界 + 半导体/机器人延伸，74 源，confidence: medium，标注回音室风险）
 - 2026-07-22 `wiki/synthesis/iso26262-afsp-study-guide.md`（SGS TÜV Saar ISO 26262 AFSP 培训案例全景：Day1 Item Definition/HARA → Day2 FSC/TSC → Day3 HW 分析与 SN 29500 查表，confidence: medium）
 - 2026-07-13 `wiki/synthesis/agent-theme-synthesis.md`（Agent 主题综合：6层架构×Harness×安全治理三层抽象栈，含 MCP 连接层，confidence: low）
 - 2026-07-13 `wiki/synthesis/vehicle-comms-protocols-synthesis.md`（车载实时通信 GPAN/EtherCAT/10BASE-T1S/ZCU 三路线互补共存，confidence: medium）
@@ -50,6 +51,7 @@ _最后更新：2026-07-22_
 
 ## 最近 Reflect 报告
 
+- 2026-07-22 `wiki/outputs/gap-report-2026-07-22.md`（REFLECT：功能安全簇 74 源新建全景综合；11 孤儿概念命中触发线；盲区 asil 184提及/62文件、spfm/lfm 缺独立页；标签合规全过）
 - 2026-07-21 `wiki/outputs/gap-report-2026-07-21.md`（REFLECT：补 84 文件主域标签（automotive-eea 0→22 / chip 4→32 / agent 8→32 / embodied-ai 6→38）；既有 mculess-eea 综合增补；11 孤立概念 + 9 覆盖稀薄 hub 待 ingest）
 - 2026-07-13 `wiki/outputs/gap-report-2026-07-13.md`（REFLECT 新增 2 篇 synthesis，比 34:1→26:1；孤立概念 16 个待深化；GPAN/SDV 收敛均标回音室风险）
 - 2026-06-29 `wiki/outputs/gap-report-2026-06-29.md`（上轮 P0 已消除；新盲区：ota-update 14 源无页 / thermal-management 9 源 / cybersecurity-automotive 4 源；单源积压 32）
@@ -74,6 +76,7 @@ _最后更新：2026-07-22_
 | 2026-07-21（ingest pdf 1 文件） | 233 | 74 | 31 | 9 |
 | 2026-07-22（ingest SGS AFSP 36 源 + 1 synthesis + 9 concepts） | 269 | 83 | 31 | 10 |
 | 2026-07-22（ingest 功能安全标准 24 源 + 2 concepts） | 293 | 85 | 31 | 10 |
+| 2026-07-22（reflect: 功能安全全景综合 +1 synthesis + gap report） | 293 | 85 | 31 | 11 |
 
 ## 待办（下一步建议）
 

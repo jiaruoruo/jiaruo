@@ -42,6 +42,7 @@ aliases:
 - **芯片级功能安全设计**：主控 SoC 内置「功能安全岛」+ 安全引擎（如理想马赫 M100，见 [[sources/li-auto-mach-m100-deep-dive]]）；传感器支持 ASIL C/D（如英飞凌 TLE5014 角度传感器，见 [[sources/infineon-sensing-empowers-robotics-shenzhen-2025]]）。
 - **向机器人延伸**：人形机器人关节/力矩传感等安全关键链路正引入汽车级 FuSa 方法学（见 [[sources/mckinsey-humanoid-robot-bom-supply-chain]]、[[concepts/humanoid-robot]]）；更系统的机器人物理安全方法学见 [[robot-safety]]（ISO/TS 15066 协作安全、ISO 13849、L1-L4 分层架构）
 - **认证备考（内部）**：ISO 26262 考试复习要点与模拟题库（2026-07）覆盖故障链 Fault→Error→Failure、ASIL(HARA 三维度 S×E×E)、安全生命周期(Part3→6)、随机硬件三指标(SPF/LatF/PMHF)、安全机制四类型(冗余/监控/诊断/降级)；域控制器(CCU-ZCU)项目需关注跨域通信安全/共因故障/端到端追溯
+- **跨来源综合**：功能安全全景综合见 [[synthesis/functional-safety-landscape-synthesis]]（规范骨架/ASIL 量化/安全生命周期/MCULess 边界/半导体·机器人延伸，74 源）；备考主线另见 [[synthesis/iso26262-afsp-study-guide]]
 
 ## My Position
 
@@ -140,3 +141,4 @@ aliases:
 - 2026-07-21（14 sources）：REFLECT 补齐主域标签：automotive-eea、embodied-ai
 - 2026-07-22（50 sources）：强化——全量摄入 SGS TÜV Saar ISO 26262 AFSP 培训案例 36 页扫描件，覆盖 Day 1 Item Definition/HARA、Day 2 FSC/TSC、Day 3 硬件分析/SPFM/LFM/PMHF 与 SN 29500 元器件 FIT/πT/πU/πQ 查表；新建综合页 [[synthesis/iso26262-afsp-study-guide]]；functional-safety source_count 14→50，confidence 维持 medium（单一培训机构来源+扫描转录风险）
 - 2026-07-22（74 sources）：强化——全量摄入 raw/pdfs/功能安全/ 下 ISO 26262:2018 第 1–12 部分正式标准（12 源）+ GB/T 34590 征求意见稿第 1–12 部分（12 源）；新建枢纽概念 [[iso-26262]]、[[gbt-34590]]；functional-safety source_count 50→74，confidence 维持 medium
+- 2026-07-22（REFLECT）：新建跨来源综合 [[synthesis/functional-safety-landscape-synthesis]]（74 源，medium），消解功能安全簇「广而不深」；反向检验标注回音室风险（AFSP 单机构、规范来源非批判性、机器人迁移未验证、国标草稿时效）
