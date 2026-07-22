@@ -11,7 +11,7 @@ tags:
   - robotics
   - automotive-eea
   - embodied-ai
-source_count: 50
+source_count: 74
 confidence: medium
 domain_volatility: low
 last_reviewed: 2026-07-22
@@ -19,7 +19,6 @@ aliases:
   - "功能安全"
   - "Functional Safety"
   - "FuSa"
-  - "ISO 26262"
   - "ASIL"
   - "汽车安全完整性等级"
 ---
@@ -104,6 +103,30 @@ aliases:
 - [[sources/sgs-afsp-sn29500-capacitor-voltage-correction]]
 - [[sources/sgs-afsp-sn29500-capacitor-temperature-correction]]
 - [[sources/sgs-afsp-sn29500-resistor-temperature-quality-factor]]
+- [[sources/iso-26262-1-2018]]
+- [[sources/iso-26262-2-2018]]
+- [[sources/iso-26262-3-2018]]
+- [[sources/iso-26262-4-2018]]
+- [[sources/iso-26262-5-2018]]
+- [[sources/iso-26262-6-2018]]
+- [[sources/iso-26262-7-2018]]
+- [[sources/iso-26262-8-2018]]
+- [[sources/iso-26262-9-2018]]
+- [[sources/iso-26262-10-2018]]
+- [[sources/iso-26262-11-2018]]
+- [[sources/iso-26262-12-2018]]
+- [[sources/gbt-34590-1-draft]]
+- [[sources/gbt-34590-2-draft]]
+- [[sources/gbt-34590-3-draft]]
+- [[sources/gbt-34590-4-draft]]
+- [[sources/gbt-34590-5-draft]]
+- [[sources/gbt-34590-6-draft]]
+- [[sources/gbt-34590-7-draft]]
+- [[sources/gbt-34590-8-draft]]
+- [[sources/gbt-34590-9-draft]]
+- [[sources/gbt-34590-10-draft]]
+- [[sources/gbt-34590-11-draft]]
+- [[sources/gbt-34590-12-draft]]
 
 ## Evolution Log
 
@@ -116,3 +139,4 @@ aliases:
 - 2026-07-14（14 sources）：强化——[MCU-less 应用机会点汇总] 与现有定义一致
 - 2026-07-21（14 sources）：REFLECT 补齐主域标签：automotive-eea、embodied-ai
 - 2026-07-22（50 sources）：强化——全量摄入 SGS TÜV Saar ISO 26262 AFSP 培训案例 36 页扫描件，覆盖 Day 1 Item Definition/HARA、Day 2 FSC/TSC、Day 3 硬件分析/SPFM/LFM/PMHF 与 SN 29500 元器件 FIT/πT/πU/πQ 查表；新建综合页 [[synthesis/iso26262-afsp-study-guide]]；functional-safety source_count 14→50，confidence 维持 medium（单一培训机构来源+扫描转录风险）
+- 2026-07-22（74 sources）：强化——全量摄入 raw/pdfs/功能安全/ 下 ISO 26262:2018 第 1–12 部分正式标准（12 源）+ GB/T 34590 征求意见稿第 1–12 部分（12 源）；新建枢纽概念 [[iso-26262]]、[[gbt-34590]]；functional-safety source_count 50→74，confidence 维持 medium

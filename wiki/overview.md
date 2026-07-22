@@ -11,11 +11,11 @@ _最后更新：2026-07-22_
 
 | 指标 | 数值 | 说明 |
 |---|---|---|
-| 总来源数（Sources） | 269 | wiki/sources/ 下的页面总数（含 36 份 SGS AFSP 培训扫描件） |
-| 总 Concept 页数 | 83 | wiki/concepts/ 下的页面总数（新增 9 个 ISO 26262 相关概念） |
+| 总来源数（Sources） | 293 | wiki/sources/ 下的页面总数（含 24 份 ISO 26262:2018 与 GB/T 34590 标准分册） |
+| 总 Concept 页数 | 85 | wiki/concepts/ 下的页面总数（新增 iso-26262 / gbt-34590 两枢纽概念） |
 | 总 Entity 页数 | 31 | wiki/entities/ 下的页面总数（不变） |
-| 总 Synthesis 页数 | 10 | wiki/synthesis/ 下的页面总数（新增 ISO 26262 AFSP 复习指南） |
-| 来源/综合比 | 27:1 | 269/10，**低于阈值（30）** |
+| 总 Synthesis 页数 | 10 | wiki/synthesis/ 下的页面总数（不变） |
+| 来源/综合比 | 29:1 | 293/10，**低于阈值（30）** |
 | 高置信度概念数（High Confidence） | 2 | confidence: high 的 concept 页数 |
 | 中置信度概念数（Medium Confidence） | 16 | confidence: medium 的 concept 页数 |
 | 低置信度概念数（Low Confidence） | 56 | confidence: low 的 concept 页数 |
@@ -73,6 +73,7 @@ _最后更新：2026-07-22_
 | 2026-07-14（ingest articles 23 文件） | 228 | 74 | 31 | 9 |
 | 2026-07-21（ingest pdf 1 文件） | 233 | 74 | 31 | 9 |
 | 2026-07-22（ingest SGS AFSP 36 源 + 1 synthesis + 9 concepts） | 269 | 83 | 31 | 10 |
+| 2026-07-22（ingest 功能安全标准 24 源 + 2 concepts） | 293 | 85 | 31 | 10 |
 
 ## 待办（下一步建议）
 
