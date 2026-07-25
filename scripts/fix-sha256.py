@@ -1,35 +1,73 @@
-import os, hashlib, re, glob
+#!/usr/bin/env python3
+"""Fix raw_sha256 in wiki/sources/ frontmatter to match actual raw file hashes."""
 
-repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-wiki_dir = os.path.join(repo_root, 'wiki', 'sources')
+import hashlib, re, sys
+from pathlib import Path
 
-count = 0
-for f in glob.glob(os.path.join(wiki_dir, '*.md')):
-    with open(f, 'r', encoding='utf-8') as fh:
-        content = fh.read()
-    
-    match = re.search(r'raw_sha256:\s*["\']?([a-f0-9]{64})["\']?', content)
-    file_match = re.search(r'raw_file:\s*["\']?(.+?)["\']?(?:\n|$)', content)
-    
-    if not match or not file_match:
+try:
+    import yaml
+except ImportError:
+    print("ERROR: pip install pyyaml", file=sys.stderr)
+    sys.exit(1)
+
+REPO = Path(__file__).parent.parent
+WIKI_SOURCES = REPO / "wiki" / "sources"
+RAW_ROOT = REPO / "raw"
+
+def sha256_file(p):
+    h = hashlib.sha256()
+    with open(p, "rb") as f:
+        for chunk in iter(lambda: f.read(65536), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+fixed = 0
+skipped = 0
+
+for src in sorted(WIKI_SOURCES.glob("*.md")):
+    text = src.read_text(encoding="utf-8")
+    if not text.startswith("---"):
+        skipped += 1
         continue
-    
-    old_hash = match.group(1)
-    raw_path = os.path.normpath(file_match.group(1).strip())
-    raw_full = os.path.join(repo_root, raw_path)
-    
-    if not os.path.exists(raw_full):
-        print(f"Missing: {raw_path}")
-        continue
-    
-    with open(raw_full, 'rb') as rf:
-        actual_hash = hashlib.sha256(rf.read()).hexdigest()
-    
-    if actual_hash != old_hash:
-        new_content = content.replace(old_hash, actual_hash)
-        with open(f, 'w', encoding='utf-8') as fh:
-            fh.write(new_content)
-        count += 1
-        print(f"Fixed: {os.path.basename(f)}")
 
-print(f"Done. Fixed {count} files.")
+    # Find frontmatter boundaries
+    m = re.search(r'(?m)^\-\-\-\s*$', text[3:])
+    if not m:
+        skipped += 1
+        continue
+
+    yaml_str = text[3:m.start() + 3]
+    body = text[m.end() + 3:]
+
+    try:
+        fm = yaml.safe_load(yaml_str)
+    except yaml.YAMLError:
+        skipped += 1
+        continue
+
+    if not isinstance(fm, dict):
+        skipped += 1
+        continue
+
+    raw_sha = fm.get("raw_sha256", "")
+    raw_file = fm.get("raw_file", "")
+
+    if not raw_sha or not raw_file:
+        skipped += 1
+        continue
+
+    raw_path = REPO / raw_file
+    if not raw_path.exists():
+        continue
+
+    actual = sha256_file(raw_path)
+    if actual != raw_sha:
+        fm["raw_sha256"] = actual
+        new_yaml = yaml.dump(fm, default_flow_style=False, allow_unicode=True, sort_keys=False)
+        # Ensure trailing newline after ---
+        new_text = f"---\n{new_yaml}---\n{body.lstrip('\n')}"
+        src.write_text(new_text, encoding="utf-8")
+        print(f"  FIXED {src.relative_to(REPO)}")
+        fixed += 1
+
+print(f"\nDone: {fixed} fixed, {skipped} skipped")
