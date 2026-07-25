@@ -113,6 +113,23 @@ scripts/      ← 工具脚本
 
 ---
 
+### 不可见字符清洗规则（防御 lint Check 6 假阳性）
+
+从网页 / 微信 / PDF 复制的标题常带入不可见 Unicode 字符（零宽空格 U+200B、零宽连字 U+200C/U+200D、词连接符 U+2060、字节序标记 U+FEFF 等）。这些字符肉眼不可见，但会污染两处并触发 lint Check 6 误报 `SOURCE MODIFIED`：
+
+- **raw 文件名本身含不可见字符** → lint 按 frontmatter 的 `raw_file` 路径解析 `os.path.exists` 失败 → 找不到文件 → 误报。
+- **`raw_file` 字段值含不可见字符或字面量转义**（如把 `\uFEFF` 当字符串写入）→ 路径解析失败 → 同上。
+
+**INGEST 必须遵守的清洗动作：**
+
+1. **保存 raw 文件前清洗文件名**（含 URL 直接输入存 clippings、以及协助用户重命名 PDF 时）：strip 所有 Unicode 类别为 `C`（控制 / 格式字符）的字符，至少覆盖 U+200B / U+200C / U+200D / U+2060 / U+FEFF，再按 slug 化规则生成文件名。
+2. **写入 `raw_file` 字段前清洗路径字符串**：确保值与磁盘实际文件名逐字节一致（无任何不可见字符），禁止写入字面量转义序列（如 `\uFEFF`）。
+3. **Step 2 计算 SHA-256 之前**：先确认 `raw_file` 路径可被 `os.path.exists` 解析；解析失败则回头执行第 1–2 步清洗，不得带着污染值写入 frontmatter 或继续计算哈希。
+
+> 注：本规则作用于「raw 文件入库时」（URL 输入由 LLM 保存、PDF 重命名由用户或 LLM 协助），与「raw/ 只读、绝不修改已入库文件」原则不冲突——它防止的是入库那一刻就带入污染，而非事后改写内容字节。若发现已入库文件被污染，按第十一节 Re-ingest 规则处理（重命名磁盘文件为干净名 + 同步 `raw_file`）。
+
+---
+
 ### 外部来源标准流程（12 步）
 
 **Step 1：读取原始来源**
@@ -148,7 +165,7 @@ def sha256_file(path):
 
 **Step 6：创建 wiki/sources/<slug>.md**
 使用 `wiki/templates/source-template.md`，frontmatter 必须填写：
-- `raw_file`: 相对路径（如 `raw/articles/filename.md`）
+- `raw_file`: 相对路径（如 `raw/articles/filename.md`）。**路径字符串须先经「不可见字符清洗规则」处理，确保不含零宽空格 / BOM 等不可见字符**（见上方同名小节），否则 lint Check 6 会误报 `SOURCE MODIFIED`。
 - `raw_sha256`: 步骤 2 计算的哈希值，**必须是完整 64 位十六进制字符串，严禁截断**（截断哈希会与全量哈希前缀匹配，导致 lint 误报 SOURCE MODIFIED；lint Check 6 会校验长度并标记 MALFORMED HASH）
 - `last_verified`: 今日日期（YYYY-MM-DD）
 - 若来源发表日期超过 2 年前：设置 `possibly_outdated: true`，并在 Summary 末尾添加：
@@ -563,4 +580,4 @@ git commit --no-verify
 
 ---
 
-_最后更新：2026-07-14_
+_最后更新：2026-07-25_
