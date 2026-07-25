@@ -1,18 +1,20 @@
 ---
 type: source
-title: "每日技术简报 2026-05-17"
+title: 每日技术简报 2026-05-17
 date: 2026-05-17
-source_url: ""
-domain: "tech-digest"
-author: "internal-note"
-tags: ["daily-digest", "notes"]
+source_url: ''
+domain: tech-digest
+author: internal-note
+tags:
+- daily-digest
+- notes
 processed: true
-raw_file: "raw/notes/daily-tech-digest-2026-05-17.md"
-raw_sha256: "8f06c21b003fb9fa050291a79b6fda6c19279365a0fbfa5c1acaa9ce7e08d406"
+raw_file: raw/notes/daily-tech-digest-2026-05-17.md
+raw_sha256: 99132a257607148ef84c56dd819f02ee4f3173c7ea1f4e21673c42ec9befa19d
 last_verified: 2026-07-13
 possibly_outdated: false
-language: "zh"
-canonical_source: ""
+language: zh
+canonical_source: ''
 ---
 # 每日技术简报 2026-05-17
 

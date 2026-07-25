@@ -1,23 +1,30 @@
 ---
 type: source
-title: "荣耀机器人背后，7家中国供应商"
+title: 荣耀机器人背后，7家中国供应商
 date: 2026-04-23
 source_url: https://mp.weixin.qq.com/s/J06lSs5_yT7zxhg0qF9zWA
 author: Jessica
 publication: 高工人形机器人
-tags: [humanoid-robot, supply-chain, honor-robot, gigadevice, hesai, orbbec, liquid-cooling, china-manufacturing]
+tags:
+- humanoid-robot
+- supply-chain
+- honor-robot
+- gigadevice
+- hesai
+- orbbec
+- liquid-cooling
+- china-manufacturing
 related_concepts:
-  - concepts/humanoid-robot
-  - concepts/dexterous-hand
-  - concepts/reinforcement-learning-locomotion
+- concepts/humanoid-robot
+- concepts/dexterous-hand
+- concepts/reinforcement-learning-locomotion
 related_entities:
-  - entities/unitree-robotics
-  - entities/tesla-optimus
-raw_file: "raw/clippings/2026-05-02荣耀机器人背后，7家中国供应商！.md"
-raw_sha256: 5a516983115a5cadedbc1f2a7a81b78b9fb6fb6f4dbcb9c8bc5bb0b763184a2a
+- entities/unitree-robotics
+- entities/tesla-optimus
+raw_file: raw/clippings/2026-05-02荣耀机器人背后，7家中国供应商！.md
+raw_sha256: c5ea4b334ca0a322c21bb18ddab59e3f7e9cc2b9c3aa9552a907e701234f4c85
 last_verified: 2026-06-27
 ---
-
 # 荣耀机器人背后，7家中国供应商
 
 ## 核心事件

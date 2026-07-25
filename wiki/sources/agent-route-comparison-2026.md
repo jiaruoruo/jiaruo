@@ -1,25 +1,24 @@
 ---
 type: source
-title: "OpenClaw、Hermes、Superagent：Agent 时代的三条路线，该怎么选？"
+title: OpenClaw、Hermes、Superagent：Agent 时代的三条路线，该怎么选？
 date: 2026-04-23
-source_url: "https://mp.weixin.qq.com/s/OYJfkiCXSZbHjHtqhr3IUw"
-domain: "mp.weixin.qq.com"
-author: "技术传感器"
+source_url: https://mp.weixin.qq.com/s/OYJfkiCXSZbHjHtqhr3IUw
+domain: mp.weixin.qq.com
+author: 技术传感器
 tags:
-  - agent
-  - openclaw
-  - hermes
-  - superagent
-  - agent-framework
+- agent
+- openclaw
+- hermes
+- superagent
+- agent-framework
 processed: true
-raw_file: "raw/clippings/2026-04-23OpenClaw、Hermes、Superagent：Agent 时代的三条路线，该怎么选？.md"
-raw_sha256: a8c301e4982bdd66c8bc59add561c32ee3f696224f78905780d9c4bd903ac5f3
+raw_file: raw/clippings/2026-04-23OpenClaw、Hermes、Superagent：Agent 时代的三条路线，该怎么选？.md
+raw_sha256: 6400a4a61ca4a537457b7e809d618274ce1a35095324a155239ec531e0c3738c
 last_verified: 2026-06-27
 possibly_outdated: false
-language: "zh"
-canonical_source: ""
+language: zh
+canonical_source: ''
 ---
-
 # OpenClaw、Hermes、Superagent：Agent 时代的三条路线，该怎么选？
 
 ## Summary

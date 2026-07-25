@@ -1,25 +1,24 @@
 ---
 type: source
-title: "理想M100芯片论文全文翻译|也可用于座舱"
+title: 理想M100芯片论文全文翻译|也可用于座舱
 date: 2026-04-24
-source_url: "https://mp.weixin.qq.com/s/CMAzdaKo4nhugZYIqG3wRA"
-domain: "mp.weixin.qq.com"
-author: ""
+source_url: https://mp.weixin.qq.com/s/CMAzdaKo4nhugZYIqG3wRA
+domain: mp.weixin.qq.com
+author: ''
 tags:
-  - automotive-chip
-  - soc
-  - li-auto
-  - m100
-  - translation
+- automotive-chip
+- soc
+- li-auto
+- m100
+- translation
 processed: true
-raw_file: "raw/clippings/2026-04-24理想M100芯片论文全文翻译也可用于座舱.md"
-raw_sha256: 41ca5e684b3c32e15095e4940427761be63e36370a50550b42cb3180d4e201ce
+raw_file: raw/clippings/2026-04-24理想M100芯片论文全文翻译也可用于座舱.md
+raw_sha256: 6332ffdf0deb4051199d70bfe52664e9570a689ac892b92068673537984ab9fe
 last_verified: 2026-06-27
 possibly_outdated: false
-language: "zh"
-canonical_source: "https://arxiv.org/pdf/2604.17862"
+language: zh
+canonical_source: https://arxiv.org/pdf/2604.17862
 ---
-
 # 理想M100芯片论文全文翻译|也可用于座舱
 
 ## Summary

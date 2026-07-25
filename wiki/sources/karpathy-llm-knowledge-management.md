@@ -1,25 +1,24 @@
 ---
 type: source
-title: "Karpathy大神的LLM驱动知识库管理方法论"
+title: Karpathy大神的LLM驱动知识库管理方法论
 date: 2026-04-24
-source_url: "https://mp.weixin.qq.com/s/M3OsER2VyooeCF-DBeCMtA"
-domain: "mp.weixin.qq.com"
-author: "AI 产品 Muke"
+source_url: https://mp.weixin.qq.com/s/M3OsER2VyooeCF-DBeCMtA
+domain: mp.weixin.qq.com
+author: AI 产品 Muke
 tags:
-  - knowledge-management
-  - llm
-  - second-brain
-  - obsidian
-  - karpathy
+- knowledge-management
+- llm
+- second-brain
+- obsidian
+- karpathy
 processed: true
-raw_file: "raw/clippings/2026-04-24Karpathy大神的LLM驱动知识库管理方法论.md"
-raw_sha256: 341b3a71d99cd26fff695ec3874264a2dfa29f73dec998cc74ba400de56f33d1
+raw_file: raw/clippings/2026-04-24Karpathy大神的LLM驱动知识库管理方法论.md
+raw_sha256: c2a3a2e5bb17dbdc1bb753ef3a3bf608712d1e570c4e49758355c0b9ca3ef865
 last_verified: 2026-06-27
 possibly_outdated: false
-language: "zh"
-canonical_source: ""
+language: zh
+canonical_source: ''
 ---
-
 # Karpathy大神的LLM驱动知识库管理方法论
 
 ## Summary

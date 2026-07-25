@@ -7,14 +7,25 @@ source_url: https://mp.weixin.qq.com/s/G79bzQzry9pSq2v2iRNiBA
 author: 佐思汽研
 published: 2026-04-28
 ingested: 2026-04-28
-raw_sha256: 0e03303b2c62941a4cc63e82c8cb6f387f6d29643c3191762913fd34466c6704
-raw_file: "raw/clippings/2026-04-28车身(区域)研究：ZCU搭载量超200万辆，向“即插即用”模块化平台演进.md"
-tags: [zcu, mculess, 10base-t1s, eea, market-research, automotive, china]
-concepts: [mculess-architecture, eea-architecture, zonal-gateway, can-eth-protocol-conversion]
-entities: [goodix-technology]
+raw_sha256: 8bb89b94b6e00309650f11ad9d27f6a4eb9b2a7268e38718980433f35a0e86db
+raw_file: raw/clippings/2026-04-28车身(区域)研究：ZCU搭载量超200万辆，向“即插即用”模块化平台演进.md
+tags:
+- zcu
+- mculess
+- 10base-t1s
+- eea
+- market-research
+- automotive
+- china
+concepts:
+- mculess-architecture
+- eea-architecture
+- zonal-gateway
+- can-eth-protocol-conversion
+entities:
+- goodix-technology
 last_verified: 2026-06-27
 ---
-
 # 车身(区域)研究：ZCU搭载量超200万辆，向"即插即用"模块化平台演进
 
 ## 核心摘要

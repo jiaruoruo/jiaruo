@@ -1,25 +1,24 @@
 ---
 type: source
-title: "分布式网关通信TDT"
+title: 分布式网关通信TDT
 date: 2026-04-16
-source_url: ""
-domain: "automotive-eea"
-author: ""
+source_url: ''
+domain: automotive-eea
+author: ''
 tags:
-  - automotive
-  - eea
-  - can-eth
-  - gateway
-  - zonal-gateway
+- automotive
+- eea
+- can-eth
+- gateway
+- zonal-gateway
 processed: true
-raw_file: "raw/clippings/分布式网关通信TDT.md"
-raw_sha256: a6ce33f56520dff5cb152fea077bf8f85b011a74f4649736e3b167b2f6966bdd
+raw_file: raw/clippings/分布式网关通信TDT.md
+raw_sha256: 05ab1f8d13b9a7c7c51baba1a4aeadb7c1d1aa8e6f3073e225d10a8721cd517a
 last_verified: 2026-06-27
 possibly_outdated: false
-language: "zh"
-canonical_source: ""
+language: zh
+canonical_source: ''
 ---
-
 # 分布式网关通信TDT
 
 > ⚠ 来源文件缺少标准 frontmatter，source_url 留空，date 取摄入日期。

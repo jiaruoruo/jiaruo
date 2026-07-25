@@ -1,15 +1,20 @@
 ---
 type: source
-title: "软件定义汽车时代：RCE边缘节点与区域架构的深度变革"
-source_url: "https://mp.weixin.qq.com/s/cMbhZTjun3bZnHmCm6yhkg"
-author: "汽车电子老登"
-date: "2026-05-05"
-tags: [sdv, rce, mculess-architecture, zonal-gateway, automotive-ethernet, rcp]
-raw_file: "raw/clippings/2026-05-05软件定义汽车时代：RCE边缘节点与区域架构的深度变革.md"
-raw_sha256: 456979134e283429d2b2d535dad5a6af736db8b2e28b7a428c230836a0cb546f
+title: 软件定义汽车时代：RCE边缘节点与区域架构的深度变革
+source_url: https://mp.weixin.qq.com/s/cMbhZTjun3bZnHmCm6yhkg
+author: 汽车电子老登
+date: '2026-05-05'
+tags:
+- sdv
+- rce
+- mculess-architecture
+- zonal-gateway
+- automotive-ethernet
+- rcp
+raw_file: raw/clippings/2026-05-05软件定义汽车时代：RCE边缘节点与区域架构的深度变革.md
+raw_sha256: 8eb32df64aa9c9c6942e2f355ed613c5da0961b61475497a81647f466f9dfdb4
 last_verified: 2026-06-27
 ---
-
 ## 核心摘要
 
 软件定义汽车（SDV）的本质是**硬件标准化 + 软件集中化**，通过将 250+ 分散 ECU 整合为约 10 个区域控制模块（ZCM）和中央计算单元（CCU），RCE 边缘节点作为区域网关的末梢执行单元，承载电源管理、负载控制和通信桥接三大功能。

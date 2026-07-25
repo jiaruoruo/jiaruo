@@ -1,15 +1,20 @@
 ---
 type: source
-title: "10BASE-T1S汽车以太网技术深度解析"
-source_url: "https://mp.weixin.qq.com/s/e0FwyKwIcOlL7UduVq6hzg"
-author: "汽车电子老登"
-date: "2026-05-05"
-tags: [10baset1s, plca, automotive-ethernet, t30hm1ts3600, ieee-802-3cg, mculess-architecture]
-raw_file: "raw/clippings/2026-05-0510BASE-T1S汽车以太网技术深度解析.md"
-raw_sha256: 7e836d6b485cf88a357c371e082082b2f36deac9bfe3ba3ea349d80d9f32a372
+title: 10BASE-T1S汽车以太网技术深度解析
+source_url: https://mp.weixin.qq.com/s/e0FwyKwIcOlL7UduVq6hzg
+author: 汽车电子老登
+date: '2026-05-05'
+tags:
+- 10baset1s
+- plca
+- automotive-ethernet
+- t30hm1ts3600
+- ieee-802-3cg
+- mculess-architecture
+raw_file: raw/clippings/2026-05-0510BASE-T1S汽车以太网技术深度解析.md
+raw_sha256: b5f581a8b8c7cb567ae708123c2a1d67b47bf02a356b70f8fbd02ac270e047e7
 last_verified: 2026-06-27
 ---
-
 ## 核心摘要
 
 IEEE 802.3cg-2019 定义的 10BASE-T1S 标准采用 DME 编码（零直流分量）和 PLCA 冲突避免机制，在单根双绞线上实现 10Mbps 半双工多节点共享总线，总线最长 25m，分支 <0.1m，支持最多 255 个从节点，是汽车 MCU-less 架构的首选物理层。

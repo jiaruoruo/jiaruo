@@ -1,22 +1,30 @@
 ---
 type: source
-title: "2026北京车展新能源汽车电子电器架构总结、技术对标及应用解析"
+title: 2026北京车展新能源汽车电子电器架构总结、技术对标及应用解析
 date: 2026-05-02
 source_url: https://mp.weixin.qq.com/s/hLGb4Vzk64I8sTFutJtrhw
 author: （未署名）
 publication: 微信公众号
-tags: [eea-architecture, automotive, zcu, central-computing, 800v, sdv, ota, china-oem, beijing-auto-show]
+tags:
+- eea-architecture
+- automotive
+- zcu
+- central-computing
+- 800v
+- sdv
+- ota
+- china-oem
+- beijing-auto-show
 related_concepts:
-  - concepts/eea-architecture
-  - concepts/zonal-gateway
-  - concepts/mculess-architecture
+- concepts/eea-architecture
+- concepts/zonal-gateway
+- concepts/mculess-architecture
 related_entities:
-  - entities/li-auto
-raw_file: "raw/clippings/2026-05-022026北京车展新能源汽车电子电器架构总结、技术对标及应用解析.md"
-raw_sha256: 494d6564ca18bf66d5cb533071a7f76118871397372d7de818f6cd8adac6c059
+- entities/li-auto
+raw_file: raw/clippings/2026-05-022026北京车展新能源汽车电子电器架构总结、技术对标及应用解析.md
+raw_sha256: 46b38b144990aafe1bed67fa76ab062ffe171db0fcae4abaa777e4a510ff2e2f
 last_verified: 2026-06-27
 ---
-
 # 2026北京车展新能源汽车电子电器架构总结、技术对标及应用解析
 
 ## 核心结论

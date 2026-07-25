@@ -1,15 +1,20 @@
 ---
 type: source
-title: "PoDL技术在汽车以太网供电的创新应用"
-source_url: "https://mp.weixin.qq.com/s/QCWzcz2BOFLHa7XSzSUCJA"
-author: "汽车电子老登"
-date: "2026-05-05"
-tags: [podl, 10baset1s, automotive-ethernet, mculess-architecture, t30hm1ts3600, wire-harness]
-raw_file: "raw/clippings/2026-05-05PoDL技术在汽车以太网供电的创新应用.md"
-raw_sha256: 66d69a6e130b0df86a9b27d1f8b09b418091510580dcbcd08a47f1043faf9e9b
+title: PoDL技术在汽车以太网供电的创新应用
+source_url: https://mp.weixin.qq.com/s/QCWzcz2BOFLHa7XSzSUCJA
+author: 汽车电子老登
+date: '2026-05-05'
+tags:
+- podl
+- 10baset1s
+- automotive-ethernet
+- mculess-architecture
+- t30hm1ts3600
+- wire-harness
+raw_file: raw/clippings/2026-05-05PoDL技术在汽车以太网供电的创新应用.md
+raw_sha256: 315c51247b54159c466ffc011ef95d497992c24d9019bc4f5c1bc5de7b854893
 last_verified: 2026-06-27
 ---
-
 ## 核心摘要
 
 PoDL（Power over Data Line）基于 IEEE 802.3cg 标准，在单根双绞线上同时传输 10Mbps 数据与 48V 直流电，为 MCU-less 边缘节点提供一线供电能力，大幅减少线束。

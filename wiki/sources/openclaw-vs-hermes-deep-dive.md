@@ -1,25 +1,24 @@
 ---
 type: source
-title: "OpenClaw vs Hermes：一文深入理解两大通用 Agent"
+title: OpenClaw vs Hermes：一文深入理解两大通用 Agent
 date: 2026-04-19
-source_url: "https://mp.weixin.qq.com/s/oKuSgz5CP4aPOjt_o2Vi8g"
-domain: "mp.weixin.qq.com"
-author: "架构师（JiaGouX）"
+source_url: https://mp.weixin.qq.com/s/oKuSgz5CP4aPOjt_o2Vi8g
+domain: mp.weixin.qq.com
+author: 架构师（JiaGouX）
 tags:
-  - agent-harness
-  - openclaw
-  - hermes-agent
-  - comparison
-  - agent-architecture
+- agent-harness
+- openclaw
+- hermes-agent
+- comparison
+- agent-architecture
 processed: true
-raw_file: "raw/clippings/2026-04-19OpenClaw vs Hermes：一文深入理解两大通用 Agent.md"
-raw_sha256: bfcc67bf046f5175f743a2f5f54c7a6a63159ebd3eff7edde04ca767da542232
+raw_file: raw/clippings/2026-04-19OpenClaw vs Hermes：一文深入理解两大通用 Agent.md
+raw_sha256: 9f3f255949835429f17ac97c5529208cc9802bb08b8aff26f11c4c7849770d51
 last_verified: 2026-06-27
 possibly_outdated: false
-language: "zh"
-canonical_source: ""
+language: zh
+canonical_source: ''
 ---
-
 # OpenClaw vs Hermes：一文深入理解两大通用 Agent
 
 ## Summary

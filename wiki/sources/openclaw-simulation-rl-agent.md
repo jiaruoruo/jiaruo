@@ -1,25 +1,24 @@
 ---
 type: source
-title: "仿真平台的新战场：OpenClaw × Simulation × RL，把\"会做事\"的能力自主训练出来"
+title: 仿真平台的新战场：OpenClaw × Simulation × RL，把"会做事"的能力自主训练出来
 date: 2026-04-15
-source_url: "https://zhuanlan.zhihu.com/p/2014388089611642479"
-domain: "zhuanlan.zhihu.com"
-author: "Xbotics 社区"
+source_url: https://zhuanlan.zhihu.com/p/2014388089611642479
+domain: zhuanlan.zhihu.com
+author: Xbotics 社区
 tags:
-  - simulation
-  - reinforcement-learning
-  - embodied-ai
-  - agent-runtime
-  - isaac-lab
+- simulation
+- reinforcement-learning
+- embodied-ai
+- agent-runtime
+- isaac-lab
 processed: true
-raw_file: "raw/clippings/2026-04-14 仿真平台的新战场：OpenClaw × Simulation × RL，把“会做事”的能力自主训练出来.md"
-raw_sha256: e611b8a2918d6e8b0cc52e7f0ef400be69a36d4d7b3323791235599e42a9b306
+raw_file: raw/clippings/2026-04-14 仿真平台的新战场：OpenClaw × Simulation × RL，把“会做事”的能力自主训练出来.md
+raw_sha256: 30dace9b7a57153dd6811c2da5873fa44cdcbbf9099b555b743ee3f781053aaf
 last_verified: 2026-06-27
 possibly_outdated: false
-language: "zh"
-canonical_source: ""
+language: zh
+canonical_source: ''
 ---
-
 # 仿真平台的新战场：OpenClaw × Simulation × RL，把"会做事"的能力自主训练出来
 
 ## Summary

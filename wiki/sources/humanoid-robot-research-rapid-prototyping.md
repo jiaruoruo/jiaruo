@@ -1,27 +1,26 @@
 ---
 type: source
-title: "人形机器人技术研究及快速原型建设"
+title: 人形机器人技术研究及快速原型建设
 date: 2026-04-15
-source_url: ""
-domain: "local"
-author: ""
+source_url: ''
+domain: local
+author: ''
 tags:
-  - humanoid-robot
-  - embodied-ai
-  - reinforcement-learning
-  - sim-to-real
-  - quasi-direct-drive
-  - dexterous-hand
-  - ethercat
+- humanoid-robot
+- embodied-ai
+- reinforcement-learning
+- sim-to-real
+- quasi-direct-drive
+- dexterous-hand
+- ethercat
 processed: true
-raw_file: "raw/clippings/2026-04-15人形机器人技术研究及快速原型建设.md"
-raw_sha256: 55456bba344bd0f8329e62a36dd37c4c50f34506da8d424b87205933a91689e1
+raw_file: raw/clippings/2026-04-15人形机器人技术研究及快速原型建设.md
+raw_sha256: 7268d0ce7dba5cb95589b5104499a77ab3efc7ac736edebdb7f617dfa283f3cc
 last_verified: 2026-06-27
 possibly_outdated: false
-language: "zh"
-canonical_source: ""
+language: zh
+canonical_source: ''
 ---
-
 # 人形机器人技术研究及快速原型建设
 
 ## Summary

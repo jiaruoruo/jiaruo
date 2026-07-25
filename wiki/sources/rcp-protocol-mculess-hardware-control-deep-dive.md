@@ -1,15 +1,20 @@
 ---
 type: source
-title: "RCP协议深度解析：MCU-less架构下如何实现远程硬件控制"
-source_url: "https://mp.weixin.qq.com/s/p87JOK_zLOuvtVnhXPzusQ"
-author: "汽车电子老登"
-date: "2026-05-05"
-tags: [rcp, mculess-architecture, 10baset1s, plca, gptp, automotive-ethernet]
-raw_file: "raw/clippings/2026-05-05RCP协议深度解析：MCU-less架构下如何实现远程硬件控制.md"
-raw_sha256: 9ec79d794f06b69ec710c01336cbbbf4caf47008aa304113abf1b69dfe8b9f05
+title: RCP协议深度解析：MCU-less架构下如何实现远程硬件控制
+source_url: https://mp.weixin.qq.com/s/p87JOK_zLOuvtVnhXPzusQ
+author: 汽车电子老登
+date: '2026-05-05'
+tags:
+- rcp
+- mculess-architecture
+- 10baset1s
+- plca
+- gptp
+- automotive-ethernet
+raw_file: raw/clippings/2026-05-05RCP协议深度解析：MCU-less架构下如何实现远程硬件控制.md
+raw_sha256: b796da158e61eec6783769c12209a56cad3fb2c7c723c8a0fae486fc2c0f3737
 last_verified: 2026-06-27
 ---
-
 ## 核心摘要
 
 RCP（Remote Control Protocol）是运行在 10BASE-T1S 以太网之上的应用层协议，采用 UDP/IP + Protocol Buffers 封装，实现区域控制器（ZCU）对 MCU-less 边缘节点硬件 IO 的远程控制，延迟 <1ms。

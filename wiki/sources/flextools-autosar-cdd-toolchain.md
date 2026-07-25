@@ -1,26 +1,25 @@
 ---
 type: source
-title: "告别脚本和手动配置：用FlexTools一站式搞定AUTOSAR复杂驱动开发"
+title: 告别脚本和手动配置：用FlexTools一站式搞定AUTOSAR复杂驱动开发
 date: 2026-05-10
-source_url: "https://blog.csdn.net/weixin_42550052/article/details/160730019"
-domain: "blog.csdn.net"
-author: "weixin_42550052"
+source_url: https://blog.csdn.net/weixin_42550052/article/details/160730019
+domain: blog.csdn.net
+author: weixin_42550052
 tags:
-  - autosar
-  - cdd
-  - complex-driver
-  - flextools
-  - automotive-software
-  - toolchain
+- autosar
+- cdd
+- complex-driver
+- flextools
+- automotive-software
+- toolchain
 processed: true
-raw_file: "raw/clippings/2026-05-10告别脚本和手动配置：用FlexTools一站式搞定AUTOSAR复杂驱动开发.md"
-raw_sha256: 61dc04aaa43d1a292366db257716ea1e9f2c634dd9b6cc433291c804e967af4a
+raw_file: raw/clippings/2026-05-10告别脚本和手动配置：用FlexTools一站式搞定AUTOSAR复杂驱动开发.md
+raw_sha256: eb7aec6c315e2cba8d544105d9db3478f73fe8ecf079452e7d349a5d66058525
 last_verified: 2026-06-27
 possibly_outdated: false
-language: "zh"
-canonical_source: ""
+language: zh
+canonical_source: ''
 ---
-
 # 告别脚本和手动配置：用FlexTools一站式搞定AUTOSAR复杂驱动开发
 
 ## Summary

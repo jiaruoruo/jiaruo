@@ -1,26 +1,25 @@
 ---
 type: source
-title: "理想自研芯片马赫M100深度剖析，AI算力数字可以忽略不看"
+title: 理想自研芯片马赫M100深度剖析，AI算力数字可以忽略不看
 date: 2026-04-23
-source_url: "https://mp.weixin.qq.com/s/NEL-J-zNUghpL88pJnGfJg"
-domain: "mp.weixin.qq.com"
-author: "周彦武"
+source_url: https://mp.weixin.qq.com/s/NEL-J-zNUghpL88pJnGfJg
+domain: mp.weixin.qq.com
+author: 周彦武
 tags:
-  - automotive-chip
-  - soc
-  - li-auto
-  - m100
-  - autonomous-driving
-  - embodied-ai
+- automotive-chip
+- soc
+- li-auto
+- m100
+- autonomous-driving
+- embodied-ai
 processed: true
-raw_file: "raw/clippings/2026-04-23理想自研芯片马赫M100深度剖析，AI算力数字可以忽略不看.md"
-raw_sha256: 011db4436259501860b9b3ce968d9a95e3dfb361beb0e3bbe8b62a5787015713
+raw_file: raw/clippings/2026-04-23理想自研芯片马赫M100深度剖析，AI算力数字可以忽略不看.md
+raw_sha256: 4667f2a02e07d3f9ecf65f07ba822dcb03a4d327b42381d4f5a9f9edc62fef32
 last_verified: 2026-06-27
 possibly_outdated: false
-language: "zh"
-canonical_source: ""
+language: zh
+canonical_source: ''
 ---
-
 # 理想自研芯片马赫M100深度剖析，AI算力数字可以忽略不看
 
 ## Summary

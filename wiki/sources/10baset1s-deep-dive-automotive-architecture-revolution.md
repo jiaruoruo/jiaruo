@@ -1,15 +1,20 @@
 ---
 type: source
-title: "10BASE-T1S技术深度解析与汽车电子架构革命"
-source_url: "https://mp.weixin.qq.com/s/l6jWSeekq391xQVCCUHxqg"
-author: "汽车电子老登"
-date: "2026-05-05"
-tags: [10baset1s, mculess-architecture, microchip-lan866x, plca, automotive-ethernet, asil-b]
-raw_file: "raw/clippings/2026-05-0510BASE-T1S技术深度解析与汽车电子架构革命.md"
-raw_sha256: e11a0a5a4d721e090857ec3f2e2eb6f822552a597c4a7f4c12fb2f2e3073895c
+title: 10BASE-T1S技术深度解析与汽车电子架构革命
+source_url: https://mp.weixin.qq.com/s/l6jWSeekq391xQVCCUHxqg
+author: 汽车电子老登
+date: '2026-05-05'
+tags:
+- 10baset1s
+- mculess-architecture
+- microchip-lan866x
+- plca
+- automotive-ethernet
+- asil-b
+raw_file: raw/clippings/2026-05-0510BASE-T1S技术深度解析与汽车电子架构革命.md
+raw_sha256: 5a296f8a42ebd8d603b226d372cb6ae8e5bad45518752d8e37f4425ad24bca7a
 last_verified: 2026-06-27
 ---
-
 ## 核心摘要
 
 Microchip LAN866x 系列是目前最完整的 10BASE-T1S MCU-less 方案，分为控制（LAN8660）、照明+视频（LAN8661）、音频（LAN8662）三个专用型号，支持 ASIL-B 功能安全、MACsec 安全加密和三级配置安全，实际测试支持 50 节点/100m（超越 IEEE 规范的 16 节点/25m）。

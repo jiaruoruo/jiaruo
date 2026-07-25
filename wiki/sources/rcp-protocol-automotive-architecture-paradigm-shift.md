@@ -1,15 +1,20 @@
 ---
 type: source
-title: "RCP远程控制协议的革命性创新：汽车电子架构的范式转移"
-source_url: "https://mp.weixin.qq.com/s/VUJeInrAQVP1Kmx8smL7Og"
-author: "汽车电子老登"
-date: "2026-05-05"
-tags: [rcp, t30hm1ts3600, mculess-architecture, sdv, automotive-ethernet, onsemi]
-raw_file: "raw/clippings/2026-05-05RCP远程控制协议的革命性创新：汽车电子架构的范式转移.md"
-raw_sha256: fc1e2e63177859ddbc72cefbf4ba43ccca2e425cdce74437033cf679e26bd0c9
+title: RCP远程控制协议的革命性创新：汽车电子架构的范式转移
+source_url: https://mp.weixin.qq.com/s/VUJeInrAQVP1Kmx8smL7Og
+author: 汽车电子老登
+date: '2026-05-05'
+tags:
+- rcp
+- t30hm1ts3600
+- mculess-architecture
+- sdv
+- automotive-ethernet
+- onsemi
+raw_file: raw/clippings/2026-05-05RCP远程控制协议的革命性创新：汽车电子架构的范式转移.md
+raw_sha256: a9c67f2c911ad87035e05563563bd8a5c617e4d1033ab787f794ae047190e038
 last_verified: 2026-06-27
 ---
-
 ## 核心摘要
 
 RCP 协议将汽车电子架构从"分布式 MCU 执行"范式转移到"集中软件控制 + 哑硬件执行"范式，T30HM1TS3600 作为标准 RCP Server 节点实现，ZCU 作为 RCP Client 发送指令，控制逻辑完全上移到中央计算单元。

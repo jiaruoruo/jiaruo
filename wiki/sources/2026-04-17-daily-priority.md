@@ -1,18 +1,20 @@
 ---
 type: source
-title: "2026-04-17 每日重点"
+title: 2026-04-17 每日重点
 date: 2026-04-17
-source_url: ""
-domain: "work"
-author: "internal-note"
-tags: ["daily", "work-log"]
+source_url: ''
+domain: work
+author: internal-note
+tags:
+- daily
+- work-log
 processed: true
-raw_file: "raw/notes/2026-04-17-每日重点.md"
-raw_sha256: "1186e058f4f5d95de4922ac5298d1f8e2737296e9983d7a67cd86873551d0708"
+raw_file: raw/notes/2026-04-17-每日重点.md
+raw_sha256: 646c028edadd7539a2d5c960e474f911bb944f9e788373a1bf8f090a3895cce6
 last_verified: 2026-07-13
 possibly_outdated: false
-language: "zh"
-canonical_source: ""
+language: zh
+canonical_source: ''
 ---
 # 2026-04-17 每日重点
 

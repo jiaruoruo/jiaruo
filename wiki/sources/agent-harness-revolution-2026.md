@@ -1,24 +1,23 @@
 ---
 type: source
-title: "最新！万字综述Harness革命！"
+title: 最新！万字综述Harness革命！
 date: 2026-04-18
-source_url: "https://mp.weixin.qq.com/s/0CTwb4aEr5mWwsdRdwzwkw"
-domain: "ai-agent"
-author: "黄佳"
+source_url: https://mp.weixin.qq.com/s/0CTwb4aEr5mWwsdRdwzwkw
+domain: ai-agent
+author: 黄佳
 tags:
-  - agent
-  - harness
-  - context-engineering
-  - llm
+- agent
+- harness
+- context-engineering
+- llm
 processed: true
-raw_file: "raw/clippings/2026-04-18最新！万字综述Harness革命！.md"
-raw_sha256: a5d6bb8da10bdb21473fdd5f0b68751fb48eeed91e0096374a44d7609f82c6a5
+raw_file: raw/clippings/2026-04-18最新！万字综述Harness革命！.md
+raw_sha256: 720e5c32e45f647ca3e4ed5ec141f9109aead890c02b5a62565f0e1e479c6e9f
 last_verified: 2026-06-27
 possibly_outdated: false
-language: "zh"
-canonical_source: ""
+language: zh
+canonical_source: ''
 ---
-
 # 最新！万字综述Harness革命！
 
 ## Summary

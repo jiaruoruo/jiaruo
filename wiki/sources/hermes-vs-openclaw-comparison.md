@@ -1,24 +1,23 @@
 ---
 type: source
-title: "装了最近爆火的 Hermes，和OpenClaw的对比来了！"
+title: 装了最近爆火的 Hermes，和OpenClaw的对比来了！
 date: 2026-04-19
-source_url: "https://mp.weixin.qq.com/s/KrZ26wvMvOusJRKtEeFekw"
-domain: "ai-agent"
-author: "Shubham Saboo"
+source_url: https://mp.weixin.qq.com/s/KrZ26wvMvOusJRKtEeFekw
+domain: ai-agent
+author: Shubham Saboo
 tags:
-  - agent
-  - hermes
-  - openclaw
-  - self-improvement
+- agent
+- hermes
+- openclaw
+- self-improvement
 processed: true
-raw_file: "raw/clippings/2026-04-19装了最近爆火的 Hermes，和OpenClaw的对比来了！.md"
-raw_sha256: e6881ca5822f0a7490e439dcd8dd0c416f5c4d8fb9f7210000b61fcb4f7afce6
+raw_file: raw/clippings/2026-04-19装了最近爆火的 Hermes，和OpenClaw的对比来了！.md
+raw_sha256: 270abb1cf77d56e350335c46f893b2c5ad08baaa804342eb7d85413d0f40000a
 last_verified: 2026-06-27
 possibly_outdated: false
-language: "zh"
-canonical_source: ""
+language: zh
+canonical_source: ''
 ---
-
 # 装了最近爆火的 Hermes，和OpenClaw的对比来了！
 
 ## Summary

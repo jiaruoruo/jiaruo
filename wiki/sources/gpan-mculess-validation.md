@@ -1,24 +1,23 @@
 ---
 type: source
-title: "GPAN MCULess 验证报告"
+title: GPAN MCULess 验证报告
 date: 2026-04-15
-source_url: ""
-domain: "local"
-author: ""
+source_url: ''
+domain: local
+author: ''
 tags:
-  - gpan
-  - mculess
-  - industrial-network
-  - edge-computing
+- gpan
+- mculess
+- industrial-network
+- edge-computing
 processed: true
-raw_file: "raw/clippings/2026-04-15GPAN MCULess 验证报告.md"
-raw_sha256: f484d8b47cd547933324d657d2d531a6027cd78514e499f0b8ae9bd9573a7735
+raw_file: raw/clippings/2026-04-15GPAN MCULess 验证报告.md
+raw_sha256: f27d870c6b7126c2dac4d4bc63ab7de1cdcac4d8e32cf1e8787fad490f56ef3f
 last_verified: 2026-06-27
 possibly_outdated: false
-language: "zh"
-canonical_source: ""
+language: zh
+canonical_source: ''
 ---
-
 # GPAN MCULess 验证报告
 
 ## Summary

@@ -1,26 +1,25 @@
 ---
 type: source
-title: "everything-claude-code：一套可复用的 Claude Code 工程工作流组件库"
+title: everything-claude-code：一套可复用的 Claude Code 工程工作流组件库
 date: 2026-05-11
-source_url: "http://www.uml.org.cn/ai/202602054.asp"
-domain: "uml.org.cn"
-author: ""
+source_url: http://www.uml.org.cn/ai/202602054.asp
+domain: uml.org.cn
+author: ''
 tags:
-  - claude-code
-  - llm-engineering
-  - ai-workflow
-  - agents
-  - hooks
-  - skills
+- claude-code
+- llm-engineering
+- ai-workflow
+- agents
+- hooks
+- skills
 processed: true
-raw_file: "raw/clippings/2026-05-11everything-claude-code：一套可复用的 Claude Code 工程工作流组件库.md"
-raw_sha256: 2f45c5296ea624a33ce2c9be4b188d28b9bff9ec7c44ab03fe275628fe18535f
+raw_file: raw/clippings/2026-05-11everything-claude-code：一套可复用的 Claude Code 工程工作流组件库.md
+raw_sha256: 545a05e9f4ecd8e92aab82fafbed116821a62a44dcf1e689053cee2bd84773ac
 last_verified: 2026-06-27
 possibly_outdated: false
-language: "zh"
-canonical_source: ""
+language: zh
+canonical_source: ''
 ---
-
 # everything-claude-code：一套可复用的 Claude Code 工程工作流组件库
 
 ## Summary

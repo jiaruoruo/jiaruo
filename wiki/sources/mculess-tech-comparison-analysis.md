@@ -1,26 +1,25 @@
 ---
 type: source
-title: "MCU-LESS 技术行业现状分析与应用场景设想"
+title: MCU-LESS 技术行业现状分析与应用场景设想
 date: 2026-04-27
-source_url: ""
-domain: "automotive-network"
-author: "内部技术分析（理想汽车项目相关）"
+source_url: ''
+domain: automotive-network
+author: 内部技术分析（理想汽车项目相关）
 tags:
-  - mculess
-  - gpan
-  - adi-10baset1s
-  - zcu
-  - cost-analysis
-  - automotive
+- mculess
+- gpan
+- adi-10baset1s
+- zcu
+- cost-analysis
+- automotive
 processed: true
-raw_file: "raw/articles/MCU-LESS.md"
-raw_sha256: df8eff7d69bcdbc8f8c0dae77c7048c52ca02c5bcaa1eed94606949d844ee223
+raw_file: raw/articles/MCU-LESS.md
+raw_sha256: f9d8b35f9a3d6a6d5684e39b8d3a10e87007a8a22547ed1088a321406d3b0c65
 last_verified: 2026-06-27
 possibly_outdated: false
-language: "zh"
-canonical_source: ""
+language: zh
+canonical_source: ''
 ---
-
 # MCU-LESS 技术行业现状分析与应用场景设想
 
 ## Summary
