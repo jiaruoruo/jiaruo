@@ -15,7 +15,7 @@ tags:
 - ethercat
 processed: true
 raw_file: raw/clippings/2026-04-15人形机器人技术研究及快速原型建设.md
-raw_sha256: 7268d0ce7dba5cb95589b5104499a77ab3efc7ac736edebdb7f617dfa283f3cc
+raw_sha256: 55456bba344bd0f8329e62a36dd37c4c50f34506da8d424b87205933a91689e1
 last_verified: 2026-06-27
 possibly_outdated: false
 language: zh

@@ -13,7 +13,7 @@ tags:
 - open-source
 processed: true
 raw_file: raw/clippings/2026-04-25DeepSeek V4封神了！.md
-raw_sha256: 9e4f597d1ffeffe1101df82e9a794ca2f284a1c33ea7f7e28cbcfb6d3759edd5
+raw_sha256: 587472f2d665d501847cc6e17c3730ad2643354bc6b40cfd1d1de6088a039f54
 last_verified: 2026-06-27
 possibly_outdated: false
 language: zh

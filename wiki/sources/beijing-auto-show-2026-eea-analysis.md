@@ -22,7 +22,7 @@ related_concepts:
 related_entities:
 - entities/li-auto
 raw_file: raw/clippings/2026-05-022026北京车展新能源汽车电子电器架构总结、技术对标及应用解析.md
-raw_sha256: 46b38b144990aafe1bed67fa76ab062ffe171db0fcae4abaa777e4a510ff2e2f
+raw_sha256: 494d6564ca18bf66d5cb533071a7f76118871397372d7de818f6cd8adac6c059
 last_verified: 2026-06-27
 ---
 # 2026北京车展新能源汽车电子电器架构总结、技术对标及应用解析

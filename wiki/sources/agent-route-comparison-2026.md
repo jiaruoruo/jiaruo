@@ -13,7 +13,7 @@ tags:
 - agent-framework
 processed: true
 raw_file: raw/clippings/2026-04-23OpenClaw、Hermes、Superagent：Agent 时代的三条路线，该怎么选？.md
-raw_sha256: 6400a4a61ca4a537457b7e809d618274ce1a35095324a155239ec531e0c3738c
+raw_sha256: a8c301e4982bdd66c8bc59add561c32ee3f696224f78905780d9c4bd903ac5f3
 last_verified: 2026-06-27
 possibly_outdated: false
 language: zh

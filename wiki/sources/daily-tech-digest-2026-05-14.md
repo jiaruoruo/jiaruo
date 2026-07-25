@@ -10,7 +10,7 @@ tags:
 - notes
 processed: true
 raw_file: raw/notes/daily-tech-digest-2026-05-14.md
-raw_sha256: e581f16786d9c8a2f2b4f64eb2dcbb76b1337740c342a38d383269cb89d0992a
+raw_sha256: 14c644ac22a47c9ad413fa677f742dfb9e82e98b885b843c34b3ddfa36efc6af
 last_verified: 2026-07-13
 possibly_outdated: false
 language: zh

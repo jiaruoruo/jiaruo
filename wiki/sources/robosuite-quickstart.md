@@ -13,7 +13,7 @@ tags:
 - mujoco
 processed: true
 raw_file: raw/clippings/2026-04-14机器人学习模拟框架 robosuite 支持强化学习和模仿学习 (1) 快速入门.md
-raw_sha256: eadd42947606994e4c99b5f1f7ec27309403172eb993d39d230dd8207e4f9948
+raw_sha256: 7776d87feb7fc21d59de481481633c54998adef2ef63df3503baef6da62ccd66
 last_verified: 2026-06-27
 possibly_outdated: false
 language: zh

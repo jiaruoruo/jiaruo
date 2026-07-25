@@ -12,7 +12,7 @@ tags:
 - automotive-ethernet
 - asil-b
 raw_file: raw/clippings/2026-05-0510BASE-T1S技术深度解析与汽车电子架构革命.md
-raw_sha256: 5a296f8a42ebd8d603b226d372cb6ae8e5bad45518752d8e37f4425ad24bca7a
+raw_sha256: e11a0a5a4d721e090857ec3f2e2eb6f822552a597c4a7f4c12fb2f2e3073895c
 last_verified: 2026-06-27
 ---
 ## 核心摘要
