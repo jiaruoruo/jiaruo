@@ -464,6 +464,7 @@ graph-excluded: true
 ## Outputs
 
 <!-- 所有输出文件列表，格式：- YYYY-MM-DD [[outputs/filename]] -->
+- 2026-07-21 wiki/outputs/2026-07-21-sgs-afsp-practice-solutions.md（QUERY：SGS AFSP 练习题完整解题答案，34 源，confidence: medium，graph-excluded）
 - 2026-07-14 wiki/outputs/2026-07-14-dexterous-hand-technical-route-analysis.md
 - 2026-07-14 wiki/outputs/2026-07-14-architecture-audit.md
 - 2026-04-28 wiki/outputs/2026-04-28-mculess-technology-trend-analysis.md
