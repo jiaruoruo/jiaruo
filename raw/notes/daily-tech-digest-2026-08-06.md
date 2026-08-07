@@ -138,4 +138,52 @@
 
 ---
 
-*报告由 AI 助手自动生成，数据截至 2026-08-06 13:44 (Asia/Shanghai)*
+## 🏆 大语言模型测评 TOP 10
+
+> 数据来源：[Artificial Analysis Intelligence Index v4.1](https://artificialanalysis.ai/models)，综合 9 项评测（GDPval-AA v2、τ³-Banking、Terminal-Bench v2.1、SciCode、Humanity's Last Exam、GPQA Diamond、CritPt、AA-Omniscience、AA-LCR）
+> 评分：Intelligence Index 分数，满分 ~100，越高越好
+> 排名时间：2026-08-06
+
+### 旗舰模型 TOP 10（闭源）
+
+| 排名 | 模型 | 分数 | 提供商 | 亮点 |
+|------|------|------|--------|------|
+| 1 | Claude Opus 5 (max) | 61 | Anthropic | 🏆 Agentic 知识工作新标杆 |
+| 2 | Claude Mythos 5 (max) | ~60 | Anthropic | 高推理旗舰，安全审计对象 |
+| 3 | Claude Opus 4.5 | ~59 | Anthropic | 上代旗舰，性能仍强劲 |
+| 4 | GPT-5.6 Sol (max) | 59 | OpenAI | OpenAI 旗舰，AI 安全演练暴露隐患 |
+| 5 | Claude Sonnet 5 | ~58 | Anthropic | 性价比旗舰 |
+| 6 | GPT-5.6 Sol (Non-reasoning) | ~58 | OpenAI | 非推理模式，响应快 |
+| 7 | Kimi K3 (max) | 57 | 月之暗面 | 🇨🇳 国产最强，开源模型第一 |
+| 8 | Qwen3.8 Max | 56 | 阿里 | 🇨🇳 阿里旗舰，8 月新发布，性价比极高 |
+| 9 | GPT-5.6 Sol (high) | 56 | OpenAI | 高推理模式 |
+| 10 | GPT-5.6 Terra (max) | 55 | OpenAI | 中等推理，125 tok/s 速度 |
+
+### 国产模型特别关注
+
+| 模型 | 分数 | 提供商 | 亮点 |
+|------|------|--------|------|
+| Kimi K3 | 57 | 月之暗面 | 国产 TOP 1，综合排名进入前 10 |
+| Qwen3.8 Max | 56 | 阿里云 | 8 月新发，输入 $2/M tokens 极高性价比 |
+| DeepSeek V4 Flash 0731 | 50 | 深度求索 | 🇨🇳 开源 TOP 3，速度 104 tok/s，成本极低 |
+| MiMo-V2-Flash | 25 | 小米 | 开源，端侧模型，完全免费 |
+
+### 其他值得关注
+
+| 模型 | 分数 | 亮点 |
+|------|------|------|
+| Muse Spark 1.2 | 54 | Meta 8 月新旗舰，Muse Code Agent 底座 |
+| Gemini 3.1 Pro Preview | 46 | Google 旗舰，速度 131 tok/s |
+| Inkling (xhigh) | 41 | Thinking Machines 开源，编码强 |
+| G9v3-39A5B | 31 | AI9Stars 开源，2026-08 新模型 |
+
+### 📝 点评
+- **Anthropic 一超二强**：Claude Opus 5 以 61 分稳居榜首，前 3 中有 2 席为 Claude
+- **中美双雄争霸**：Kimi K3 和 Qwen3.8 Max 分别进入前 10，国产模型实力显著提升
+- **OpenAI 模型矩阵丰富**：GPT-5.6 系列占据多席，但旗舰 Sol 在安全审计中被发现隐患
+- **Google Gemini 掉队**：Gemini 3.1 Pro 仅 46 分，排名 32，与 TOP 5 差距拉大
+- **开源亮点**：DeepSeek V4 Flash 开源分数 50，性价比无敌（$0.14/0.28 per M tokens）
+
+---
+
+*报告由 AI 助手自动生成，数据截至 2026-08-06 17:34 (Asia/Shanghai)*
