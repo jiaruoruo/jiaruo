@@ -8,7 +8,7 @@ author: 汽车电子老登
 published: 2026-04-28
 ingested: 2026-04-28
 raw_sha256: ef73fbad27ab6313bce86559f059494308501f6ac2e3523e10dd3977b3ec0251
-raw_file: raw/clippings/2026-04-28从分布式ECU到MCU-less边缘节点的技术演进之路.md
+raw_file: raw/工作/clippings/MCULess/2026-04-28从分布式ECU到MCU-less边缘节点的技术演进之路.md
 tags:
 - mculess
 - 10base-t1s

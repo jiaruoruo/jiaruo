@@ -11,8 +11,8 @@ tags:
   - context-engineering
   - open-source-models
 processed: false
-raw_file: "raw/clippings/2026-07-14-不用改模型，只调Harness！让Agent便宜又好用.md"
-raw_sha256: "41c3706ed85fdb998f20ef15f11a4a2b53bae7aeb3ce8a672b5d85ed00e3fcb7"
+raw_file: raw/工作/clippings/AI/2026-07-14-不用改模型，只调Harness！让Agent便宜又好用.md
+raw_sha256: 41c3706ed85fdb998f20ef15f11a4a2b53bae7aeb3ce8a672b5d85ed00e3fcb7
 last_verified: 2026-07-21
 possibly_outdated: false
 language: zh

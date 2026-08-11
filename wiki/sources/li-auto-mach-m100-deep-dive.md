@@ -13,7 +13,7 @@ tags:
 - autonomous-driving
 - embodied-ai
 processed: true
-raw_file: raw/clippings/2026-04-23理想自研芯片马赫M100深度剖析，AI算力数字可以忽略不看.md
+raw_file: raw/工作/clippings/芯片/2026-04-23理想自研芯片马赫M100深度剖析，AI算力数字可以忽略不看.md
 raw_sha256: 011db4436259501860b9b3ce968d9a95e3dfb361beb0e3bbe8b62a5787015713
 last_verified: 2026-06-27
 possibly_outdated: false

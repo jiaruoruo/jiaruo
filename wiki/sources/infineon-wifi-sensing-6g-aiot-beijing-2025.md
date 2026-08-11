@@ -3,7 +3,7 @@ type: source
 title: "从WiFi无线感知技术到6G展望：AIoT生态系统中的嵌入式系统开发与技术挑战"
 date: 2026-04-20
 sha256: "aa4cfa7df74f523fc498d09821a7e9bb5c444edf1225c740cffad0f0fc5d58e2"
-raw_file: "raw/pdfs/北京主论坛--从WiFi无线感知技术到6G展望：AIoT生态系统中的嵌入式系统开发与技术挑战--佟国香.pdf"
+raw_file: raw/工作/pdfs/AI/北京主论坛--从WiFi无线感知技术到6G展望：AIoT生态系统中的嵌入式系统开发与技术挑战--佟国香.pdf
 raw_sha256: aa4cfa7df74f523fc498d09821a7e9bb5c444edf1225c740cffad0f0fc5d58e2
 author: "佟国香，英飞凌科技"
 event: "北京主论坛 2025"

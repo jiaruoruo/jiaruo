@@ -7,7 +7,7 @@ domain: "chip-packaging"
 author: ""
 tags: [bare-die, packaging, advanced-packaging]
 processed: true
-raw_file: "raw/pdfs/芯片封装测试/裸芯片封装技术的发展与挑战.pdf"
+raw_file: raw/工作/pdfs/芯片设计制造/芯片封装测试/裸芯片封装技术的发展与挑战.pdf
 raw_sha256: 9f998e1c1fe372705bf2aa60c71da04d9c1a6b9708c460287f976fe64da2086e
 last_verified: 2026-06-27
 possibly_outdated: true

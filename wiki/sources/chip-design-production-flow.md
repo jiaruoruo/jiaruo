@@ -7,7 +7,7 @@ domain: "chip-design"
 author: ""
 tags: [chip-design, semiconductor-manufacturing, flow, education]
 processed: true
-raw_file: "raw/pdfs/芯片设计/芯片设计和生产流程.pdf"
+raw_file: raw/工作/pdfs/芯片设计制造/芯片设计/芯片设计和生产流程.pdf
 raw_sha256: d415ce5920d250b63d5edb1abdcdb0bc3d71c0fec3b01678617161c65103dbd5
 last_verified: 2026-06-27
 possibly_outdated: true

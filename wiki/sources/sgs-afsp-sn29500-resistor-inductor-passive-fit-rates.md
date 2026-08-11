@@ -6,8 +6,8 @@ source_url: ""
 domain: automotive-eea
 author: "SGS TÜV Saar"
 tags: [automotive-eea, functional-safety, iso-26262, sgs-afsp, sn29500, hardware-metrics, resistor, inductor, passive-component, fit-rate, component-reliability]
-raw_file: "raw/personal/考试资料/0187_001.pdf"
-raw_sha256: "f737b98fee7c8c09699c27850995e92a56072170c41339d71b77520705ce5a24"
+raw_file: raw/工作/personal/考试资料/0187_001.pdf
+raw_sha256: f737b98fee7c8c09699c27850995e92a56072170c41339d71b77520705ce5a24
 last_verified: 2026-07-22
 language: en
 ---

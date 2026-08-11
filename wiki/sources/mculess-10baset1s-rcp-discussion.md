@@ -8,7 +8,7 @@ author: AlvinY
 published: 2026-04-28
 ingested: 2026-04-28
 raw_sha256: 05544a065ee1660c3f36b70f1b95d74a3fc1c3ad90c5aef0dbd43b2cf6f06494
-raw_file: raw/clippings/2026-04-28聊一聊MCULess, 10BASE-T1S以及RCP.md
+raw_file: raw/工作/clippings/MCULess/2026-04-28聊一聊MCULess, 10BASE-T1S以及RCP.md
 tags:
 - mculess
 - 10base-t1s

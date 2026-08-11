@@ -11,8 +11,8 @@ tags:
   - automation
   - autoresearch
 processed: true
-raw_file: "raw/clippings/2026-05-23我把 Karpathy 的 AutoResearch 搬到了软件开发领域，效果炸了.md"
-raw_sha256: "bebe164d7ac4f00d11905ee4e8be9b3df98eead97310373b23ee50c7b87da74a"
+raw_file: raw/工作/clippings/AI/2026-05-23我把 Karpathy 的 AutoResearch 搬到了软件开发领域，效果炸了.md
+raw_sha256: bebe164d7ac4f00d11905ee4e8be9b3df98eead97310373b23ee50c7b87da74a
 last_verified: 2026-05-23
 possibly_outdated: false
 language: "zh"

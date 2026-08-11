@@ -6,8 +6,8 @@ source_url: ""
 domain: automotive-eea
 author: "SGS TÜV Saar"
 tags: [automotive-eea, functional-safety, iso-26262, sgs-afsp, technical-safety-concept, safety-architecture]
-raw_file: "raw/personal/考试资料/0171_001.pdf"
-raw_sha256: "22ea4ff6f28eb1b440bcbb4b9c43d03500cba92efb10fbf7d2524c9625060d28"
+raw_file: raw/工作/personal/考试资料/0171_001.pdf
+raw_sha256: 22ea4ff6f28eb1b440bcbb4b9c43d03500cba92efb10fbf7d2524c9625060d28
 last_verified: 2026-07-22
 language: en
 ---

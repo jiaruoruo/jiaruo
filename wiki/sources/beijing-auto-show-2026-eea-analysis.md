@@ -21,7 +21,7 @@ related_concepts:
 - concepts/mculess-architecture
 related_entities:
 - entities/li-auto
-raw_file: raw/clippings/2026-05-022026北京车展新能源汽车电子电器架构总结、技术对标及应用解析.md
+raw_file: raw/工作/clippings/智能汽车/2026-05-022026北京车展新能源汽车电子电器架构总结、技术对标及应用解析.md
 raw_sha256: 494d6564ca18bf66d5cb533071a7f76118871397372d7de818f6cd8adac6c059
 last_verified: 2026-06-27
 ---

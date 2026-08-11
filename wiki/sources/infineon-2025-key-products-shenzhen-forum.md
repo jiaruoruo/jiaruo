@@ -4,8 +4,8 @@
 type: source
 title: "2025年度重磅芯品全解析"
 date: 2026-04-20
-raw_sha256: "4563861779c4f3f98ade9ecf7bd2fbc1fdcc4a09548e56680fa5c724683c4f70"
-raw_file: "raw/pdfs/深圳主论坛--2025年度重磅“芯”品全解析--郭晶虹.pdf"
+raw_sha256: 4563861779c4f3f98ade9ecf7bd2fbc1fdcc4a09548e56680fa5c724683c4f70
+raw_file: raw/工作/pdfs/AI/深圳主论坛--2025年度重磅“芯”品全解析--郭晶虹.pdf
 author: "郭晶虹，英飞凌科技"
 event: "深圳主论坛 2025"
 domain:

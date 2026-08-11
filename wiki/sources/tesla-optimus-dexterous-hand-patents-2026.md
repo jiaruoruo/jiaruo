@@ -18,7 +18,7 @@ related_concepts:
 - concepts/humanoid-robot
 related_entities:
 - entities/tesla-optimus
-raw_file: raw/clippings/2026-05-02特斯拉公开五份灵巧手专利，“最难部分”难在哪里？.md
+raw_file: raw/工作/clippings/机器人/2026-05-02特斯拉公开五份灵巧手专利，“最难部分”难在哪里？.md
 raw_sha256: 42487fed689b8151d6e44a56d1a63c554dcb0d1c9dc6577419f0856578cca83d
 last_verified: 2026-06-27
 ---

@@ -7,8 +7,8 @@ domain: "internal"
 author: "项目团队"
 tags: []
 processed: true
-raw_file: "raw/articles/MCU-Less 座椅项目讨论_20260305-V0.5.pptx"
-raw_sha256: "d247641856824213593a62d79c5b4b046a00a7711cad1272d2f389dadf91fb6a"
+raw_file: raw/工作/articles/MCULess/MCU-Less 座椅项目讨论_20260305-V0.5.pptx
+raw_sha256: d247641856824213593a62d79c5b4b046a00a7711cad1272d2f389dadf91fb6a
 last_verified: 2026-07-14
 possibly_outdated: false
 language: "zh"

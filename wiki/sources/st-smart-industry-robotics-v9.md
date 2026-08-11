@@ -12,8 +12,8 @@ tags:
   - humanoid-robot
   - industrial-robot
 processed: true
-raw_file: "raw/pdfs/ST Smart Industry Robotics solution full202603 V9.pdf"
-raw_sha256: "ad0c80052cbcfa09eae402d0efe563ccc3c26f0eae19a452a395b6adf629c4a5"
+raw_file: raw/工作/pdfs/机器人/ST Smart Industry Robotics solution full202603 V9.pdf
+raw_sha256: ad0c80052cbcfa09eae402d0efe563ccc3c26f0eae19a452a395b6adf629c4a5
 last_verified: 2026-04-15
 possibly_outdated: false
 language: "en"

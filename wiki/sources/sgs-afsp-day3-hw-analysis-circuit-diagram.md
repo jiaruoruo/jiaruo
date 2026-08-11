@@ -6,8 +6,8 @@ source_url: ""
 domain: automotive-eea
 author: "SGS TÜV Saar"
 tags: [automotive-eea, functional-safety, iso-26262, sgs-afsp, hardware-analysis, circuit-diagram]
-raw_file: "raw/personal/考试资料/0175_001.pdf"
-raw_sha256: "062bc6f44145f2dd224d0b2eaa7329c29b28da019b2757b56722c7fb52740857"
+raw_file: raw/工作/personal/考试资料/0175_001.pdf
+raw_sha256: 062bc6f44145f2dd224d0b2eaa7329c29b28da019b2757b56722c7fb52740857
 last_verified: 2026-07-22
 language: en
 ---

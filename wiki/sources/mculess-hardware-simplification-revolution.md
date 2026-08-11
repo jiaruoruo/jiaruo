@@ -8,7 +8,7 @@ author: 汽车电子老登
 published: 2026-04-28
 ingested: 2026-04-28
 raw_sha256: 0d7d9b939ff0f127e4cc6fd2ac35e6e4ea801ed5e754880b3272770a8b86c98e
-raw_file: raw/clippings/2026-04-28硬件极简化革命：从传统ECU到MCU-less边缘节点的设计变革.md
+raw_file: raw/工作/clippings/MCULess/2026-04-28硬件极简化革命：从传统ECU到MCU-less边缘节点的设计变革.md
 tags:
 - mculess
 - rcp

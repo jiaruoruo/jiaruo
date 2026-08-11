@@ -11,7 +11,7 @@ tags:
   - context-engineering
   - claude-code
 processed: true
-raw_file: "raw/clippings/Anthropic终于公开了他们内部Skill方法论。.md"
+raw_file: raw/工作/clippings/AI/Anthropic终于公开了他们内部Skill方法论。.md
 raw_sha256: b637e5baefbeae66185aa87fbc4f770abd9ccc4f8065987083c38065540f3a49
 last_verified: 2026-06-27
 possibly_outdated: false

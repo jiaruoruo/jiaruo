@@ -6,8 +6,8 @@ source_url: ""
 domain: automotive-eea
 author: "SGS TÜV Saar"
 tags: [automotive-eea, functional-safety, iso-26262, sgs-afsp, technical-safety-concept, component-design, hw-sw-allocation]
-raw_file: "raw/personal/考试资料/0173_001.pdf"
-raw_sha256: "113385ea5c3cb8f8c096b0ef00f06aacd7b4f81be8ca4e15a607ea0d2e3bd8dd"
+raw_file: raw/工作/personal/考试资料/0173_001.pdf
+raw_sha256: 113385ea5c3cb8f8c096b0ef00f06aacd7b4f81be8ca4e15a607ea0d2e3bd8dd
 last_verified: 2026-07-22
 language: en
 ---

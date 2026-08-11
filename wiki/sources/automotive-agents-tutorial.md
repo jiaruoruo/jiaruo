@@ -14,8 +14,8 @@ tags:
   - autosar
   - functional-safety
 processed: true
-raw_file: "raw/personal/AUTOMOTIVE_AGENTS_TUTORIAL.md"
-raw_sha256: "820196f108306cd185edc6d9ce45a2dce23f439b0155cdf712cb25f94eb7f4a3"
+raw_file: raw/工作/personal/AUTOMOTIVE_AGENTS_TUTORIAL.md
+raw_sha256: 820196f108306cd185edc6d9ce45a2dce23f439b0155cdf712cb25f94eb7f4a3
 companion_files:
   - path: "raw/personal/AUTOMOTIVE_AGENTS_ARCHITECTURE.html"
     sha256: "218bed0a7fc58764272e1c143f94d53a09afa022c88240e32a8e76a658d21dc9"

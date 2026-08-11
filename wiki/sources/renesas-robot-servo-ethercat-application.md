@@ -13,8 +13,8 @@ tags:
   - mcu
   - industrial-robot
 processed: true
-raw_file: "raw/pdfs/瑞萨电子在机器人伺服控制与EtherCAT 实时通信中的应用_20250722.pdf"
-raw_sha256: "b95b4c8f8eff55396ed6212cdcd2c10daa4d4fbf80157d2bc1f612fa3e213c6b"
+raw_file: raw/工作/pdfs/机器人/瑞萨电子在机器人伺服控制与EtherCAT 实时通信中的应用_20250722.pdf
+raw_sha256: b95b4c8f8eff55396ed6212cdcd2c10daa4d4fbf80157d2bc1f612fa3e213c6b
 last_verified: 2026-04-15
 possibly_outdated: false
 language: "zh"

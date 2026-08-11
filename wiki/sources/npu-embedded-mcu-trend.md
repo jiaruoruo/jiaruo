@@ -11,8 +11,8 @@ tags:
   - mcu
   - embedded-system
 processed: true
-raw_file: "raw/clippings/2026-06-07NPU 正在成为嵌入式芯片标配：MCU 工程师会被改变吗？.md"
-raw_sha256: "e2a00dacc2f768c9de7043fdb3e8841a93f52134c4656bcbce538d141618daa3"
+raw_file: raw/工作/clippings/芯片/2026-06-07NPU 正在成为嵌入式芯片标配：MCU 工程师会被改变吗？.md
+raw_sha256: e2a00dacc2f768c9de7043fdb3e8841a93f52134c4656bcbce538d141618daa3
 last_verified: 2026-06-07
 possibly_outdated: false
 language: "zh"

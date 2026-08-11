@@ -15,7 +15,7 @@ tags:
 - nxp
 - zcu
 processed: true
-raw_file: raw/clippings/MCU-LESS.md
+raw_file: raw/工作/clippings/MCULess/MCU-LESS.md
 raw_sha256: df8eff7d69bcdbc8f8c0dae77c7048c52ca02c5bcaa1eed94606949d844ee223
 last_verified: 2026-07-13
 possibly_outdated: false

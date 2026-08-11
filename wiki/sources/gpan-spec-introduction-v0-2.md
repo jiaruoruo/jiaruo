@@ -7,8 +7,8 @@ domain: "goodix"
 author: "汇顶科技"
 tags: []
 processed: true
-raw_file: "raw/articles/GPAN芯片规格介绍文档_V0.2 2025-08-05.docx"
-raw_sha256: "5080ab7389e3b74d0440335f7be68092f57ee4c3e2bd8c43cf09c5c30a883b48"
+raw_file: raw/工作/articles/MCULess/GPAN芯片规格介绍文档_V0.2 2025-08-05.docx
+raw_sha256: 5080ab7389e3b74d0440335f7be68092f57ee4c3e2bd8c43cf09c5c30a883b48
 last_verified: 2026-07-14
 possibly_outdated: false
 language: "zh"

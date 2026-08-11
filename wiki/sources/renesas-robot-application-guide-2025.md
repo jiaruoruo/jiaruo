@@ -13,8 +13,8 @@ tags:
   - service-robot
   - market
 processed: true
-raw_file: "raw/pdfs/机器人应用推广指南202504.pdf"
-raw_sha256: "c4e246f603d91eb60a02ab051076ec4133a0a6eb50d211b1e2a33e91acad480a"
+raw_file: raw/工作/pdfs/机器人/机器人应用推广指南202504.pdf
+raw_sha256: c4e246f603d91eb60a02ab051076ec4133a0a6eb50d211b1e2a33e91acad480a
 last_verified: 2026-04-15
 possibly_outdated: false
 language: "zh"

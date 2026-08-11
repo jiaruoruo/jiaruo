@@ -11,8 +11,8 @@ tags:
   - motor-control
   - vendor-landscape
 processed: true
-raw_file: "raw/clippings/2026-05-17人形机器人MCU哪家强？.md"
-raw_sha256: "0d7cea48b7c5e126b97672a250c2f1f7433a5bf3ae759df25a0ed9cf6f8814d4"
+raw_file: raw/工作/clippings/机器人/2026-05-17人形机器人MCU哪家强？.md
+raw_sha256: 0d7cea48b7c5e126b97672a250c2f1f7433a5bf3ae759df25a0ed9cf6f8814d4
 last_verified: 2026-05-17
 possibly_outdated: false
 language: "zh"

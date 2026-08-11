@@ -7,7 +7,7 @@ domain: "chip-design"
 author: "王大军"
 tags: [mems, pressure-sensor, chip-design, sensor]
 processed: true
-raw_file: "raw/pdfs/芯片设计/一种基于MEMS技术的压力传感器芯片设计-王大军.pdf"
+raw_file: raw/工作/pdfs/芯片设计制造/芯片设计/一种基于MEMS技术的压力传感器芯片设计-王大军.pdf
 raw_sha256: e735eb6c5369f4a71adad105b7e069324fe0dd486664be8b253f57db9db24498
 last_verified: 2026-06-27
 possibly_outdated: true

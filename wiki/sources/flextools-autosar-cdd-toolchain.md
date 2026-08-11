@@ -13,7 +13,7 @@ tags:
 - automotive-software
 - toolchain
 processed: true
-raw_file: raw/clippings/2026-05-10告别脚本和手动配置：用FlexTools一站式搞定AUTOSAR复杂驱动开发.md
+raw_file: raw/工作/clippings/嵌入式软件开发/2026-05-10告别脚本和手动配置：用FlexTools一站式搞定AUTOSAR复杂驱动开发.md
 raw_sha256: 61dc04aaa43d1a292366db257716ea1e9f2c634dd9b6cc433291c804e967af4a
 last_verified: 2026-06-27
 possibly_outdated: false

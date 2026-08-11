@@ -14,7 +14,7 @@ tags:
 - dexterous-hand
 - ethercat
 processed: true
-raw_file: raw/clippings/2026-04-15人形机器人技术研究及快速原型建设.md
+raw_file: raw/工作/clippings/机器人/2026-04-15人形机器人技术研究及快速原型建设.md
 raw_sha256: 55456bba344bd0f8329e62a36dd37c4c50f34506da8d424b87205933a91689e1
 last_verified: 2026-06-27
 possibly_outdated: false

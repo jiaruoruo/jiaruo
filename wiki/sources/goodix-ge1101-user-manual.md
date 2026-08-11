@@ -12,8 +12,8 @@ tags:
   - register
   - automotive
 processed: true
-raw_file: "raw/pdfs/GE1101用户使用手册_V0.1.pdf"
-raw_sha256: "b63589417d27d9479a2c68f6f95e11dc7f33e0165eaf35d6be37c3587424b084"
+raw_file: raw/工作/pdfs/MCULess/GE1101用户使用手册_V0.1.pdf
+raw_sha256: b63589417d27d9479a2c68f6f95e11dc7f33e0165eaf35d6be37c3587424b084
 last_verified: 2026-04-27
 possibly_outdated: false
 language: "zh"

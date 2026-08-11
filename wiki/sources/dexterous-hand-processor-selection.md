@@ -7,8 +7,8 @@ domain: "robotics"
 author: "internal-note"
 tags: ["dexterous-hand", "mcu", "soc", "motor-control"]
 processed: true
-raw_file: "raw/notes/灵巧手处理器选型详细设计.md"
-raw_sha256: "85c4b600e57f9c657de0bfb2513f5b4f5da56fb37a04e1f1dd81bb86e90fa1f5"
+raw_file: raw/工作/notes/机器人/灵巧手处理器选型详细设计.md
+raw_sha256: 85c4b600e57f9c657de0bfb2513f5b4f5da56fb37a04e1f1dd81bb86e90fa1f5
 last_verified: 2026-07-13
 possibly_outdated: false
 language: "zh"

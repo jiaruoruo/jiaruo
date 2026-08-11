@@ -6,8 +6,8 @@ source_url: ""
 domain: automotive-eea
 author: "SGS TÜV Saar"
 tags: [automotive-eea, functional-safety, iso-26262, sgs-afsp, sn29500, hardware-metrics, resistor, inductor, capacitor, pi-t, pi-q, quality-factor, component-reliability]
-raw_file: "raw/personal/考试资料/0190_001.pdf"
-raw_sha256: "5f856e3dbbf46003e715fe49c45df0a9ec34dae77dc4ee647a3df865cb2e0b4c"
+raw_file: raw/工作/personal/考试资料/0190_001.pdf
+raw_sha256: 5f856e3dbbf46003e715fe49c45df0a9ec34dae77dc4ee647a3df865cb2e0b4c
 last_verified: 2026-07-22
 language: en
 ---

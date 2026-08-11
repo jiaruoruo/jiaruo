@@ -12,8 +12,8 @@ tags:
   - ecosystem
   - automotive
 processed: true
-raw_file: "raw/pdfs/MCULess方案进展介绍.pdf"
-raw_sha256: "2854008018fadfe70a54e2df30525b39dd52626e7f15d285dff7fff8d9c7f505"
+raw_file: raw/工作/pdfs/MCULess/MCULess方案进展介绍.pdf
+raw_sha256: 2854008018fadfe70a54e2df30525b39dd52626e7f15d285dff7fff8d9c7f505
 last_verified: 2026-04-27
 possibly_outdated: false
 language: "zh"

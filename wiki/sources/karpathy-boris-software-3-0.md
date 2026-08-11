@@ -11,8 +11,8 @@ tags:
   - claude-code
   - ai-workflow
 processed: true
-raw_file: "raw/clippings/2026-05-23Karpathy、Claude Code之父Boris，最新访谈，把整个程序员圈炸了！.md"
-raw_sha256: "0d17e97f104e711936be80529389e134d265e524474556220667316441803d1b"
+raw_file: raw/工作/clippings/AI/2026-05-23Karpathy、Claude Code之父Boris，最新访谈，把整个程序员圈炸了！.md
+raw_sha256: 0d17e97f104e711936be80529389e134d265e524474556220667316441803d1b
 last_verified: 2026-05-23
 possibly_outdated: false
 language: "zh"

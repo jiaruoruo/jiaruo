@@ -8,7 +8,7 @@ author: 汽车电子老登
 published: 2026-04-28
 ingested: 2026-04-28
 raw_sha256: 42c0317859245e729e5a345eed9161d0642b38be5ad0e856b48228a7d4b3689c
-raw_file: raw/clippings/2026-04-28MCU-less架构在汽车电子中的实现路径深度解析.md
+raw_file: raw/工作/clippings/MCULess/2026-04-28MCU-less架构在汽车电子中的实现路径深度解析.md
 tags:
 - mculess
 - 10base-t1s

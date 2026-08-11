@@ -6,8 +6,8 @@ source_url: ""
 domain: automotive-eea
 author: "SGS TÜV Saar"
 tags: [automotive-eea, functional-safety, iso-26262, sgs-afsp, hardware-analysis, spfm, lfm, pmhf]
-raw_file: "raw/personal/考试资料/0180_001.pdf"
-raw_sha256: "4c177da6d345083ea88a7bfb79727868e58e786c722fdfe97b6bb3e7ac5dd5a6"
+raw_file: raw/工作/personal/考试资料/0180_001.pdf
+raw_sha256: 4c177da6d345083ea88a7bfb79727868e58e786c722fdfe97b6bb3e7ac5dd5a6
 last_verified: 2026-07-22
 language: en
 ---

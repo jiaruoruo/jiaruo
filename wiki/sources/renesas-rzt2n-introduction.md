@@ -11,8 +11,8 @@ tags:
   - industrial-network
   - motor-control
 processed: true
-raw_file: "raw/pdfs/RZT2N Product Introduction.pdf"
-raw_sha256: "d91a4324f79ef118ec74551b071d3d38e4e17355c08c81cd857c129cf283f57e"
+raw_file: raw/工作/pdfs/芯片手册/RZT2N Product Introduction.pdf
+raw_sha256: d91a4324f79ef118ec74551b071d3d38e4e17355c08c81cd857c129cf283f57e
 last_verified: 2026-04-15
 possibly_outdated: false
 language: "en"

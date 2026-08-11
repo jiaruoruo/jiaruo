@@ -12,8 +12,8 @@ tags:
 - state-estimation
 - robotics
 processed: true
-raw_file: "raw/clippings/2026-04-15机器人传感器执行器通信技术沙盘.md"
-raw_sha256: "cba3bab07d472e6779050076e46b15a2216095b089f7db9107229fa635367850"
+raw_file: raw/工作/clippings/机器人/2026-04-15机器人传感器执行器通信技术沙盘.md
+raw_sha256: cba3bab07d472e6779050076e46b15a2216095b089f7db9107229fa635367850
 last_verified: 2026-06-27
 possibly_outdated: false
 language: zh

@@ -12,7 +12,7 @@ tags:
 - multi-axis-synchronization
 - validation
 processed: true
-raw_file: raw/clippings/2026-04-15EtherCAT & GPAN 多伺服电机同步控制技术验证方案.md
+raw_file: raw/工作/clippings/机器人/2026-04-15EtherCAT & GPAN 多伺服电机同步控制技术验证方案.md
 raw_sha256: 7513f711f86fad748c68579b4427a1a698f3457e281d090e28f343294772836c
 last_verified: 2026-06-27
 possibly_outdated: false

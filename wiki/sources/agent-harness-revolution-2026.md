@@ -11,7 +11,7 @@ tags:
 - context-engineering
 - llm
 processed: true
-raw_file: raw/clippings/2026-04-18最新！万字综述Harness革命！.md
+raw_file: raw/工作/clippings/AI/2026-04-18最新！万字综述Harness革命！.md
 raw_sha256: a5d6bb8da10bdb21473fdd5f0b68751fb48eeed91e0096374a44d7609f82c6a5
 last_verified: 2026-06-27
 possibly_outdated: false

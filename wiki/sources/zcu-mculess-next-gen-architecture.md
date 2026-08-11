@@ -8,7 +8,7 @@ author: 奔宙
 published: 2026-04-28
 ingested: 2026-04-28
 raw_sha256: d10b2374e3204ac24d13871962b8a08b481de22e7d8488385770aca62c23aab6
-raw_file: raw/clippings/2026-04-28下一代汽车电子架构革命：MCU Less技术如何重塑区域控制器设计？.md
+raw_file: raw/工作/clippings/MCULess/2026-04-28下一代汽车电子架构革命：MCU Less技术如何重塑区域控制器设计？.md
 tags:
 - mculess
 - zcu

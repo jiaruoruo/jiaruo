@@ -10,8 +10,8 @@ tags:
   - evaluation
   - quality-assurance
 processed: false
-raw_file: "raw/clippings/2026-07-14-AI Agent评测体系：四层质量评估框架.md"
-raw_sha256: "72fde0ff5cee109e9a3291773cb4d40f362c3b45e6f848755faf3541bb7e975e"
+raw_file: raw/工作/clippings/AI/2026-07-14-AI Agent评测体系：四层质量评估框架.md
+raw_sha256: 72fde0ff5cee109e9a3291773cb4d40f362c3b45e6f848755faf3541bb7e975e
 last_verified: 2026-07-21
 possibly_outdated: false
 language: zh

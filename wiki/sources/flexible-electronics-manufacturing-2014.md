@@ -7,7 +7,7 @@ domain: "chip-manufacturing"
 author: "华中科技大学（HUST）"
 tags: [flexible-electronics, manufacturing, education, hust]
 processed: true
-raw_file: "raw/pdfs/芯片制造/柔性电子制造技术基础-第4讲-PART1-2014.pdf"
+raw_file: raw/工作/pdfs/芯片设计制造/芯片制造/柔性电子制造技术基础-第4讲-PART1-2014.pdf
 raw_sha256: ea8fc9798f38f407dade54f37fda7751a42c7cdc87f10208593f454a56d7ea51
 last_verified: 2026-06-27
 possibly_outdated: true

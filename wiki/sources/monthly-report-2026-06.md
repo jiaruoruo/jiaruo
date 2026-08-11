@@ -7,8 +7,8 @@ domain: "work"
 author: "internal-note"
 tags: ["monthly-report", "notes"]
 processed: true
-raw_file: "raw/notes/monthly-report-2026-06.md"
-raw_sha256: "4bbf885d31c67af44843fae60bec25a744ffb30f24757e590830dab3f1e5bd1e"
+raw_file: raw/工作/notes/monthly-report-2026-06.md
+raw_sha256: 4bbf885d31c67af44843fae60bec25a744ffb30f24757e590830dab3f1e5bd1e
 last_verified: 2026-07-13
 possibly_outdated: false
 language: "zh"

@@ -11,8 +11,8 @@ tags:
   - semiconductor
   - system-architecture
 processed: true
-raw_file: "raw/pdfs/Humanoid Robot solution_Feb_2026.pdf"
-raw_sha256: "753ac8dbb0443c78e57d42998746a35a7584558ab2c19dadc85410158d2bf92d"
+raw_file: raw/工作/pdfs/机器人/Humanoid Robot solution_Feb_2026.pdf
+raw_sha256: 753ac8dbb0443c78e57d42998746a35a7584558ab2c19dadc85410158d2bf92d
 last_verified: 2026-04-15
 possibly_outdated: false
 language: "en"

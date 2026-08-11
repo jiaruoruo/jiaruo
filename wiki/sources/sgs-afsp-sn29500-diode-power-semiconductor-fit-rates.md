@@ -6,8 +6,8 @@ source_url: ""
 domain: automotive-eea
 author: "Siemens / SN 29500-3:2004-12"
 tags: [automotive-eea, functional-safety, iso-26262, sgs-afsp, sn29500, fit-rate, diodes, power-semiconductors]
-raw_file: "raw/personal/考试资料/0184_001.pdf"
-raw_sha256: "faacd28661cd76930ff3e2751687adf413d53cf3327b470fc53f5b8ed5b70785"
+raw_file: raw/工作/personal/考试资料/0184_001.pdf
+raw_sha256: faacd28661cd76930ff3e2751687adf413d53cf3327b470fc53f5b8ed5b70785
 last_verified: 2026-07-22
 language: en
 ---

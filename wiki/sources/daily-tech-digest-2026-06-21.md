@@ -9,8 +9,8 @@ tags:
 - daily-digest
 - notes
 processed: true
-raw_file: raw/notes/daily-tech-digest-2026-06-21.md
-raw_sha256: f65b7510e43af66044ab01f3a51bff13937b7d8dfeb5395504d426b108b39cb8
+raw_file: raw/工作/notes/daily-tech-digest-2026-06-21.md
+raw_sha256: d9d327ad48c6e5f3783a907c99fa09a646aa67382453749e3a711388987ee87c
 last_verified: 2026-07-13
 possibly_outdated: false
 language: zh

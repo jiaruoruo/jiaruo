@@ -12,8 +12,8 @@ tags:
   - bzcu
   - adi-10baset1s
 processed: true
-raw_file: "raw/pdfs/MCULess方案调研.pdf"
-raw_sha256: "33ed28fb0cb48c19e91427e94b8d3ab4eb0e92febc27ed8d5ebe3b32fb2e6a69"
+raw_file: raw/工作/pdfs/MCULess/MCULess方案调研.pdf
+raw_sha256: 33ed28fb0cb48c19e91427e94b8d3ab4eb0e92febc27ed8d5ebe3b32fb2e6a69
 last_verified: 2026-04-27
 possibly_outdated: false
 language: "zh"

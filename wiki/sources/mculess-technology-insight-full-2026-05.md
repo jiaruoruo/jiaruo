@@ -7,8 +7,8 @@ domain: "internal"
 author: "内部整理"
 tags: []
 processed: true
-raw_file: "raw/articles/2026-05-02-mculess-technology-insight-full.md"
-raw_sha256: "1e992ed539a83f5b9f324fc846e2bd03f350c754adc4696b34ad5e9f97b0985e"
+raw_file: raw/工作/articles/MCULess/2026-05-02-mculess-technology-insight-full.md
+raw_sha256: 1e992ed539a83f5b9f324fc846e2bd03f350c754adc4696b34ad5e9f97b0985e
 last_verified: 2026-07-14
 possibly_outdated: false
 language: "zh"

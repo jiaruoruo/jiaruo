@@ -12,8 +12,8 @@ tags:
   - adas
   - renesas
 processed: true
-raw_file: "raw/pdfs/REN_sws-automotive-ai-based-detection-r33wp0005eu0100_WHP_20240618.pdf"
-raw_sha256: "25d8b626dc9ab3effc65a023ca91b12c1e2592b4057ce5409bb08b43e7918210"
+raw_file: raw/工作/pdfs/智能汽车/REN_sws-automotive-ai-based-detection-r33wp0005eu0100_WHP_20240618.pdf
+raw_sha256: 25d8b626dc9ab3effc65a023ca91b12c1e2592b4057ce5409bb08b43e7918210
 last_verified: 2026-04-15
 possibly_outdated: false
 language: "en"

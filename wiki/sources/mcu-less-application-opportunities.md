@@ -7,8 +7,8 @@ domain: "internal"
 author: "内部整理"
 tags: []
 processed: true
-raw_file: "raw/articles/MCU-less应用机会点汇总.md"
-raw_sha256: "7f8d526ac6022ff2fcfe90fa20afcf63c02dc5491c03706f652b9b3257070503"
+raw_file: raw/工作/articles/MCULess/MCU-less应用机会点汇总.md
+raw_sha256: 7f8d526ac6022ff2fcfe90fa20afcf63c02dc5491c03706f652b9b3257070503
 last_verified: 2026-07-14
 possibly_outdated: false
 language: "zh"

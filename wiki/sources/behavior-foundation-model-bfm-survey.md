@@ -11,8 +11,8 @@ tags:
   - behavior-foundation-model
   - survey
 processed: true
-raw_file: "raw/clippings/2026-06-06智元、众擎、逐际都在卷的人形机器人运控基座：41篇论文看懂BFM.md"
-raw_sha256: "e57c7fa8c7bcd93ec6f5a813657fc22d117d89a26be67595cfe19c7eeecb97e0"
+raw_file: raw/工作/clippings/机器人/2026-06-06智元、众擎、逐际都在卷的人形机器人运控基座：41篇论文看懂BFM.md
+raw_sha256: e57c7fa8c7bcd93ec6f5a813657fc22d117d89a26be67595cfe19c7eeecb97e0
 last_verified: 2026-06-06
 possibly_outdated: false
 language: "zh"

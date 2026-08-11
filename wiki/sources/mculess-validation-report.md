@@ -12,8 +12,8 @@ tags:
   - recommendation
   - automotive
 processed: true
-raw_file: "raw/pdfs/MCULess验证汇报.pdf"
-raw_sha256: "d7a93866a92c7bf04ed25e486a52196ea5228eba43054b2e09db9de572f91662"
+raw_file: raw/工作/pdfs/MCULess/MCULess验证汇报.pdf
+raw_sha256: d7a93866a92c7bf04ed25e486a52196ea5228eba43054b2e09db9de572f91662
 last_verified: 2026-04-27
 possibly_outdated: false
 language: "zh"

@@ -7,8 +7,8 @@ domain: "functional-safety"
 author: "internal-note"
 tags: ["functional-safety", "iso26262", "asil", "exam"]
 processed: true
-raw_file: "raw/notes/ISO-26262-功能安全证书考试-复习要点.md"
-raw_sha256: "4c1d206f89882d18e5fc8ea6e95832d65bcd57265b4dd6c88ce0ae14ffdce579"
+raw_file: ""
+raw_sha256: ""
 last_verified: 2026-07-13
 possibly_outdated: false
 language: "zh"

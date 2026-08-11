@@ -11,8 +11,8 @@ tags:
   - automotive-mcu
   - functional-safety
 processed: true
-raw_file: "raw/pdfs/RH850_U2B_Golden_Presentation_NDA.pdf"
-raw_sha256: "53039ec9c4a6e8e3b1a36c2229ce7413a2b3d3ae4cfb406d76df7502bc67b3ae"
+raw_file: raw/工作/pdfs/芯片手册/RH850_U2B_Golden_Presentation_NDA.pdf
+raw_sha256: 53039ec9c4a6e8e3b1a36c2229ce7413a2b3d3ae4cfb406d76df7502bc67b3ae
 last_verified: 2026-04-15
 possibly_outdated: false
 language: "en"

@@ -12,8 +12,8 @@ tags:
   - motor-control
   - ethercat
 processed: true
-raw_file: "raw/pdfs/RA8T2 MCU 产品介绍 202508 1.pdf"
-raw_sha256: "899d6cdcf93635af0fb11d6180d1b2f97e09ae03bb07e526c744bafc1ba99c57"
+raw_file: raw/工作/pdfs/芯片手册/RA8T2 MCU 产品介绍 202508 1.pdf
+raw_sha256: 899d6cdcf93635af0fb11d6180d1b2f97e09ae03bb07e526c744bafc1ba99c57
 last_verified: 2026-04-15
 possibly_outdated: false
 language: "zh"

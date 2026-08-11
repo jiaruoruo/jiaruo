@@ -3,7 +3,7 @@ type: source
 title: "驱动创新：英飞凌氮化镓解决方案在机器人中的应用"
 date: 2026-04-20
 sha256: "7b77caa26f687165808b8a9c9c3d04ca2d782c4f41803c4fd0347fe350223f58"
-raw_file: "raw/pdfs/深圳We Accelerate Robotics--驱动创新：英飞凌氮化镓解决方案在机器人中的应用--伦伟强.pdf"
+raw_file: raw/工作/pdfs/机器人/深圳We Accelerate Robotics--驱动创新：英飞凌氮化镓解决方案在机器人中的应用--伦伟强.pdf
 raw_sha256: 7b77caa26f687165808b8a9c9c3d04ca2d782c4f41803c4fd0347fe350223f58
 author: "伦伟强（Lun Weiqiang），英飞凌科技"
 event: "深圳 We Accelerate Robotics 2025"

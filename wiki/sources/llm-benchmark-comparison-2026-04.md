@@ -7,8 +7,8 @@ domain: "internal"
 author: "内部整理"
 tags: []
 processed: true
-raw_file: "raw/articles/2026-04-27-llm-benchmark-comparison-analysis.md"
-raw_sha256: "63df2961bc4543c63cec0f6075d7a73ed229b33e139e75a7324900a4a17f96b2"
+raw_file: raw/工作/articles/AI/2026-04-27-llm-benchmark-comparison-analysis.md
+raw_sha256: 63df2961bc4543c63cec0f6075d7a73ed229b33e139e75a7324900a4a17f96b2
 last_verified: 2026-07-14
 possibly_outdated: false
 language: "zh"

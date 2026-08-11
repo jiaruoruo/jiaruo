@@ -7,7 +7,7 @@ domain: "chip-design"
 author: "Qualcomm"
 tags: [qualcomm, snapdragon, chip-spec, mobile-soc]
 processed: true
-raw_file: "raw/pdfs/芯片企业合集/高通芯片发展规格.pdf"
+raw_file: raw/工作/pdfs/芯片设计制造/芯片企业合集/高通芯片发展规格.pdf
 raw_sha256: 9b042b575481deff193510649b2434d2297df81f65c0c2ce989785039555a07c
 last_verified: 2026-06-27
 possibly_outdated: true

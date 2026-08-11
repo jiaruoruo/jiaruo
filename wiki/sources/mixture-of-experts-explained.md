@@ -12,7 +12,7 @@ tags:
 - transformer
 - deep-learning
 processed: true
-raw_file: raw/clippings/2026-04-25一文看懂混合专家模型 (MoE) 到底是什么？.md
+raw_file: raw/工作/clippings/AI/2026-04-25一文看懂混合专家模型 (MoE) 到底是什么？.md
 raw_sha256: b95723248ad7a850fb157f3c7582e0e03482393d4982f5d8a26ebc03ec9e3c4e
 last_verified: 2026-06-27
 possibly_outdated: false

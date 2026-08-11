@@ -11,8 +11,8 @@ tags:
   - bom
   - supply-chain
 processed: true
-raw_file: "raw/clippings/2026-06-07从特斯拉 Optimus 到宇树：人形机器人 13 类核心硬件全拆解（附代表企业）.md"
-raw_sha256: "da52046a16f99dc0dda052917fbefe1a793b4abcb04865273b893398af6d2ab2"
+raw_file: raw/工作/clippings/机器人/2026-06-07从特斯拉 Optimus 到宇树：人形机器人 13 类核心硬件全拆解（附代表企业）.md
+raw_sha256: da52046a16f99dc0dda052917fbefe1a793b4abcb04865273b893398af6d2ab2
 last_verified: 2026-06-07
 possibly_outdated: false
 language: "zh"

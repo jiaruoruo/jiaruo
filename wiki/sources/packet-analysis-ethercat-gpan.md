@@ -7,8 +7,8 @@ domain: "internal"
 author: "技术团队"
 tags: []
 processed: true
-raw_file: "raw/articles/packet_analysis.html"
-raw_sha256: "57e738369075e6866405a51a36d67f0df60b277b49613873e29d5f46972833b2"
+raw_file: raw/工作/articles/机器人/packet_analysis.html
+raw_sha256: 57e738369075e6866405a51a36d67f0df60b277b49613873e29d5f46972833b2
 last_verified: 2026-07-14
 possibly_outdated: false
 language: "zh"

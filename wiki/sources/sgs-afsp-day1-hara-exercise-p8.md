@@ -6,8 +6,8 @@ source_url: ""
 domain: automotive-eea
 author: "SGS TÜV Saar"
 tags: [automotive-eea, functional-safety, iso-26262, sgs-afsp, hara, asil]
-raw_file: "raw/personal/考试资料/0165_001.pdf"
-raw_sha256: "48ed58448ac302899a642456f8bc83b59fca07517eb745b0a3d97ebdb8726d03"
+raw_file: raw/工作/personal/考试资料/0165_001.pdf
+raw_sha256: 48ed58448ac302899a642456f8bc83b59fca07517eb745b0a3d97ebdb8726d03
 last_verified: 2026-07-22
 language: en
 ---

@@ -6,8 +6,8 @@ source_url: ""
 domain: automotive-eea
 author: "SGS TÜV Saar"
 tags: [automotive-eea, functional-safety, iso-26262, sgs-afsp, item-definition, external-measures]
-raw_file: "raw/personal/考试资料/0156_001.pdf"
-raw_sha256: "ceb02fc74d80b698a685e29195f6e2b45fe8176c6b5a30ee68daa01258de58ee"
+raw_file: raw/工作/personal/考试资料/0156_001.pdf
+raw_sha256: ceb02fc74d80b698a685e29195f6e2b45fe8176c6b5a30ee68daa01258de58ee
 last_verified: 2026-07-22
 language: en
 ---

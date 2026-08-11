@@ -11,8 +11,8 @@ tags:
   - motion-control
   - wbc-mpc
 processed: true
-raw_file: "raw/clippings/2026-06-07具身智能运动控制技术介绍.md"
-raw_sha256: "4dc98d1d95019fabcdd0a372806bb5064b2d7e123dada50f3df9c4f1f835b6ac"
+raw_file: raw/工作/clippings/机器人/2026-06-07具身智能运动控制技术介绍.md
+raw_sha256: 4dc98d1d95019fabcdd0a372806bb5064b2d7e123dada50f3df9c4f1f835b6ac
 last_verified: 2026-06-07
 possibly_outdated: false
 language: "zh"

@@ -12,8 +12,8 @@ tags:
   - presales
   - automotive
 processed: true
-raw_file: "raw/pdfs/售前方案-理想GPAN座椅v1.1.pdf"
-raw_sha256: "05afd97b7ca2ba70217569c82da8284146db084d54dc4f247da5cc54fc901ce7"
+raw_file: raw/工作/pdfs/MCULess/售前方案-理想GPAN座椅v1.1.pdf
+raw_sha256: 05afd97b7ca2ba70217569c82da8284146db084d54dc4f247da5cc54fc901ce7
 last_verified: 2026-04-27
 possibly_outdated: false
 language: "zh"

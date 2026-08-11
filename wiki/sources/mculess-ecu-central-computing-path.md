@@ -8,7 +8,7 @@ author: 汽车电子工程笔记
 published: 2026-04-28
 ingested: 2026-04-28
 raw_sha256: c8d655c0c4f28ad4dd1e362867b2889928401ff80a9c2b890a4d4b67846e2f68
-raw_file: raw/clippings/2026-04-28汽车ECU的MCU-less变革：从分布式走向中央计算的关键路径.md
+raw_file: raw/工作/clippings/MCULess/2026-04-28汽车ECU的MCU-less变革：从分布式走向中央计算的关键路径.md
 tags:
 - mculess
 - 10base-t1s

@@ -7,7 +7,7 @@ domain: "chip-design"
 author: ""
 tags: [arm, chip-selection, reference, education]
 processed: true
-raw_file: "raw/pdfs/芯片企业合集/ARM常用ARM芯片选型.pdf"
+raw_file: raw/工作/pdfs/芯片设计制造/芯片企业合集/ARM常用ARM芯片选型.pdf
 raw_sha256: 206337fe7eb958f5cef1f0a70d86286410fd6a3638468c3eb43587e14412597a
 last_verified: 2026-06-27
 possibly_outdated: true

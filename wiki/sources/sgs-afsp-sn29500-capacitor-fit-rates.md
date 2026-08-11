@@ -6,8 +6,8 @@ source_url: ""
 domain: automotive-eea
 author: "SGS TÜV Saar"
 tags: [automotive-eea, functional-safety, iso-26262, sgs-afsp, sn29500, hardware-metrics, capacitor, fit-rate, component-reliability]
-raw_file: "raw/personal/考试资料/0186_001.pdf"
-raw_sha256: "b94703fb2a57b0ac5f0ccb0ed484b93646684a85995c22fb86adc78139af81d8"
+raw_file: raw/工作/personal/考试资料/0186_001.pdf
+raw_sha256: b94703fb2a57b0ac5f0ccb0ed484b93646684a85995c22fb86adc78139af81d8
 last_verified: 2026-07-22
 language: en
 ---

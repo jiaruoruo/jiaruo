@@ -7,7 +7,7 @@ domain: "mp.weixin.qq.com"
 author: "Knock"
 tags: [agent-architecture, agent-system, planning, memory, tool-use, feedback-loop, mcp]
 processed: true
-raw_file: "raw/clippings/2026-06-28-Agent的6层架构：感知、规划、工具、记忆、执行、反馈.md"
+raw_file: raw/工作/clippings/AI/2026-06-28-Agent的6层架构：感知、规划、工具、记忆、执行、反馈.md
 raw_sha256: e3afdca810446fe1052b0e9621364de11d9dc6ffb889b2a9411da7ced0e46240
 last_verified: 2026-07-13
 possibly_outdated: false

@@ -7,8 +7,8 @@ domain: "tech-digest"
 author: "internal-note"
 tags: ["daily-digest", "notes"]
 processed: true
-raw_file: "raw/notes/daily-tech-digest-2026-07-09.md"
-raw_sha256: "2d58be5b3cccea86d4adc46d1cfdd389519a8d5639ac83d71d5733765092e4f6"
+raw_file: raw/工作/notes/daily-tech-digest-2026-07-09.md
+raw_sha256: 2d58be5b3cccea86d4adc46d1cfdd389519a8d5639ac83d71d5733765092e4f6
 last_verified: 2026-07-13
 possibly_outdated: false
 language: "zh"

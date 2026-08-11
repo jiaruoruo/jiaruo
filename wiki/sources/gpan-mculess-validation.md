@@ -11,7 +11,7 @@ tags:
 - industrial-network
 - edge-computing
 processed: true
-raw_file: raw/clippings/2026-04-15GPAN MCULess 验证报告.md
+raw_file: raw/工作/clippings/MCULess/2026-04-15GPAN MCULess 验证报告.md
 raw_sha256: f484d8b47cd547933324d657d2d531a6027cd78514e499f0b8ae9bd9573a7735
 last_verified: 2026-06-27
 possibly_outdated: false

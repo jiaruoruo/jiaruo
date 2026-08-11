@@ -11,7 +11,7 @@ tags:
 - plca
 - gptp
 - automotive-ethernet
-raw_file: raw/clippings/2026-05-05RCP协议深度解析：MCU-less架构下如何实现远程硬件控制.md
+raw_file: raw/工作/clippings/MCULess/2026-05-05RCP协议深度解析：MCU-less架构下如何实现远程硬件控制.md
 raw_sha256: 9ec79d794f06b69ec710c01336cbbbf4caf47008aa304113abf1b69dfe8b9f05
 last_verified: 2026-06-27
 ---

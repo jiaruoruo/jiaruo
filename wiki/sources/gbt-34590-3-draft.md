@@ -6,8 +6,8 @@ source_url: ""
 domain: automotive-eea
 author: "SAC（国家标准，征求意见稿）"
 tags: [automotive-eea, functional-safety, gbt-34590, iso-26262, standards, concept-phase, hara, china-standard]
-raw_file: "raw/pdfs/功能安全/GBT-34590/《道路车辆 功能安全 第3部分：概念阶段》征求意见稿.pdf"
-raw_sha256: "588839eaac9e8b38e05a296b8ebc3946523bc5fb1bbd404dfd0b6a31e16a4880"
+raw_file: raw/工作/pdfs/功能安全/GBT-34590/《道路车辆 功能安全 第3部分：概念阶段》征求意见稿.pdf
+raw_sha256: 588839eaac9e8b38e05a296b8ebc3946523bc5fb1bbd404dfd0b6a31e16a4880
 last_verified: 2026-07-22
 language: zh
 ---

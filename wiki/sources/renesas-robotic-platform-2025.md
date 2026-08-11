@@ -12,8 +12,8 @@ tags:
   - industrial-robot
   - ai
 processed: true
-raw_file: "raw/pdfs/Robotic platform promotion material v1.pdf"
-raw_sha256: "696b391eb34ebeab2976ed999200db5dbec06488189b3981fb8222d322b11807"
+raw_file: raw/工作/pdfs/机器人/Robotic platform promotion material v1.pdf
+raw_sha256: 696b391eb34ebeab2976ed999200db5dbec06488189b3981fb8222d322b11807
 last_verified: 2026-04-15
 possibly_outdated: false
 language: "en"

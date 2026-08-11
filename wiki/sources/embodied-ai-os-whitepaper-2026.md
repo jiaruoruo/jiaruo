@@ -12,8 +12,8 @@ tags:
   - vla
   - world-model
 processed: true
-raw_file: "raw/pdfs/2026年具身智能操作系统技术白皮书.pdf"
-raw_sha256: "8a99ce3ac3ebf5bdd9db2a51c8e682502a835b81426e2ccd1b62a111c5624b30"
+raw_file: raw/工作/pdfs/机器人/2026年具身智能操作系统技术白皮书.pdf
+raw_sha256: 8a99ce3ac3ebf5bdd9db2a51c8e682502a835b81426e2ccd1b62a111c5624b30
 last_verified: 2026-04-15
 possibly_outdated: false
 language: "zh"

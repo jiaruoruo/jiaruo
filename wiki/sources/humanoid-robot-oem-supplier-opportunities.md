@@ -7,8 +7,8 @@ domain: "internal"
 author: "内部整理"
 tags: []
 processed: true
-raw_file: "raw/articles/humanoid-robot-oem-supplier-opportunities.html"
-raw_sha256: "1436bc79445750d5e7eab48429b8da34405d5ea4c80fbc7e9be38b018215560e"
+raw_file: raw/工作/articles/机器人/humanoid-robot-oem-supplier-opportunities.html
+raw_sha256: 1436bc79445750d5e7eab48429b8da34405d5ea4c80fbc7e9be38b018215560e
 last_verified: 2026-07-14
 possibly_outdated: false
 language: "zh"

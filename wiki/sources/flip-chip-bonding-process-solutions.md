@@ -7,7 +7,7 @@ domain: "chip-manufacturing"
 author: ""
 tags: [flip-chip, bonding, equipment, packaging]
 processed: true
-raw_file: "raw/pdfs/芯片制造/芯片制造倒装焊工艺与设备解决方案.pdf"
+raw_file: raw/工作/pdfs/芯片设计制造/芯片制造/芯片制造倒装焊工艺与设备解决方案.pdf
 raw_sha256: 435b8a3489f9e6d3ece59146e4c6cbb9883fb4fc367549b0f133cd084dd1d1b4
 last_verified: 2026-06-27
 possibly_outdated: true

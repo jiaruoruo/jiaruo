@@ -6,8 +6,8 @@ source_url: ""
 domain: automotive-eea
 author: "SAC（国家标准，征求意见稿）"
 tags: [automotive-eea, functional-safety, gbt-34590, iso-26262, standards, hardware-metrics, pmhf, china-standard]
-raw_file: "raw/pdfs/功能安全/GBT-34590/《道路车辆 功能安全 第5部分：产品开发：硬件层面》征求意见稿.pdf"
-raw_sha256: "8b7f568c2760ea564d2300d199e357fd600cc79a95a04791789016ce2a6c7bcb"
+raw_file: raw/工作/pdfs/功能安全/GBT-34590/《道路车辆 功能安全 第5部分：产品开发：硬件层面》征求意见稿.pdf
+raw_sha256: 8b7f568c2760ea564d2300d199e357fd600cc79a95a04791789016ce2a6c7bcb
 last_verified: 2026-07-22
 language: zh
 ---

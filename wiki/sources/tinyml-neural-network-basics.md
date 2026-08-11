@@ -11,8 +11,8 @@ tags:
   - neural-network
   - mcu
 processed: true
-raw_file: "raw/clippings/2026-06-14玩转边缘AI（TInyML）：需要掌握的神经网络基础知识汇总！.md"
-raw_sha256: "6a94c1faf034f7b4a4901843a0d840ff8b0d667372a7d4ccde7838db2a7c2daf"
+raw_file: raw/工作/clippings/AI/2026-06-14玩转边缘AI（TInyML）：需要掌握的神经网络基础知识汇总！.md
+raw_sha256: 6a94c1faf034f7b4a4901843a0d840ff8b0d667372a7d4ccde7838db2a7c2daf
 last_verified: 2026-06-14
 possibly_outdated: false
 language: "zh"

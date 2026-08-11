@@ -11,8 +11,8 @@ tags:
   - llm-inference
   - quantization
 processed: true
-raw_file: "raw/clippings/2026-06-14端侧 AI 的不可能三角：延迟、内存、精度.md"
-raw_sha256: "301b2b2f9b8605a60f4ee7ae009f060eff44bf1d72c0067e659cd4e488743c78"
+raw_file: raw/工作/clippings/AI/2026-06-14端侧 AI 的不可能三角：延迟、内存、精度.md
+raw_sha256: 301b2b2f9b8605a60f4ee7ae009f060eff44bf1d72c0067e659cd4e488743c78
 last_verified: 2026-06-14
 possibly_outdated: false
 language: "zh"

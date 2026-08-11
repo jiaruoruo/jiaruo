@@ -7,7 +7,7 @@ domain: "chip-packaging"
 author: ""
 tags: [ic-packaging, testing, education, osat]
 processed: true
-raw_file: "raw/pdfs/芯片封装测试/封装测试工艺教育资料.pdf"
+raw_file: raw/工作/pdfs/芯片设计制造/芯片封装测试/封装测试工艺教育资料.pdf
 raw_sha256: 16d599a9a3120b0476a5c2ec70c0b8b3e1c96de0027a6d7cdab4adc678761e0e
 last_verified: 2026-06-27
 possibly_outdated: true

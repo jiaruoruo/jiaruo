@@ -12,8 +12,8 @@ tags:
   - can-eth
   - automotive
 processed: true
-raw_file: "raw/pdfs/MCULess方案验证（关键技术点和验证范围）.pdf"
-raw_sha256: "895533edef5826b02df3f85839c2f1cf771a34f28507678cdfe7d758cc493473"
+raw_file: raw/工作/pdfs/MCULess/MCULess方案验证（关键技术点和验证范围）.pdf
+raw_sha256: 895533edef5826b02df3f85839c2f1cf771a34f28507678cdfe7d758cc493473
 last_verified: 2026-04-27
 possibly_outdated: false
 language: "zh"

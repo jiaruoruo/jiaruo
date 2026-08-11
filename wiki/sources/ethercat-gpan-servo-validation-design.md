@@ -12,8 +12,8 @@ tags:
   - multi-axis-sync
   - validation
 processed: true
-raw_file: "raw/articles/EtherCAT_GPAN_Validation_Design.html"
-raw_sha256: "b5906b228ef32b0a65aa4c62cfc11a0368eba010f4435e6abad4c26e9d223f39"
+raw_file: raw/工作/articles/MCULess/EtherCAT_GPAN_Validation_Design.html
+raw_sha256: b5906b228ef32b0a65aa4c62cfc11a0368eba010f4435e6abad4c26e9d223f39
 last_verified: 2026-04-27
 possibly_outdated: false
 language: "zh"

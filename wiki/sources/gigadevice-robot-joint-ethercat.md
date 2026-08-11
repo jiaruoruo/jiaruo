@@ -11,8 +11,8 @@ tags:
   - real-time
   - functional-safety
 processed: true
-raw_file: "raw/clippings/2026-06-06兆易创新：机器人关节为什么需要 EtherCAT？.md"
-raw_sha256: "8f57e8cfd513f565d4c152eb102a030a39a391738a6d5a21b5a6f7dbb0fc148a"
+raw_file: raw/工作/clippings/机器人/2026-06-06兆易创新：机器人关节为什么需要 EtherCAT？.md
+raw_sha256: 8f57e8cfd513f565d4c152eb102a030a39a391738a6d5a21b5a6f7dbb0fc148a
 last_verified: 2026-06-06
 possibly_outdated: false
 language: "zh"

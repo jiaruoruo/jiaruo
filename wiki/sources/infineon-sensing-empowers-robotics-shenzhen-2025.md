@@ -3,7 +3,7 @@ type: source
 title: "传感赋能：半导体创新助力机器人智能进化"
 date: 2026-04-20
 sha256: "9160f813dbe62ddfe37666ed8b34b506daf61327861b56fd7d4684d4add3943d"
-raw_file: "raw/pdfs/深圳We Accelerate Robotics--传感赋能：半导体创新助力机器人智能进化--梁国信.pdf"
+raw_file: raw/工作/pdfs/机器人/深圳We Accelerate Robotics--传感赋能：半导体创新助力机器人智能进化--梁国信.pdf
 raw_sha256: 9160f813dbe62ddfe37666ed8b34b506daf61327861b56fd7d4684d4add3943d
 author: "梁国信（Liang Guoxin），英飞凌科技"
 event: "深圳 We Accelerate Robotics 2025"

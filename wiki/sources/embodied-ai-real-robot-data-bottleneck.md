@@ -10,8 +10,8 @@ tags:
   - training-data
   - real-robot-data
 processed: true
-raw_file: "raw/clippings/2026-06-09具身智能的重复造轮子，终于有人开始认真解了.md"
-raw_sha256: "b5a5654d2c6011350370beea7893e8afcfa12778c3bbe0193003fabfa6386379"
+raw_file: raw/工作/clippings/机器人/2026-06-09具身智能的重复造轮子，终于有人开始认真解了.md
+raw_sha256: b5a5654d2c6011350370beea7893e8afcfa12778c3bbe0193003fabfa6386379
 last_verified: 2026-06-09
 possibly_outdated: false
 language: "zh"

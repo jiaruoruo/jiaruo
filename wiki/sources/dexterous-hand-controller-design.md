@@ -7,8 +7,8 @@ domain: "robotics"
 author: "internal-note"
 tags: ["dexterous-hand", "motor-control", "ethercat", "freertos"]
 processed: true
-raw_file: "raw/notes/dexterous-hand-design.md"
-raw_sha256: "c8c06bec1e1da5db39f521e1fa0fed5f4fd9fc8f4a4cdcf92c34649fe19352b4"
+raw_file: raw/工作/notes/dexterous-hand-design.md
+raw_sha256: c8c06bec1e1da5db39f521e1fa0fed5f4fd9fc8f4a4cdcf92c34649fe19352b4
 last_verified: 2026-07-13
 possibly_outdated: false
 language: "zh"

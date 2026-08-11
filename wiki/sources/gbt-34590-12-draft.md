@@ -6,8 +6,8 @@ source_url: ""
 domain: automotive-eea
 author: "SAC（国家标准，征求意见稿）"
 tags: [automotive-eea, functional-safety, gbt-34590, iso-26262, standards, motorcycle, china-standard]
-raw_file: "raw/pdfs/功能安全/GBT-34590/《道路车辆 功能安全 第12部分：摩托车的适用性》征求意见稿.pdf"
-raw_sha256: "ad0319e2b0100476c0ed577b3e5e6a8cfe878b270066f8686a80e130e31044da"
+raw_file: raw/工作/pdfs/功能安全/GBT-34590/《道路车辆 功能安全 第12部分：摩托车的适用性》征求意见稿.pdf
+raw_sha256: ad0319e2b0100476c0ed577b3e5e6a8cfe878b270066f8686a80e130e31044da
 last_verified: 2026-07-22
 language: zh
 ---

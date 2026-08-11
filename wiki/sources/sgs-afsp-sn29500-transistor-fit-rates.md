@@ -6,8 +6,8 @@ source_url: ""
 domain: automotive-eea
 author: "Siemens / SN 29500-3:2004-12"
 tags: [automotive-eea, functional-safety, iso-26262, sgs-afsp, sn29500, fit-rate, transistors]
-raw_file: "raw/personal/考试资料/0183_001.pdf"
-raw_sha256: "3f5f323eebe2b7ab73531ed531bad866a533eee8664b7d1252e536902d295864"
+raw_file: raw/工作/personal/考试资料/0183_001.pdf
+raw_sha256: 3f5f323eebe2b7ab73531ed531bad866a533eee8664b7d1252e536902d295864
 last_verified: 2026-07-22
 language: en
 ---

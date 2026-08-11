@@ -9,7 +9,7 @@ tags:
 - vehicle-domain-controller
 - quick-reference
 processed: true
-raw_file: raw/notes/AI-机器人-车载域控-前瞻技术速查表.md
+raw_file: raw/工作/notes/机器人/AI-机器人-车载域控-前瞻技术速查表.md
 raw_sha256: decc84ecac30057eb13d5dbc2e8b942468b72ea73d23a21daf7526739031505b
 last_verified: 2026-07-13
 possibly_outdated: false

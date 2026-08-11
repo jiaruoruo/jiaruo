@@ -6,8 +6,8 @@ source_url: ""
 domain: automotive-eea
 author: "SGS TÜV Saar"
 tags: [automotive-eea, functional-safety, iso-26262, sgs-afsp, item-definition, torque-demand, e-mobility, functional-block-diagram, training-example]
-raw_file: "raw/personal/考试资料/FS_71_220_26_2336.pdf"
-raw_sha256: "e02a37b88bde586c2ef25746ee4455c241d00c2de297be510899c886ab1d8943"
+raw_file: raw/工作/personal/考试资料/FS_71_220_26_2336.pdf
+raw_sha256: e02a37b88bde586c2ef25746ee4455c241d00c2de297be510899c886ab1d8943
 last_verified: 2026-07-22
 language: en
 ---

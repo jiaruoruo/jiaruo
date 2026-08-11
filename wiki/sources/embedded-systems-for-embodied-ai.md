@@ -11,8 +11,8 @@ tags:
   - real-time
   - functional-safety
 processed: true
-raw_file: "raw/clippings/2026-06-07嵌入式系统如何支撑具身智能？.md"
-raw_sha256: "1423ea27fb42909aa5eeb37df377f816c6ef278505241cc67aa480ccfbf812ed"
+raw_file: raw/工作/clippings/机器人/2026-06-07嵌入式系统如何支撑具身智能？.md
+raw_sha256: 1423ea27fb42909aa5eeb37df377f816c6ef278505241cc67aa480ccfbf812ed
 last_verified: 2026-06-07
 possibly_outdated: false
 language: "zh"

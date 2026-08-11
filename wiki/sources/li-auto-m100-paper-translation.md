@@ -12,7 +12,7 @@ tags:
 - m100
 - translation
 processed: true
-raw_file: raw/clippings/2026-04-24理想M100芯片论文全文翻译也可用于座舱.md
+raw_file: raw/工作/clippings/芯片/2026-04-24理想M100芯片论文全文翻译也可用于座舱.md
 raw_sha256: 41ca5e684b3c32e15095e4940427761be63e36370a50550b42cb3180d4e201ce
 last_verified: 2026-06-27
 possibly_outdated: false

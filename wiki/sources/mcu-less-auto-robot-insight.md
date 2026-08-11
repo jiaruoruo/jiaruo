@@ -7,8 +7,8 @@ domain: "internal"
 author: "内部整理"
 tags: []
 processed: true
-raw_file: "raw/articles/MCU-less 技术在汽车和机器人领域的应用洞察.html"
-raw_sha256: "beb5047bd608a180f1563dec2f82bc1b04863fadb0215a08a690913593a5b5b9"
+raw_file: raw/工作/articles/MCULess/MCU-less 技术在汽车和机器人领域的应用洞察.html
+raw_sha256: beb5047bd608a180f1563dec2f82bc1b04863fadb0215a08a690913593a5b5b9
 last_verified: 2026-07-14
 possibly_outdated: false
 language: "zh"

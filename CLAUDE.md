@@ -11,12 +11,20 @@
 
 ```
 raw/          ← 原始素材层（人类拥有，LLM 只读）
-├── articles/     外部文章
-├── clippings/    网页剪藏
-├── images/       图片
-├── pdfs/         PDF 文件
-├── notes/        随手笔记
-└── personal/     个人写作
+├── 工作/         工作相关内容（当前所有内容均在此域下）
+│   ├── articles/     外部文章（含主题子目录：AI/、MCULess/、机器人应用/、汽车领域/）
+│   ├── clippings/    网页剪藏（含主题子目录：AI/、MCULess/、机器人/、汽车领域/、嵌入式汽车电子/、芯片/）
+│   ├── images/       图片（含主题子目录：AI/）
+│   ├── notes/        随手笔记（含主题子目录：机器人/）
+│   ├── pdfs/         PDF 文件（含主题子目录：AI/、MCULess/、功能安全/、机器人/、汽车领域/、嵌入式汽车电子/、芯片分类/、芯片综合类/）
+│   └── personal/     个人写作（含子目录：考试资料/）
+└── 生活/         生活相关内容（目录结构已备，暂无内容）
+    ├── articles/
+    ├── clippings/
+    ├── images/
+    ├── notes/
+    ├── pdfs/
+    └── personal/
 
 wiki/         ← 知识提炼层（LLM 完全读写）
 ├── sources/      摄入后的来源页
@@ -84,7 +92,9 @@ scripts/      ← 工具脚本
 当用户直接提供一个 URL（而非 `raw/` 下的文件路径）时：
 
 1. 调用 `defuddle <URL>` 抓取并清洗网页正文
-2. 将抓取结果保存为 `raw/clippings/YYYY-MM-DD<标题slug>.md`（**只写入 raw/，不跳过**）
+2. 将抓取结果保存为 `raw/工作/clippings/{topic}/YYYY-MM-DD-<标题slug>.md`（**只写入 raw/，不跳过**）
+   - `{topic}` 根据内容选择：`AI`、`MCULess`、`机器人`、`汽车领域`、`嵌入式汽车电子`、`芯片`
+   - 若主题不明确，直接放到 `raw/工作/clippings/` 根目录
 3. 在文件顶部写入标准 frontmatter：
    ```yaml
    ---
@@ -580,4 +590,4 @@ git commit --no-verify
 
 ---
 
-_最后更新：2026-07-25_
+_最后更新：2026-08-11_

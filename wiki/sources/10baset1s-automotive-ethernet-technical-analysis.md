@@ -11,7 +11,7 @@ tags:
 - t30hm1ts3600
 - ieee-802-3cg
 - mculess-architecture
-raw_file: raw/clippings/2026-05-0510BASE-T1S汽车以太网技术深度解析.md
+raw_file: raw/工作/clippings/MCULess/2026-05-0510BASE-T1S汽车以太网技术深度解析.md
 raw_sha256: 7e836d6b485cf88a357c371e082082b2f36deac9bfe3ba3ea349d80d9f32a372
 last_verified: 2026-06-27
 ---

@@ -12,7 +12,7 @@ tags:
   - feature-spec
   - context-engineering
 processed: true
-raw_file: "raw/personal/和 AI 协作的一些实践与思考.md"
+raw_file: raw/工作/personal/和 AI 协作的一些实践与思考.md
 raw_sha256: f800baf87f9915132dbbb2e64db2f592453bc147607b6da67f644d115e5f95b1
 last_verified: 2026-06-27
 possibly_outdated: false

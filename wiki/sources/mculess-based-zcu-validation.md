@@ -12,8 +12,8 @@ tags:
   - io-spec
   - automotive
 processed: true
-raw_file: "raw/pdfs/MCULess Based ZCU验证.pdf"
-raw_sha256: "bb0459e51ca4a486d58970c633dc3adb5c74c6b45f44602631633c0062317c0c"
+raw_file: raw/工作/pdfs/MCULess/MCULess Based ZCU验证.pdf
+raw_sha256: bb0459e51ca4a486d58970c633dc3adb5c74c6b45f44602631633c0062317c0c
 last_verified: 2026-04-27
 possibly_outdated: false
 language: "zh"

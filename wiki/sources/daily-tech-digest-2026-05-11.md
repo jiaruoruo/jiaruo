@@ -9,7 +9,7 @@ tags:
 - daily-digest
 - notes
 processed: true
-raw_file: raw/notes/daily-tech-digest-2026-05-11.md
+raw_file: raw/工作/notes/daily-tech-digest-2026-05-11.md
 raw_sha256: ff95f0986763e2f36bd8cb988aae0c9a22e894e4c63c463cfe29c05da45fc5ee
 last_verified: 2026-07-13
 possibly_outdated: false

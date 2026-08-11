@@ -12,7 +12,7 @@ tags:
 - imitation-learning
 - mujoco
 processed: true
-raw_file: raw/clippings/2026-04-14机器人学习模拟框架 robosuite 支持强化学习和模仿学习 (1) 快速入门.md
+raw_file: raw/工作/clippings/机器人/2026-04-14机器人学习模拟框架 robosuite 支持强化学习和模仿学习 (1) 快速入门.md
 raw_sha256: 7776d87feb7fc21d59de481481633c54998adef2ef63df3503baef6da62ccd66
 last_verified: 2026-06-27
 possibly_outdated: false

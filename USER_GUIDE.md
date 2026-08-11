@@ -3,7 +3,7 @@
 > 本文件是面向用户的操作手册，与 CLAUDE.md 保持同步。
 > 当 CLAUDE.md 规则更新时，本文件对应章节必须同步更新。
 
-_最后同步：2026-07-25_
+_最后同步：2026-08-11_
 
 ---
 
@@ -13,6 +13,13 @@ _最后同步：2026-07-25_
 
 ```
 raw/          ← 你的原始素材（只有你能写入）
+  工作/         ← 工作相关素材
+    clippings/  ← 网页剪藏（按主题分子目录）
+    articles/   ← 外部文章
+    pdfs/       ← PDF 文献
+    notes/      ← 随手笔记
+    personal/   ← 个人写作
+  生活/         ← 生活相关素材（同上结构）
 wiki/         ← AI 自动维护的知识提炼层
 outputs/      ← 最终对外输出产物
 ```
@@ -29,11 +36,11 @@ outputs/      ← 最终对外输出产物
 
 | 输入方式 | 示例 |
 |---|---|
-| 指定文件路径 | `ingest raw/clippings/2026-04-15-xxx.md` |
+| 指定文件路径 | `ingest raw/工作/clippings/MyTopic/2026-04-15-xxx.md` |
 | 直接输入 URL | `ingest https://example.com/article` |
 | 泛指当前文件 | `处理这个` |
 
-**URL 直接输入：** AI 会自动调用 `defuddle` 抓取网页，保存到 `raw/clippings/`，再进入标准摄入流程。若抓取失败，AI 会提示你手动保存。
+**URL 直接输入：** AI 会自动调用 `defuddle` 抓取网页，保存到 `raw/工作/clippings/{topic}/`（topic 根据内容判断），再进入标准摄入流程。若抓取失败，AI 会提示你手动保存。
 
 **摄入流程（12 步）概览：**
 
@@ -207,14 +214,19 @@ git commit --no-verify
 
 | 内容类型 | 放入目录 |
 |---|---|
-| 网页剪藏 | `raw/clippings/` |
-| 外部文章（Markdown） | `raw/articles/` |
-| PDF 文献 | `raw/pdfs/` |
-| 随手笔记 | `raw/notes/` |
-| 个人写作/观点文章 | `raw/personal/` |
-| 图片 | `raw/images/` |
+| 网页剪藏（工作） | `raw/工作/clippings/{topic}/` |
+| 外部文章（工作） | `raw/工作/articles/{topic}/` |
+| PDF 文献（工作） | `raw/工作/pdfs/{topic}/` |
+| 随手笔记（工作） | `raw/工作/notes/{topic}/` |
+| 个人写作/观点文章 | `raw/工作/personal/{topic}/` |
+| 网页剪藏（生活） | `raw/生活/clippings/{topic}/` |
+| 生活类笔记/文章 | `raw/生活/{type}/{topic}/` |
 
 **命名建议：** `YYYY-MM-DD-标题简写.md`（便于排序）
+
+**目录选择原则：**
+- **工作/生活**：按内容是否与职业相关区分
+- **{topic}**：内容所属主题，如 `MCULess`、`ISO26262`、`健身`（同类文件应归入同一 topic 子目录）
 
 ---
 
@@ -237,4 +249,4 @@ A：需要 5+ 个来源且无重大矛盾，AI 会展示证据请你确认，你
 
 ---
 
-_本文档与 CLAUDE.md 保持同步，最后更新：2026-07-25_
+_本文档与 CLAUDE.md 保持同步，最后更新：2026-08-11_

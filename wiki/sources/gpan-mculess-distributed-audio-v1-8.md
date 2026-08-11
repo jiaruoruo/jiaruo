@@ -7,8 +7,8 @@ domain: "goodix"
 author: "汇顶科技"
 tags: []
 processed: true
-raw_file: "raw/articles/GPAN 车载MCULess和分布式音频介绍(1.8).pptx"
-raw_sha256: "d336b5fcbea35b40cd18b3309869efea667bf30a5fac3f0d935c4516ced79d72"
+raw_file: raw/工作/articles/MCULess/GPAN 车载MCULess和分布式音频介绍(1.8).pptx
+raw_sha256: d336b5fcbea35b40cd18b3309869efea667bf30a5fac3f0d935c4516ced79d72
 last_verified: 2026-07-14
 possibly_outdated: false
 language: "zh"

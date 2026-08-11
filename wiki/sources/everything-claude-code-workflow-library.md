@@ -13,7 +13,7 @@ tags:
 - hooks
 - skills
 processed: true
-raw_file: raw/clippings/2026-05-11everything-claude-code：一套可复用的 Claude Code 工程工作流组件库.md
+raw_file: raw/工作/clippings/AI/2026-05-11everything-claude-code：一套可复用的 Claude Code 工程工作流组件库.md
 raw_sha256: 2f45c5296ea624a33ce2c9be4b188d28b9bff9ec7c44ab03fe275628fe18535f
 last_verified: 2026-06-27
 possibly_outdated: false

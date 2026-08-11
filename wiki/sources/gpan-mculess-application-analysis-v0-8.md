@@ -7,8 +7,8 @@ domain: "goodix"
 author: "汇顶科技"
 tags: []
 processed: true
-raw_file: "raw/articles/GPAN 车载通信介绍-应用场景价值分析(0.8).pptx"
-raw_sha256: "322883451c5019086ae0a64f0de7d3e2cd5b7b757e14281b4d12621d71b1658f"
+raw_file: raw/工作/articles/MCULess/GPAN 车载通信介绍-应用场景价值分析(0.8).pptx
+raw_sha256: 322883451c5019086ae0a64f0de7d3e2cd5b7b757e14281b4d12621d71b1658f
 last_verified: 2026-07-14
 possibly_outdated: false
 language: "zh"

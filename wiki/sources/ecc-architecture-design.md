@@ -12,8 +12,8 @@ tags:
   - claude-code
   - ai-agent-framework
 processed: true
-raw_file: "raw/personal/ECC-架构设计说明书.md"
-raw_sha256: "ee57d0b8ad9670c5043de374f176c79fc86a719b33d65740437ae50b0e975339"
+raw_file: raw/工作/personal/ECC-架构设计说明书.md
+raw_sha256: ee57d0b8ad9670c5043de374f176c79fc86a719b33d65740437ae50b0e975339
 companion_files:
   - path: "raw/personal/ECC-架构图.html"
     sha256: "cd8c78c13146b95cd1663935476f096b26878dcee44309075e68367df9ad635f"

@@ -12,8 +12,8 @@ tags:
   - claude-code
   - ai-agent-framework
 processed: true
-raw_file: "raw/personal/ECC-详细设计说明书.md"
-raw_sha256: "458d134f0a5844ff54a6a580e4fe8b466c2692eb02c938cb1327910b56b8f61a"
+raw_file: raw/工作/personal/ECC-详细设计说明书.md
+raw_sha256: 458d134f0a5844ff54a6a580e4fe8b466c2692eb02c938cb1327910b56b8f61a
 last_verified: 2026-05-14
 possibly_outdated: false
 language: "zh"

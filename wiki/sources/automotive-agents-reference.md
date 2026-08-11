@@ -14,8 +14,8 @@ tags:
   - autosar
   - functional-safety
 processed: true
-raw_file: "raw/personal/AUTOMOTIVE_AGENTS_REFERENCE.md"
-raw_sha256: "3d680ed34b616b1d9315ff3b51eaff57bb2e5779fb2797ca64f5d76c487caffb"
+raw_file: raw/工作/personal/AUTOMOTIVE_AGENTS_REFERENCE.md
+raw_sha256: 3d680ed34b616b1d9315ff3b51eaff57bb2e5779fb2797ca64f5d76c487caffb
 last_verified: 2026-05-14
 possibly_outdated: false
 language: "zh"

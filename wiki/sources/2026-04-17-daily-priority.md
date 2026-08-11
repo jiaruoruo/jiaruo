@@ -9,7 +9,7 @@ tags:
 - daily
 - work-log
 processed: true
-raw_file: raw/notes/2026-04-17-每日重点.md
+raw_file: raw/工作/notes/2026-04-17-每日重点.md
 raw_sha256: 1186e058f4f5d95de4922ac5298d1f8e2737296e9983d7a67cd86873551d0708
 last_verified: 2026-07-13
 possibly_outdated: false

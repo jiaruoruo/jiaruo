@@ -7,8 +7,8 @@ domain: "internal"
 author: "项目团队"
 tags: []
 processed: true
-raw_file: "raw/articles/成本核算0.4 -- 公共.xlsx"
-raw_sha256: "8879520989e5a421e1a976e5b0cad26a99e375aa68ac7cb75b9cee0acc37a411"
+raw_file: raw/工作/articles/MCULess/成本核算0.4 -- 公共.xlsx
+raw_sha256: 8879520989e5a421e1a976e5b0cad26a99e375aa68ac7cb75b9cee0acc37a411
 last_verified: 2026-07-14
 possibly_outdated: false
 language: "zh"

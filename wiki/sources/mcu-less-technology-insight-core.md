@@ -7,8 +7,8 @@ domain: "internal"
 author: "内部整理"
 tags: []
 processed: true
-raw_file: "raw/articles/MCU-less技术应用洞察-核心观点解读.md"
-raw_sha256: "27c68b6d6e6e7fb3977bb8091aa747db01f9042d1813b148cbc2730ba944390f"
+raw_file: raw/工作/articles/MCULess/MCU-less技术应用洞察-核心观点解读.md
+raw_sha256: 27c68b6d6e6e7fb3977bb8091aa747db01f9042d1813b148cbc2730ba944390f
 last_verified: 2026-07-14
 possibly_outdated: false
 language: "zh"

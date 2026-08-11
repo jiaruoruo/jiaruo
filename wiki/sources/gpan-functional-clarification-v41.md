@@ -13,8 +13,8 @@ tags:
   - watchdog
   - automotive
 processed: true
-raw_file: "raw/articles/GPAN部分功能澄清文档_V4.1.docx"
-raw_sha256: "924131503410fbbe4a70d19567e1f2d6788807cbdf8e2696e78a5c13254b7d53"
+raw_file: raw/工作/articles/MCULess/GPAN部分功能澄清文档_V4.1.docx
+raw_sha256: 924131503410fbbe4a70d19567e1f2d6788807cbdf8e2696e78a5c13254b7d53
 last_verified: 2026-04-27
 possibly_outdated: false
 language: "zh"

@@ -7,8 +7,8 @@ domain: "robotics"
 author: "internal-note"
 tags: ["dexterous-hand", "requirements"]
 processed: true
-raw_file: "raw/notes/灵巧手需求规格说明书-v1.md"
-raw_sha256: "37f54ab47c25fe1d9407eaed0a8c2c9f98abba7e3a2819ac321886a828127004"
+raw_file: raw/工作/notes/机器人/灵巧手需求规格说明书-v1.md
+raw_sha256: 37f54ab47c25fe1d9407eaed0a8c2c9f98abba7e3a2819ac321886a828127004
 last_verified: 2026-07-13
 possibly_outdated: false
 language: "zh"

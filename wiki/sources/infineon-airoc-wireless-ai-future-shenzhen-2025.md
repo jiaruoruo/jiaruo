@@ -3,7 +3,7 @@ type: source
 title: "英飞凌AIROC™无线产品助力AI未来"
 date: 2026-04-20
 sha256: "40b4d577dce22429e2553fae118d7b24dbdcbe0edf1c0474733b78406736a3f5"
-raw_file: "raw/pdfs/深圳We Enable AI --英飞凌AIROC™无线产品助力AI未来---翁伟钿.pdf"
+raw_file: raw/工作/pdfs/AI/深圳We Enable AI --英飞凌AIROC™无线产品助力AI未来---翁伟钿.pdf
 raw_sha256: 40b4d577dce22429e2553fae118d7b24dbdcbe0edf1c0474733b78406736a3f5
 author: "翁伟钿（Barry Weng），英飞凌科技"
 event: "深圳 We Enable AI 2025"

@@ -7,7 +7,7 @@ domain: "chip-design"
 author: "Qualcomm"
 tags: [qualcomm, snapdragon, roadmap, confidential]
 processed: true
-raw_file: "raw/pdfs/芯片企业合集/高通芯片最强介绍.pdf"
+raw_file: raw/工作/pdfs/芯片设计制造/芯片企业合集/高通芯片最强介绍.pdf
 raw_sha256: 390930c4b3c5ca54a170acfd8d4177929f31fec44f471a54acca83e34b7cc15f
 last_verified: 2026-06-27
 possibly_outdated: true

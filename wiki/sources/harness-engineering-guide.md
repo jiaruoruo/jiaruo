@@ -11,8 +11,8 @@ tags:
   - context-engineering
   - mcp
 processed: false
-raw_file: "raw/pdfs/harness_engineering_guide.pdf"
-raw_sha256: "7e4b69ecedf29af7778af2bb85044d5466fec70fdd6bbeac02a14f380ca7f5eb"
+raw_file: raw/工作/pdfs/AI/harness_engineering_guide.pdf
+raw_sha256: 7e4b69ecedf29af7778af2bb85044d5466fec70fdd6bbeac02a14f380ca7f5eb
 last_verified: 2026-07-21
 possibly_outdated: false
 language: en

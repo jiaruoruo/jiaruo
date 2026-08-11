@@ -11,8 +11,8 @@ tags:
   - market-analysis
   - semiconductor
 processed: true
-raw_file: "raw/pdfs/GC Robotics sharing_Jun 2025.pdf"
-raw_sha256: "793f61e2eaed18b23980a95e8e7c99c2f71a06b1d5c9738f499de8afcb9af5fb"
+raw_file: raw/工作/pdfs/机器人/GC Robotics sharing_Jun 2025.pdf
+raw_sha256: 793f61e2eaed18b23980a95e8e7c99c2f71a06b1d5c9738f499de8afcb9af5fb
 last_verified: 2026-04-15
 possibly_outdated: false
 language: "en"

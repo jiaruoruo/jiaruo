@@ -10,8 +10,8 @@ tags:
   - open-source
   - developer-tools
 processed: true
-raw_file: "raw/clippings/2026-05-23GitHub 热点  Multica Agent即队友.md"
-raw_sha256: "1d679fc64c9bc8398f028f32ff3f128b015c21e8370fbc397b4b7fd790e6bcd8"
+raw_file: raw/工作/clippings/AI/2026-05-23GitHub 热点  Multica Agent即队友.md
+raw_sha256: 1d679fc64c9bc8398f028f32ff3f128b015c21e8370fbc397b4b7fd790e6bcd8
 last_verified: 2026-05-23
 possibly_outdated: false
 language: "zh"

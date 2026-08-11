@@ -12,7 +12,7 @@ tags:
 - obsidian
 - karpathy
 processed: true
-raw_file: raw/clippings/2026-04-24Karpathy大神的LLM驱动知识库管理方法论.md
+raw_file: raw/工作/clippings/AI/2026-04-24Karpathy大神的LLM驱动知识库管理方法论.md
 raw_sha256: 341b3a71d99cd26fff695ec3874264a2dfa29f73dec998cc74ba400de56f33d1
 last_verified: 2026-06-27
 possibly_outdated: false

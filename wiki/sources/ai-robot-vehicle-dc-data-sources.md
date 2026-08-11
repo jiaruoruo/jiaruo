@@ -7,8 +7,8 @@ domain: "automotive"
 author: "internal-note"
 tags: ["vehicle-domain-controller", "data-sources", "embodied-ai", "autonomous-driving"]
 processed: true
-raw_file: "raw/notes/AI智能机器人车载域控技术数据源推荐.md"
-raw_sha256: "f6321f5f61a02d4588b8df957a4f61443618945e50e44a136e632e5f00c834a7"
+raw_file: raw/工作/notes/机器人/AI智能机器人车载域控技术数据源推荐.md
+raw_sha256: f6321f5f61a02d4588b8df957a4f61443618945e50e44a136e632e5f00c834a7
 last_verified: 2026-07-13
 possibly_outdated: false
 language: "zh"

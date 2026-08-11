@@ -7,7 +7,7 @@ domain: "chip-design"
 author: "电子科技大学VLSI中心"
 tags: [ldo, analog-design, vlsi, uestc, power-management]
 processed: true
-raw_file: "raw/pdfs/芯片设计/LDO芯片设计报告及电路分析报告.pdf"
+raw_file: raw/工作/pdfs/芯片设计制造/芯片设计/LDO芯片设计报告及电路分析报告.pdf
 raw_sha256: 8e53f65454b6b4a9b4dbba24d5dde1339aab65ef9f058a80363058a5a64320a7
 last_verified: 2026-06-27
 possibly_outdated: true

@@ -7,7 +7,7 @@ domain: "chip-design"
 author: ""
 tags: [vlsi, low-power, power-optimization, chip-design]
 processed: true
-raw_file: "raw/pdfs/芯片设计/超大规模集成电路中低功耗设计与分析.pdf"
+raw_file: raw/工作/pdfs/芯片设计制造/芯片设计/超大规模集成电路中低功耗设计与分析.pdf
 raw_sha256: d29ca54511ca8602d6fb5f02efbf7bca1879ce6fc912e5a941846b18626f7c56
 last_verified: 2026-06-27
 possibly_outdated: true

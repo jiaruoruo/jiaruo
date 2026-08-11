@@ -6,8 +6,8 @@ source_url: ""
 domain: automotive-eea
 author: "SGS TÜV Saar"
 tags: [automotive-eea, functional-safety, iso-26262, sgs-afsp, hardware-analysis, failure-modes, fault-distribution]
-raw_file: "raw/personal/考试资料/0177_001.pdf"
-raw_sha256: "9af8a705680fba15992af838393f1dfa15c831848af720d879d2a782bfe0a1d4"
+raw_file: raw/工作/personal/考试资料/0177_001.pdf
+raw_sha256: 9af8a705680fba15992af838393f1dfa15c831848af720d879d2a782bfe0a1d4
 last_verified: 2026-07-22
 language: en
 ---

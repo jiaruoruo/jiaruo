@@ -12,8 +12,8 @@ tags:
   - adi-10baset1s
   - vehicle-network
 processed: true
-raw_file: "raw/pdfs/Goodix GPAN Presentation for 车载通信(1).pdf"
-raw_sha256: "b13902ffd534ddfb4c502931ba93c23b24c5f979119f01679f834fc88a1fb78d"
+raw_file: raw/工作/pdfs/MCULess/Goodix GPAN Presentation for 车载通信(1).pdf
+raw_sha256: b13902ffd534ddfb4c502931ba93c23b24c5f979119f01679f834fc88a1fb78d
 last_verified: 2026-04-27
 possibly_outdated: false
 language: "zh"

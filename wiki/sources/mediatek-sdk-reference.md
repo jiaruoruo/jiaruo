@@ -7,7 +7,7 @@ domain: "chip-design"
 author: "MediaTek"
 tags: [mediatek, sdk, encrypted]
 processed: true
-raw_file: "raw/pdfs/芯片企业合集/联发科SDK资料.pdf"
+raw_file: raw/工作/pdfs/芯片设计制造/芯片企业合集/联发科SDK资料.pdf
 raw_sha256: 6dd87058cd9b289f589f7cb0db8de11f2b9fa29d111034e9ccff5efb21c3583a
 last_verified: 2026-06-27
 possibly_outdated: true

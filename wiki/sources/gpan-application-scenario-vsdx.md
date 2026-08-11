@@ -7,8 +7,8 @@ domain: "goodix"
 author: "汇顶科技"
 tags: []
 processed: true
-raw_file: "raw/articles/GPAN应用场景--外发理想.vsdx"
-raw_sha256: "1afea9983ea1743a70a58ed2bd9e75bf0a09daff6bafef76721a901a606270c8"
+raw_file: raw/工作/articles/MCULess/GPAN应用场景--外发理想.vsdx
+raw_sha256: 1afea9983ea1743a70a58ed2bd9e75bf0a09daff6bafef76721a901a606270c8
 last_verified: 2026-07-14
 possibly_outdated: false
 language: "zh"

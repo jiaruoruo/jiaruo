@@ -11,8 +11,8 @@ tags:
   - open-ecosystem
   - enterprise-ai
 processed: false
-raw_file: "raw/clippings/2026-07-14-告别Workflow：黄仁勋断言未来公司都将建立在“Harness”之上.md"
-raw_sha256: "2cb4da168c5fc9022200ca874973a7be6021ab61c0b2b23bd0a3ccb700c88368"
+raw_file: raw/工作/clippings/AI/2026-07-14-告别Workflow：黄仁勋断言未来公司都将建立在“Harness”之上.md
+raw_sha256: 2cb4da168c5fc9022200ca874973a7be6021ab61c0b2b23bd0a3ccb700c88368
 last_verified: 2026-07-21
 possibly_outdated: false
 language: zh

@@ -7,8 +7,8 @@ domain: "work"
 author: "internal-note"
 tags: ["weekly-report", "notes"]
 processed: true
-raw_file: "raw/notes/weekly-report-2026-W24.md"
-raw_sha256: "f55725f855b21d54f92ef696e39e3107dfcb77bd660d40d3b629b8b164c66df4"
+raw_file: raw/工作/notes/weekly-report-2026-W24.md
+raw_sha256: f55725f855b21d54f92ef696e39e3107dfcb77bd660d40d3b629b8b164c66df4
 last_verified: 2026-07-13
 possibly_outdated: false
 language: "zh"

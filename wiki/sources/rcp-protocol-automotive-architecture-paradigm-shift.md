@@ -11,7 +11,7 @@ tags:
 - sdv
 - automotive-ethernet
 - onsemi
-raw_file: raw/clippings/2026-05-05RCP远程控制协议的革命性创新：汽车电子架构的范式转移.md
+raw_file: raw/工作/clippings/MCULess/2026-05-05RCP远程控制协议的革命性创新：汽车电子架构的范式转移.md
 raw_sha256: fc1e2e63177859ddbc72cefbf4ba43ccca2e425cdce74437033cf679e26bd0c9
 last_verified: 2026-06-27
 ---

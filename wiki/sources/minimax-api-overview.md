@@ -13,7 +13,7 @@ tags:
 - tts
 - video-generation
 processed: true
-raw_file: raw/clippings/2026-04-13-接口概览 - MiniMax 开放平台文档中心.md
+raw_file: raw/工作/clippings/AI/2026-04-13-接口概览 - MiniMax 开放平台文档中心.md
 raw_sha256: c28ba018d66f29725c8cca00d06ffa3683ad6e9da599fbb7bce39ecfc606effa
 last_verified: 2026-06-27
 possibly_outdated: false

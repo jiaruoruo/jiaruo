@@ -7,8 +7,8 @@ domain: "goodix"
 author: "汇顶科技"
 tags: []
 processed: true
-raw_file: "raw/articles/GPAN-ETHCAT对比架构图.html"
-raw_sha256: "f2d5891ae5b07b9dc13c2bad1f826802f18eefaeda974776334b2c3a883885ab"
+raw_file: raw/工作/articles/MCULess/GPAN-ETHCAT对比架构图.html
+raw_sha256: f2d5891ae5b07b9dc13c2bad1f826802f18eefaeda974776334b2c3a883885ab
 last_verified: 2026-07-14
 possibly_outdated: false
 language: "zh"

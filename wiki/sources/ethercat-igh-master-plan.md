@@ -7,8 +7,8 @@ domain: "internal"
 author: "技术团队"
 tags: []
 processed: true
-raw_file: "raw/articles/ethercat_igh_master_plan.html"
-raw_sha256: "252e8491c7067d6171b4062534f053909fb70ac1ce2790daf114b2f5bb3d0d10"
+raw_file: raw/工作/articles/机器人/ethercat_igh_master_plan.html
+raw_sha256: 252e8491c7067d6171b4062534f053909fb70ac1ce2790daf114b2f5bb3d0d10
 last_verified: 2026-07-14
 possibly_outdated: false
 language: "zh"

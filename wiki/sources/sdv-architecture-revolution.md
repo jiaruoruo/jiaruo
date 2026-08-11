@@ -8,7 +8,7 @@ author: 经纬恒润
 published: 2026-04-28
 ingested: 2026-04-28
 raw_sha256: 8bfb7b0f0fb2426cf37171305f8b0f0b23eab3413ef1ff9c4d68f54c0e7e0471
-raw_file: raw/clippings/2026-04-28软件定义汽车的背后：一场架构的“深层次革命”.md
+raw_file: raw/工作/clippings/MCULess/2026-04-28软件定义汽车的背后：一场架构的“深层次革命”.md
 tags:
 - sdv
 - eea

@@ -2,7 +2,7 @@
 type: source
 title: MCULess 半导体厂商调研报告
 date: 2026-04-28
-raw_file: raw/clippings/MCULess调研报告.md
+raw_file: raw/工作/clippings/MCULess/MCULess调研报告.md
 raw_sha256: 8f611e9e45c57921988464f8b4986cb75a8c9edf48198302204c9a3938ab68fb
 source_url: ''
 author: ''

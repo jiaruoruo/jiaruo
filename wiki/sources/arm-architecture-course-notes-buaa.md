@@ -7,7 +7,7 @@ domain: "chip-design"
 author: "北京航空航天大学"
 tags: [arm, architecture, embedded, education]
 processed: true
-raw_file: "raw/pdfs/芯片企业合集/ARM体系结构详解(我上课时老师的100多页PPT课件).pdf"
+raw_file: raw/工作/pdfs/芯片设计制造/芯片企业合集/ARM体系结构详解(我上课时老师的100多页PPT课件).pdf
 raw_sha256: e9849ffb288d12f35b30d7be3350be9bf43535f9e3ed5e881c30216a1a83fd4b
 last_verified: 2026-06-27
 possibly_outdated: true

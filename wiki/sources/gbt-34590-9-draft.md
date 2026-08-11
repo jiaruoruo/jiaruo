@@ -6,8 +6,8 @@ source_url: ""
 domain: automotive-eea
 author: "SAC（国家标准，征求意见稿）"
 tags: [automotive-eea, functional-safety, gbt-34590, iso-26262, standards, asil-decomposition, dependent-failure, china-standard]
-raw_file: "raw/pdfs/功能安全/GBT-34590/《道路车辆 功能安全 第9部分：以汽车安全完整性等级为导向和以安全为导向的分析》征求意见稿.pdf"
-raw_sha256: "47f345a7459bbb81ac893e99358ad9c880642b39b52ff66ea0de51d7a1f42896"
+raw_file: raw/工作/pdfs/功能安全/GBT-34590/《道路车辆 功能安全 第9部分：以汽车安全完整性等级为导向和以安全为导向的分析》征求意见稿.pdf
+raw_sha256: 47f345a7459bbb81ac893e99358ad9c880642b39b52ff66ea0de51d7a1f42896
 last_verified: 2026-07-22
 language: zh
 ---

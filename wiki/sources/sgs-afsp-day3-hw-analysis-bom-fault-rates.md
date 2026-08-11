@@ -6,8 +6,8 @@ source_url: ""
 domain: automotive-eea
 author: "SGS TÜV Saar"
 tags: [automotive-eea, functional-safety, iso-26262, sgs-afsp, hardware-analysis, fit-rate, bom]
-raw_file: "raw/personal/考试资料/0176_001.pdf"
-raw_sha256: "539eed3097882f904fd104b7f88bd4b041576ffa2c965c97ec16d00990b1d874"
+raw_file: raw/工作/personal/考试资料/0176_001.pdf
+raw_sha256: 539eed3097882f904fd104b7f88bd4b041576ffa2c965c97ec16d00990b1d874
 last_verified: 2026-07-22
 language: en
 ---

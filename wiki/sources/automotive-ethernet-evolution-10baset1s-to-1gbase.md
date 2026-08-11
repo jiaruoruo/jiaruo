@@ -13,7 +13,7 @@ tags:
 - rce
 - plca
 - tsn
-raw_file: raw/clippings/2026-05-05汽车以太网技术深度解析：从10BASE-T1S到1000BASE-T1的全面演进.md
+raw_file: raw/工作/clippings/MCULess/2026-05-05汽车以太网技术深度解析：从10BASE-T1S到1000BASE-T1的全面演进.md
 raw_sha256: 6f8c27e679949110fc117f87c998d5a9adf3677352be3c73ae7e4a7f80ca3b6a
 last_verified: 2026-06-27
 ---

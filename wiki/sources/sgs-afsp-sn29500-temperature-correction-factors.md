@@ -6,8 +6,8 @@ source_url: ""
 domain: automotive-eea
 author: "Siemens / SN 29500-3:2004-12"
 tags: [automotive-eea, functional-safety, iso-26262, sgs-afsp, sn29500, fit-rate, temperature-derating]
-raw_file: "raw/personal/考试资料/0185_001.pdf"
-raw_sha256: "fdfc0900646e900d0b2f447c9d5ea86b5b83b84135542bf17c4cac4a1a63ee94"
+raw_file: raw/工作/personal/考试资料/0185_001.pdf
+raw_sha256: fdfc0900646e900d0b2f447c9d5ea86b5b83b84135542bf17c4cac4a1a63ee94
 last_verified: 2026-07-22
 language: en
 ---

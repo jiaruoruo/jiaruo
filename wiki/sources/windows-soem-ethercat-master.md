@@ -7,8 +7,8 @@ domain: "internal"
 author: "技术团队"
 tags: []
 processed: true
-raw_file: "raw/articles/Windows SOEM EtherCAT 主站.html"
-raw_sha256: "cbc6784d1943be5e25f955f2a24747d71621a706817bbab6a0362273946cf5d1"
+raw_file: raw/工作/articles/机器人/Windows SOEM EtherCAT 主站.html
+raw_sha256: cbc6784d1943be5e25f955f2a24747d71621a706817bbab6a0362273946cf5d1
 last_verified: 2026-07-14
 possibly_outdated: false
 language: "zh"

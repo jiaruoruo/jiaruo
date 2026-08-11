@@ -7,8 +7,8 @@ domain: "internal"
 author: "技术规划团队"
 tags: []
 processed: true
-raw_file: "raw/articles/ethercat_team_report.html"
-raw_sha256: "1a83e5856f5cb3d431f005877f9f5bf5ac0e736e58163468e415ec72704776b9"
+raw_file: raw/工作/articles/机器人/ethercat_team_report.html
+raw_sha256: 1a83e5856f5cb3d431f005877f9f5bf5ac0e736e58163468e415ec72704776b9
 last_verified: 2026-07-14
 possibly_outdated: false
 language: "zh"

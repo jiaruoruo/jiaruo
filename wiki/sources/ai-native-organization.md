@@ -11,8 +11,8 @@ tags:
   - agent
   - productivity
 processed: true
-raw_file: "raw/clippings/2026-06-14AI-Native-从超级个体到原生组织.md"
-raw_sha256: "a2261437da0404b56b01e067e331266c1cde8b8421e4cd35ef30087b507f4999"
+raw_file: raw/工作/clippings/AI/2026-06-14AI-Native-从超级个体到原生组织.md
+raw_sha256: a2261437da0404b56b01e067e331266c1cde8b8421e4cd35ef30087b507f4999
 last_verified: 2026-06-14
 possibly_outdated: false
 language: "zh"

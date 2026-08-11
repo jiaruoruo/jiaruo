@@ -13,8 +13,8 @@ tags:
   - fpga
   - automotive
 processed: true
-raw_file: "raw/pdfs/基于GPAN的MCULess BZCU(第一阶段)_硬件设计简要说明V0.94_20250828.pdf"
-raw_sha256: "18c2b5247bddc7b8f3e25fdeec3baa886de07f0021d90aaa85539c22706687bb"
+raw_file: raw/工作/pdfs/MCULess/基于GPAN的MCULess BZCU(第一阶段)_硬件设计简要说明V0.94_20250828.pdf
+raw_sha256: 18c2b5247bddc7b8f3e25fdeec3baa886de07f0021d90aaa85539c22706687bb
 last_verified: 2026-04-27
 possibly_outdated: false
 language: "zh"

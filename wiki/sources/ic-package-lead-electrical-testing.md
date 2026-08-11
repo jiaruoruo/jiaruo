@@ -7,7 +7,7 @@ domain: "chip-packaging"
 author: ""
 tags: [ic-packaging, lead, electrical-testing]
 processed: true
-raw_file: "raw/pdfs/芯片封装测试/芯片封装引线电性能的测试.pdf"
+raw_file: raw/工作/pdfs/芯片设计制造/芯片封装测试/芯片封装引线电性能的测试.pdf
 raw_sha256: ffc2163b1d1f316c0462ca7c1f097999be967ff627c8685eeff1de8280798e6d
 last_verified: 2026-06-27
 possibly_outdated: true

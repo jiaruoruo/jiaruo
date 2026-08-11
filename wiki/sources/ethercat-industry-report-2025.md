@@ -7,8 +7,8 @@ domain: "internal"
 author: "行业调研团队"
 tags: []
 processed: true
-raw_file: "raw/articles/EtherCAT_Report.html"
-raw_sha256: "712f92a8da48910ca7f4a59302c737763fa9a842a330f8bcdd91923e150aa98d"
+raw_file: raw/工作/articles/机器人/EtherCAT_Report.html
+raw_sha256: 712f92a8da48910ca7f4a59302c737763fa9a842a330f8bcdd91923e150aa98d
 last_verified: 2026-07-14
 possibly_outdated: false
 language: "zh"

@@ -6,8 +6,8 @@ source_url: ""
 domain: automotive-eea
 author: "SAC（国家标准，征求意见稿）"
 tags: [automotive-eea, functional-safety, gbt-34590, iso-26262, standards, china-standard]
-raw_file: "raw/pdfs/功能安全/GBT-34590/《道路车辆 功能安全 第1部分：术语》征求意见稿.pdf"
-raw_sha256: "1ca7d8405c6aff2fc3d919a47f6aa39d1bd55c0800657e3c297f397910d9ce7f"
+raw_file: raw/工作/pdfs/功能安全/GBT-34590/《道路车辆 功能安全 第1部分：术语》征求意见稿.pdf
+raw_sha256: 1ca7d8405c6aff2fc3d919a47f6aa39d1bd55c0800657e3c297f397910d9ce7f
 last_verified: 2026-07-22
 language: zh
 ---

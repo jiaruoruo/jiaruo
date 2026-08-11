@@ -7,8 +7,8 @@ domain: "robotics"
 author: "internal-note"
 tags: ["robot-safety", "functional-safety", "humanoid-robot", "dexterous-hand"]
 processed: true
-raw_file: "raw/notes/机器人安全需求-软硬件实现方案.md"
-raw_sha256: "63b29cb070d5ef8661dc08d45d404a1f91fbe6079fe19cd930c112d4039482cd"
+raw_file: raw/工作/notes/机器人/机器人安全需求-软硬件实现方案.md
+raw_sha256: 63b29cb070d5ef8661dc08d45d404a1f91fbe6079fe19cd930c112d4039482cd
 last_verified: 2026-07-13
 possibly_outdated: false
 language: "zh"

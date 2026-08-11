@@ -2,7 +2,7 @@
 type: source
 title: 标量、矢量(向量)、张量（tensors）的理解
 date: 2026-04-25
-raw_file: raw/clippings/2026-04-25标量、矢量(向量)、张量（tensors）的理解.md
+raw_file: raw/工作/clippings/AI/2026-04-25标量、矢量(向量)、张量（tensors）的理解.md
 raw_sha256: c503a71ab1e5b05836e7503950eebca6001f9209a4ebd76ee1492dc956ac6821
 source_url: https://www.cnblogs.com/duoba/p/15273401.html
 author: 耀扬

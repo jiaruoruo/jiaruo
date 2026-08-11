@@ -7,7 +7,7 @@ domain: "chip-manufacturing"
 author: ""
 tags: [chip-manufacturing, process, education]
 processed: true
-raw_file: "raw/pdfs/芯片制造/图解芯片制作工艺流程.pdf"
+raw_file: raw/工作/pdfs/芯片设计制造/芯片制造/图解芯片制作工艺流程.pdf
 raw_sha256: 18aef593984f912ffb460a33019a0d6ca968a97225d5685b0c416083ae0f7e6f
 last_verified: 2026-06-27
 possibly_outdated: true

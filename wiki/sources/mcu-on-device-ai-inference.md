@@ -11,8 +11,8 @@ tags:
   - npu
   - on-device
 processed: true
-raw_file: "raw/clippings/2026-06-14别再只把 MCU 当控制器：新一代芯片正在把 AI 推理搬到设备端.md"
-raw_sha256: "72db55fac716ca5dcf1d6683cd01802aab8cf151ac176724195bc46e54401396"
+raw_file: raw/工作/clippings/AI/2026-06-14别再只把 MCU 当控制器：新一代芯片正在把 AI 推理搬到设备端.md
+raw_sha256: 72db55fac716ca5dcf1d6683cd01802aab8cf151ac176724195bc46e54401396
 last_verified: 2026-06-14
 possibly_outdated: false
 language: "zh"

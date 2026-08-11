@@ -13,7 +13,7 @@ tags:
 - embodied-ai
 - humanoid
 processed: true
-raw_file: raw/clippings/2026-04-24机器人软件架构介绍——具身智能研发基础.md
+raw_file: raw/工作/clippings/机器人/2026-04-24机器人软件架构介绍——具身智能研发基础.md
 raw_sha256: 7686db6489210c5532de64ea0cdd39af23d597ea3c8432cddc9ac51e8e11bdf3
 last_verified: 2026-06-27
 possibly_outdated: false

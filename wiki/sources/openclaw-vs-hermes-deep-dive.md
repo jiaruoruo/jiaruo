@@ -12,7 +12,7 @@ tags:
 - comparison
 - agent-architecture
 processed: true
-raw_file: raw/clippings/2026-04-19OpenClaw vs Hermes：一文深入理解两大通用 Agent.md
+raw_file: raw/工作/clippings/AI/2026-04-19OpenClaw vs Hermes：一文深入理解两大通用 Agent.md
 raw_sha256: bfcc67bf046f5175f743a2f5f54c7a6a63159ebd3eff7edde04ca767da542232
 last_verified: 2026-06-27
 possibly_outdated: false

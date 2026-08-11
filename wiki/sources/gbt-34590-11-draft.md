@@ -6,8 +6,8 @@ source_url: ""
 domain: automotive-eea
 author: "SAC（国家标准，征求意见稿）"
 tags: [automotive-eea, functional-safety, gbt-34590, iso-26262, standards, semiconductor, sn29500, china-standard]
-raw_file: "raw/pdfs/功能安全/GBT-34590/《道路车辆 功能安全 第11部分：半导体应用指南》征求意见稿.pdf"
-raw_sha256: "678f5a5d87d9cf3915789dd6ebdbb77700837d5a403f9c751193b3fe7629d9ab"
+raw_file: raw/工作/pdfs/功能安全/GBT-34590/《道路车辆 功能安全 第11部分：半导体应用指南》征求意见稿.pdf
+raw_sha256: 678f5a5d87d9cf3915789dd6ebdbb77700837d5a403f9c751193b3fe7629d9ab
 last_verified: 2026-07-22
 language: zh
 ---

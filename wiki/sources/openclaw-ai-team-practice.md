@@ -11,7 +11,7 @@ tags:
 - multi-agent
 - harness
 processed: true
-raw_file: raw/clippings/2026-04-19用OpenClaw打造一支24小时无休的AI团队，实战来了！.md
+raw_file: raw/工作/clippings/AI/2026-04-19用OpenClaw打造一支24小时无休的AI团队，实战来了！.md
 raw_sha256: 0f009a0e734d30425ced1d37ebe25db3f9674fdd39b51f03ba107771805c284e
 last_verified: 2026-06-27
 possibly_outdated: false

@@ -9,7 +9,7 @@ tags:
 - weekly-report
 - notes
 processed: true
-raw_file: raw/notes/weekly-report-2026-05-11-to-05-15.md
+raw_file: raw/工作/notes/weekly-report-2026-05-11-to-05-15.md
 raw_sha256: c86821af7bd7e28cf07f650bf2ea7bd983ae8bed36390499c1bbda1186fceddb
 last_verified: 2026-07-13
 possibly_outdated: false

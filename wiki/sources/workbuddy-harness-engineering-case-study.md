@@ -14,8 +14,8 @@ tags:
   - plugin
   - evaluation
 processed: false
-raw_file: "raw/clippings/2026-07-16-万字复盘：从模型到可用Agent，WorkBuddy的Harness工程是怎么做的？.md"
-raw_sha256: "caa6735e2f9b0be6ef4072d34269979e5df428829cbd3d792bda3516f9b58c7e"
+raw_file: raw/工作/clippings/AI/2026-07-16-万字复盘：从模型到可用Agent，WorkBuddy的Harness工程是怎么做的？.md
+raw_sha256: caa6735e2f9b0be6ef4072d34269979e5df428829cbd3d792bda3516f9b58c7e
 last_verified: 2026-07-21
 possibly_outdated: false
 language: zh

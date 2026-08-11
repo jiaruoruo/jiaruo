@@ -11,8 +11,8 @@ tags:
   - motion-control
   - research-roundup
 processed: true
-raw_file: "raw/clippings/2026-06-06具身智能上周最值得看的十篇论文：人形机器人从运控基座到视频数据.md"
-raw_sha256: "64ab1425ffa9612c36805820f7de17ed34e6c5a5db4d68b69f6d46e5dfe4b49d"
+raw_file: raw/工作/clippings/机器人/2026-06-06具身智能上周最值得看的十篇论文：人形机器人从运控基座到视频数据.md
+raw_sha256: 64ab1425ffa9612c36805820f7de17ed34e6c5a5db4d68b69f6d46e5dfe4b49d
 last_verified: 2026-06-06
 possibly_outdated: false
 language: "zh"

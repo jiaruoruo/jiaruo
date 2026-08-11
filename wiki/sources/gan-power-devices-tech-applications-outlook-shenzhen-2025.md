@@ -3,7 +3,7 @@ type: source
 title: "氮化镓功率器件：技术、应用及未来展望"
 date: 2026-04-20
 sha256: "0d0ad004ff1d27e60d026c03c1846cc964cc980ccf205039fb390fc3f11e42a1"
-raw_file: "raw/pdfs/深圳主论坛--氮化镓功率器件：技术、应用及未来展望--弓小武.pdf"
+raw_file: raw/工作/pdfs/AI/深圳主论坛--氮化镓功率器件：技术、应用及未来展望--弓小武.pdf
 raw_sha256: 0d0ad004ff1d27e60d026c03c1846cc964cc980ccf205039fb390fc3f11e42a1
 author: "弓小武，英飞凌科技"
 event: "深圳主论坛 2025"

@@ -11,8 +11,8 @@ tags:
   - sdk
   - automotive
 processed: true
-raw_file: "raw/pdfs/GE1101芯片应用介绍_V0.1.pdf"
-raw_sha256: "0197d02ee6c6bf77379d3c5777ddd92cd199a23fe8bc8dda7a386428e6cabf94"
+raw_file: raw/工作/pdfs/MCULess/GE1101芯片应用介绍_V0.1.pdf
+raw_sha256: 0197d02ee6c6bf77379d3c5777ddd92cd199a23fe8bc8dda7a386428e6cabf94
 last_verified: 2026-04-27
 possibly_outdated: false
 language: "zh"

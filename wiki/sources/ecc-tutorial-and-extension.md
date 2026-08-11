@@ -12,8 +12,8 @@ tags:
   - claude-code
   - tutorial
 processed: true
-raw_file: "raw/personal/ECC-应用教程手册.md"
-raw_sha256: "06a2357081c11c552dec979a63388c4310af0ec8a1205b99aa386bd5ab845d0a"
+raw_file: raw/工作/personal/ECC-应用教程手册.md
+raw_sha256: 06a2357081c11c552dec979a63388c4310af0ec8a1205b99aa386bd5ab845d0a
 companion_files:
   - path: "raw/personal/ECC-自定义模块添加指南.html"
     sha256: "1f25d60b8d57a20be05ec62dc83205806d438be20efe9ee1af8f30b90b601063"
