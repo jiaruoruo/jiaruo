@@ -7,7 +7,7 @@ tags:
   - humanoid-robot
   - robotics
   - embodied-ai
-source_count: 18
+source_count: 20
 confidence: low
 domain_volatility: high
 last_reviewed: 2026-07-14
@@ -67,6 +67,8 @@ aliases:
 - [[sources/mcu-less-application-opportunities]]
 - [[sources/mcu-less-auto-robot-insight]]
 - [[sources/humanoid-robot-oem-supplier-opportunities]]
+- [[sources/mscape-tech-humanoid-robot-scenarios]]
+- [[sources/mscape-tech-dexterous-hand-t40]]
 
 ## Evolution Log
 
@@ -84,3 +86,4 @@ aliases:
 - 2026-07-14（18 sources）：强化——[MCU-less 应用机会点汇总] 与现有定义一致
 - 2026-07-14（18 sources）：强化——[MCU-less 技术在汽车和机器人领域的应用洞察] 与现有定义一致
 - 2026-07-14（18 sources）：强化——[人形机器人 OEM/供应商机会分析] 与现有定义一致
+- 2026-08-28（20 sources）：强化——灵境智源人形机器人场景总览（T40/T41/N 系列）与灵巧手 T40 方案补充国产具身大脑算力视角

@@ -8,7 +8,7 @@ tags:
   - adas
   - perception
   - automotive-eea
-source_count: 1
+source_count: 4
 confidence: low
 domain_volatility: medium
 last_reviewed: 2026-06-27
@@ -43,8 +43,12 @@ aliases:
 ## Sources
 
 - [[sources/kpmg-automotive-sensor-market-2024]]
+- [[sources/jiushi-autonomous-vehicle-brain-hardware]]
+- [[sources/neolix-x3-plus-compute-hardware]]
+- [[sources/whiterhino-rx-compute-unit]]
 
 ## Evolution Log
 
 - 2026-06-27（1 sources）：概念初建，从芯片设计/制造来源批量提取，消除 source 页断链
 - 2026-07-21（1 sources）：REFLECT 补齐主域标签：automotive-eea
+- 2026-08-28（4 sources）：强化——九识智能（双 Orin X，L4 VLA）、新石器 X3 Plus（单 DRIVE Orin-X 254 TOPS ASIL-D）、白犀牛 RX（经纬恒润域控 TwoBox 冗余制动）三款国产 L4 无人配送车算力方案；详见 [[robot-brain-compute-platform]]

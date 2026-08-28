@@ -9,6 +9,23 @@ graph-excluded: true
 
 ### Processed
 
+- 2026-08-28 [[sources/mscape-tech-n1000-wheeled-arm-robot]]
+- 2026-08-28 [[sources/mscape-tech-humanoid-robot-scenarios]]
+- 2026-08-28 [[sources/mscape-tech-dexterous-hand-t40]]
+- 2026-08-28 [[sources/mscape-tech-quadruped-robot-t41]]
+- 2026-08-28 [[sources/mscape-tech-industrial-robot-n100-t40]]
+- 2026-08-28 [[sources/mscape-tech-agv-n210]]
+- 2026-08-28 [[sources/mscape-tech-uav-drone-t40]]
+- 2026-08-28 [[sources/mscape-tech-forklift-n203-t200]]
+- 2026-08-28 [[sources/mscape-tech-mining-truck-n210-n1000]]
+- 2026-08-28 [[sources/mscape-tech-wheeled-arm-robot-multi-scenarios]]
+- 2026-08-28 [[sources/xyz-eai-n5-compact-embodied-brain]]
+- 2026-08-28 [[sources/xyz-eai-t5-domain-controller]]
+- 2026-08-28 [[sources/xyz-eai-b5-brain-backpack]]
+- 2026-08-28 [[sources/xyz-eai-embodied-brain-platform-overview]]
+- 2026-08-28 [[sources/jiushi-autonomous-vehicle-brain-hardware]]
+- 2026-08-28 [[sources/neolix-x3-plus-compute-hardware]]
+- 2026-08-28 [[sources/whiterhino-rx-compute-unit]]
 - 2026-07-22 [[sources/sgs-afsp-day1-item-definition-purpose-function]]
 - 2026-07-22 [[sources/sgs-afsp-day1-item-definition-context]]
 - 2026-07-22 [[sources/sgs-afsp-day1-hara-exercise-p1]]
@@ -394,6 +411,7 @@ graph-excluded: true
 - [[concepts/pmhf]]
 - [[concepts/iso-26262]]
 - [[concepts/gbt-34590]]
+- [[concepts/robot-brain-compute-platform]]
 
 ---
 
@@ -439,6 +457,11 @@ graph-excluded: true
 - [[entities/qualcomm]]
 - [[entities/mediatek]]
 - [[entities/broadcom]]
+- [[entities/mscape-tech]]
+- [[entities/xyz-eai]]
+- [[entities/jiushi-autonomous]]
+- [[entities/neolix]]
+- [[entities/whiterhino]]
 
 ### Papers
 

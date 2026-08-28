@@ -5,20 +5,20 @@ graph-excluded: true
 
 # Knowledge Base Health Dashboard
 
-_最后更新：2026-07-22_
+_最后更新：2026-08-28_
 
 ## 健康状态总览
 
 | 指标 | 数值 | 说明 |
 |---|---|---|
-| 总来源数（Sources） | 293 | wiki/sources/ 下的页面总数（含 24 份 ISO 26262:2018 与 GB/T 34590 标准分册） |
-| 总 Concept 页数 | 86 | wiki/concepts/ 下的页面总数（新增 iso-26262 / gbt-34590 两枢纽概念 + asil 从 functional-safety 析出） |
-| 总 Entity 页数 | 31 | wiki/entities/ 下的页面总数（不变） |
+| 总来源数（Sources） | 310 | wiki/sources/ 下的页面总数（含 24 份 ISO 26262:2018 与 GB/T 34590 标准分册） |
+| 总 Concept 页数 | 87 | wiki/concepts/ 下的页面总数（新增 robot-brain-compute-platform；iso-26262 / gbt-34590 两枢纽概念 + asil 从 functional-safety 析出） |
+| 总 Entity 页数 | 36 | wiki/entities/ 下的页面总数（+5：mscape-tech / xyz-eai / jiushi-autonomous / neolix / whiterhino） |
 | 总 Synthesis 页数 | 11 | wiki/synthesis/ 下的页面总数（+1：功能安全全景综合） |
-| 来源/综合比 | 26.6:1 | 293/11，**低于阈值（30）** |
+| 来源/综合比 | 28.2:1 | 310/11，**低于阈值（30）** |
 | 高置信度概念数（High Confidence） | 2 | confidence: high 的 concept 页数 |
 | 中置信度概念数（Medium Confidence） | 16 | confidence: medium 的 concept 页数 |
-| 低置信度概念数（Low Confidence） | 56 | confidence: low 的 concept 页数 |
+| 低置信度概念数（Low Confidence） | 57 | confidence: low 的 concept 页数 |
 | 开放问题数（Open Questions） | 5 | QUESTIONS.md 中未解决的问题数 |
 | Stale 页面数 | 0 | 超过 domain_volatility 时效阈值的页面数 |
 | 近重复概念对数 | 0 | lint Check5 已加白名单豁免同族概念误报 |
@@ -78,6 +78,7 @@ _最后更新：2026-07-22_
 | 2026-07-22（ingest SGS AFSP 36 源 + 1 synthesis + 9 concepts） | 269 | 83 | 31 | 10 |
 | 2026-07-22（ingest 功能安全标准 24 源 + 2 concepts） | 293 | 85 | 31 | 10 |
 | 2026-07-22（reflect: 功能安全全景综合 +1 synthesis + gap report） | 293 | 85 | 31 | 11 |
+| 2026-08-28（ingest 机器人算力 17 源 + 1 concept + 5 entities） | 310 | 87 | 36 | 11 |
 
 ## 待办（下一步建议）
 

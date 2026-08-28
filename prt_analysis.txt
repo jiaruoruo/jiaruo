@@ -1,0 +1,315 @@
+
+============================================================
+FILE: z2_asm1.prt  (126976 bytes)
+============================================================
+--- First 256 bytes hex ---
+0000: d0 cf 11 e0 a1 b1 1a e1 00 00 00 00 00 00 00 00   ................
+0010: 00 00 00 00 00 00 00 00 3e 00 03 00 fe ff 09 00   ........>.......
+0020: 06 00 00 00 00 00 00 00 00 00 00 00 02 00 00 00   ................
+0030: 01 00 00 00 00 00 00 00 00 10 00 00 02 00 00 00   ................
+0040: 01 00 00 00 fe ff ff ff 00 00 00 00 00 00 00 00   ................
+0050: 18 00 00 00 ff ff ff ff ff ff ff ff ff ff ff ff   ................
+0060: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff   ................
+0070: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff   ................
+0080: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff   ................
+0090: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff   ................
+00a0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff   ................
+00b0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff   ................
+00c0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff   ................
+00d0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff   ................
+00e0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff   ................
+00f0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff   ................
+
+--- Extracted strings (len>=6) ---
+  @000800: '<?xml version="1.0" encoding="UTF-8"?>'
+  @000828: '<UgAttributes version="3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><Attribute owner="part" title="MaterialMissingAssignments" value="TRUE" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="MaterialMissingAssignments" utf8value="TRUE"/><Attribute owner="part" title="MaterialMultipleAssigned" value="FALSE" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="MaterialMultipleAssigned" utf8value="FALSE"/><Attribute owner="part" title="REMARK" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="REMARK" utf8value=""/><Attribute owner="part" title="APPROVER" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="APPROVER" utf8value=""/><Attribute owner="part" title="AUDITOR" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="AUDITOR" utf8value=""/><Attribute owner="part" title="CHECKER" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="CHECKER" utf8value=""/><Attribute owner="part" title="DB_PART_NO" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="DB_PART_NO" utf8value=""/><Attribute owner="part" title="DB_PART_NAME" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="DB_PART_NAME" utf8value=""/><Attribute owner="part" title="SHEET_NUM" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="SHEET_NUM" utf8value=""/><Attribute owner="part" title="NO_OF_SHEET" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="NO_OF_SHEET" utf8value=""/><Attribute owner="part" title="SCALE" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="SCALE" utf8value=""/><Attribute owner="part" title="CAL_WEIGHT" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="CAL_WEIGHT" utf8value=""/><Attribute owner="part" title="WEIGHT" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="WEIGHT" utf8value=""/><Attribute owner="part" title="DESIGNER" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="DESIGNER" utf8value=""/><Attribute owner="part" title="Material" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="Material" utf8value=""/>'
+  @001154: '</UgAttributes>'
+  @0011a8: '<Arrangements><Arrangement Name="Arrangement 1" Default="YES"/>'
+  @0011e8: '</Arrangements>'
+  @001513: "%&'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz"
+  @0015ee: "&'()*56789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz"
+  @001945: 'R{{mkR'
+  @0019b4: 'L-<mL?'
+  @001a08: 'K1$/m2A'
+  @001f29: 'rl$*`jB'
+  @001f49: 'X*X|>u'
+  @0024f1: 'xbj`V"'
+  @002c98: 'Jh1_K~T:Z'
+  @002cdd: '%9!"T+'
+  @002d50: 'QGMm~8'
+  @002e01: 'Pqr.*7'
+  @002e0e: 'F\\Ucs2'
+  @002e3a: '1`U{q2'
+  @002ee8: '<folderContents>'
+  @002ef9: '<folderProperties location="PMI QAF/Ann3DData" unmappedLocation="PMI QAF/Ann3DData"><createTime>2026-08-12T13:42:49</createTime><modifyTime>2026-08-12T13:42:49</modifyTime></folderProperties>'
+  @002fb9: '<folderProperties location="images/preview" unmappedLocation="images/prU'
+  @003402: 'UGII  2'
+  @00352f: '2desktop-vq.GenuineInt.1769866973.0.16712.0'
+  @0036a7: 'x64/Windows NT'
+  @0036b9: 'z2_asm1.prtd'
+  @00380d: 'UGS::OM::Meta'
+  @003820: 'UGS::OM::RootObject7'
+  @00383a: 'UGS::RM%'
+  @003847: 'UGS::RM_partd'
+  @00386d: 'UGS::OM::SaveAuditTrail'
+  @00389e: 'UGS::OM::SaveAuditTrailEntry'
+  @0038c1: 'UGS::POINT3'
+  @0038d1: 'UGS::POINT'
+  @0038e2: 'UGS::ES_base'
+  @0038f4: 'UGS::ES_part_attribute'
+  @003911: 'UGS::LAYER'
+  @003921: 'UGS::LAYER_category'
+  @00393b: 'UGS::UGFONT'
+  @00394c: 'UGS::UGFONT_table'
+  @003964: 'UGS::COLOR'
+  @003974: 'UGS::COLOR_table'
+  @00398b: 'UGS::CSYSTEM'
+  @00399d: 'UGS::CSYSTEMd'
+  @0039b0: 'UGS::CUTTER'
+  @0039c1: 'UGS::CUTTER_display'
+  @0039db: 'UGS::SKELETON'
+  @0039ee: 'UGS::SKELETON_grid_modeling4'
+  @003a10: 'UGS::ACOM'
+  @003a1f: 'UGS::ACOM_parameter'
+  @003a39: 'UGS::MATRIX'
+  @003a4a: 'UGS::MATRIXe'
+  @003a5c: 'UGS::Display::Camera'
+  @003a91: 'UGS::VIEW['
+  @003aa0: 'UGS::VIEW_base'
+  @003ab5: 'UGS::LAYOUT'
+  @003ac6: 'UGS::LAYOUT_canned'
+  @003adf: 'UGS::Assy::ReferenceSet'
+  @003b1a: 'UGS::Solid::Topol'
+  @003b31: 'UGS::Solid::Body<'
+  @003b48: 'UGS::COMPOS'
+  @003b59: 'UGS::COMPOS_displayed_constraintX'
+  @003b80: 'UGS::LIGHT'
+  @003b90: 'UGS::LIGHT_source'
+  @003ba8: 'UGS::DAXIS'
+  @003bc9: 'UGS::DPLANE'
+  @003bec: 'UGS::CSET'
+  @003bfb: 'UGS::CSETd'
+  @003c0b: 'UGS::SCALAR!'
+  @003c1c: 'UGS::SCALAR'
+  @003c2e: 'UGS::SKETCH'
+  @003c3f: 'UGS::RM_sketch_color_prefs(#'
+  @003c6d: 'UGS::RM_creation_display_data'
+  @003ca4: 'UGS::OM::OptPointerValueR'
+  @003cd0: 'UGS::RM_one_complex_record_area'
+  @003cf6: 'UGS::RM_complex'
+  @003d0b: 'UGS::NAMREC'
+  @003d2a: 'UGS::RM_double_record_area'
+  @003d58: 'UGS::RM_one_link_record_areaL'
+  @003db8: 'UGS::Solid::Face2'
+
+  Total unique strings found: 80
+
+============================================================
+FILE: g2_model1.prt  (220160 bytes)
+============================================================
+--- First 256 bytes hex ---
+0000: d0 cf 11 e0 a1 b1 1a e1 00 00 00 00 00 00 00 00   ................
+0010: 00 00 00 00 00 00 00 00 3e 00 03 00 fe ff 09 00   ........>.......
+0020: 06 00 00 00 00 00 00 00 00 00 00 00 04 00 00 00   ................
+0030: 01 00 00 00 00 00 00 00 00 10 00 00 02 00 00 00   ................
+0040: 02 00 00 00 fe ff ff ff 00 00 00 00 00 00 00 00   ................
+0050: 1d 00 00 00 1e 00 00 00 1f 00 00 00 ff ff ff ff   ................
+0060: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff   ................
+0070: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff   ................
+0080: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff   ................
+0090: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff   ................
+00a0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff   ................
+00b0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff   ................
+00c0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff   ................
+00d0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff   ................
+00e0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff   ................
+00f0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff   ................
+
+--- Extracted strings (len>=6) ---
+  @000800: '<?xml version="1.0" encoding="UTF-8"?>'
+  @000828: '<UgAttributes version="3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><Attribute owner="part" title="MaterialMissingAssignments" value="TRUE" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="MaterialMissingAssignments" utf8value="TRUE"/><Attribute owner="part" title="MaterialMultipleAssigned" value="FALSE" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="MaterialMultipleAssigned" utf8value="FALSE"/><Attribute owner="part" title="REMARK" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="REMARK" utf8value=""/><Attribute owner="part" title="APPROVER" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="APPROVER" utf8value=""/><Attribute owner="part" title="AUDITOR" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="AUDITOR" utf8value=""/><Attribute owner="part" title="CHECKER" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="CHECKER" utf8value=""/><Attribute owner="part" title="DB_PART_NAME" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="DB_PART_NAME" utf8value=""/><Attribute owner="part" title="DB_PART_NO" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="DB_PART_NO" utf8value=""/><Attribute owner="part" title="SHEET_NUM" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="SHEET_NUM" utf8value=""/><Attribute owner="part" title="NO_OF_SHEET" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="NO_OF_SHEET" utf8value=""/><Attribute owner="part" title="SCALE" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="SCALE" utf8value=""/><Attribute owner="part" title="CAL_WEIGHT" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="CAL_WEIGHT" utf8value=""/><Attribute owner="part" title="WEIGHT" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="WEIGHT" utf8value=""/><Attribute owner="part" title="DESIGNER" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="DESIGNER" utf8value=""/><Attribute owner="part" title="Material" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="Material" utf8value=""/>'
+  @001154: '</UgAttributes>'
+  @001493: "%&'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz"
+  @00156e: "&'()*56789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz"
+  @001950: 'Oy{kn$'
+  @001b7d: '8z<?B4q'
+  @001c51: 'Q_Ty!E'
+  @002068: '<pieceDocument sessionID="shigb8cfa80" parentNames="MAIN" numberOfParents="1"><chk:CheckPart mod="1243504054" name="Model.prt" user="shig" status="pass" machine="NT Intel" partRef="F:\\2008 project\\GB-Standards\\NX for china\\package\\GB Kits\\GB Kits\\Template parts\\Model.prt" program="NX 6.0.2.8" version="43"><chk:Parameters/></chk:CheckPart>'
+  @0021bd: '</pieceDocument>'
+  @0022e5: '`d7y?MS]]'
+  @002300: 'EXTREFSTREAM'
+  @002614: 'Version 9.4 JT  DM 7.3.12.2                                                 '
+  @0028f0: '*@c>]I'
+  @002a5d: '$B$@B$'
+  @002a67: '" B BD"'
+  @002d0c: 'G-DB 9a'
+  @0031cd: 'DFDDDd\\PDD'
+  @00398e: '6|rxXk'
+  @004202: 'UGII  2'
+  @004330: 'desktop-vq.GenuineInt.1769833387.0.13036.1'
+  @0044c7: 'x64/Windows NT'
+  @0044d9: 'g2_model1.prt'
+  @0046c9: 'UGS::OM::Meta'
+  @0046dc: 'UGS::OM::RootObject7'
+  @0046f6: 'UGS::RM%'
+  @004703: 'UGS::RM_partd'
+  @004729: 'UGS::OM::SaveAuditTrail'
+  @00475a: 'UGS::OM::SaveAuditTrailEntry'
+  @00477d: 'UGS::POINT3'
+  @00478d: 'UGS::POINT'
+  @00479e: 'UGS::WireFrame::Line'
+  @0047b8: 'UGS::WireFrame::Line,'
+  @0047d3: 'UGS::ARC'
+  @0047f0: 'UGS::ES_base'
+  @004802: 'UGS::ES_part_attribute'
+  @00481f: 'UGS::LAYER'
+  @00482f: 'UGS::LAYER_category'
+  @004849: 'UGS::Annot::CircleDimension'
+  @00486a: 'UGS::Annot::DiameterDimension'
+  @00488e: 'UGS::UGFONT'
+  @00489f: 'UGS::UGFONT_table'
+  @0048b7: 'UGS::COLOR'
+  @0048c7: 'UGS::COLOR_table'
+  @0048de: 'UGS::ANN_SUBENT'
+  @0048f3: 'UGS::ANN_TEXT_dim_or_main_textX'
+  @004918: 'UGS::CSYSTEM'
+  @00492a: 'UGS::CSYSTEMd'
+  @00493d: 'UGS::CUTTER'
+  @00494e: 'UGS::CUTTER_display'
+  @004968: 'UGS::SKELETON'
+  @00497b: 'UGS::SKELETON_grid_modeling4'
+  @00499d: 'UGS::ACOM'
+  @0049ac: 'UGS::ACOM_parameter'
+  @0049c6: 'UGS::MATRIX'
+  @0049d7: 'UGS::MATRIXe'
+  @0049e9: 'UGS::Display::Camera'
+  @004a1e: 'UGS::VIEW['
+  @004a2d: 'UGS::VIEW_base'
+  @004a42: 'UGS::LAYOUT'
+  @004a53: 'UGS::LAYOUT_canned'
+  @004a6c: 'UGS::Assy::ReferenceSet'
+  @004aa7: 'UGS::Solid::Topol'
+  @004abe: 'UGS::Solid::Body<'
+  @004ad5: 'UGS::SC0'
+  @004ae2: 'UGS::SC_section'
+  @004af8: 'UGS::SKETCH'
+  @004b09: 'UGS::SKETCH_tol_csys@'
+  @004b35: 'UGS::SKETCH_new_sketch'
+  @004b52: 'UGS::Facet::JT::JT'
+  @004b6a: 'UGS::Facet::JT::Body'
+  @004b85: 'UGS::LIGHT'
+  @004b95: 'UGS::LIGHT_source'
+  @004bad: 'UGS::DAXIS'
+  @004bce: 'UGS::DPLANE'
+  @004bf1: 'UGS::SCALAR!'
+  @004c02: 'UGS::SCALAR'
+  @004c14: 'UGS::DIRR'
+  @004c33: 'UGS::XFORM0'
+  @004c43: 'UGS::XFORM'
+
+  Total unique strings found: 80
+
+============================================================
+FILE: tuojia_model1.prt  (160256 bytes)
+============================================================
+--- First 256 bytes hex ---
+0000: d0 cf 11 e0 a1 b1 1a e1 00 00 00 00 00 00 00 00   ................
+0010: 00 00 00 00 00 00 00 00 3e 00 03 00 fe ff 09 00   ........>.......
+0020: 06 00 00 00 00 00 00 00 00 00 00 00 03 00 00 00   ................
+0030: 01 00 00 00 00 00 00 00 00 10 00 00 02 00 00 00   ................
+0040: 01 00 00 00 fe ff ff ff 00 00 00 00 00 00 00 00   ................
+0050: 28 00 00 00 29 00 00 00 ff ff ff ff ff ff ff ff   (...)...........
+0060: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff   ................
+0070: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff   ................
+0080: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff   ................
+0090: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff   ................
+00a0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff   ................
+00b0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff   ................
+00c0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff   ................
+00d0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff   ................
+00e0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff   ................
+00f0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff   ................
+
+--- Extracted strings (len>=6) ---
+  @000800: '<?xml version="1.0" encoding="UTF-8"?>'
+  @000828: '<UgAttributes version="3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><Attribute owner="part" title="MaterialMissingAssignments" value="TRUE" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="MaterialMissingAssignments" utf8value="TRUE"/><Attribute owner="part" title="MaterialMultipleAssigned" value="FALSE" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="MaterialMultipleAssigned" utf8value="FALSE"/><Attribute owner="part" title="REMARK" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="REMARK" utf8value=""/><Attribute owner="part" title="APPROVER" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="APPROVER" utf8value=""/><Attribute owner="part" title="AUDITOR" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="AUDITOR" utf8value=""/><Attribute owner="part" title="CHECKER" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="CHECKER" utf8value=""/><Attribute owner="part" title="DB_PART_NAME" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="DB_PART_NAME" utf8value=""/><Attribute owner="part" title="DB_PART_NO" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="DB_PART_NO" utf8value=""/><Attribute owner="part" title="SHEET_NUM" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="SHEET_NUM" utf8value=""/><Attribute owner="part" title="NO_OF_SHEET" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="NO_OF_SHEET" utf8value=""/><Attribute owner="part" title="SCALE" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="SCALE" utf8value=""/><Attribute owner="part" title="CAL_WEIGHT" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="CAL_WEIGHT" utf8value=""/><Attribute owner="part" title="WEIGHT" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="WEIGHT" utf8value=""/><Attribute owner="part" title="DESIGNER" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="DESIGNER" utf8value=""/><Attribute owner="part" title="Material" value="" version="3" pdmBased="false" xsi:type="StringAttributeType" utf8title="Material" utf8value=""/>'
+  @001154: '</UgAttributes>'
+  @0011e8: '<pieceDocument sessionIDi'
+  @001513: "%&'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz"
+  @0015ee: "&'()*56789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz"
+  @001b19: 'JTkSvN2'
+  @001ff7: 'L%JTsj'
+  @002639: 'RU1T)O'
+  @002dca: '=L=<U5&'
+  @003200: '="shigb8cfa80" parentNames="MAIN" numberOfParents="1"><chk:CheckPart mod="1243504054" name="Model.prt" user="shig" status="pass" machine="NT Intel" partRef="F:\\2008 project\\GB-Standards\\NX for china\\package\\GB Kits\\GB Kits\\Template parts\\Model.prt" program="NX 6.0.2.8" version="43"><chk:Parameters/></chk:CheckPart>'
+  @00333d: '</pieceDocument>'
+  @003621: '%9bF$('
+  @00376c: 'FU{tB%'
+  @0037bb: ') M+p8'
+  @003a14: 'Version 9.4 JT  DM 7.3.12.2                                                 '
+  @003b43: 'F,DKD^'
+  @003b8d: 'M|Ol_(&_.H'
+  @0049ae: '9&|Vc3'
+  @005602: 'UGII  2'
+  @005730: 'desktop-vq.GenuineInt.1769833387.0.13036.0'
+  @0058c7: 'x64/Windows NT'
+  @0058d9: 'tuojia_model1.prt'
+  @005aab: 'UGS::OM::Meta'
+  @005abe: 'UGS::OM::RootObject7'
+  @005ad8: 'UGS::RM%'
+  @005ae5: 'UGS::RM_partd'
+  @005b0b: 'UGS::OM::SaveAuditTrail'
+  @005b3c: 'UGS::OM::SaveAuditTrailEntry'
+  @005b5f: 'UGS::POINT3'
+  @005b6f: 'UGS::POINT'
+  @005b80: 'UGS::WireFrame::Line'
+  @005b9a: 'UGS::WireFrame::Line,'
+  @005bb5: 'UGS::ARC'
+  @005bd2: 'UGS::ES_base'
+  @005be4: 'UGS::ES_part_attribute'
+  @005c01: 'UGS::LAYER'
+  @005c11: 'UGS::LAYER_category'
+  @005c2b: 'UGS::Annot::CircleDimension'
+  @005c4c: 'UGS::Annot::DiameterDimension'
+  @005c70: 'UGS::UGFONT'
+  @005c81: 'UGS::UGFONT_table'
+  @005c99: 'UGS::COLOR'
+  @005ca9: 'UGS::COLOR_table'
+  @005cc0: 'UGS::ANN_SUBENT'
+  @005cd5: 'UGS::ANN_TEXT_dim_or_main_textX'
+  @005cfa: 'UGS::CSYSTEM'
+  @005d0c: 'UGS::CSYSTEMd'
+  @005d1f: 'UGS::CUTTER'
+  @005d30: 'UGS::CUTTER_display'
+  @005d4a: 'UGS::SKELETON'
+  @005d5d: 'UGS::SKELETON_grid_modeling4'
+  @005d7f: 'UGS::ACOM'
+  @005d8e: 'UGS::ACOM_parameter'
+  @005da8: 'UGS::MATRIX'
+  @005db9: 'UGS::MATRIXe'
+  @005dcb: 'UGS::Display::Camera'
+  @005e00: 'UGS::VIEW['
+  @005e0f: 'UGS::VIEW_base'
+  @005e24: 'UGS::LAYOUT'
+  @005e35: 'UGS::LAYOUT_canned'
+  @005e4e: 'UGS::Assy::ReferenceSet'
+  @005e89: 'UGS::Solid::Topol'
+  @005ea0: 'UGS::Solid::Body<'
+  @005eb7: 'UGS::SC0'
+  @005ec4: 'UGS::SC_section'
+  @005eda: 'UGS::SKETCH'
+  @005eeb: 'UGS::SKETCH_tol_csys@'
+  @005f17: 'UGS::SKETCH_new_sketch'
+  @005f34: 'UGS::Facet::JT::JT'
+  @005f4c: 'UGS::Facet::JT::Body'
+  @005f67: 'UGS::LIGHT'
+  @005f77: 'UGS::LIGHT_source'
+  @005f8f: 'UGS::DAXIS'
+  @005fb0: 'UGS::DPLANE'
+  @005fd3: 'UGS::SCALAR!'
+  @005fe4: 'UGS::SCALAR'
+  @005ff6: 'UGS::DIRR'
+  @006015: 'UGS::XFORM0'
+  @006025: 'UGS::XFORM'
+
+  Total unique strings found: 80

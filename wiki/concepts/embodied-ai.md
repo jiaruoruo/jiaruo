@@ -8,7 +8,7 @@ tags:
   - robotics
   - llm
   - end-to-end
-source_count: 3
+source_count: 7
 confidence: low
 domain_volatility: high
 last_reviewed: 2026-07-13
@@ -44,9 +44,14 @@ aliases:
 - [[sources/embodied-ai-os-whitepaper-2026]]
 - [[sources/humanoid-robot-research-rapid-prototyping]]
 - [[sources/global-robotics-roadmap-2025-2035]]
+- [[sources/mscape-tech-n1000-wheeled-arm-robot]]
+- [[sources/xyz-eai-embodied-brain-platform-overview]]
+- [[sources/jiushi-autonomous-vehicle-brain-hardware]]
+- [[sources/neolix-x3-plus-compute-hardware]]
 
 ## Evolution Log
 
 - 2026-04-15（1 sources）：概念初建，来源为人形机器人技术研究及快速原型建设报告
 - 2026-04-15（2 sources）：强化——具身智能OS白皮书补充 EAIOS 四层架构（任务/技能/服务/原语层）视角，VLA→H-VLA→世界模型演进路线与现有定义一致
 - 2026-07-13（3 sources）：强化——全球机器人路线图将 VLA 列为物理 AI 核心范式，明确机器人 Scaling Law 已实证；补充代表性系统 π0/OpenVLA/Octo/RDT-1B/GEN-0 与路线图里程碑（2027 单臂→2033 家庭通用）
+- 2026-08-28（7 sources）：强化——灵境智源（N1000 2070 TFLOPS）、星源智能（Jetson Thor N5/T5/B5）、九识智能（双 Orin X VLM/VLA）、新石器（DRIVE Orin-X Neolix-VA 端到端）补充国产具身大脑算力平台落地视角；新建 [[robot-brain-compute-platform]] 概念
